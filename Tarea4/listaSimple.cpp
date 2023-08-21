@@ -666,8 +666,8 @@ int main()
    L1.InsertarInicio(6);
    L1.InsertarFinal(4);
    L1.InsertarFinal(0);
-//   L1.InsertarPos(1479,1);
-//   L1.InsertarInicio(88);
+   L1.InsertarPos(1479,1);
+   L1.InsertarInicio(88);
    L2.InsertarFinal(1);
    L2.InsertarInicio(2);
    L2.InsertarInicio(5);
@@ -739,16 +739,16 @@ int main()
 */
 
 //****************************TAREA #4***********************************************
-/*
+
 	cout<<"TAREA #4"<<endl;
 	
 	cout<<"Enlazar Listas: "<<endl;
-	L3.enlazarListas(61240,879521);
+	L3.enlazarListas(612405,879521);
 	
 	cout<<endl<<"\nIngresa numero en lista y suma el valor del centro a su derecha e izquierda"<<endl;
 	L6.sumarCentro(1234568);
 	L6.Mostrar();
-*/
+
 ////*********************************************************************************
 
 //   cin.get();
