@@ -582,7 +582,7 @@ int main(){
 		cout<<endl;
 		i=i+1; 
 		postFijo.~lista();
-	}
+	} 
 
     cout<<endl;
 	return 0;
