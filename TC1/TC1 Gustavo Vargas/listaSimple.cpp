@@ -24,7 +24,11 @@ class nodo { // Constructores
        valor = v;
        siguiente = signodo;
     	}
+<<<<<<< HEAD
   
+=======
+
+>>>>>>> 02834be4311f725d9ae6ad4b0ad437d045a99748
    private:
     string valor;
     nodo *siguiente;
