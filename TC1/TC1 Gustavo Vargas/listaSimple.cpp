@@ -570,7 +570,7 @@ int main(){
 		cout<<"\n                    ***LECTURA DE ARCHIVO "<<i+1<<".***\n\nExpresion original: "<<endl<<endl;
 		postFijo.MostrarExpresionHuman(Cola[i]);
 		cout<<"\nExpresion como lista: "<<endl<<endl;
-		postFijo.MostrarExpresion(Cola[i]);
+		postFijo.MostrarExpresion(Cola[i]);   
 		cout<<endl;
 		cout<<"Expresion creada en Postfijo: "<<endl<<endl;
 		postFijo.crearPostfijo(Cola[i]);
