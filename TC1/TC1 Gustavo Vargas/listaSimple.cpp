@@ -580,7 +580,7 @@ int main(){
 		//IMPRIMIR RESULTADO
 		cout<<"Aqui va el resultado de la operacion";
 		cout<<endl;
-		i=i+1;
+		i=i+1; 
 		postFijo.~lista();
 	}
 
