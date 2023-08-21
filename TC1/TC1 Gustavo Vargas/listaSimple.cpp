@@ -568,7 +568,7 @@ int main(){
 	while(i<5){
 		cout<<endl<<"************************************************************"<<endl;
 		cout<<"\n                    ***LECTURA DE ARCHIVO "<<i+1<<".***\n\nExpresion original: "<<endl<<endl;
-		postFijo.MostrarExpresionHuman(Cola[i]);
+		postFijo.MostrarExpresionHuman(Cola[i]); 
 		cout<<"\nExpresion como lista: "<<endl<<endl;
 		postFijo.MostrarExpresion(Cola[i]);   
 		cout<<endl;
