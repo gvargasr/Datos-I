@@ -57,6 +57,7 @@ class lista {
     //TC1
     void crearCola(pnodo Cola[]);
     void MostrarExpresion(pnodo primerl);
+    void MostrarExpresionHuman(pnodo primerl);
     void crearPostfijo(pnodo primerl);
     void comparar(string valor, lista pilaOperActual);
     int prioridadDP(char ca);
@@ -295,6 +296,20 @@ void lista::Imprimir()
    }	
 }
 
+void lista::MostrarExpresionHuman(pnodo primerl){
+	pnodo aux=primerl->siguiente;
+	if(aux==NULL){
+		cout<<"No hay elementos";
+	}
+	else{
+		while(aux!=NULL){
+			cout<<aux->valor;
+			aux=aux->siguiente;
+		}
+		cout<<endl;
+	}
+}
+
 void lista::MostrarExpresion(pnodo primerl){
 	pnodo aux=primerl->siguiente;
 	if(aux==NULL){
@@ -305,7 +320,7 @@ void lista::MostrarExpresion(pnodo primerl){
 			cout<<aux->valor<<" -> ";
 			aux=aux->siguiente;
 		}
-		cout<<endl<<endl;
+		cout<<endl;
 	}
 }
 
@@ -410,7 +425,7 @@ void lista::crearCola(pnodo Cola[]){
 		aux=Cola[3];
 		while(aux->siguiente!=NULL){
 			aux=aux->siguiente;
-		}
+		} 
 		aux->siguiente=new nodo(str);
 	}
 	archivo.close();
@@ -551,12 +566,20 @@ int main(){
 	postFijo.crearCola(Cola);
 	int i = 0;
 	while(i<5){
-		cout<<"\nLectura de Archivo "<<i+1<<", expresion original: "<<endl;
+		cout<<endl<<"************************************************************"<<endl;
+		cout<<"\n                    ***LECTURA DE ARCHIVO "<<i+1<<".***\n\nExpresion original: "<<endl<<endl;
+		postFijo.MostrarExpresionHuman(Cola[i]);
+		cout<<"\nExpresion como lista: "<<endl<<endl;
 		postFijo.MostrarExpresion(Cola[i]);
 		cout<<endl;
-		cout<<"Expresion creada en Postfijo: "<<endl;
+		cout<<"Expresion creada en Postfijo: "<<endl<<endl;
 		postFijo.crearPostfijo(Cola[i]);
 		postFijo.Imprimir();
+		cout<<endl;
+		cout<<"RESULTADO: "<<endl<<endl;
+		//IMPRIMIR RESULTADO
+		cout<<"Aqui va el resultado de la operacion";
+		cout<<endl;
 		i=i+1;
 		postFijo.~lista();
 	}
