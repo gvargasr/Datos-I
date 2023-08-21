@@ -24,7 +24,7 @@ class nodo { // Constructores
        valor = v;
        siguiente = signodo;
     	}
-
+  
    private:
     string valor;
     nodo *siguiente;
