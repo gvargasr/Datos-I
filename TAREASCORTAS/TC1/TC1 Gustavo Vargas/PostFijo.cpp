@@ -16,7 +16,7 @@ class nodo { // Constructores
    	nodo(string v)
     {
        valor = v;
-       siguiente = NULL;
+       siguiente = NULL;  
     	} 
 
 	nodo(string v, nodo  *signodo)
