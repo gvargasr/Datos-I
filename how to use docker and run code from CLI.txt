@@ -1,0 +1,14 @@
+using docker
+
+enable docker
+docker run --rm -it -v "$(pwd)":/usr/src gcc:latest  
+
+
+build the code
+
+g++ -std=c++11 listaSimple.cpp -o listaSimple
+
+
+add " ./ " at the begining of the file to run the code that was built before
+
+./listaSimple
