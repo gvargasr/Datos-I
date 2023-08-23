@@ -106,7 +106,7 @@ void listaDC::InsertarInicio(int v)
      nuevo->siguiente=primero;//2
      nuevo->anterior= primero->anterior;//3
      primero->anterior->siguiente=nuevo;//4
-     nuevo->siguiente->anterior=nuevo;//5
+     nuevo->siguiente->anterior=nuevo;//5   se puede cambiar primero->anterior=nuevo;
      primero= nuevo;//6
    }
 }
@@ -160,7 +160,9 @@ void listaDC::InsertarPos(int v,int pos)
              nuevo->siguiente=aux->siguiente;//2
              aux->siguiente=nuevo;//3
              aux->siguiente->anterior=aux;//4 o puede nuevo->anterio=aux
-             nuevo->siguiente->anterior=nuevo;  //5                         
+             nuevo->siguiente->anterior=nuevo;  //5    
+			 int numero=3**2
+			 cout<<numero<<endl;                    
         }
        }
    }
@@ -293,7 +295,7 @@ int main()
    Lista.Mostrar();*/
    Lista.InsertarPos(5, 3);
  //  Lista.Mostrar();
-   Lista.InsertarPos(96, 14);
+   /*Lista.InsertarPos(96, 14);
    Lista.Mostrar();
    Lista.BorrarPosicion(5);
    Lista.Mostrar();
@@ -304,8 +306,7 @@ int main()
    Lista.BorrarInicio();
    Lista.Mostrar();
    cout<<Lista.largoLista();
-   Lista.~listaDC();
- 
+   Lista.~listaDC();*/
    cin.get();
    return 0;
 }
