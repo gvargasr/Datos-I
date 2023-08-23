@@ -6,43 +6,45 @@
 
 using namespace std;
 
-class nodo { // Constructores
+class nodoStr { // Constructores
    public:
-   	nodo()
+   	nodoStr()
    	{
    		valor = "";
+   		
    		siguiente = NULL;
 	   }
-   	nodo(string v)
+   	nodoStr(string v)
     { 
        valor = v;
        siguiente = NULL;  
     	} 
 
-	nodo(string v, nodo  *signodo)
+	nodoStr(string v, nodoStr  *signodo)
     {
        valor = v;
        siguiente = signodo;
     	}
 
+
    private:
     string valor;
-    nodo *siguiente;
+    nodoStr *siguiente;
     
         
-   friend class lista;
+   friend class listaStr;
 };
 
-typedef nodo *pnodo; //Alias
+typedef nodoStr *pnodoStr; //Alias
 
 //void no retorna nada
 //bool retorna False o True
 //int retorna entero
 
-class lista {
+class listaStr {
    public:
-    lista() { primero =  NULL; }//constructor
-    ~lista();//destructor
+    listaStr() { primero =  NULL; }//constructor
+    ~listaStr();//destructor
     bool buscarNumero(string v);
     void InsertarInicio(string v);
     void InsertarFinal(string v);
@@ -55,27 +57,28 @@ class lista {
     int largoLista();// retorno un valor numerico
     bool buscarPosicion(int pos);
     //TC1
-    void crearCola(pnodo Cola[]);
-    void MostrarExpresion(pnodo primerl);
-    void MostrarExpresionHuman(pnodo primerl);
-    void crearPostfijo(pnodo primerl);
-    void comparar(string valor, lista pilaOperActual);
+    void crearCola(pnodoStr Cola[]);
+    void MostrarExpresion(pnodoStr primerl);
+    void MostrarExpresionHuman(pnodoStr primerl);
+    void crearPostfijo(pnodoStr primerl);
+    void comparar(string valor, listaStr pilaOperActual);
     int prioridadDP(char ca);
     int prioridadFP(char ca);
     void Imprimir();
+    void Evaluar();
     
 
 	
 
     
    private:
-    pnodo primero;
+    pnodoStr primero;
    
 };
 
-lista::~lista()
+listaStr::~listaStr()
 {
-   pnodo aux;
+   pnodoStr aux;
    
    while(primero) {
       aux = primero;
@@ -85,10 +88,10 @@ lista::~lista()
    primero= NULL;
 }
 
-int lista::largoLista(){
+int listaStr::largoLista(){
     int cont=0;
 
-    pnodo aux= primero;
+    pnodoStr aux= primero;
     if(ListaVacia()){
         return cont;
     }else{
@@ -102,20 +105,17 @@ int lista::largoLista(){
     
 }
 
-void lista::InsertarInicio(string v)//3 10 265
+void listaStr::InsertarInicio(string v)//3 10 265
 {
    if (ListaVacia())
    {
    
-     primero = new nodo(v);//6
+     primero = new nodoStr(v);//6
      
    }
    else
    {
-     //primera forma
- //  primero=new nodo (v,primero);
-    //segunda forma
-    pnodo nuevo=new nodo(v);
+    pnodoStr nuevo=new nodoStr(v);
     nuevo->siguiente=primero;
     primero=nuevo;
      
@@ -125,50 +125,40 @@ void lista::InsertarInicio(string v)//3 10 265
    }
 }
  
-void lista::InsertarFinal(string v)//76
+void listaStr::InsertarFinal(string v)//76
 {
    if (ListaVacia())
-     primero = new nodo(v);
+     primero = new nodoStr(v);
    else
       { 
-      //primera forma
-	    //pnodo aux = primero;
-      //  while ( aux->siguiente != NULL)
-      //   aux= aux->siguiente;
-      //  aux->siguiente=new nodo(v);
-       
-       //segunda forma 
-       pnodo aux = primero;
+       pnodoStr aux = primero;
         while ( aux->siguiente != NULL)
          aux= aux->siguiente;
-        pnodo nuevo=new nodo(v);
+        pnodoStr nuevo=new nodoStr(v);
         aux->siguiente=nuevo;
       }    
 }
 
 
-void lista::InsertarPos(string v,int pos)
+void listaStr::InsertarPos(string v,int pos)
 {
    if (ListaVacia())
-     primero = new nodo(v);
+     primero = new nodoStr(v);
    else{
         if(pos <=1)
 		{
-        	//OPcion1
-          pnodo nuevo = new nodo(v);
+          pnodoStr nuevo = new nodoStr(v);
           nuevo->siguiente= primero;
           primero= nuevo;     
-          //OPcion 2
-          //InsertarInicio(v);
         }      
         else{
-             nodo *aux= primero;
+             nodoStr *aux= primero;
              int i =2;
              while((i != pos )&&(aux->siguiente!= NULL)){
                    i++;
                    aux=aux->siguiente;
              }
-             pnodo nuevo= new nodo(v);
+             pnodoStr nuevo= new nodoStr(v);
              nuevo->siguiente=aux->siguiente;
              aux->siguiente=nuevo;
              
@@ -176,7 +166,7 @@ void lista::InsertarPos(string v,int pos)
         }
 }
       
-void lista::BorrarFinal()
+void listaStr::BorrarFinal()
 {
     if (ListaVacia()){
      cout << "No hay elementos en la lista:" << endl;
@@ -184,19 +174,19 @@ void lista::BorrarFinal()
    }else{
         
         if (primero->siguiente == NULL) 
-		{   pnodo temp=primero;
+		{   pnodoStr temp=primero;
 		    primero= NULL;
 		    delete temp;;
             }
 			 else {
 
-                pnodo aux = primero;
+                pnodoStr aux = primero;
                 while (aux->siguiente->siguiente != NULL) {
                     aux = aux->siguiente;
 
                 }
                 
-              pnodo temp = aux->siguiente;
+              pnodoStr temp = aux->siguiente;
               aux->siguiente= NULL;
 
                 
@@ -205,21 +195,21 @@ void lista::BorrarFinal()
         }
 }
 
-void lista::BorrarInicio()
+void listaStr::BorrarInicio()
 {
     if (ListaVacia()){
      cout << "No hay elementos en la lista:" << endl;
     
    }else{
         if (primero->siguiente == NULL) 
-		{   pnodo temp=primero;
+		{   pnodoStr temp=primero;
 		    primero= NULL;
 		    delete temp;
         } 
 		else 
 		{
 
-                pnodo aux = primero;
+                pnodoStr aux = primero;
                 primero=primero->siguiente;                
                 delete aux;
         }
@@ -228,7 +218,7 @@ void lista::BorrarInicio()
 
 
 
-void lista:: borrarPosicion(int pos){
+void listaStr:: borrarPosicion(int pos){
      if(ListaVacia()){
               cout << "Lista vacia" <<endl;
     }else{
@@ -237,18 +227,18 @@ void lista:: borrarPosicion(int pos){
         }else{
         if(pos==1)
 		{
-        	pnodo temp=primero;
+        	pnodoStr temp=primero;
         	primero=primero->siguiente;
         	delete temp; //BorrarInicio();
         }
 		else{
           int cont=2;
-            pnodo aux=  primero;
+            pnodoStr aux=  primero;
             while(cont<pos){
              aux=aux->siguiente;
              cont++;
             }
-            pnodo temp=aux->siguiente;
+            pnodoStr temp=aux->siguiente;
             aux->siguiente=aux->siguiente->siguiente;
             delete temp;
             }
@@ -258,9 +248,9 @@ void lista:: borrarPosicion(int pos){
 }
  
 
-void lista::Mostrar()
+void listaStr::Mostrar()
 {
-   nodo *aux;
+   nodoStr *aux;
    if (primero== NULL)
        cout << "No hay elementos"<<endl;  
    else
@@ -277,9 +267,9 @@ void lista::Mostrar()
    }	
 }
 
-void lista::Imprimir()
+void listaStr::Imprimir()
 {
-   nodo *aux;
+   nodoStr *aux;
    if (primero== NULL)
        cout << "No hay elementos"<<endl;  
    else
@@ -296,8 +286,8 @@ void lista::Imprimir()
    }	
 }
 
-void lista::MostrarExpresionHuman(pnodo primerl){
-	pnodo aux=primerl->siguiente;
+void listaStr::MostrarExpresionHuman(pnodoStr primerl){
+	pnodoStr aux=primerl->siguiente;
 	if(aux==NULL){
 		cout<<"No hay elementos";
 	}
@@ -310,8 +300,8 @@ void lista::MostrarExpresionHuman(pnodo primerl){
 	}
 }
 
-void lista::MostrarExpresion(pnodo primerl){
-	pnodo aux=primerl->siguiente;
+void listaStr::MostrarExpresion(pnodoStr primerl){
+	pnodoStr aux=primerl->siguiente;
 	if(aux==NULL){
 		cout<<"No hay elementos";
 	}
@@ -331,14 +321,14 @@ void lista::MostrarExpresion(pnodo primerl){
 
 // 1. Buscar un numero en una lista.
 
-bool lista::buscarNumero(string v){
+bool listaStr::buscarNumero(string v){
 	if(ListaVacia()){
 		cout<<"El string "<<v<<" no se encuentra en la lista"<<endl;
 		return false;
 	}
 	else
 	{
-		pnodo aux=primero;
+		pnodoStr aux=primero;
 		while(aux!=NULL)
 		{
 			if(aux->valor == v){
@@ -355,7 +345,7 @@ bool lista::buscarNumero(string v){
 
 //2. Escribir una función para buscar un número en una posición especifica
 
-bool lista:: buscarPosicion(int pos){
+bool listaStr:: buscarPosicion(int pos){
     if(ListaVacia()){
               cout << "Lista vacia" <<endl;
               return false;
@@ -365,7 +355,7 @@ bool lista:: buscarPosicion(int pos){
         return false;
         }
 		else{
-			pnodo aux=primero;
+			pnodoStr aux=primero;
 			while(pos > 1){
 				aux=aux->siguiente;
 				pos -= 1;
@@ -379,17 +369,17 @@ bool lista:: buscarPosicion(int pos){
 
 // lee los archivos y los agrega en la cola.
 
-void lista::crearCola(pnodo Cola[]){
+void listaStr::crearCola(pnodoStr Cola[]){
 	string str;
 	ifstream archivo;
-	pnodo aux;
+	pnodoStr aux;
 	archivo.open("Arch1.txt");
 	while(getline(archivo, str)){	
 		aux=Cola[0];
 		while(aux->siguiente!=NULL){
 			aux=aux->siguiente;
 		}
-		aux->siguiente=new nodo(str);
+		aux->siguiente=new nodoStr(str);
 	}
 	archivo.close();
 	str="";
@@ -402,7 +392,7 @@ void lista::crearCola(pnodo Cola[]){
 		while(aux->siguiente!=NULL){
 			aux=aux->siguiente;
 		}
-		aux->siguiente=new nodo(str);
+		aux->siguiente=new nodoStr(str);
 	}
 	archivo.close();
 	str="";
@@ -414,7 +404,7 @@ void lista::crearCola(pnodo Cola[]){
 		while(aux->siguiente!=NULL){
 			aux=aux->siguiente;
 		}
-		aux->siguiente=new nodo(str);
+		aux->siguiente=new nodoStr(str);
 	}
 	archivo.close();
 	str="";
@@ -426,7 +416,7 @@ void lista::crearCola(pnodo Cola[]){
 		while(aux->siguiente!=NULL){
 			aux=aux->siguiente;
 		} 
-		aux->siguiente=new nodo(str);
+		aux->siguiente=new nodoStr(str);
 	}
 	archivo.close();
 	str="";
@@ -438,7 +428,7 @@ void lista::crearCola(pnodo Cola[]){
 		while(aux->siguiente!=NULL){
 			aux=aux->siguiente;
 		}
-		aux->siguiente=new nodo(str);
+		aux->siguiente=new nodoStr(str);
 	}
 	archivo.close();
 	str="";
@@ -447,7 +437,7 @@ void lista::crearCola(pnodo Cola[]){
 
 //Asignar prioridades a cada operando/operador
 
-int lista::prioridadDP(char ca){
+int listaStr::prioridadDP(char ca){
 	switch(ca){
     	case '+' : 
 			return 1;
@@ -465,7 +455,7 @@ int lista::prioridadDP(char ca){
 	}
 }
 
-int lista::prioridadFP(char ca){
+int listaStr::prioridadFP(char ca){
 	switch(ca){
     	case '+' : 
 			return 1;
@@ -485,9 +475,9 @@ int lista::prioridadFP(char ca){
 
 // Crea lista postfijo, utiliza una lista temporal para guardar los operadores
 
-void lista::crearPostfijo(pnodo primerl){  //(15-4)+3-(12-5*2)
-	lista *pilaOperadores = new lista();
-	pnodo aux = primerl;
+void listaStr::crearPostfijo(pnodoStr primerl){  //(15-4)+3-(12-5*2)
+	listaStr *pilaOperadores = new listaStr();
+	pnodoStr aux = primerl;
 	string car;
 	string car2;
 
@@ -550,19 +540,77 @@ void lista::crearPostfijo(pnodo primerl){  //(15-4)+3-(12-5*2)
 }
 
 
+void listaStr::Evaluar(){
+	listaStr *pila = new listaStr();
+	pnodoStr aux = primero;
+		double num1=0;
+		double num2=0;
+		double result=1;
+		while(aux != NULL){
+		switch(aux->valor[0]){
+				case '^':
+					num2= stod(pila->primero->valor);
+					pila->BorrarInicio();
+					num1= stod(pila->primero->valor);
+					pila->BorrarInicio();
+					result = pow(num1,num2);
+					pila->InsertarInicio(to_string(result));
+					break;
+				case '+':
+					num2= stod(pila->primero->valor);
+					pila->BorrarInicio();
+					num1= stod(pila->primero->valor);
+					pila->BorrarInicio();
+					result = num1 + num2;
+					pila->InsertarInicio(to_string(result));
+					break;		
+				case '-':
+					num2= stod(pila->primero->valor);
+					pila->BorrarInicio();
+					num1= stod(pila->primero->valor);
+					pila->BorrarInicio();
+					result = num1 - num2;
+					pila->InsertarInicio(to_string(result));
+					break;
+				case '/':
+					num2= stod(pila->primero->valor);
+					pila->BorrarInicio();
+					num1= stod(pila->primero->valor);
+					pila->BorrarInicio();
+					result = num1 / num2;
+					pila->InsertarInicio(to_string(result));
+					break;
+				case '*':
+					num2= stod(pila->primero->valor);
+					pila->BorrarInicio();
+					num1= stod(pila->primero->valor);
+					pila->BorrarInicio();
+					result = num1 * num2;
+					pila->InsertarInicio(to_string(result));
+					break;
+				default:
+					pila->InsertarInicio(aux->valor);
+					break;
+			}
+			aux=aux->siguiente;
+		
+	}
+	cout<<"Evaluacion final: "<<result<<endl;
+}
+
 
 int main(){
 		cout<<"*************TAREA CORTA #1************************"<<endl<<endl;
 		cout<<"Evaluacion en POSTFIJO"<<endl;
 		cout<<"\nIntegrantes:\nGustavo Vargas\nGabriel Campos"<<endl;
-	lista postFijo;
-	pnodo primeroL1=new nodo();
-	pnodo primeroL2=new nodo();
-	pnodo primeroL3=new nodo();
-	pnodo primeroL4=new nodo();
-	pnodo primeroL5=new nodo();
+	listaStr postFijo;
+	pnodoStr primeroL1=new nodoStr();
+	pnodoStr primeroL2=new nodoStr();
+	pnodoStr primeroL3=new nodoStr();
+	pnodoStr primeroL4=new nodoStr();
+	pnodoStr primeroL5=new nodoStr();
 	
-	pnodo Cola[5]={primeroL1,primeroL2,primeroL3,primeroL4,primeroL5};
+	pnodoStr Cola[5]={primeroL1,primeroL2,primeroL3,primeroL4,primeroL5};
 	postFijo.crearCola(Cola);
 	int i = 0;
 	while(i<5){
@@ -577,14 +625,14 @@ int main(){
 		postFijo.Imprimir();
 		cout<<endl;
 		cout<<"RESULTADO: "<<endl<<endl;
-		//IMPRIMIR RESULTADO
-		cout<<"Aqui va el resultado de la operacion";
+		postFijo.Evaluar();
 		cout<<endl;
-		i=i+1; 
-		postFijo.~lista();
-	} 
-
+		i=i+1;
+		postFijo.~listaStr();	
+	}
+	
     cout<<endl;
+
 	return 0;
 }
  
