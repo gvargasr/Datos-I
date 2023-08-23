@@ -64,7 +64,6 @@ class listaStr {
     int prioridadDP(char ca);
     int prioridadFP(char ca);
     void Imprimir();
-    void Evaluar();
     
    private:
     pnodoStr primero;
@@ -274,7 +273,7 @@ void listaStr::Imprimir()
    		aux = primero;
 		while(aux) 
 		{
-			cout << aux->valor<<" ";
+			cout << aux->valor<<" -> ";
 		    aux = aux->siguiente;
 		}
 		cout << endl;
@@ -534,66 +533,6 @@ void listaStr::crearPostfijo(pnodoStr primerl){  //(15-4)+3-(12-5*2)
 	delete pilaOperadores;
 }
 
-// HACER LOS CALCULOS CON SWITCH
-void listaStr::Evaluar(){
-	listaStr *pila = new listaStr();
-	pnodoStr aux = primero;
-		double num1=0;
-		double num2=0;
-		double result=1;
-		while(aux != NULL){
-		switch(aux->valor[0]){
-				case '^':
-					num2= stod(pila->primero->valor);
-					pila->BorrarInicio();
-					num1= stod(pila->primero->valor);
-					pila->BorrarInicio();
-					result = pow(num1,num2);
-					pila->InsertarInicio(to_string(result));
-					break;
-				case '+':
-					num2= stod(pila->primero->valor);
-					pila->BorrarInicio();
-					num1= stod(pila->primero->valor);
-					pila->BorrarInicio();
-					result = num1 + num2;
-					pila->InsertarInicio(to_string(result));
-					break;		
-				case '-':
-					num2= stod(pila->primero->valor);
-					pila->BorrarInicio();
-					num1= stod(pila->primero->valor);
-					pila->BorrarInicio();
-					result = num1 - num2;
-					pila->InsertarInicio(to_string(result));
-					break;
-				case '/':
-					num2= stod(pila->primero->valor);
-					pila->BorrarInicio();
-					num1= stod(pila->primero->valor);
-					pila->BorrarInicio();
-					result = num1 / num2;
-					pila->InsertarInicio(to_string(result));
-					break;
-				case '*':
-					num2= stod(pila->primero->valor);
-					pila->BorrarInicio();
-					num1= stod(pila->primero->valor);
-					pila->BorrarInicio();
-					result = num1 * num2;
-					pila->InsertarInicio(to_string(result));
-					break;
-				default:
-					pila->InsertarInicio(aux->valor);
-					break;
-			}
-			aux=aux->siguiente;
-		
-	}
-	cout<<result<<endl;
-}
-
-
 int main(){
 		cout<<"*************TAREA CORTA #1************************"<<endl<<endl;
 		cout<<"Evaluacion en POSTFIJO"<<endl;
@@ -608,7 +547,6 @@ int main(){
 	pnodoStr Cola[5]={primeroL1,primeroL2,primeroL3,primeroL4,primeroL5};
 	postFijo.crearCola(Cola);
 	int i = 0;
-	postFijo.Mostrar();
 	while(i<5){
 		cout<<endl<<"************************************************************"<<endl;
 		cout<<"\n                    ***LECTURA DE ARCHIVO "<<i+1<<".***\n\nExpresion original: "<<endl<<endl;
@@ -618,12 +556,10 @@ int main(){
 		cout<<endl;
 		cout<<"Expresion creada en Postfijo: "<<endl<<endl;
 		postFijo.crearPostfijo(Cola[i]);
-		postFijo.Mostrar();
-		cout<<endl;
 		postFijo.Imprimir();
 		cout<<endl;
 		cout<<"Resultado Final: "<<endl<<endl;
-		postFijo.Evaluar();
+		//AQUI VA EL METODO PARA HACER EL CALCULO
 		cout<<endl;
 		i=i+1;
 		postFijo.~listaStr();	
