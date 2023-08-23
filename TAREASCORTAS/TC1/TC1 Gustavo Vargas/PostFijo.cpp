@@ -535,6 +535,7 @@ void listaStr::crearPostfijo(pnodoStr primerl){  //(15-4)+3-(12-5*2)
 }
 
 // HACER LOS CALCULOS CON SWITCH
+
 void listaStr::Evaluar(){
 	listaStr *pila = new listaStr();
 	pnodoStr aux = primero;
@@ -608,7 +609,6 @@ int main(){
 	pnodoStr Cola[5]={primeroL1,primeroL2,primeroL3,primeroL4,primeroL5};
 	postFijo.crearCola(Cola);
 	int i = 0;
-	postFijo.Mostrar();
 	while(i<5){
 		cout<<endl<<"************************************************************"<<endl;
 		cout<<"\n                    ***LECTURA DE ARCHIVO "<<i+1<<".***\n\nExpresion original: "<<endl<<endl;

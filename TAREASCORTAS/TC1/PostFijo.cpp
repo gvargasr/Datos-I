@@ -26,7 +26,6 @@ class nodoStr { // Constructores
        siguiente = signodo;
     	}
 
-
    private:
     string valor;
     nodoStr *siguiente;
