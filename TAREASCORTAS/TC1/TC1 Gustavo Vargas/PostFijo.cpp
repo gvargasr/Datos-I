@@ -539,7 +539,7 @@ void listaStr::crearPostfijo(pnodoStr primerl){  //(15-4)+3-(12-5*2)
 	delete pilaOperadores;
 }
 
-
+// HACER LOS CALCULOS CON SWITCH
 void listaStr::Evaluar(){
 	listaStr *pila = new listaStr();
 	pnodoStr aux = primero;
