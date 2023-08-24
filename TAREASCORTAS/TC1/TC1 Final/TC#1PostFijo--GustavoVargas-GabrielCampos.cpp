@@ -26,6 +26,7 @@ class nodoStr { // Constructores
        siguiente = signodo;
     	}
 
+
    private:
     string valor;
     nodoStr *siguiente;
@@ -62,6 +63,8 @@ class listaStr {
     void crearPostfijo(pnodoStr primerl);
     int prioridadDP(char ca);
     int prioridadFP(char ca);
+    double retornarNumeroLista();
+    void lectorListaPostfija();
     void Imprimir();
     
    private:
@@ -253,7 +256,7 @@ void listaStr::Mostrar()
    		aux = primero;
 		while(aux) 
 		{
-		    cout << aux->valor << "-> ";
+		    cout << aux->valor << " ";
 		    aux = aux->siguiente;
 		}
 		cout << endl;
@@ -532,10 +535,69 @@ void listaStr::crearPostfijo(pnodoStr primerl){  //(15-4)+3-(12-5*2)
 	delete pilaOperadores;
 }
 
+//Lector de la lista postfija para hacer la operacion
+void listaStr::lectorListaPostfija() {
+		pnodoStr aux = primero;
+		listaStr *pilaCalc = new listaStr();	
+		double Num1;
+		double Num2;
+		double Resultado;
+		while (aux != NULL) {
+			string simbolo; 
+			simbolo = aux->valor;
+			switch (aux->valor[0]) {
+				case '+': // PFP 1 PDP 1
+					Num2 = pilaCalc->retornarNumeroLista();
+					Num1 = pilaCalc->retornarNumeroLista();
+					Resultado = Num1+Num2;
+					pilaCalc->InsertarInicio(to_string(Resultado));
+					break;
+				case '-': // PFP 1 PDP 1
+					Num2 = pilaCalc->retornarNumeroLista();
+					Num1 = pilaCalc->retornarNumeroLista();
+					Resultado = Num1-Num2;
+					pilaCalc->InsertarInicio(to_string(Resultado));
+					break;
+				case '*': // PFP 2 PDP 2
+					Num2 = pilaCalc->retornarNumeroLista();
+					Num1 = pilaCalc->retornarNumeroLista();
+					Resultado = Num1*Num2;
+					pilaCalc->InsertarInicio(to_string(Resultado));
+					break;
+				case '/': // PFP 2 PDP 2
+					Num2 = pilaCalc->retornarNumeroLista();
+					Num1 = pilaCalc->retornarNumeroLista();
+					Resultado = Num1/Num2;
+					pilaCalc->InsertarInicio(to_string(Resultado));
+					break;
+				case '^': // PFP 4 PDP 3
+					Num2 = pilaCalc->retornarNumeroLista();
+					Num1 = pilaCalc->retornarNumeroLista();
+					Resultado = pow(Num1, Num2);
+					pilaCalc->InsertarInicio(to_string(Resultado));
+					break;
+				default: //Numero
+					pilaCalc->InsertarInicio(simbolo);
+					break;
+			}
+			aux = aux->siguiente;	
+		}
+		cout<<pilaCalc->retornarNumeroLista();
+	}
+
+//Transforma numeros y los saca de la pila
+		double listaStr::retornarNumeroLista() {
+		pnodoStr aux = primero;
+		double Num1;
+		Num1= stod(aux->valor);
+		BorrarInicio();
+		return Num1;
+	}
+
 int main(){
 		cout<<"*************TAREA CORTA #1************************"<<endl<<endl;
 		cout<<"Evaluacion en POSTFIJO"<<endl;
-		cout<<"\nIntegrantes:\nGustavo Vargas\nGabriel Campos"<<endl;
+		cout<<"\nIntegrantes:\nGustavo Vargas Ramirez   --- 200409141 \nGabriel Campos Gutierrez --- 2023093692"<<endl;
 	listaStr postFijo;
 	pnodoStr primeroL1=new nodoStr();
 	pnodoStr primeroL2=new nodoStr();
@@ -557,15 +619,26 @@ int main(){
 		postFijo.crearPostfijo(Cola[i]);
 		postFijo.Imprimir();
 		cout<<endl;
+		cout<<"Expresion postfijo 'Human readable': "<<endl<<endl;
+		postFijo.Mostrar();
+		cout<<endl;
 		cout<<"Resultado Final: "<<endl<<endl;
-		//AQUI VA EL METODO PARA HACER EL CALCULO
+		cout<<">>> ";
+		postFijo.lectorListaPostfija();
+		cout<<" <<< ";
 		cout<<endl;
 		i=i+1;
 		postFijo.~listaStr();	
 	}
 	
-    cout<<endl;
-
+    cout<<endl<<endl<<endl;
+    cout<<"###########################################################"<<endl;
+    cout<<"###########################################################"<<endl;
+    cout<<"###########################################################"<<endl;
+	cout<<"################## PROGRAMA FINALIZADO ####################"<<endl;
+	cout<<"###########################################################"<<endl;
+	cout<<"###########################################################"<<endl;
+	cout<<"###########################################################"<<endl;
 	return 0;
 }
  
@@ -576,8 +649,8 @@ Crear Cola (Arreglo)--- LISTO
 Insertar Archivos en la Cola --- LISTO
 Recorrer Arreglo de la Cola  --- LISTO
 Crear Postfijo               --- LISTO
-Evaluar Expresión en Postfijo
-Imprimir Expresión Original, Expresión Postfijo y Evaluación
+Evaluar Expresión en Postfijo --- LISTO
+Imprimir Expresión Original, Expresión Postfijo y Evaluación  --- lISTO
 */
 
 
