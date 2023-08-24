@@ -644,7 +644,7 @@ void lista::sumarCentro(int a){
 		}
 	}
 }
-
+/*
 int main()
 {
    lista L1;//instancia null
@@ -677,7 +677,7 @@ int main()
 //   L2.InsertarInicio(98);
  //  L2.InsertarInicio(55);
  //  cout<<"Tarea #3"<<endl;
- 
+ */
 /*  
    cout<<"\nPregunta 1: Buscar un numero en una lista."<<endl;
    L1.Mostrar();
@@ -742,7 +742,7 @@ int main()
 	cout<<"TAREA #4"<<endl;
 	
 	cout<<"Enlazar Listas: "<<endl;
-	L3.enlazarListas(61240,879521);
+	L3.enlazarListas(631240,879521);
 	
 	cout<<endl<<"\nIngresa numero en lista y suma el valor del centro a su derecha e izquierda"<<endl;
 	L6.sumarCentro(1234568);
@@ -751,8 +751,9 @@ int main()
 ////*********************************************************************************
 
 //   cin.get();
-   return 0;
+
+/*   return 0;
 
 
-} 
+}*/ 
 
