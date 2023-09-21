@@ -41,7 +41,9 @@ class ArbolBinario {
     void RecorridoPreorden(pnodoA nodo);
     void RecorridoInorden(pnodoA nodo);
     void RecorridoPostorden(pnodoA nodo);
-    void Evaluacion(pnodoA nodo);
+    double EvaluacionR(pnodoA nodo);
+    bool EsOperador(string v);
+
     
 
 
@@ -92,3 +94,70 @@ void ArbolBinario::RecorridoPostorden(pnodoA nodo) {
         cout << nodo->valor << " ";
     }
 }
+
+bool ArbolBinario::EsOperador(string v) {
+    return v == "+" || v == "^" || v == "-" || v == "*" || v == "/";
+}
+
+/*double ArbolBinario::EvaluacionR(pnodoA nodo) {
+        if (nodo == NULL) {
+            return 0.0;
+        }
+
+        if (!EsOperador(nodo->valor)) {
+            return stod(nodo->valor); // Convierte el valor a número
+        }
+
+        double izquierdo = EvaluacionR(nodo->hizq);
+        double derecho = EvaluacionR(nodo->hder);
+
+        if (nodo->valor == "+") {
+            return izquierdo + derecho;
+        } else if (nodo->valor == "-") {
+            return izquierdo - derecho;
+        } else if (nodo->valor == "*") {
+            return izquierdo * derecho;
+        } else if(nodo->valor == "^"){
+        	return pow(izquierdo, derecho);
+		}else if (nodo->valor == "/") {
+            if (derecho != 0) {
+                return izquierdo / derecho;
+            } else {
+                std::cerr << "Error: División por cero." << std::endl;
+                return ;
+            }
+        }
+
+        return 0.0; // Valor predeterminado
+    }*/
+    
+
+double ArbolBinario::EvaluacionR(pnodoA nodo) {
+    if (nodo == NULL) {
+        return 0.0;
+    }
+
+    while (EsOperador(nodo->valor)) {
+        double izquierdo = EvaluacionR(nodo->hizq);
+        double derecho = EvaluacionR(nodo->hder);
+
+        if (nodo->valor == "+") {
+            return izquierdo + derecho;
+        } else if (nodo->valor == "-") {
+            return izquierdo - derecho;
+        } else if (nodo->valor == "*") {
+            return izquierdo * derecho;
+        } else if(nodo->valor == "^"){
+        	return pow(izquierdo, derecho);
+		} else if (nodo->valor == "/") {
+            if (derecho != 0) {
+                return izquierdo / derecho;
+            } else {
+                std::cerr << " Error: Division por cero." << std::endl;
+                return 99999999999999999;
+            }
+        }
+    }
+    return stod(nodo->valor); // Convertir el valor a número si no es un operador
+}
+

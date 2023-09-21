@@ -3,6 +3,7 @@
 #include <fstream>
 #include <string>
 #include <math.h>
+#include <iomanip>
 #include "TC#1PostFijo--GustavoVargas-GabrielCampos.cpp"
 #include "Pila.cpp"
 using namespace std;
@@ -185,12 +186,11 @@ void TC2::crearColaArbol(){
 }
 
  void TC2::crearLista(){
-//	listaStr aux = *inicio;
 	crearColaArbol();
 	for(int i =0; i<5; i++){
 		cout<< "#################################################"<<endl;
 		cout<< "\t .:ARCHIVO #"<<i+1<<":."<<endl;
-		ofstream archivoSalida("Comparaciones.txt", ios::app);
+		ofstream archivoSalida("Evaluacion de la expresion.txt", ios::app);
         	if (!archivoSalida.is_open()) {
             	cerr << "No se pudo abrir el archivo." << endl;
         	}
@@ -231,17 +231,15 @@ void TC2::crearArbol(pnodoStr primerl){  //(15-4)+3-(12-5*2)
 						cout<<endl;
 						cout<<"PrioridadFP "<<car<<": "<<prioridadFP(car[0])<<endl;
 						cout<<"Insertando en PilaOperadores"<<endl;
-						ofstream archivoSalida("Comparaciones.txt", ios::app);
+						ofstream archivoSalida("Evaluacion de la expresion.txt", ios::app);
         				if (!archivoSalida.is_open()) {
             				cerr << "No se pudo abrir el archivo." << endl;
         				}
         				else {
             				
             				archivoSalida <<"PrioridadFP "<<car<<": "<<prioridadFP(car[0])<<endl;
-            				archivoSalida <<"Insertando en PilaOperadores"<<endl;
-            				archivoSalida<<endl<<endl;
+            				archivoSalida <<"Insertando en PilaOperadores"<<endl<<endl;
             				cout << endl;
-            	//			archivoSalida.close();
         				}						
 						
 						
@@ -275,7 +273,7 @@ void TC2::crearArbol(pnodoStr primerl){  //(15-4)+3-(12-5*2)
 					if(pilaOperadores->Top()!=NULL){
 						car = pilaOperadores->Top()->valor;
 						car2 = aux->valor;
-						ofstream archivoSalida("Comparaciones.txt", ios::app);
+						ofstream archivoSalida("Evaluacion de la expresion.txt", ios::app);
         				if (!archivoSalida.is_open()) {
             				cerr << "No se pudo abrir el archivo." << endl;
         				}
@@ -283,7 +281,6 @@ void TC2::crearArbol(pnodoStr primerl){  //(15-4)+3-(12-5*2)
             				
             				archivoSalida << "PrioridadFP "<<car2<<": "<<prioridadFP(car2[0])<<endl;
             				archivoSalida << "PrioridadDP "<<car<<": "<<prioridadDP(car[0])<<endl;
-            				archivoSalida<<endl<<endl;
             				cout << endl;
             	//			archivoSalida.close();
         				}
@@ -301,14 +298,15 @@ void TC2::crearArbol(pnodoStr primerl){  //(15-4)+3-(12-5*2)
 							AB->InsertarHijos(auxA->valor, auxI, auxD);
 							pilaExpresion->Push(AB->raiz); 
 							cout<< "Moviendo a Pila Expresion"<<endl;
-							archivoSalida << "Moviendo a Pila Expresion"<<endl;
+							archivoSalida << "Moviendo a Pila Expresion"<<endl<<endl;
 							archivoSalida.close();
 							break;
 						}
 						else{
 							pilaOperadores->Push(new NodoArbol(car2));
 							cout<< "Insertando en PilaOperadores"<<endl;
-							archivoSalida << "Insertando en PilaOperadores"<<endl;
+							cout<<endl;
+							archivoSalida << "Insertando en PilaOperadores"<<endl<<endl;
 							archivoSalida.close();
 							break;
 	
@@ -327,7 +325,7 @@ void TC2::crearArbol(pnodoStr primerl){  //(15-4)+3-(12-5*2)
 			}
 		aux= aux->siguiente;
 	}
-	ofstream archivoSalida("Comparaciones.txt", ios::app);
+	ofstream archivoSalida("Evaluacion de la expresion.txt", ios::app);
         				if (!archivoSalida.is_open()) {
             				cerr << "No se pudo abrir el archivo." << endl;
         				}
@@ -349,23 +347,13 @@ void TC2::crearArbol(pnodoStr primerl){  //(15-4)+3-(12-5*2)
 	cout<<"Recorrido Pre-Orden: "<<endl;
 	AB->RecorridoPreorden(AB->raiz);
 	cout<<endl<<endl;
+	cout<<"El resultado final es:";
+	cout<< std::fixed << std::setprecision(3) << AB->EvaluacionR(AB->raiz);
 	
-//	AB->Evaluacion(AB->raiz);
-	
-/*
-//  VACIAR LA PILA OPERADORES
-	while(pilaOperadores->Top() !=NULL){
-		if(pilaOperadores->Top()->valor != "("){	
-		pilaExpresion->Push(pilaOperadores->Top());
-		pilaOperadores->Pop();
-	}else{
-		pilaOperadores->Pop();
-	}
-	}
-	AB = new ArbolBinario(pilaExpresion->Top());
-	pilaOperadores->Pop();
-	delete pilaOperadores;*/
 }
+
+
+
 
 
 void TC2::Menu(){
