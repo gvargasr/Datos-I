@@ -11,13 +11,12 @@ class nodoStr { // Constructores
    	nodoStr()
    	{
    		valor = "";
-   		
    		siguiente = NULL;
 	   }
    	nodoStr(string v)
     { 
        valor = v;
-       siguiente = NULL;  
+       siguiente = NULL; 
     	} 
 
 	nodoStr(string v, nodoStr  *signodo)
@@ -27,8 +26,8 @@ class nodoStr { // Constructores
     	}
 
 
-   private:
-    string valor;
+//   private:
+	string valor;
     nodoStr *siguiente;
     
         
@@ -57,7 +56,8 @@ class listaStr {
     int largoLista();// retorno un valor numerico
     bool buscarPosicion(int pos);
     //TC1
-    void crearCola(pnodoStr Cola[]);
+    void crearCola();
+    void cargarCola(pnodoStr Cola[]);
     void MostrarExpresion(pnodoStr primerl);
     void MostrarExpresionHuman(pnodoStr primerl);
     void crearPostfijo(pnodoStr primerl);
@@ -66,9 +66,12 @@ class listaStr {
     double retornarNumeroLista();
     void lectorListaPostfija();
     void Imprimir();
+    //TC2
+    void MostrarCola();
     
-   private:
+//   private:
     pnodoStr primero;
+    pnodoStr Cola[5];
    
 };
 
@@ -296,6 +299,8 @@ void listaStr::MostrarExpresionHuman(pnodoStr primerl){
 	}
 }
 
+
+//Expresion como lista:
 void listaStr::MostrarExpresion(pnodoStr primerl){
 	pnodoStr aux=primerl->siguiente;
 	if(aux==NULL){
@@ -363,19 +368,63 @@ bool listaStr:: buscarPosicion(int pos){
 
 }
 
+
+//TC1
 // lee los archivos y los agrega en la cola.
 
-void listaStr::crearCola(pnodoStr Cola[]){
+void listaStr::crearCola(){
+	pnodoStr primeroL1=new nodoStr();
+	pnodoStr primeroL2=new nodoStr();
+	pnodoStr primeroL3=new nodoStr();
+	pnodoStr primeroL4=new nodoStr();
+	pnodoStr primeroL5=new nodoStr();
+//	pnodoStr Cola[5];
+	Cola[0]= primeroL1;
+	Cola[1]= primeroL2;
+	Cola[2]= primeroL3;
+	Cola[3]= primeroL4;
+	Cola[4]= primeroL5;	
+		
+	listaStr postFijo;
+	postFijo.cargarCola(Cola);
+	int i = 0;
+/*	while(i<5){
+		cout<<endl<<"************************************************************"<<endl;
+		cout<<"\n                    ***LECTURA DE ARCHIVO "<<i+1<<".***\n\nExpresion original: "<<endl<<endl;
+		postFijo.MostrarExpresionHuman(Cola[i]); 
+		cout<<"\nExpresion como lista: "<<endl<<endl;
+		postFijo.MostrarExpresion(Cola[i]);   
+		cout<<endl;
+		cout<<"Expresion creada en Postfijo: "<<endl<<endl;
+		postFijo.crearPostfijo(Cola[i]);
+		postFijo.Imprimir();
+		cout<<endl;
+		cout<<"Expresion postfijo 'Human readable': "<<endl<<endl;
+		postFijo.Mostrar();
+		cout<<endl;
+		cout<<"Resultado Final: "<<endl<<endl;
+		cout<<">>> ";
+		postFijo.lectorListaPostfija();
+		cout<<" <<< ";
+		cout<<endl;
+		i=i+1;
+		postFijo.~listaStr();	
+	}*/
+}
+
+void listaStr::cargarCola(pnodoStr Cola[]){
 	string str;
 	ifstream archivo;
 	pnodoStr aux;
 	archivo.open("Arch1.txt");
-	while(getline(archivo, str)){	
+	while(getline(archivo, str)){
+		if(str != ""){
 		aux=Cola[0];
 		while(aux->siguiente!=NULL){
 			aux=aux->siguiente;
 		}
 		aux->siguiente=new nodoStr(str);
+		}
 	}
 	archivo.close();
 	str="";
@@ -383,48 +432,56 @@ void listaStr::crearCola(pnodoStr Cola[]){
 
 	
 		archivo.open("Arch2.txt");
-	while(getline(archivo, str)){	
+	while(getline(archivo, str)){
+		if(str != ""){	
 		aux=Cola[1];
 		while(aux->siguiente!=NULL){
 			aux=aux->siguiente;
 		}
 		aux->siguiente=new nodoStr(str);
+		}
 	}
 	archivo.close();
 	str="";
 	aux=NULL;
 	
 		archivo.open("Arch3.txt");
-	while(getline(archivo, str)){	
+	while(getline(archivo, str)){
+		if(str != ""){	
 		aux=Cola[2];
 		while(aux->siguiente!=NULL){
 			aux=aux->siguiente;
 		}
 		aux->siguiente=new nodoStr(str);
+		}
 	}
 	archivo.close();
 	str="";
 	aux=NULL;
 	
 		archivo.open("Arch4.txt");
-	while(getline(archivo, str)){	
+	while(getline(archivo, str)){
+		if(str != ""){	
 		aux=Cola[3];
 		while(aux->siguiente!=NULL){
 			aux=aux->siguiente;
 		} 
 		aux->siguiente=new nodoStr(str);
+		}
 	}
 	archivo.close();
 	str="";
 	aux=NULL;
 	
 		archivo.open("Arch5.txt");
-	while(getline(archivo, str)){	
+	while(getline(archivo, str)){
+		if(str != ""){	
 		aux=Cola[4];
 		while(aux->siguiente!=NULL){
 			aux=aux->siguiente;
 		}
 		aux->siguiente=new nodoStr(str);
+		}
 	}
 	archivo.close();
 	str="";
@@ -470,7 +527,7 @@ int listaStr::prioridadFP(char ca){
 }
 
 // Crea lista postfijo, utiliza una lista temporal para guardar los operadores
-
+//Expresion creada en Postfijo: 
 void listaStr::crearPostfijo(pnodoStr primerl){  //(15-4)+3-(12-5*2)
 	listaStr *pilaOperadores = new listaStr();
 	pnodoStr aux = primerl;
@@ -567,9 +624,14 @@ void listaStr::lectorListaPostfija() {
 				case '/': // PFP 2 PDP 2
 					Num2 = pilaCalc->retornarNumeroLista();
 					Num1 = pilaCalc->retornarNumeroLista();
+					if(Num2 !=0){
 					Resultado = Num1/Num2;
 					pilaCalc->InsertarInicio(to_string(Resultado));
 					break;
+					}else{
+						cout<< "Division entre 0 no esta definida.";
+						return;
+					}
 				case '^': // PFP 4 PDP 3
 					Num2 = pilaCalc->retornarNumeroLista();
 					Num1 = pilaCalc->retornarNumeroLista();
@@ -593,44 +655,29 @@ void listaStr::lectorListaPostfija() {
 		BorrarInicio();
 		return Num1;
 	}
-
-int main(){
-		cout<<"*************TAREA CORTA #1************************"<<endl<<endl;
-		cout<<"Evaluacion en POSTFIJO"<<endl;
-		cout<<"\nIntegrantes:\nGustavo Vargas Ramirez   --- 200409141 \nGabriel Campos Gutierrez --- 2023093692"<<endl;
-	listaStr postFijo;
-	pnodoStr primeroL1=new nodoStr();
-	pnodoStr primeroL2=new nodoStr();
-	pnodoStr primeroL3=new nodoStr();
-	pnodoStr primeroL4=new nodoStr();
-	pnodoStr primeroL5=new nodoStr();
 	
-	pnodoStr Cola[5]={primeroL1,primeroL2,primeroL3,primeroL4,primeroL5};
-	postFijo.crearCola(Cola);
+//TC2
+void listaStr::MostrarCola(){
 	int i = 0;
-	while(i<5){
-		cout<<endl<<"************************************************************"<<endl;
-		cout<<"\n                    ***LECTURA DE ARCHIVO "<<i+1<<".***\n\nExpresion original: "<<endl<<endl;
-		postFijo.MostrarExpresionHuman(Cola[i]); 
-		cout<<"\nExpresion como lista: "<<endl<<endl;
-		postFijo.MostrarExpresion(Cola[i]);   
+	while(i < 5){
+		pnodoStr aux0 = Cola[i]->siguiente;
+		while(aux0){
+			cout << aux0->valor;
+			aux0 = aux0->siguiente;
+		}
 		cout<<endl;
-		cout<<"Expresion creada en Postfijo: "<<endl<<endl;
-		postFijo.crearPostfijo(Cola[i]);
-		postFijo.Imprimir();
-		cout<<endl;
-		cout<<"Expresion postfijo 'Human readable': "<<endl<<endl;
-		postFijo.Mostrar();
-		cout<<endl;
-		cout<<"Resultado Final: "<<endl<<endl;
-		cout<<">>> ";
-		postFijo.lectorListaPostfija();
-		cout<<" <<< ";
-		cout<<endl;
-		i=i+1;
-		postFijo.~listaStr();	
+		i++;
 	}
-	
+} 
+/*
+int main(){
+	cout<<"*************TAREA CORTA #2************************"<<endl<<endl;
+	cout<<"Evaluacioes con Arboles"<<endl;
+	cout<<"\nIntegrantes:\nGustavo Vargas Ramirez   --- 200409141 \nGabriel Campos Gutierrez --- 2023093692"<<endl;
+	listaStr Inicio;
+	Inicio.crearCola();
+	cout<< "test tavo: "<<endl;
+	Inicio.MostrarCola();
     cout<<endl<<endl<<endl;
     cout<<"###########################################################"<<endl;
     cout<<"###########################################################"<<endl;
@@ -641,12 +688,19 @@ int main(){
 	cout<<"###########################################################"<<endl;
 	return 0;
 }
- 
+ */
 
 /*
-Leer Archivos---LISTO
-Crear Cola (Arreglo)--- LISTO
-Insertar Archivos en la Cola --- LISTO
+
+PARTE 1
+listaStr Inicio;
+Inicio.crearCola();
+  - Leer Archivos---LISTO
+  - Crear Cola (Arreglo)--- LISTO
+  - Insertar Archivos en la Cola --- LISTO
+
+PARTE 2
+
 Recorrer Arreglo de la Cola  --- LISTO
 Crear Postfijo               --- LISTO
 Evaluar Expresión en Postfijo --- LISTO

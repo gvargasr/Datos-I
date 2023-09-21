@@ -224,7 +224,7 @@ void Binario::InsertarBalanceado(pNodoBinario ra, bool Hh, int x){
             InsertarBalanceado(ra->Hizq, Hh, x);
 
         if(Hh){
-            switch(ra->valor){
+            switch(ra->FB){
                 case 1: ra->FB=0;
                 Hh = false;
                 break;
