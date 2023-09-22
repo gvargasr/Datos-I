@@ -1,0 +1,5 @@
+123;345;David
+345;987;Orlando
+4567;234;Guadalajara
+12;34;Bocas del Toro
+123;345;X
