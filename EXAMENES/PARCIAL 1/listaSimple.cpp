@@ -49,7 +49,7 @@ class lista {
     int largoLista();// retorno un valor numerico
     
     //EXAMEN1
-    void UNO(long long  Num1, long long Num2);
+    void UNO(long long Num1, long long Num2);
 	void TRES(long long Num1, long long Num2);
 
 	
@@ -311,14 +311,14 @@ void lista::UNO(long long Num1, long long Num2){
         tempo = tempo / 10;
         ++cont2;
     }
+    cout<<"\t .:Ejercicio UNO:."<<endl<<endl;
     if(cont != cont2){
     	cout<<"Num1: "<<Num1<<endl;
 		cout<<"Num2: "<<Num2<<endl;
 		cout<<endl;
 		cout<<"Largo de los numeros es diferente"<<endl;
-		exit(0);
-	}
-	if(cont%5 == 0 && cont%2 != 0){
+	//	exit(0);
+	}else if(cont%5 == 0 && cont%2 != 0){
 	long long temp = abs(Num1);
 	long long temp2 = abs(Num2);
 	long long aux = abs(Num1);
@@ -350,11 +350,11 @@ void lista::UNO(long long Num1, long long Num2){
 	cout<<endl;
 	cout<<"Listas Sumadas:"<<endl;
 	Suma.Mostrar();
-	}
-	else{
+	} else{
 		cout<<"Numero1: "<<Num1<<endl<<"Numero2: "<<Num2<<endl;
-		cout<<"Largo: "<<cont;
-		cout<<"\n\nNumeros deben ser de un largo multiplo de 5 y este largo debe ser impar.\n";
+		cout<<"Largo Num1: "<<cont<<endl;
+		cout<<"Largo Num2: "<<cont2<<endl;
+		cout<<"\n\nNumeros deben ser de un largo multiplo de 5 y este largo debe ser impar.\n"<<endl;
 	}
 }
 
@@ -377,12 +377,12 @@ void lista::TRES(long long Num1, long long Num2){
         ++cont2;
     }
     if(cont != cont2){
-    	cout<<"\t Ejercicio TRES"<<endl;
+    	cout<<"\t .:Ejercicio TRES:."<<endl<<endl;
     	cout<<"Num1: "<<Num1<<endl;
 		cout<<"Num2: "<<Num2<<endl;
 		cout<<endl;
 		cout<<"Largo de los numeros es diferente"<<endl;
-		exit(0);
+		//exit(0);
 	}
 	
 	long long temp = abs(Num1);
@@ -467,18 +467,17 @@ void lista::TRES(long long Num1, long long Num2){
 int main()
 {
  // UNO
- /*	lista L1;
-    L1.UNO(612572563512345, -123458910245856);
+ 	lista L1;
+    L1.UNO(612572563512225, -35654134589102);
     L1.UNO(61257, 89102);
-    L1.UNO(61257, 89102);
-    L1.~lista();*/
+ //   L1.UNO(61257, 89102);
+    L1.~lista();
     
  //TRES  
- 	lista L1;
 //    L1.UNO(612572563512345, -123458910245856);
 //    L1.UNO(61257, 89102);
  //   L1.TRES(612345, 107895);
-    L1.TRES(123, 4456);
+    L1.TRES(1234, 4456);
 	L1.~lista();
     
    
