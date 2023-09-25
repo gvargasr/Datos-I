@@ -1,5 +1,6 @@
 #ifndef _NODOBINARIO_H
 #define	_NODOBINARIO_H
+#include <cstddef>
 
 class NodoBinario {
    public:

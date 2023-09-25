@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "Binario.h"
+#include "Binario.cpp"
 #include <iostream>
 
 using namespace std;
@@ -15,7 +15,7 @@ int main(){
     B.InsertaNodo(5);
     B.InsertaNodo(1);
     B.InsertaNodo(3);
-    B.InsertaNodo(10);\
+    B.InsertaNodo(10);
 
     cout<<endl<<"In"<<endl;
     B.InordenI();
@@ -31,18 +31,50 @@ int main(){
     B2.InsertaNodo(5);
     B2.InsertaNodo(1);
     B2.InsertaNodo(3);
-    B2.InsertaNodo(10);\
+    B2.InsertaNodo(10);
 
     cout<<endl<<"Post"<<endl;
     B2.PostordenI();
 
+    cout<<endl<<"B3 IN"<<endl;
     Binario B3;
-    B3.InsertarBalanceado(B.raiz, false, 5);
-    B3.InsertarBalanceado(B.raiz, B.Hh, 4);
-   // B.InsertarBalanceado(B.raiz, false, 6);
-
-    
-    cin.get();
+    B3.InsertarBalanceado(B3.raiz, B3.Hh, 50);
+    	B3.PreordenI();
+		cout<<endl;
+    B3.InsertarBalanceado(B3.raiz, B3.Hh, 17);
+    	B3.PreordenI();
+		cout<<endl;
+    B3.InsertarBalanceado(B3.raiz, B3.Hh, 76);
+    	B3.PreordenI();
+		cout<<endl;
+    B3.InsertarBalanceado(B3.raiz, B3.Hh, 12);
+    	B3.PreordenI();
+		cout<<endl;
+    B3.InsertarBalanceado(B3.raiz, B3.Hh, 23);
+        B3.PreordenI();
+		cout<<endl;
+   B3.InsertarBalanceado(B3.raiz, B3.Hh, 92);
+    	B3.PreordenI();
+		cout<<endl;
+    B3.InsertarBalanceado(B3.raiz, B3.Hh, 14);
+    	B3.PreordenI();
+		cout<<endl;
+   B3.InsertarBalanceado(B3.raiz, B3.Hh, 30);
+        B3.PreordenI();
+		cout<<endl;
+    B3.InsertarBalanceado(B3.raiz, B3.Hh, 40);
+        	B3.PreordenI();
+		cout<<endl;
+    B3.InsertarBalanceado(B3.raiz, B3.Hh, 55);
+        	B3.PreordenI();
+		cout<<endl;
+    B3.InsertarBalanceado(B3.raiz, B3.Hh, 60);
+    	B3.PreordenI();
+		cout<<endl;
+	//	B3.InordenI();
+	//	cout<<endl;
+	//	B3.PostordenR(B3.raiz);
+ //   cin.get();
 
     return (EXIT_SUCCESS);
 }

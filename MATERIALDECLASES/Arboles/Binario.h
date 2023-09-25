@@ -15,18 +15,19 @@ public:
     void PreordenI();
     void InordenI();
     void PostordenI();
+    void PostordenR(NodoBinario *R);
 
-    bool Hh;
+    bool Hh=false;
     
-    void Borrar(NodoBinario *nodoB, bool);
-    void BorrarBalanceado(NodoBinario *r, bool, int eliminar);
-    void Equilibrar1(NodoBinario *n, bool);
-    void Equilibrar2(NodoBinario *n, bool);
-    void InsertarBalanceado(NodoBinario *r, bool, int x);
-    void RotacionDobleIzquierda(NodoBinario *n1, NodoBinario *n2);
-    void RotacionDobleDerecha(NodoBinario *n1, NodoBinario *n2);
-    void RotacionSimpleIzquierda(NodoBinario *n1, NodoBinario *n2);
-    void RotacionSimpleDerecha(NodoBinario *n1, NodoBinario *n2);
+    void Borrar(NodoBinario *&nodoB, bool);
+    void BorrarBalanceado(NodoBinario *&r, bool &Hh, int eliminar);
+    void Equilibrar1(NodoBinario *&n, bool &Hh);
+    void Equilibrar2(NodoBinario *&n, bool &Hh);
+    void InsertarBalanceado(NodoBinario* &ra, bool &Hh, int x);
+    void RotacionDobleIzquierda(NodoBinario *&n1, NodoBinario *&n2);
+    void RotacionDobleDerecha(NodoBinario *&n1, NodoBinario *&n2);
+    void RotacionSimpleIzquierda(NodoBinario *&n1, NodoBinario *&n2);
+    void RotacionSimpleDerecha(NodoBinario *&n1, NodoBinario *&n2);
 
 
 };
