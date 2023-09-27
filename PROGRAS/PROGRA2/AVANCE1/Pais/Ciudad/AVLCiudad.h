@@ -30,7 +30,8 @@ public:
     void RotacionDobleDerecha(NodoBinarioCiudad *&n1, NodoBinarioCiudad *&n2);
     void RotacionSimpleIzquierda(NodoBinarioCiudad *&n1, NodoBinarioCiudad *&n2);
     void RotacionSimpleDerecha(NodoBinarioCiudad *&n1, NodoBinarioCiudad *&n2);
-
+	NodoBinarioCiudad* BuscarCiudad(NodoBinarioCiudad* nodoB, int num);
+    bool BuscarCiudadBool(NodoBinarioCiudad* nodoB, int num);
 
 };
 

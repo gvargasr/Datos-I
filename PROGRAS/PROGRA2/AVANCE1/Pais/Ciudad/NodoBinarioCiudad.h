@@ -21,6 +21,8 @@ class NodoBinarioCiudad {
     friend class BinarioCiudad;
 
     void InsertaBinarioCiudad(int num, string pais);
+
+
 };
 
 typedef NodoBinarioCiudad *pnodoCiudad;

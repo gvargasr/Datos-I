@@ -5,6 +5,40 @@
 
 using namespace std;
 
+
+NodoBinarioCiudad* AVLCiudad::BuscarCiudad(NodoBinarioCiudad* nodoB, int num) {
+    if (nodoB == NULL) {
+//        cout << "La ciudad: " << num << " no se encuentra" << endl;
+        return NULL; // Ciudad no se encuentra en el árbol
+    }
+    if (num < nodoB->valor) {
+        return BuscarCiudad(nodoB->Hizq, num);
+    } else if (num > nodoB->valor) {
+        return BuscarCiudad(nodoB->Hder, num);
+    } else {
+        // Ciudad se encuentra en el nodo actual
+//        cout << "La ciudad: " << num << " fue encontrada." << endl;
+        return nodoB;
+    }
+}
+
+bool AVLCiudad::BuscarCiudadBool(NodoBinarioCiudad* nodoB, int num) {
+    if (nodoB == NULL) {
+        cout << "La ciudad: " << num << " no se encuentra" << endl;
+        return false; // La ciudad no se encuentra en el árbol
+    }
+    if (num < nodoB->valor) {
+        return BuscarCiudadBool(nodoB->Hizq, num);
+    } else if (num > nodoB->valor) {
+        return BuscarCiudadBool(nodoB->Hder, num);
+    } else {
+        // La ciudad se encuentra en el nodo actual
+        cout << "La ciudad: " << num << " fue encontrada." << endl;
+        return true;
+    }
+}
+
+
 void NodoBinarioCiudad::InsertaBinarioCiudad(int num, string nombre)
 {
 	if(num == valor){

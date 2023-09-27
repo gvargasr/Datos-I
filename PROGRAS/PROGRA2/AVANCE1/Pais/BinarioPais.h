@@ -20,6 +20,8 @@ public:
 
     bool Hh=false;
     
+    NodoBinarioPais* MinValorNodo(NodoBinarioPais* nodoB);
+	void EliminarPais(NodoBinarioPais*& nodoB, int pais);
     void BorrarPais(NodoBinarioPais *&nodoB, bool);
     void BorrarBalanceadoPais(NodoBinarioPais *&r, bool &Hh, int eliminar);
     void Equilibrar1(NodoBinarioPais *&n, bool &Hh);
@@ -29,7 +31,9 @@ public:
     void RotacionDobleDerecha(NodoBinarioPais *&n1, NodoBinarioPais *&n2);
     void RotacionSimpleIzquierda(NodoBinarioPais *&n1, NodoBinarioPais *&n2);
     void RotacionSimpleDerecha(NodoBinarioPais *&n1, NodoBinarioPais *&n2);
-	NodoBinarioPais BuscarPais(NodoBinarioPais *&nodoB, int num);
+	NodoBinarioPais* BuscarPais(NodoBinarioPais* nodoB, int num);
+	bool BuscarPaisBool(NodoBinarioPais* nodoB, int num);
+
 
 
 

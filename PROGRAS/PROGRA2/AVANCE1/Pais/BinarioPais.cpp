@@ -6,23 +6,82 @@
 
 using namespace std;
 
-NodoBinarioPais BinarioPais::BuscarPais(NodoBinarioPais *&nodoB, int num){
-    NodoBinarioPais *q = nodoB;
-    while(q != NULL){
-        if(num < q->valor){
-            BuscarPais(q->Hizq, num);
+
+void BinarioPais::EliminarPais(NodoBinarioPais*& nodoB, int pais) {
+    if (nodoB == NULL) {
+        cout<<"El codigo de Pais "<<pais<<" no se encuentra."<<endl; 
+        return;
+    }
+
+    if (pais < nodoB->valor) {
+        EliminarPais(nodoB->Hizq, pais);
+    } else if (pais > nodoB->valor) {
+        EliminarPais(nodoB->Hder, pais);
+    } else {
+        if (nodoB->Hizq == NULL) {
+            NodoBinarioPais* temp = nodoB->Hder;
+            cout<<"Pais ha sido eliminado"<<endl;
+            delete nodoB;
+            nodoB = temp;
+        } else if (nodoB->Hder == NULL) {
+            NodoBinarioPais* temp = nodoB->Hizq;
+            cout<<"Pais ha sido eliminado"<<endl;
+			delete nodoB;
+            nodoB = temp;
+        } else {
+            // Caso 2: El nodo tiene 2 hijos, buscamos el sucesor inmediato
+            NodoBinarioPais* temp = MinValorNodo(nodoB->Hder);
+
+            // Copiamos los datos del sucesor al nodo actual
+            nodoB->valor = temp->valor;
+            nodoB->pais = temp->pais;
+
+            // Eliminamos el sucesor
+            EliminarPais(nodoB->Hder, temp->valor);
         }
-        if(num > q->valor){
-        	BuscarPais(q->Hder, num);
-        }
-        if(num == q->valor){
-        	return *q;
-		}
-        }
-        if(q == NULL){
-        	cout <<"El pais: "<<num<<" no se encuentra"<<endl;
-    		return *q;
-		}
+    }
+}
+
+NodoBinarioPais* BinarioPais::MinValorNodo(NodoBinarioPais* nodoB) {
+    NodoBinarioPais* actual = nodoB;
+    while (actual->Hizq != nullptr) {
+        actual = actual->Hizq;
+    }
+
+    return actual;
+}
+
+
+NodoBinarioPais* BinarioPais::BuscarPais(NodoBinarioPais* nodoB, int num) {
+    if (nodoB == NULL) {
+//        cout << "El pais: " << num << " no se encuentra" << endl;
+        return NULL; // El país no se encuentra en el árbol
+    }
+    if (num < nodoB->valor) {
+        return BuscarPais(nodoB->Hizq, num);
+    } else if (num > nodoB->valor) {
+        return BuscarPais(nodoB->Hder, num);
+    } else {
+        // El país se encuentra en el nodo actual
+//        cout << "El pais: " << num << " fue encontrado." << endl;
+        return nodoB;
+    }
+}
+
+bool BinarioPais::BuscarPaisBool(NodoBinarioPais* nodoB, int num) {
+    if (nodoB == NULL) {
+        cout << "El pais: " << num << " no se encuentra" << endl;
+        return false; // El país no se encuentra en el árbol
+    }
+    if (num < nodoB->valor) {
+        return BuscarPais(nodoB->Hizq, num);
+    } else if (num > nodoB->valor) {
+        return BuscarPais(nodoB->Hder, num);
+    } else {
+        // El país se encuentra en el nodo actual
+        cout << "El pais: " << num << " fue encontrado." << endl;
+        return true;
+    }
 }
 
 

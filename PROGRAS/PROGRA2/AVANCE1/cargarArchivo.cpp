@@ -18,7 +18,6 @@ class cargarArchivo {
     ~cargarArchivo();
     void Menu();
     void cargaInicial();
-    void EliminarPais(int codigo);
     void buscarMenuMasBuscado();
 
     void MostrarTodo();
@@ -26,23 +25,23 @@ class cargarArchivo {
     void SubMenu1();
 	void SubMenu2();
 	void SubMenu21();
-/*	void SubMenu22();
-	void SubMenu23();
+	void SubMenu22();
+/*	void SubMenu23();
 	void SubMenu24();
 	void SubMenu25();
 	void SubMenu26();*/
 	void SubMenu3();
 	void SubMenu31();
-/*	void SubMenu32();
+	void SubMenu32();
 	void SubMenu33();
-	void SubMenu34();
+/*	void SubMenu34();
 	void SubMenu35();
-	void SubMenu36();
+	void SubMenu36();*/
 	void SubMenu4();
 	void SubMenu41();
     void SubMenu42();
     void SubMenu43();
-    void SubMenu44();
+/*    void SubMenu44();
     void SubMenu45();
     void SubMenu46();
 	void SubMenu5();
@@ -89,6 +88,7 @@ void cargarArchivo::cargaInicial(){
 try{
 
 	archivo.open("Archivos/Paises.txt");
+	cout<<"\t .:CARGANDO PAISES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string codigo;
 		string pais;
@@ -103,6 +103,7 @@ try{
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
 
 	archivo.open("Archivos/Ciudades.txt");
+	cout<<"\t .:CARGANDO CIUDADES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string codpais;
 		string codigo;
@@ -135,6 +136,7 @@ try{
 
 /*
  	archivo.open("Archivos/Restaurantes.txt");
+ 	cout<<"\t .:CARGANDO RESTAURANTES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string codpais;
 		string codCiudad;
@@ -350,10 +352,6 @@ void cargarArchivo::buscarMenuMasBuscado() {
 }
 
 
-void cargarArchivo::EliminarPais(int codigo){
-	listaPais->BorrarPosicion(listaPais->buscarPos(codigo));
-}
-
 */
 
 void cargarArchivo::SubMenu1(){
@@ -376,13 +374,13 @@ void cargarArchivo::SubMenu1(){
 			cout<<"."<<endl;
 			cout<<"."<<endl;
 			cout<<"Se cargo archivos y lista de clientes"<<endl;
-//			listaPais->Mostrar();
-//			listaCliente->Mostrar();
 			break;
 		}
 		case '2':{
 			cout<<"Volviendo a Main Menu"<<endl;
-			listaPais->InordenI();//Imprime la lista de paises
+		//	listaPais->InordenI();//Imprime la lista de paises
+		//	listaPais->raiz->ArbolCiudad.raiz->valor;
+		//	listaPais->BuscarPais(listaPais->raiz, 999);
 			break;	
 		}
 	default:
@@ -415,11 +413,11 @@ void cargarArchivo::SubMenu2(){
 			cout<<"2.1 Insertar Pais"<<endl;
 			SubMenu21();
 			break;
-/*		case '2':
+		case '2':
 			cout<<"2.2 Insertar Ciudad"<<endl;
 			SubMenu22();
 			break;
-		case '3':
+/*		case '3':
 			cout<<"2.3 Insertar Restaurante"<<endl;
 			SubMenu23();
 			break;
@@ -456,7 +454,7 @@ void cargarArchivo::SubMenu21(){
 	listaPais->raiz->InsertaBinarioPais(stoi(cod), nombre);
 	
 }
-/*
+
 void cargarArchivo::SubMenu22(){
 	string codPais;
 	string codCiudad;
@@ -468,20 +466,18 @@ void cargarArchivo::SubMenu22(){
 	cin.ignore();
 	cout<< "\nIngrese el Nombre de la ciudad: ";
 	getline(cin,ciudad);
-	pnodoPais aux = listaPais->primero;
 	int temp = stoi(codPais);
 	int temp2 = stoi(codCiudad);
-	if(listaPais->buscarPais(temp)==true){
-		while(aux!=NULL){
-			if(aux->cod == temp){
-				listaPais->InsertarCiudad(temp2,ciudad,aux->listaCiudad);
-			}
-		aux=aux->siguiente;
-		}
-	}			
+	NodoBinarioPais *aux = listaPais->BuscarPais(listaPais->raiz,temp);
+	if(aux != NULL){
+		NodoBinarioCiudad *aux2 = aux->ArbolCiudad.raiz; 
+		aux->ArbolCiudad.InsertarBalanceadoCiudad(aux2, aux->ArbolCiudad.Hh,temp2,ciudad);
+	}else{
+		cout<<"No se agrego la ciudad, valores incorrectos";
+	}
 }
 
-
+/*
 void cargarArchivo::SubMenu23(){
 	string codPais;
 	string codCiudad;
@@ -631,7 +627,7 @@ void cargarArchivo::SubMenu26(){
 */
 
 // Eliminar
-/*
+
 void cargarArchivo::SubMenu3(){
 		cout << endl << "----------------------------" << endl;
   		cout << endl << "      3. Eliminar   " << endl;
@@ -664,7 +660,7 @@ void cargarArchivo::SubMenu3(){
 			SubMenu33();
 			break;
 		}
-		case '4':{
+/*		case '4':{
 			cout<< "3.4 Eliminar Menu"<<endl;
 			SubMenu34();
 			break;
@@ -678,27 +674,28 @@ void cargarArchivo::SubMenu3(){
 			cout<< "3.6 Eliminar Cliente"<<endl;
 			SubMenu36();
 			break;
-		}
+		}*/
 		case '7':{
 			cout<<"Volviendo a Main Menu"<<endl;			
 			break;
 		}
 		default :{
 			cout<< "!!! Valor incorrecto, ingresar un valor dentro del rango !!!"<<endl;
+			SubMenu3();
 			break;
 		}
 	}
 }
 
 void cargarArchivo::SubMenu31(){
-	string cod;
+	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
-	cin >> cod;
-	listaPais->BorrarPosicion(listaPais->buscarPos(stoi(cod)));
+	cin >> codPais;
+	listaPais->EliminarPais(listaPais->raiz,stoi(codPais));
 }
 
 void cargarArchivo::SubMenu32(){
-	string codPais;
+/*	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
 	cin >> codPais;
 	string codCiudad;
@@ -716,11 +713,11 @@ void cargarArchivo::SubMenu32(){
 		aux=aux->siguiente;
 		}
 	}
-	cout<<"NO SE ELIMINO CIUDAD, CODIGOS INCORRECTOS";
+	cout<<"NO SE ELIMINO CIUDAD, CODIGOS INCORRECTOS";*/
 }
 
 void cargarArchivo::SubMenu33(){
-	string codPais;
+/*	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
 	cin >> codPais;
 	string codCiudad;
@@ -750,10 +747,10 @@ void cargarArchivo::SubMenu33(){
 		aux=aux->siguiente;
 		}	
 	cout<<"NO SE ELIMINO RESTAURANTE, CODIGOS INCORRECTOS";
-	}
+	}*/
 }
 
-
+/*
 void cargarArchivo::SubMenu34(){
 	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
@@ -869,7 +866,7 @@ void cargarArchivo::SubMenu36(){
 }
 */
 //Buscar
-/*
+
 void cargarArchivo::SubMenu4(){
 		cout << endl << "----------------------------" << endl;
   		cout << endl << "      4. Buscar   " << endl;
@@ -902,7 +899,7 @@ void cargarArchivo::SubMenu4(){
 			SubMenu43();
 			break;
 		}
-		case '4':{
+/*		case '4':{
 			cout<< "4.4 Buscar Menu"<<endl;
 			SubMenu44();
 			break;
@@ -916,13 +913,14 @@ void cargarArchivo::SubMenu4(){
 			cout<< "4.6 Buscar Cliente"<<endl;
 			SubMenu46();
 			break;
-		}
+		}*/
 		case '7':{
 			cout<<"Volviendo a Main Menu"<<endl;			
 			break;
 		}
 		default :{
 			cout<< "!!! Valor incorrecto, ingresar un valor dentro del rango !!!"<<endl;
+			SubMenu4();
 			break;
 		}
 	}
@@ -932,7 +930,13 @@ void cargarArchivo::SubMenu41(){
 	string cod;
 	cout<< "Ingrese el codigo de pais: ";
 	cin >> cod;
-	listaPais->MostrarPosicion(listaPais->buscarPos(stoi(cod)));
+	NodoBinarioPais* aux = listaPais->BuscarPais(listaPais->raiz, stoi(cod));
+	if(aux != NULL){
+		cout<<"El pais "<<aux->valor<<":"<<aux->pais<<" fue encontrado"<<endl;
+	}else{
+		cout<<"El pais "<<cod<<" no se encuentra"<<endl;
+	}
+/*	listaPais->MostrarPosicion(listaPais->buscarPos(stoi(cod)));*/
 }
 
 void cargarArchivo::SubMenu42(){
@@ -942,25 +946,23 @@ void cargarArchivo::SubMenu42(){
 	string codCiudad;
 	cout<< "Ingrese el codigo ciudad: ";
 	cin >> codCiudad;
-	pnodoPais aux = listaPais->GetPrimero();
 	int temp = stoi(codPais);
 	int temp2 = stoi(codCiudad);
-	if(listaPais->buscarPais(temp)==true){
-		while(aux!=NULL){
-			if(aux->cod == temp){
-				listaPais->MostrarPosicion(listaPais->buscarPos(temp));
-				aux->listaCiudad->MostrarPosicion(aux->listaCiudad->buscarPos(temp2));
-				return;
-			}
-		aux=aux->siguiente;
-		}
-		cout<<"CIUDAD NO EXISTE";
+	NodoBinarioPais* aux = listaPais->BuscarPais(listaPais->raiz, temp);
+	if(aux != NULL){
+		NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz,temp2);
+		if(aux2 != NULL){
+		cout<<"La ciudad "<<aux2->valor<<":"<<aux2->ciudad<<" fue encontrada"<<endl;
+		}else{
+			cout<<"La ciudad "<<temp2<< " no se encuentra"<<endl;
+		}	
+	}else{
+		cout<<"La ciudad "<<temp2<< " no se encuentra"<<endl;
 	}
-	cout<<"CIUDAD NO EXISTE";
 }
 
 void cargarArchivo::SubMenu43(){
-	string codPais;
+/*	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
 	cin >> codPais;
 	string codCiudad;
@@ -992,9 +994,9 @@ void cargarArchivo::SubMenu43(){
 		aux=aux->siguiente;
 		}	
 	}
-	cout<<"RESTAURANTE NO EXISTE";
+	cout<<"RESTAURANTE NO EXISTE";*/
 }
-
+/*
 void cargarArchivo::SubMenu44(){
 	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
@@ -1976,7 +1978,7 @@ void cargarArchivo::Menu(){
     		SubMenu2();
     		Menu();
     		break;
-/*    	case '3':
+    	case '3':
     		SubMenu3();
     		Menu();
 			break;
@@ -1984,7 +1986,7 @@ void cargarArchivo::Menu(){
     		SubMenu4();
     		Menu();
     		break;
-    	case '5':
+ /*   	case '5':
     		SubMenu5();
     		Menu();
 			break;
@@ -2014,7 +2016,7 @@ void cargarArchivo::Menu(){
 
 
 int main(){
-	cout<<"*************PROGRA #1************************"<<endl;
+	cout<<"*************PROGRA #2************************"<<endl;
 	cout<<"\nIntegrantes:\nGustavo Vargas Ramirez   --- 200409141 \nGabriel Campos Gutierrez --- 2023093692"<<endl;
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;	
 	cargarArchivo Inicio;
