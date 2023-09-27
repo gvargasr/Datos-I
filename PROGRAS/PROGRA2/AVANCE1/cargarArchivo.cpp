@@ -89,11 +89,13 @@ try{
 
 	archivo.open("Archivos/Paises.txt");
 	cout<<"\t .:CARGANDO PAISES:."<<endl<<endl;
-	while(!archivo.eof()){
+	string linea;
+	while (getline(archivo, linea)){
+		stringstream ss(linea);
 		string codigo;
 		string pais;
-		getline(archivo,codigo, ';');
-		getline(archivo, pais);
+		getline(ss,codigo, ';');
+		getline(ss, pais);
 		if(!codigo.empty()){
 			aux->InsertaNodoPais(stoi(codigo),pais);
 		}	
@@ -104,13 +106,14 @@ try{
 
 	archivo.open("Archivos/Ciudades.txt");
 	cout<<"\t .:CARGANDO CIUDADES:."<<endl<<endl;
-	while(!archivo.eof()){
+	while (getline(archivo, linea)){
+		stringstream ss(linea);
 		string codpais;
 		string codigo;
 		string ciudad ;
-		getline(archivo, codpais, ';');
-		getline(archivo, codigo, ';');
-		getline(archivo, ciudad);
+		getline(ss, codpais, ';');
+		getline(ss, codigo, ';');
+		getline(ss, ciudad);
 		int temp = stoi(codpais);
 		int temp2 = stoi(codigo);
 
@@ -134,42 +137,39 @@ try{
 	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;			
 
-/*
+
  	archivo.open("Archivos/Restaurantes.txt");
  	cout<<"\t .:CARGANDO RESTAURANTES:."<<endl<<endl;
-	while(!archivo.eof()){
+	while (getline(archivo, linea)){
+		stringstream ss(linea);
 		string codpais;
 		string codCiudad;
 		string numRest;
 		string nombre;
-		getline(archivo, codpais, ';');
-		getline(archivo, codCiudad, ';');
-		getline(archivo, numRest, ';');
-		getline(archivo, nombre);
-		pnodoPais aux = listaPais->GetPrimero();
+		getline(ss, codpais, ';');
+		getline(ss, codCiudad, ';');
+		getline(ss, numRest, ';');
+		getline(ss, nombre);
 		int temp = stoi(codpais);
 		int temp2 = stoi(codCiudad);
 		int temp3 = stoi(numRest);
-		if(listaPais->buscarPais(temp)==true){
-			while(aux!=NULL){
-				if(aux->getCodigo() == temp){
-					pnodoCiudad aux2 = aux->listaCiudad->GetPrimero();
-					while(aux2!=NULL){
-						if(aux2->cod == temp2){
-							aux->listaCiudad->InsertarRestaurante(temp3,nombre, aux2->listaRestaurante);
-						}
-						aux2= aux2->siguiente;
-					}
-				}
-			aux=aux->siguiente;
-			}
-			
+		
+		NodoBinarioPais* aux = listaPais->BuscarPais(listaPais->raiz, temp);
+		if(aux != NULL){
+			NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz,temp2);
+			if(aux2 != NULL){
+				aux2->ArbolRestaurante.insertar(temp3,nombre);
+			}else{
+				cout<<"La ciudad "<<temp2<< " no se encuentra"<<endl;
+			}	
+		}else{
+			cout<<"El pais "<<temp<< " no se encuentra"<<endl;
 		}
 	}
 	archivo.close();	
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
 
-
+/*
  	archivo.open("Archivos/Menu.txt");
  		while(!archivo.eof()){
 		string codPais;
@@ -692,6 +692,7 @@ void cargarArchivo::SubMenu31(){
 	cout<< "Ingrese el codigo de pais: ";
 	cin >> codPais;
 	listaPais->EliminarPais(listaPais->raiz,stoi(codPais));
+
 }
 
 void cargarArchivo::SubMenu32(){

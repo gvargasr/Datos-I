@@ -2,6 +2,7 @@
 #define	_NODOBINARIOCIUDAD_H
 #include <cstddef>
 #include <string>
+#include "Restaurante/ArbolRest.cpp"
 
 using namespace std;
 
@@ -14,6 +15,7 @@ class NodoBinarioCiudad {
 
     int valor;
     int FB;
+    ArbolRN ArbolRestaurante;
     string ciudad;
     NodoBinarioCiudad *Hizq, *Hder, *siguiente, *anterior;
 
