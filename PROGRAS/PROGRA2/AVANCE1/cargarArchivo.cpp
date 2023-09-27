@@ -1198,34 +1198,31 @@ void cargarArchivo::SubMenu51(){
 }
 
 void cargarArchivo::SubMenu52(){
-/*	string codPais;
-	string nom;
+	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
 	cin >> codPais;
 	string codCiudad;
 	cout<< "Ingrese el codigo ciudad: ";
 	cin >> codCiudad;
-	pnodoPais aux = listaPais->GetPrimero();
+	string nom;
+	cout<< "Ingrese el Nombre de ciudad: ";
+	cin >> nom;
 	int temp = stoi(codPais);
 	int temp2 = stoi(codCiudad);
-	if(listaPais->buscarPais(temp)==true){
-		while(aux!=NULL){
-			if(aux->cod == temp){
-				pnodoCiudad aux2 = aux->listaCiudad->primero;
-				while(aux2!=NULL){
-					if(aux2->cod == temp2){
-						cout<< "Ingrese el nombre de ciudad: ";
-						cin >> nom;
-						aux2->ciudad = nom;
-						return;
-					}
-					aux2= aux2->siguiente;
-				}
-			}
-		aux=aux->siguiente;
-		}
+	NodoBinarioPais* aux = listaPais->BuscarPais(listaPais->raiz, temp);
+	if(aux != NULL){
+		NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz,temp2);
+		if(aux2 != NULL){
+			cout<<"Anterior: "<<aux2->valor<<":"<<aux2->ciudad<<endl;
+			cout<<"El pais fue modificado"<<endl;
+			aux2->ciudad = nom;
+			cout<<"Nuevo: "<<aux2->valor<<":"<<aux2->ciudad<<endl;
+		}else{
+			cout<<"La ciudad "<<temp2<< " no se encuentra"<<endl;
+		}	
+	}else{
+		cout<<"La ciudad "<<temp2<< " no se encuentra"<<endl;
 	}
-	cout<<"PAIS NO EXISTE";*/
 }
 
 void cargarArchivo::SubMenu53(){
