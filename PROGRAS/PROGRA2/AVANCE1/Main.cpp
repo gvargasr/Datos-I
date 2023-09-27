@@ -1,5 +1,5 @@
 #include <stdlib.h>
-#include "PaisesBinario.cpp"
+#include "PaisBinario.cpp"
 #include <iostream>
 #include <string>
 

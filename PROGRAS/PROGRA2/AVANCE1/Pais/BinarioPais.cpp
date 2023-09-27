@@ -1,99 +1,29 @@
 #include <iostream>
-//#include "BinarioPais.h"
-//#include "NodoBinarioPais.h"
+#include "PilaPais.cpp"
+#include "NodoBinarioPais.h"
+#include "BinarioPais.h"
 #include <string>
-
 using namespace std;
 
-
-class NodoBinarioPais {
-   public:
-
-    NodoBinarioPais(int num, string pais, NodoBinarioPais *der = NULL, NodoBinarioPais *izq = NULL, NodoBinarioPais *sig=NULL, NodoBinarioPais *ant=NULL):
-        Hizq(izq), Hder(der), valor(num), pais(pais), siguiente(sig), anterior(ant), FB(0) {}
-
-
-    int valor;
-    int FB;
-    string pais;
-    NodoBinarioPais *Hizq, *Hder, *siguiente, *anterior;
-  //  BinarioCiudad *Ciudad;
-
-    friend class PilaPais;
-    friend class PaisBinario;
-	
-    void InsertaBinarioPais(int num, string pais);
-    NodoBinarioPais* BuscarElemento(NodoBinarioPais* raiz, int valor) {
-
-};
-
-typedef NodoBinarioPais *pnodoPais;
-typedef NodoBinarioPais *pNodoBinarioPais;
-
-void PreordenR(NodoBinarioPais* R);
-void InordenR(NodoBinarioPais* R);
-void PostordenR(NodoBinarioPais* R);
-
-};
-
-class BinarioPais{
-public:
-    pNodoBinarioPais raiz;
-//	pNodoBinarioCiudad *Ciudad;
-    BinarioPais():raiz(NULL){}
-
-    void InsertaNodoPais(int num, string pais);
-    void PreordenI();
-    void InordenI();
-    void PostordenI();
-    void PostordenR(NodoBinarioPais *R);
-
-    bool Hh=false;
-    
-    bool BuscarPais(NodoBinarioPais *&nodoB, int codigo);
-    void BorrarPais(NodoBinarioPais *&nodoB, bool);
-    void BorrarBalanceadoPais(NodoBinarioPais *&r, bool &Hh, int eliminar);
-    void Equilibrar1(NodoBinarioPais *&n, bool &Hh);
-    void Equilibrar2(NodoBinarioPais *&n, bool &Hh);
-    void InsertarBalanceado(NodoBinarioPais* &ra, bool &Hh, int x, string nombre);
-    void RotacionDobleIzquierda(NodoBinarioPais *&n1, NodoBinarioPais *&n2);
-    void RotacionDobleDerecha(NodoBinarioPais *&n1, NodoBinarioPais *&n2);
-    void RotacionSimpleIzquierda(NodoBinarioPais *&n1, NodoBinarioPais *&n2);
-    void RotacionSimpleDerecha(NodoBinarioPais *&n1, NodoBinarioPais *&n2);
-
-
-};
-
-
-bool NodoBinarioPais::BuscarPais(NodoBinarioPais* raiz, int codigo) {
-    if (raiz == NULL) {
-        return false;
-    }
-    if (raiz->valor == valor){
-    	return true;
-	}
-    if (codigo < raiz->valor) {
-        return BuscarPais(raiz->Hizq, codigo);
-    }
-    return BuscarPais(raiz->Hder, codigo);
-}
 
 
 void NodoBinarioPais::InsertaBinarioPais(int num, string pais)
 {
 	if(num == valor){
-		//Codigo repetido
+		cout<<"Codigo repetido "<<num<<" no se agrego a la lista."<<endl;
 		return;
 	}
     if(num < valor){
         if(Hizq == NULL){
             Hizq = new NodoBinarioPais(num, pais);
+            cout<<"Pais "<<num<<":"<<pais<<" fue agregado a la lista."<<endl;
         }else{
             Hizq->InsertaBinarioPais(num, pais);
         }
     }else{
         if(Hder == NULL){
             Hder = new NodoBinarioPais(num, pais);
+            cout<<"Pais "<<num<<":"<<pais<<" fue agregado a la lista."<<endl;
         }else{
             Hder->InsertaBinarioPais(num, pais);
         }
@@ -104,6 +34,7 @@ void BinarioPais::InsertaNodoPais(int num, string pais)
 {
     if(raiz == NULL){
         raiz = new NodoBinarioPais(num, pais);
+        cout<<"Pais "<<num<<":"<<pais<<" fue agregado a la lista."<<endl;
     }else{
         raiz->InsertaBinarioPais(num, pais);
     }
