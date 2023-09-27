@@ -90,7 +90,7 @@ void AVLCiudad::PostordenI(){
     }
     while(!p2.Vacia()){
         NodoBinarioCiudad *salida = p2.Pop();
-        cout << Act->valor<<":"<<Act->ciudad << " - ";
+        cout << salida->valor<<":"<<salida->ciudad << " - ";
     }
 }
 
@@ -225,10 +225,15 @@ void AVLCiudad::InsertarBalanceadoCiudad(NodoBinarioCiudad* &ra, bool &Hh, int x
 
     if(ra == NULL){
         ra = new NodoBinarioCiudad(x, nombre);
+        cout<<"Ciudad "<<x<<":"<<nombre<<" fue agregada a la lista."<<endl;
         cout << ra->valor << "q as" << endl;
         Hh = true;
     }else{
         cout << "q as2" << endl;
+        if(x == ra->valor){
+        	cout<<"Codigo repetido "<<x<<" no se agrego a la lista."<<endl;
+			return;
+		}
         if(x < ra->valor){
             InsertarBalanceadoCiudad(ra->Hizq, Hh, x, nombre);
 

@@ -17,11 +17,24 @@ int main(){
     B.InsertaNodoPais(1,"h");
     B.InsertaNodoPais(3,"i");
     B.InsertaNodoPais(10,"j");
+    AVLCiudad arbolCiudad = B.raiz->ArbolCiudad;
+    B.raiz->ArbolCiudad.InsertarBalanceadoCiudad(B.raiz->ArbolCiudad.raiz,B.raiz->ArbolCiudad.Hh,241,"hola ");
+        B.raiz->ArbolCiudad.InsertarBalanceadoCiudad(B.raiz->ArbolCiudad.raiz,B.raiz->ArbolCiudad.Hh,445,"mi");
 
-    cout<<endl<<"In"<<endl;
+    B.raiz->ArbolCiudad.InsertarBalanceadoCiudad(B.raiz->ArbolCiudad.raiz,B.raiz->ArbolCiudad.Hh,687,"nombre");
+
+    B.raiz->ArbolCiudad.InsertarBalanceadoCiudad(B.raiz->ArbolCiudad.raiz,B.raiz->ArbolCiudad.Hh,7,"es");
+    B.raiz->ArbolCiudad.InsertarBalanceadoCiudad(B.raiz->ArbolCiudad.raiz,B.raiz->ArbolCiudad.Hh,687,"Lizza");
+    B.raiz->ArbolCiudad.InsertarBalanceadoCiudad(B.raiz->ArbolCiudad.raiz,B.raiz->ArbolCiudad.Hh,662,"Gustavo");
+    B.raiz->ArbolCiudad.InsertarBalanceadoCiudad(B.raiz->ArbolCiudad.raiz,B.raiz->ArbolCiudad.Hh,32,"Vargas");
+    B.raiz->ArbolCiudad.InsertarBalanceadoCiudad(B.raiz->ArbolCiudad.raiz,B.raiz->ArbolCiudad.Hh,662,"Guapa");
+	B.raiz->ArbolCiudad.InordenI();
+    //B.raiz->ArbolCiudad->InsertarBalanceadoCiudad(B.raiz->ArbolCiudad->raiz,B.raiz->ArbolCiudad->Hh,666,"hola mundo");
+
+/*    cout<<endl<<"In"<<endl;
     B.InordenI();
     cout<<endl<<"Pre"<<endl;
-    B.PreordenI();
+    B.PreordenI();*/
 //    Binario B2;
 /*    B2.InsertaNodo(6);
     B2.InsertaNodo(2);

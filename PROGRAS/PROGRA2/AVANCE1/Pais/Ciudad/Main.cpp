@@ -6,7 +6,7 @@
 using namespace std;
 
 int main(){
-    AVLCiudad B;
+ /*   AVLCiudad B;
     B.InsertaNodoCiudad(6, "a");
     B.InsertaNodoCiudad(2, "b");
     B.InsertaNodoCiudad(7,"c");
@@ -19,10 +19,14 @@ int main(){
     B.InsertaNodoCiudad(3,"m");
     B.InsertaNodoCiudad(10,"j");
 
-    cout<<endl<<"In"<<endl;
-    B.InordenI();
     cout<<endl<<"Pre"<<endl;
     B.PreordenI();
+    cout<<endl<<"In"<<endl;
+    B.InordenI();
+*/
+  /*  cout<<endl<<"Post"<<endl;
+    B.PostordenI();*/
+
 //    Binario B2;
 /*    B2.InsertaNodo(6);
     B2.InsertaNodo(2);
@@ -39,43 +43,44 @@ int main(){
     B2.PostordenI();
 
     cout<<endl<<"B3 IN"<<endl;
-    Binario B3;
-    B3.InsertarBalanceado(B3.raiz, B3.Hh, 50);
+    */
+    AVLCiudad B3;
+    B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 50, "a");
     	B3.PreordenI();
 		cout<<endl;
-    B3.InsertarBalanceado(B3.raiz, B3.Hh, 17);
+    B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 17, "b");
     	B3.PreordenI();
 		cout<<endl;
-    B3.InsertarBalanceado(B3.raiz, B3.Hh, 76);
+    B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 76, "c");
     	B3.PreordenI();
 		cout<<endl;
-    B3.InsertarBalanceado(B3.raiz, B3.Hh, 12);
+    B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 12, "d");
     	B3.PreordenI();
 		cout<<endl;
-    B3.InsertarBalanceado(B3.raiz, B3.Hh, 23);
+    B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 23, "e");
         B3.PreordenI();
 		cout<<endl;
-   B3.InsertarBalanceado(B3.raiz, B3.Hh, 92);
+   B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 92, "f");
     	B3.PreordenI();
 		cout<<endl;
-    B3.InsertarBalanceado(B3.raiz, B3.Hh, 14);
+    B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 14, "g");
     	B3.PreordenI();
 		cout<<endl;
-   B3.InsertarBalanceado(B3.raiz, B3.Hh, 30);
+   B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 30, "h");
         B3.PreordenI();
 		cout<<endl;
-    B3.InsertarBalanceado(B3.raiz, B3.Hh, 40);
+    B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 40, "i");
         	B3.PreordenI();
 		cout<<endl;
-    B3.InsertarBalanceado(B3.raiz, B3.Hh, 55);
+    B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 55, "j");
         	B3.PreordenI();
 		cout<<endl;
-    B3.InsertarBalanceado(B3.raiz, B3.Hh, 60);
+    B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 60, "k");
     	B3.PreordenI();
 		cout<<endl;
 	//	B3.InordenI();
 	//	cout<<endl;
-	//	B3.PostordenR(B3.raiz);*/
+	//	B3.PostordenR(B3.raiz);
  //   cin.get();
 
     return (EXIT_SUCCESS);

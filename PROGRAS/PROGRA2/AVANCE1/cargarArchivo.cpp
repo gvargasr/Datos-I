@@ -110,12 +110,12 @@ try{
 		getline(archivo, codpais, ';');
 		getline(archivo, codigo, ';');
 		getline(archivo, ciudad);
-		pnodoBinarioPais aux = listaPais->raiz;
 		int temp = stoi(codpais);
 		int temp2 = stoi(codigo);
-			while(aux!=NULL){
-				if(num == valor){
-				//Codigo repetido
+		BinarioPais *aux = listaPais
+			while(aux2!=NULL){
+				if(temp == aux2->valor){
+					
 				return;
 				}
     			if(num < valor){

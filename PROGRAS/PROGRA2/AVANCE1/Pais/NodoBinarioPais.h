@@ -2,7 +2,7 @@
 #define	_NODOBINARIOPAIS_H
 #include <cstddef>
 #include <string>
-
+#include "Ciudad/AVLCiudad.cpp"
 using namespace std;
 
 class NodoBinarioPais {
@@ -14,7 +14,7 @@ class NodoBinarioPais {
 
     int valor;
     int FB;
-//    BinarioCiudad *B;
+    AVLCiudad ArbolCiudad;
     string pais;
     NodoBinarioPais *Hizq, *Hder, *siguiente, *anterior;
 //    BinarioCiudad *Ciudad;

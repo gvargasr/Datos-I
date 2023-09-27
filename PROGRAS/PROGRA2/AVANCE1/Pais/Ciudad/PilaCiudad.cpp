@@ -1,9 +1,21 @@
 #include <iostream>
-#include "PilaCiudad.h"
-//#include "NodoBinarioCiudad.h"
+//#include "PilaCiudad.h"
+#include "NodoBinarioCiudad.h"
 
 using namespace std;
 
+class PilaCiudad {
+   public:
+    PilaCiudad() : plista(NULL) {}
+
+    void Push(pnodoCiudad);
+    void Mostrar();
+    bool Vacia() { return plista == NULL; }
+    pnodoCiudad Pop();
+    int Size();
+    
+    pnodoCiudad plista;
+};
 
 void PilaCiudad::Push(pnodoCiudad v)
 {

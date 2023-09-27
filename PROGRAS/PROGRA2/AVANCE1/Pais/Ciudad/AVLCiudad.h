@@ -2,7 +2,7 @@
 #ifndef _BINARIOCIUDAD_H
 #define	_BINARIOCIUDAD_H
 #include "NodoBinarioCiudad.h"
-#include "PilaCiudad.h"
+//#include "PilaCiudad.h"
 #include <string>
 
 using namespace std;
