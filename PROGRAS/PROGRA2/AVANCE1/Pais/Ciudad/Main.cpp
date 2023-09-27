@@ -78,6 +78,9 @@ int main(){
     B3.InsertarBalanceadoCiudad(B3.raiz, B3.Hh, 60, "k");
     	B3.PreordenI();
 		cout<<endl;
+	B3.BorrarBalanceadoCiudad(B3.raiz, B3.Hh, 50);
+    	B3.PreordenI();
+		cout<<endl;
 	//	B3.InordenI();
 	//	cout<<endl;
 	//	B3.PostordenR(B3.raiz);

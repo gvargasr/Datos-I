@@ -21,6 +21,7 @@ public:
 
     bool Hh=false;
     
+    NodoBinarioCiudad* MinValorNodo(NodoBinarioCiudad* nodo);
     void Borrar(NodoBinarioCiudad *&nodoB, bool);
     void BorrarBalanceadoCiudad(NodoBinarioCiudad *&r, bool &Hh, int eliminar);
     void Equilibrar1(NodoBinarioCiudad *&n, bool &Hh);

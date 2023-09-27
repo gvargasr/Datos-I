@@ -177,7 +177,7 @@ void AVLCiudad::Borrar(NodoBinarioCiudad* &D, bool Hh)
     }
 }
 
-void AVLCiudad::BorrarBalanceadoCiudad(NodoBinarioCiudad* &raiz, bool &Hh, int x)
+/*void AVLCiudad::BorrarBalanceadoCiudad(NodoBinarioCiudad* &raiz, bool &Hh, int x)
 {
     NodoBinarioCiudad *q;
     if(raiz != NULL){
@@ -199,8 +199,7 @@ void AVLCiudad::BorrarBalanceadoCiudad(NodoBinarioCiudad* &raiz, bool &Hh, int x
                     raiz = q->Hizq;
                     Hh = true;
                 }else{
-                    if(q->Hizq == NULL){
-                        raiz = q->Hder;
+                    if(
                         Hh = true;
                     }else{
                         Borrar(q->Hizq, Hh);
@@ -209,9 +208,71 @@ void AVLCiudad::BorrarBalanceadoCiudad(NodoBinarioCiudad* &raiz, bool &Hh, int x
                         Equilibrar1(raiz, Hh);
                     }
                 }
+            cout << "Ciudad " << x << " ha sido eliminada" << endl;
             }
         }
     }
+    else{
+        // Mostrar mensaje si la ciudad no se encuentra
+        cout << "Ciudad con valor " << x << " no se encuentra" << endl;
+    }
+}*/
+
+void AVLCiudad::BorrarBalanceadoCiudad(NodoBinarioCiudad* &raiz, bool &Hh, int x)
+{
+    NodoBinarioCiudad *q;
+    if(raiz != NULL){
+        if(x < raiz->valor){
+            BorrarBalanceadoCiudad(raiz->Hizq, Hh, x);
+            if(Hh){
+                Equilibrar1(raiz, Hh);
+            }
+        }else if(x > raiz->valor){
+            BorrarBalanceadoCiudad(raiz->Hder, Hh, x);
+            if(Hh){
+                Equilibrar2(raiz, Hh);
+            }
+        }else{
+            q = raiz;
+
+            if(q->Hder == NULL){
+                raiz = q->Hizq;
+                Hh = true;
+            }else if(q->Hizq == NULL){
+                raiz = q->Hder;
+                Hh = true;
+            }else{
+                // Encuentra el sucesor inmediato (mínimo valor del subárbol derecho)
+                NodoBinarioCiudad* sucesor = MinValorNodo(q->Hder);
+
+                // Copia los datos del sucesor a q
+                q->valor = sucesor->valor;
+                q->ciudad = sucesor->ciudad;
+
+                // Elimina el sucesor
+                BorrarBalanceadoCiudad(q->Hder, Hh, sucesor->valor);
+
+                if(Hh){
+                    Equilibrar1(raiz, Hh);
+                }
+            }
+            cout << "Ciudad " << x << " ha sido eliminada" << endl;
+        }
+    }
+    else{
+        // Mostrar mensaje si la ciudad no se encuentra
+        cout << "Ciudad con valor " << x << " no se encuentra" << endl;
+    }
+}
+
+NodoBinarioCiudad* AVLCiudad::MinValorNodo(NodoBinarioCiudad* nodo) {
+    NodoBinarioCiudad* actual = nodo;
+    
+    while (actual->Hizq != NULL) {
+        actual = actual->Hizq;
+    }
+    
+    return actual;
 }
 
 void AVLCiudad::Equilibrar1(NodoBinarioCiudad* &n, bool &Hh){
