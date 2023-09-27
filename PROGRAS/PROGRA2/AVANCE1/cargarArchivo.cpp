@@ -1213,8 +1213,8 @@ void cargarArchivo::SubMenu52(){
 	if(aux != NULL){
 		NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz,temp2);
 		if(aux2 != NULL){
+			cout<<"La ciudad fue modificada"<<endl;
 			cout<<"Anterior: "<<aux2->valor<<":"<<aux2->ciudad<<endl;
-			cout<<"El pais fue modificado"<<endl;
 			aux2->ciudad = nom;
 			cout<<"Nuevo: "<<aux2->valor<<":"<<aux2->ciudad<<endl;
 		}else{
