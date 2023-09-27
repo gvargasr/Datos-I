@@ -226,10 +226,10 @@ void AVLCiudad::InsertarBalanceadoCiudad(NodoBinarioCiudad* &ra, bool &Hh, int x
     if(ra == NULL){
         ra = new NodoBinarioCiudad(x, nombre);
         cout<<"Ciudad "<<x<<":"<<nombre<<" fue agregada a la lista."<<endl;
-        cout << ra->valor << "q as" << endl;
+    //    cout << ra->valor << "q as" << endl;
         Hh = true;
     }else{
-        cout << "q as2" << endl;
+    //    cout << "q as2" << endl;
         if(x == ra->valor){
         	cout<<"Codigo repetido "<<x<<" no se agrego a la lista."<<endl;
 			return;
@@ -256,20 +256,20 @@ void AVLCiudad::InsertarBalanceadoCiudad(NodoBinarioCiudad* &ra, bool &Hh, int x
             }
         }else{
             if(x > ra->valor){
-                cout << "Hh:" << Hh << endl;
+           //     cout << "Hh:" << Hh << endl;
                 InsertarBalanceadoCiudad(ra->Hder, Hh, x, nombre);
 
                 if(Hh){
                     switch(ra->FB){
                         case -1: ra->FB = 0;
                         Hh = false;
-                        cout << "sw-1" << endl;
+                    //    cout << "sw-1" << endl;
                         break;
                         case 0: ra->FB = 1;
-                        cout << "sw0" << endl;
+                    //    cout << "sw0" << endl;
                         break;
                         case 1: n1 = ra->Hder;
-                        cout << "sw1" << endl;
+                    //    cout << "sw1" << endl;
                         if(n1->FB == 1){
                             RotacionSimpleDerecha(ra, n1);
                         }else{
