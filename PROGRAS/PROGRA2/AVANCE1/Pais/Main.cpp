@@ -29,6 +29,8 @@ int main(){
     B.raiz->ArbolCiudad.InsertarBalanceadoCiudad(B.raiz->ArbolCiudad.raiz,B.raiz->ArbolCiudad.Hh,32,"Vargas");
     B.raiz->ArbolCiudad.InsertarBalanceadoCiudad(B.raiz->ArbolCiudad.raiz,B.raiz->ArbolCiudad.Hh,662,"Guapa");
 	B.raiz->ArbolCiudad.InordenI();
+	cout<<endl;
+//	B.BuscarPais(B.raiz, 66);
     //B.raiz->ArbolCiudad->InsertarBalanceadoCiudad(B.raiz->ArbolCiudad->raiz,B.raiz->ArbolCiudad->Hh,666,"hola mundo");
 
 /*    cout<<endl<<"In"<<endl;

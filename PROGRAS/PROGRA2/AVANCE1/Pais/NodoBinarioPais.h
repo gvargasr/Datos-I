@@ -17,11 +17,9 @@ class NodoBinarioPais {
     AVLCiudad ArbolCiudad;
     string pais;
     NodoBinarioPais *Hizq, *Hder, *siguiente, *anterior;
-//    BinarioCiudad *Ciudad;
-
+	
     friend class PilaPais;
     friend class PaisBinario;
-
     void InsertaBinarioPais(int num, string nombre);
 };
 

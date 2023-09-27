@@ -101,7 +101,7 @@ try{
 	}
 	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
-/*
+
 	archivo.open("Archivos/Ciudades.txt");
 	while(!archivo.eof()){
 		string codpais;
@@ -112,41 +112,27 @@ try{
 		getline(archivo, ciudad);
 		int temp = stoi(codpais);
 		int temp2 = stoi(codigo);
-		BinarioPais *aux = listaPais
-			while(aux2!=NULL){
-				if(temp == aux2->valor){
-					
-				return;
-				}
-    			if(num < valor){
- 			       if(Hizq == NULL){
- 			           Hizq = new NodoBinarioPais(num, pais);
-  			      }else{
- 			           Hizq->InsertaBinarioPais(num, pais);
- 			       }
- 			   }else{
- 			       if(Hder == NULL){
-  			          Hder = new NodoBinarioPais(num, pais);
-  			      }else{
- 			           Hder->InsertaBinarioPais(num, pais);
-			        }
-    			}		
-				
-				
-				
-				
-				
-				
-				
-				if(aux->cod == temp){
-					listaPais->InsertarCiudad(temp2,ciudad,aux->listaCiudad);
-				}
-			aux=aux->siguiente;
+
+   		NodoBinarioPais *q = aux->raiz;
+    	while(q != NULL){
+        if(temp < q->valor){
+            q = q->Hizq;
+        }
+        if(temp > q->valor){
+        	q = q->Hder;
+        }
+        else if(temp == q->valor){
+        	q->ArbolCiudad.InsertarBalanceadoCiudad(q->ArbolCiudad.raiz, q->ArbolCiudad.Hh, temp2, ciudad);
+			break;
 			}
-	}
+        }
+        if(q == NULL){
+        	cout <<"El pais: "<<temp<<" no se encuentra"<<endl;
+    	}
+}
 	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;			
-*/
+
 /*
  	archivo.open("Archivos/Restaurantes.txt");
 	while(!archivo.eof()){

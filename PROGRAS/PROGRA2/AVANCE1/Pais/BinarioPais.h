@@ -29,6 +29,8 @@ public:
     void RotacionDobleDerecha(NodoBinarioPais *&n1, NodoBinarioPais *&n2);
     void RotacionSimpleIzquierda(NodoBinarioPais *&n1, NodoBinarioPais *&n2);
     void RotacionSimpleDerecha(NodoBinarioPais *&n1, NodoBinarioPais *&n2);
+	NodoBinarioPais BuscarPais(NodoBinarioPais *&nodoB, int num);
+
 
 
 };

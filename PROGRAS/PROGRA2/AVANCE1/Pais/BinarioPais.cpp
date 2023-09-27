@@ -6,6 +6,24 @@
 
 using namespace std;
 
+NodoBinarioPais BinarioPais::BuscarPais(NodoBinarioPais *&nodoB, int num){
+    NodoBinarioPais *q = nodoB;
+    while(q != NULL){
+        if(num < q->valor){
+            BuscarPais(q->Hizq, num);
+        }
+        if(num > q->valor){
+        	BuscarPais(q->Hder, num);
+        }
+        if(num == q->valor){
+        	return *q;
+		}
+        }
+        if(q == NULL){
+        	cout <<"El pais: "<<num<<" no se encuentra"<<endl;
+    		return *q;
+		}
+}
 
 
 void NodoBinarioPais::InsertaBinarioPais(int num, string pais)
