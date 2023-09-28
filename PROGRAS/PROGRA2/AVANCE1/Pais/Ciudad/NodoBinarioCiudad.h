@@ -1,8 +1,8 @@
 #ifndef _NODOBINARIOCIUDAD_H
 #define	_NODOBINARIOCIUDAD_H
 #include <cstddef>
+#include "Restaurante/RNRest.cpp"
 #include <string>
-#include "Restaurante/ArbolRest.cpp"
 
 using namespace std;
 
@@ -15,8 +15,8 @@ class NodoBinarioCiudad {
 
     int valor;
     int FB;
-    ArbolRN ArbolRestaurante;
     string ciudad;
+    ArbolRN ArbolRest;
     NodoBinarioCiudad *Hizq, *Hder, *siguiente, *anterior;
 
     friend class PilaCiudad;
