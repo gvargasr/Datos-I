@@ -241,24 +241,22 @@ class ArbolRN {
   bool BusquedaB(int numbuscado) {
     return BusquedaBool(this->Raiz, numbuscado);
   }
-  
-  void ModificarNodo(int numbusqueda)
+
+
+  void ModificarNodo(int numbusqueda, string nuevonom)
   {
   	NodoPtr aux = BusquedaM(numbusqueda);
   	if (aux->codRest!=numbusqueda){
   		cout<<"Codigo Invalido"<<endl;
 	  } else {	
-		string nuevonom;
  	 	string tempnom;
-		cout<<"Inserte el nombre al cual va a cambiar:";
-  		cin >> nuevonom;
   		tempnom = aux->nombreRest;
   		aux->nombreRest = nuevonom;
   		cout<<"El restaurante fue modificado"<<endl;
 		cout<<"Anterior: "<<numbusqueda<<":"<<tempnom<<endl;
-		cout<<"Nuevo: "<<numbusqueda<<":"<<aux->nombreRest<<endl;
-	  }
+		cout<<"Nuevo: "<<numbusqueda<<":"<<aux->nombreRest<<endl;	  }
 	}
+
 	
 	Nodo* BuscarNodo (int numbusqueda){
 	NodoPtr aux = BusquedaM(numbusqueda);

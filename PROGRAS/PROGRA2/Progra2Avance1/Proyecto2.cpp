@@ -984,7 +984,7 @@ void cargarArchivo::SubMenu43(){
 		if(aux2 != NULL){
 			aux2->ArbolRest.BuscarNodo(temp3);
 		}else{
-			cout<<"La ciudad "<<temp2<< " no se encuentra"<<endl;
+			cout<<"El restaurante "<<temp3<< " no se encuentra"<<endl;
 		}	
 	}else{
 		cout<<"El restaurante "<<temp3<< " no se encuentra"<<endl;
@@ -1237,6 +1237,9 @@ void cargarArchivo::SubMenu53(){
 	string codRest;
 	cout<< "Ingrese el codigo restaurante: ";
 	cin >> codRest;
+	string nomRest;
+	cout<< "Ingrese el nombre del restaurante: ";
+	cin >> nomRest;
 	int temp = stoi(codPais);
 	int temp2 = stoi(codCiudad);
 	int temp3 = stoi(codRest);
@@ -1244,10 +1247,12 @@ void cargarArchivo::SubMenu53(){
 	if(aux != NULL){
 		NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz,temp2);
 		if(aux2 != NULL){
-			aux2->ArbolRest.ModificarNodo(temp3);
-			return;
-		}
-		cout<<"El restaurante "<<temp2<< " no se encuentra"<<endl;
+			aux2->ArbolRest.ModificarNodo(temp3,nomRest);
+		}else{
+			cout<<"El restaurante "<<temp3<< " no se encuentra"<<endl;
+		}	
+	}else{
+		cout<<"El restaurante "<<temp3<< " no se encuentra"<<endl;
 	}
 }
 /*
