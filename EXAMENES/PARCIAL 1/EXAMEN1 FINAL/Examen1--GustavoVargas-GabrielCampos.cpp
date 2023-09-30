@@ -1,9 +1,6 @@
-//Integrantes:
-//Gustavo Vargas Ramirez   --- 200409141 
-//Gabriel Campos Gutierrez --- 2023093692
-
-
 #include <iostream>
+#include <stdlib.h> 
+
 using namespace std;
 
 class nodo { // Constructores
@@ -55,7 +52,10 @@ class lista {
     
     //EXAMEN1
     void UNO(long long Num1, long long Num2);
+    void DOS();
 	void TRES(long long Num1, long long Num2);
+	void CUATRO(long long num1, long long num2);
+	 
 
 	
     
@@ -298,6 +298,7 @@ void lista::Mostrar()
 
 //EXAMEN 1
 
+//UNO
 
 void lista::UNO(long long Num1, long long Num2){
 	int cont = 0;
@@ -316,7 +317,7 @@ void lista::UNO(long long Num1, long long Num2){
         tempo = tempo / 10;
         ++cont2;
     }
-    cout<<"\t .:Ejercicio UNO:."<<endl<<endl;
+    cout<<"\t \n.:Ejercicio UNO:."<<endl<<endl;
     if(cont != cont2){
     	cout<<"Num1: "<<Num1<<endl;
 		cout<<"Num2: "<<Num2<<endl;
@@ -363,6 +364,51 @@ void lista::UNO(long long Num1, long long Num2){
 	}
 }
 
+//DOS
+
+void lista::DOS() 
+{
+	cout<<"\t\n .:Ejercicio DOS:."<<endl<<endl;
+	pnodo aux = primero;
+	bool orden = true;
+	cout<<"Lista Original: "<<endl;
+	Mostrar();
+	cout<<endl<<endl<<"Listas Generadas: "<<endl;
+	lista L1;
+		while (aux!=NULL&&ListaVacia()!=true){
+			L1.InsertarFinal(aux->valor);
+			if (aux->siguiente!=NULL) {
+				if (aux->valor > aux->siguiente->valor){
+					orden = false;
+					L1.InsertarInicio(1);
+					L1.InsertarInicio(0);
+					L1.InsertarInicio(1);
+					L1.InsertarFinal(0);
+					L1.InsertarFinal(-1);
+					L1.InsertarFinal(0);
+					L1.Mostrar();
+					while (L1.ListaVacia()!=true){
+						L1.BorrarFinal();
+					}		
+				}
+			}	
+		aux = aux->siguiente;
+		}
+	if (orden==false){
+		L1.InsertarInicio(1);
+		L1.InsertarInicio(0);
+		L1.InsertarInicio(1);
+		L1.InsertarFinal(0);
+		L1.InsertarFinal(-1);
+		L1.InsertarFinal(0);
+	}
+	if (ListaVacia()==true){
+		cout<<"Vacia"<<endl;
+	}
+	L1.Mostrar();	
+	cout<<endl<<endl;	
+}
+
 //TRES
 void lista::TRES(long long Num1, long long Num2){
 	int cont = 0;
@@ -382,11 +428,11 @@ void lista::TRES(long long Num1, long long Num2){
         ++cont2;
     }
     if(cont != cont2){
-    	cout<<"\t .:Ejercicio TRES:."<<endl<<endl;
+    	cout<<"\t\n .:Ejercicio TRES:."<<endl<<endl;
     	cout<<"Num1: "<<Num1<<endl;
 		cout<<"Num2: "<<Num2<<endl;
 		cout<<endl;
-		cout<<"Largo de los numeros es diferente"<<endl;
+		cout<<"Largo de los numeros es diferente"<<endl<<endl;
 		//exit(0);
 	}
 	
@@ -458,7 +504,7 @@ void lista::TRES(long long Num1, long long Num2){
 		b = c;
 	}
 	}
-	cout<<"\t Ejercicio TRES"<<endl;
+	cout<<"\t\n .:Ejercicio TRES:."<<endl;
 	cout<<"Num1: "<<abs(Num1)<<endl;
 	cout<<"Num2: "<<abs(Num2)<<endl;
 	cout<<endl;
@@ -468,36 +514,260 @@ void lista::TRES(long long Num1, long long Num2){
 }
 
 
+//CUATRO
+
+void lista::CUATRO(long long num1, long long num2){
+	cout<< "***************************************************************************************"<<endl;
+	cout<< "\t\n .:Ejercicio CUATRO:."<<endl;
+	cout<< "***************************************************************************************"<<endl;
+	cout<<"Num1: "<<num1<<endl;
+	cout<<"Num2: "<<num2<<endl;
+	lista L1;
+	lista L2;
+	lista L3;
+	long long tamano = 10;
+	long long temp = num1;
+	while (num1*10>tamano)
+	{
+		L1.InsertarInicio(temp%10);
+		temp = temp/10;
+		tamano = tamano*10;
+	}
+	temp = num2;
+	tamano = 10;
+	while (num2*10>tamano)
+	{
+		L2.InsertarInicio(temp%10);
+		temp = temp/10;
+		tamano = tamano*10;
+	}
+	if(L1.largoLista()==L2.largoLista())
+	{
+		long long index1 = 1;
+		long long  index2 = L2.largoLista();
+		long long numop = 0;
+		long long  anadir =0;
+		bool operar = true;
+		pnodo aux1 = L1.primero;
+		pnodo aux2 = L2.primero;
+		pnodo temp = aux2;
+		L1.Mostrar();
+		L2.Mostrar();
+		if (L1.largoLista()%2==1)
+		{
+			while (operar == true)
+		{
+			int pos1 = 1;
+			int pos2 = 1;
+			int pos3 = 1;
+			
+			while(pos1!=index1)
+			{
+				aux1 = aux1->siguiente;
+				pos1 = pos1+1;
+			}
+			while(pos2!=index2)
+			{
+				aux2 = aux2->siguiente;
+				pos2 = pos2+1;
+			}
+			while(pos3!=index1)
+			{
+				temp = temp->siguiente;
+				pos3 = pos3+1;
+			}
+			L3.InsertarFinal(abs((aux1->valor+aux2->valor)-temp->valor));
+			L3.Mostrar();
+			aux1 = L1.primero;
+			aux2 = L2.primero;
+			temp = aux2;
+			int tempInd = index1;
+			index1 = L1.largoLista()-numop;
+			index2 = tempInd;
+			pos1 = 1;
+			pos2 = 1;
+			pos3 = 1;
+			while( pos1!=index1)
+			{
+				aux1 = aux1->siguiente;
+				pos1 = pos1+1;
+			}
+			while( pos2!=index2)
+			{
+				aux2 = aux2->siguiente;
+				pos2 = pos2+1;
+			}
+			while( pos3!=index1)
+			{
+				temp = temp->siguiente;
+				pos3 = pos3+1;
+			}
+			L3.InsertarFinal(abs((aux1->valor+aux2->valor)-temp->valor));
+			L3.Mostrar();
+			aux1 = L1.primero;
+			aux2 = L2.primero;
+			temp = aux2;
+			numop = numop+1;
+			index1 = 1+numop;
+			index1 = L2.largoLista()-numop;
+			
+			if (numop==(L1.largoLista()/2))
+			{
+				index1 = L1.largoLista()/2+1;
+				index2 = L1.largoLista()/2+1;
+				pos1 = 1;
+				pos2 = 1;
+			while(pos1!=index1)
+			{
+				aux1 = aux1->siguiente;
+				pos1 = pos1+1;
+			}
+			while(pos2!=index2)
+			{
+				aux2 = aux2->siguiente;
+				pos2 = pos2+1;
+			}
+				L3.InsertarFinal(aux1->valor*aux2->valor);
+				operar = false;
+			}
+		}
+		}
+		while (operar == true)
+		{
+			int pos1 = 1;
+			int pos2 = 1;
+			int pos3 = 1;
+			while(pos1!=index1)
+			{
+				aux1 = aux1->siguiente;
+				pos1 = pos1+1;
+			}
+			while(pos2!=index2)
+			{
+				aux2 = aux2->siguiente;
+				pos2 = pos2+1;
+			}
+			while(pos3!=index1)
+			{
+				temp = temp->siguiente;
+				pos3 = pos3+1;
+			}
+			L3.InsertarFinal(abs((aux1->valor+aux2->valor)-temp->valor));
+			L3.Mostrar();
+			aux1 = L1.primero;
+			aux2 = L2.primero;
+			temp = aux2;
+			int tempInd = index1;
+			index1 = L1.largoLista()-numop;
+			index2 = tempInd;
+			pos1 = 1;
+			pos2 = 1;
+			pos3 = 1;
+			while( pos1!=index1)
+			{
+				aux1 = aux1->siguiente;
+				pos1 = pos1+1;
+			}
+			while( pos2!=index2)
+			{
+				aux2 = aux2->siguiente;
+				pos2 = pos2+1;
+			}
+			while( pos3!=index1)
+			{
+				temp = temp->siguiente;
+				pos3 = pos3+1;
+			}
+			L3.InsertarFinal(abs((aux1->valor+aux2->valor)-temp->valor));
+			L3.Mostrar();
+			aux1 = L1.primero;
+			aux2 = L2.primero;
+			temp = aux2;
+			numop = numop+1;
+			index1 = 1+numop;
+			index2 = L2.largoLista()-numop;
+			if (numop==(L1.largoLista()/2))
+			{
+				operar = false;
+			}
+		}
+	cout<<"Final:"<<endl;
+	L3.Mostrar();
+	long long finnum = 0;
+ 	int dig = 10;
+ 	pnodo auxnum = L3.primero;
+ 	while (auxnum->siguiente!=NULL){
+  		finnum = finnum + auxnum->valor;
+  		while (auxnum->siguiente->valor >= dig){
+   			dig = dig*10; 
+  		}
+  	finnum = finnum*dig;
+  	dig = 10;
+  	auxnum = auxnum->siguiente;
+ 	}
+ 	finnum = finnum + auxnum->valor;
+ 	cout<<finnum<<endl;
+	}else if (L1.largoLista()!=L2.largoLista())
+	{
+		cout<<"Diferente tamaño"<<endl;
+	}
+}
+
+
 
 int main()
 {
-	cout<<"\t ##################"<<endl;
-	cout<<"\t .:TAREA CORTA #2:."<<endl;
-	cout<<"\t ##################"<<endl<<endl;
-	cout<<"\nIntegrantes:\nGustavo Vargas Ramirez   --- 200409141 \nGabriel Campos Gutierrez --- 2023093692"<<endl<<endl<<endl;
- // UNO
+ // UNO  
  	lista L1;
     L1.UNO(612572563512225, -35654134589102);
     L1.UNO(61257, 89102);
  //   L1.UNO(61257, 89102);
     L1.~lista();
+    cout<<endl<<endl<<endl;
     
+    
+  //DOS 
+	lista L3;
+	L3.InsertarFinal(6);
+	L3.InsertarFinal(1);
+	L3.InsertarFinal(2);
+	L3.InsertarFinal(7);
+	L3.InsertarFinal(8);
+	L3.InsertarFinal(16);
+	L3.InsertarFinal(100);
+	L3.InsertarFinal(-200);
+	L3.InsertarFinal(-300);
+	L3.InsertarFinal(-400);
+	L3.InsertarFinal(10);
+	L3.InsertarFinal(20);
+	L3.InsertarFinal(3);
+	L3.DOS();
+	L3.~lista();
+	cout<<endl<<endl<<endl;
+   
+   
  //TRES  
-//    L1.UNO(612572563512345, -123458910245856);
-//    L1.UNO(61257, 89102);
- //   L1.TRES(612345, 107895);
+    L1.TRES(612572563512345, -123458910245856);
+    L1.TRES(61257, 89102);
+    L1.TRES(612345, 107895);
     L1.TRES(1234, 4456);
 	L1.~lista();
-    
+    cout<<endl<<endl<<endl;
    
-   
-   
-   
-   
-   lista L3;
 
- 
-   L3.~lista();
+ // CUATRO
+ 	lista L4;
+    L4.CUATRO(612572563512225, 356541345891021);
+    L4.CUATRO(61257, 89102);
+    L4.CUATRO(6123,8910);
+
   // cin.get();
-   return 0;
+  
+	cout<<endl<<endl<<"################## EXAMEN 1 ####################"<<endl;
+	cout<<"\nIntegrantes:\nGustavo Vargas Ramirez   --- 200409141 \nGabriel Campos Gutierrez --- 2023093692"<<endl;
+	cout<<endl<<"*********************************************************************************"<<endl<<endl;	
+	cout<<"###########################################################"<<endl;
+	cout<<"################## PROGRAMA FINALIZADO ####################"<<endl;
+	cout<<"###########################################################"<<endl;  
+    return 0;
 }
