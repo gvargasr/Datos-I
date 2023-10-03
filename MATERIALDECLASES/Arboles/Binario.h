@@ -21,8 +21,8 @@ public:
     
     void Borrar(NodoBinario *&nodoB, bool);
     void BorrarBalanceado(NodoBinario *&r, bool &Hh, int eliminar);
-    void Equilibrar1(NodoBinario *&n, bool &Hh);
-    void Equilibrar2(NodoBinario *&n, bool &Hh);
+    void Equilibrar1(NodoBinario *n, bool &Hh);
+    void Equilibrar2(NodoBinario *n, bool &Hh);
     void InsertarBalanceado(NodoBinario* &ra, bool &Hh, int x);
     void RotacionDobleIzquierda(NodoBinario *&n1, NodoBinario *&n2);
     void RotacionDobleDerecha(NodoBinario *&n1, NodoBinario *&n2);

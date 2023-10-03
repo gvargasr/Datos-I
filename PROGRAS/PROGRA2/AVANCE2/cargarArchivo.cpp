@@ -1957,10 +1957,10 @@ void cargarArchivo::Menu(){
     		SubMenu2();
     		Menu();
     		break;
-    /*	case '3':
+    	case '3':
     		SubMenu3();
     		Menu();
-			break;*/
+			break;
     	case '4':
     		SubMenu4();
     		Menu();

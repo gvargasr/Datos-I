@@ -29,14 +29,11 @@ void BinarioPais::EliminarPais(NodoBinarioPais*& nodoB, int pais) {
 			delete nodoB;
             nodoB = temp;
         } else {
-            // Caso 2: El nodo tiene 2 hijos, buscamos el sucesor inmediato
             NodoBinarioPais* temp = MinValorNodo(nodoB->Hder);
 
-            // Copiamos los datos del sucesor al nodo actual
             nodoB->valor = temp->valor;
             nodoB->pais = temp->pais;
 
-            // Eliminamos el sucesor
             EliminarPais(nodoB->Hder, temp->valor);
         }
     }
@@ -270,13 +267,12 @@ void BinarioPais::Equilibrar1(NodoBinarioPais* &n, bool &Hh){
         break;
         case 1: n1 = n->Hder;
         if(n1->FB >= 0){
-            if(n1->FB == 0){
+            if(n1->FB == 0)
                 Hh = false;
-                RotacionSimpleDerecha(n, n1);
-            }else{
-                RotacionDobleDerecha(n, n1);
-            }
-        }
+            RotacionSimpleDerecha(n, n1);
+        }else{
+            RotacionDobleDerecha(n, n1);
+        }    
     }
 }
 
@@ -290,12 +286,11 @@ void BinarioPais::Equilibrar2(NodoBinarioPais* &n, bool &Hh){
         break;
         case -1: n1 = n->Hizq;
         if(n1->FB <= 0){
-            if(n1->FB == 0){
+            if(n1->FB == 0)
                 Hh = false;
-                RotacionSimpleIzquierda(n, n1);
-            }else{
-                RotacionDobleIzquierda(n, n1);
-            }
+            RotacionSimpleIzquierda(n, n1);
+        }else{
+            RotacionDobleIzquierda(n, n1);
         }
     }
 }

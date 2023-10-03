@@ -118,23 +118,22 @@ void Binario::PostordenR(NodoBinario *R){
     }
 }
 
-void Binario::Borrar(NodoBinario* &D, bool Hh)
-{
+void Binario::Borrar(NodoBinario* &D, bool Hh){
     NodoBinario *q;
     if(D->Hder != NULL){
         Borrar(D->Hder, Hh);
         if(Hh){
             Equilibrar2(D, Hh);
-        }else{
+        }
+    }else{
             q->valor = D->valor;
             q = D;
             D = D->Hizq;
             Hh = true;
         }
-    }
 }
 
-void Binario::BorrarBalanceado(NodoBinario* &raiz, bool &Hh, int x)
+void Binario::BorrarBalanceado(NodoBinario *&raiz, bool &Hh, int x)
 {
     NodoBinario *q;
     if(raiz != NULL){
@@ -167,11 +166,12 @@ void Binario::BorrarBalanceado(NodoBinario* &raiz, bool &Hh, int x)
                     }
                 }
             }
-        }
-    }
+        }//
+    }//
+    delete q;
 }
 
-void Binario::Equilibrar1(NodoBinario* &n, bool &Hh){
+void Binario::Equilibrar1(NodoBinario* n, bool &Hh){
     NodoBinario *n1;
     switch (n->FB){
         case -1: n->FB = 0;
@@ -181,17 +181,16 @@ void Binario::Equilibrar1(NodoBinario* &n, bool &Hh){
         break;
         case 1: n1 = n->Hder;
         if(n1->FB >= 0){
-            if(n1->FB == 0){
+            if(n1->FB == 0)
                 Hh = false;
                 RotacionSimpleDerecha(n, n1);
-            }else{
+        }else{
                 RotacionDobleDerecha(n, n1);
-            }
         }
     }
 }
 
-void Binario::Equilibrar2(NodoBinario* &n, bool &Hh){
+void Binario::Equilibrar2(NodoBinario* n, bool &Hh){
     NodoBinario *n1;
     switch (n->FB){
         case 1: n->FB = 0;
@@ -200,14 +199,15 @@ void Binario::Equilibrar2(NodoBinario* &n, bool &Hh){
         Hh = false;
         break;
         case -1: n1 = n->Hizq;
+        
         if(n1->FB <= 0){
             if(n1->FB == 0){
                 Hh = false;
-                RotacionSimpleIzquierda(n, n1);
-            }else{
-                RotacionDobleIzquierda(n, n1);
-            }
-        }
+               	RotacionSimpleIzquierda(n, n1);
+           	}else{
+            RotacionDobleIzquierda(n, n1);
+           	}
+       	}
     }
 }
 
