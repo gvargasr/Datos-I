@@ -4,6 +4,7 @@
 #include <string>
 #include <math.h>
 #include "Pais/BinarioPais.cpp"
+#include "Cliente/ArbolB.cpp"
 
 
 using namespace std;
@@ -12,7 +13,7 @@ class cargarArchivo {
    public:
     cargarArchivo() {
 	listaPais = new BinarioPais() ;
-//	 listaCliente = new listaClientes(); 
+	listaCliente = new ArbolB();
 //	 listaFila = new listaDFila();
 	 }
     ~cargarArchivo();
@@ -42,8 +43,8 @@ class cargarArchivo {
     void SubMenu42();
     void SubMenu43();
 /*    void SubMenu44();
-    void SubMenu45();
-    void SubMenu46();*/
+    void SubMenu45();*/
+    void SubMenu46();
 	void SubMenu5();
 	void SubMenu51();
     void SubMenu52();
@@ -61,14 +62,13 @@ class cargarArchivo {
     void SubMenu65();
     void SubMenu66();
     void SubMenu67();
-    void SubMenu68();
-	void SubMenu8();
-	void SubMenu81(int cedula);
-	*/
+    void SubMenu68();*/
+	void SubMenu7();
+	void SubMenu71(int cedula);
 	
 //	private:
     BinarioPais *listaPais;
-//    listaClientes *listaCliente;
+    ArbolB *listaCliente;
 //    listaDFila *listaFila;
 
     friend MainMenu();
@@ -83,6 +83,7 @@ listaPais = NULL;
 
 void cargarArchivo::cargaInicial(){
 	BinarioPais *aux = listaPais;
+//	ArbolB *auxClientes = listaCliente;
 	ifstream archivo;
 
 try{
@@ -285,19 +286,23 @@ try{
 	}
  	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
-	
+*/	
 	archivo.open("Archivos/Clientes.txt");
+	cout<<"\t .:CARGANDO CLIENTES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string cedula;
 		string nombre;
 		getline(archivo, cedula, ';');
 		getline(archivo, nombre);
 		int temp = stoi(cedula);
-		listaCliente->InsertarFinal(temp,nombre);
+		if(!cedula.empty()){
+			listaCliente->InsertarClave(temp,nombre,listaCliente->raiz);
+		}
+		//cout<<"."<<endl;
 	}
 	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;	
-*/
+
 } catch(const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;
         return ; // Salir del programa con código de error
@@ -394,6 +399,7 @@ void cargarArchivo::SubMenu1(){
 		}
 		case '2':{
 			cout<<"Volviendo a Main Menu"<<endl;
+			listaCliente->ImprimirArbol(listaCliente->raiz);
 		//	listaPais->InordenI();//Imprime la lista de paises
 		//	listaPais->raiz->ArbolCiudad.raiz->valor;
 		//	listaPais->BuscarPais(listaPais->raiz, 999);
@@ -912,12 +918,12 @@ void cargarArchivo::SubMenu4(){
 			cout<< "4.5 Buscar Producto"<<endl;
 			SubMenu45();
 			break;
-		}
+		}*/
 		case '6':{
 			cout<< "4.6 Buscar Cliente"<<endl;
 			SubMenu46();
 			break;
-		}*/
+		}
 		case '7':{
 			cout<<"Volviendo a Main Menu"<<endl;			
 			break;
@@ -1103,15 +1109,15 @@ void cargarArchivo::SubMenu45(){
 	cout<<"PRODUCTO NO EXISTE"<<endl;
 	return;
 }
-
+*/
 void cargarArchivo::SubMenu46(){
 	string cedula;
 	cout<< "Ingrese el numero de cedula que desea encontrar: ";
 	cin >> cedula;
 	
-	listaCliente->MostrarPosicion(listaCliente->buscarPos(stoi(cedula)));
+	listaCliente->search(stoi(cedula), listaCliente->raiz);
 }
-*/
+
 //Modificar
 
 void cargarArchivo::SubMenu5(){
@@ -1801,16 +1807,16 @@ void cargarArchivo::SubMenu68(){
 	cout<<"Pais no existe"<<endl;
 	return;
 }
-
+*/
 //Comprar
-void cargarArchivo::SubMenu8(){
+/*void cargarArchivo::SubMenu7(){
 		cout << "Inserte la cedula del usuario" << endl;
 		string cedula;
 		cin >> cedula;
 		int temp = stoi(cedula);
 		if(listaCliente->buscarPos(temp) != -1) {
 		cout << endl << "----------------------------" << endl;
-  		cout << endl << "      8. Comprar   " << endl;
+  		cout << endl << "      7. Comprar   " << endl;
         cout << endl << "----------------------------" << endl;
 		cout << endl;
 		cout << "1. Añadir"<<endl;
@@ -1822,7 +1828,7 @@ void cargarArchivo::SubMenu8(){
 		cin >> opt;
 		switch(opt) {
     	case '1' :
-		{SubMenu81(temp);
+		{SubMenu71(temp);
 			Menu();
 			break;
 		 } 
@@ -1856,7 +1862,7 @@ listaFila->InsertarInicio(aux->valor,aux->nombre);
 		}
 }
 
-void cargarArchivo::SubMenu81(int cedula){
+void cargarArchivo::SubMenu71(int cedula){
 	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
 	cin >> codPais;
@@ -1925,8 +1931,8 @@ void cargarArchivo::SubMenu81(int cedula){
 	cout<<"Pais no existe"<<endl;
 	return;
 }
-*/
 
+*/
 void cargarArchivo::Menu(){
 	while(true){
 	    cout << endl << "----------------------------" << endl;
@@ -1939,9 +1945,8 @@ void cargarArchivo::Menu(){
 		cout << "4. Buscar"<<endl;
 		cout << "5. Modificar"<<endl;
 		cout << "6. Reportes"<<endl;
-		cout << "7. Info"<<endl;
-		cout << "8. Comprar"<<endl;
-		cout << "9. Salir"<<endl;
+		cout << "7. Comprar"<<endl;
+		cout << "8. Salir"<<endl;
 		cout <<endl<<endl;
 		cout <<"Seleccione una opcion: ";
 		
@@ -1972,16 +1977,12 @@ void cargarArchivo::Menu(){
 	/*	case '6':
     		SubMenu6();
     		Menu();
-			break;
-		case '7':
-    		cout<<"Ingresando a Submenu 7..."<<endl;
-    		Menu();
-			break;
-		case '8':	
-			SubMenu8();
-			Menu();
 			break;*/
-		case '9':
+		case '7':	
+		//	SubMenu7();
+			Menu();
+			break;
+		case '8':
     		cout<<endl<<endl<<endl<<"##################      Good Bye!!     ####################"<<endl;
     		exit(1);
 			break;		
@@ -2001,6 +2002,7 @@ int main(){
 	cargarArchivo Inicio;
 	Inicio.cargaInicial();
 	Inicio.Menu();
+	Inicio.listaCliente->ImprimirArbol(Inicio.listaCliente->raiz);
 
  
     cout<<"###########################################################"<<endl;

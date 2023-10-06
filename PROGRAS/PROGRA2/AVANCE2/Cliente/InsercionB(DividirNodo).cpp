@@ -81,7 +81,7 @@
        Cout Elemento repetido                                                          //NO REPETIDOS
     Empujar(C1,R.Rama[K],EmpujaArriba,Mdna,Xr);                                        //llamada recursiva  14,R[3] F T  F  Mdna=0 14  Xr null null
     If EmpujaArriba                                                                    // T
-     If R.Cuenta<Max  //No esta lleno                                                     4<4 Nodo lleno  Max=4
+     If R.Cuenta<4  //No esta lleno                                                     4<4 Nodo lleno  Max=4
       {
           EmpujaArriba=false;
            MeterHoja(Mdna,Xr,R,K);//Inserta la clave Mdna en el nodo   

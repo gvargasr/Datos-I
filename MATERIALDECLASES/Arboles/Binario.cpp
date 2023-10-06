@@ -183,7 +183,7 @@ void Binario::Equilibrar1(NodoBinario* n, bool &Hh){
         if(n1->FB >= 0){
             if(n1->FB == 0)
                 Hh = false;
-                RotacionSimpleDerecha(n, n1);
+            RotacionSimpleDerecha(n, n1);
         }else{
                 RotacionDobleDerecha(n, n1);
         }
@@ -201,13 +201,13 @@ void Binario::Equilibrar2(NodoBinario* n, bool &Hh){
         case -1: n1 = n->Hizq;
         
         if(n1->FB <= 0){
-            if(n1->FB == 0){
+            if(n1->FB == 0)
                 Hh = false;
-               	RotacionSimpleIzquierda(n, n1);
-           	}else{
+            RotacionSimpleIzquierda(n, n1);
+        }else{
             RotacionDobleIzquierda(n, n1);
-           	}
-       	}
+        }
+       	
     }
 }
 

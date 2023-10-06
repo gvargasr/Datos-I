@@ -66,15 +66,38 @@ class ArbolB{
         raiz = new Pagina_Cliente();
     }
 	
-	void Empujar(int C1, string nombre, Pagina_Cliente*& R, bool& EmpujaArriba, int& Mdna, Pagina_Cliente* X);
+	void Empujar(int C1, string nombre, Pagina_Cliente*& R, bool& EmpujaArriba, int& Mdna, Pagina_Cliente*& X);
     void InsertarClave(int C1, string nombre, Pagina_Cliente*& raiz);
     void BuscarNodo(int Clave, Pagina_Cliente*& P, bool& Encontrado, int K);
-    void ImprimirArbol(Pagina_Cliente* raiz);
-    void MeterHoja(int X, string nombre, Pagina_Cliente* Xder, Pagina_Cliente* P, int K);
+    void ImprimirArbol(Pagina_Cliente*& raiz);
+    void MeterHoja(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K);
     void DividirNodo(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K, int& Mda, Pagina_Cliente*& Mder);
+    void search(int clave, Pagina_Cliente* raiz);
+
     
     friend Pagina_Cliente;
 };
+
+
+void ArbolB::search(int clave, Pagina_Cliente* raiz) {
+    if (raiz == NULL) {
+        cout<<"NO SE ENCONTRO"<<endl;
+        return;
+    }
+
+    bool Encontrado = false;
+    int K = 0;
+    BuscarNodo(clave, raiz, Encontrado, K);
+
+    if (Encontrado) {
+        cout<<"si  SE ENCONTRO"<<endl;
+    } else {
+        return search(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
+    }
+}
+
+
+
 
 void ArbolB::BuscarNodo(int Clave, Pagina_Cliente*& P, bool& Encontrado, int K) {
 	if(Clave < P->claves[1]){
@@ -87,6 +110,8 @@ void ArbolB::BuscarNodo(int Clave, Pagina_Cliente*& P, bool& Encontrado, int K) 
 	}
 	Encontrado = Clave==P->claves[K];
 }
+
+
 
 
 
@@ -107,8 +132,7 @@ void ArbolB::InsertarClave(int C1, string nombre, Pagina_Cliente*& raiz) {
     }
 }
 
-void ArbolB::Empujar(int C1, string nombre, Pagina_Cliente*& R, bool& EmpujaArriba, int& Mdna, Pagina_Cliente* X) {
-
+void ArbolB::Empujar(int C1, string nombre, Pagina_Cliente*& R, bool& EmpujaArriba, int& Mdna, Pagina_Cliente*& X) {
     if (R == NULL) {
         EmpujaArriba = true;
         Mdna = C1;
@@ -118,7 +142,7 @@ void ArbolB::Empujar(int C1, string nombre, Pagina_Cliente*& R, bool& EmpujaArri
     	int K = 0;
 		BuscarNodo(C1, R, Esta, K);
         if (Esta){
-            cout << "Elemento repetido: "<<C1 << endl;
+            cout<<"Cliente "<<C1<<":"<<nombre<<" no fue agregado."<<endl;
             return;
 		}
         Empujar(C1, nombre, R->Ramas[K], EmpujaArriba, Mdna, X);
@@ -126,15 +150,17 @@ void ArbolB::Empujar(int C1, string nombre, Pagina_Cliente*& R, bool& EmpujaArri
                	if (R->Cuenta < 4) {
                		EmpujaArriba = false;
                		MeterHoja(Mdna, nombre, X, R, K);
+               		cout<<"Cliente "<<C1<<":"<<nombre<<" ha sido agregado."<<endl;
               	}else{
                		EmpujaArriba = true;
                		DividirNodo(Mdna, nombre, X, R, K, Mdna, X);
+               //		cout<<"Cliente "<<C1<<":"<<nombre<<" ha sido agregado."<<endl;
                	}
           	}
 		}        
 }
     
-void ArbolB::ImprimirArbol(Pagina_Cliente* raiz) {
+void ArbolB::ImprimirArbol(Pagina_Cliente*& raiz) {
     if (raiz) {
         for (int i = 1; i <= raiz->Cuenta; i++) {
             ImprimirArbol(raiz->Ramas[i-1]);
@@ -147,7 +173,7 @@ void ArbolB::ImprimirArbol(Pagina_Cliente* raiz) {
 
 
 
-void ArbolB::MeterHoja(int X, string nombre, Pagina_Cliente* Xder, Pagina_Cliente* P, int K) {
+void ArbolB::MeterHoja(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K) {
     Pagina_Cliente* Mder = new Pagina_Cliente();
     Mder->Cuenta = 0;
 
