@@ -50,9 +50,9 @@ class cargarArchivo {
     void SubMenu52();
     void SubMenu53();
 /*  void SubMenu54();
-    void SubMenu55();
+    void SubMenu55();*/
     void SubMenu56();
-	void SubMenu57();
+/*	void SubMenu57();
 	void SubMenu571(pnodoComp Prod);
 	void SubMenu6();
 	void SubMenu61();
@@ -1115,7 +1115,7 @@ void cargarArchivo::SubMenu46(){
 	cout<< "Ingrese el numero de cedula que desea encontrar: ";
 	cin >> cedula;
 	
-	listaCliente->search(stoi(cedula), listaCliente->raiz);
+	listaCliente->Search(stoi(cedula), listaCliente->raiz);
 }
 
 //Modificar
@@ -1162,12 +1162,12 @@ void cargarArchivo::SubMenu5(){
 			cout<< "5.5 Modificar Producto"<<endl;
 			SubMenu55();
 			break;
-		}
+		}*/
 		case '6':{
 			cout<< "5.6 Modificar Cliente"<<endl;
 			SubMenu56();
 			break;
-		}
+		}/*
 		case '7':{
 			cout<<"5.7 Modificar Compras"<<endl;	
 			SubMenu57();	
@@ -1178,7 +1178,7 @@ void cargarArchivo::SubMenu5(){
 			break;
 		}
 		default :{
-			cout<< "!!! Valor incorrecto, ingresar un valor dentro del rango !!!"<<endl;
+			cout<< "!!!Valor incorrecto, ingresar un valor dentro del rango !!!"<<endl;
 			SubMenu5();
 			break;
 		}
@@ -1390,28 +1390,19 @@ void cargarArchivo::SubMenu55(){
 	cout<<"Pais no existe"<<endl;
 	return;
 }
-
+*/
 void cargarArchivo::SubMenu56(){
 	string cedula;
 	string nom;
 	cout<< "Ingrese el numero de cedula que desea modificar: ";
 	cin >> cedula;
+	cin.ignore();
 	int temp = stoi(cedula);
-	double temp2 = listaCliente->buscarPos(stoi(cedula));
-	pnodo aux = listaCliente->GetPrimero();
-	if(temp2!=-1 ){
-		while(aux!=NULL){
-			if(aux->valor == temp){
-				cout<< "Ingrese el nombre del cliente: ";
-				cin >> nom;
-				aux->nombre = nom;
-				return;
-			}
-		aux=aux->siguiente;
-		}
+	cout<< "Ingrese el nombre del cliente: ";
+	getline(cin, nom);
+	listaCliente->Modificar(stoi(cedula), nom, listaCliente->raiz);
 }
-}
-
+/*
 void cargarArchivo::SubMenu57(){
 	if(listaFila->ListaVacia() == true) {
 		cout<< "No hay compras en progreso ";
