@@ -29,8 +29,8 @@ class cargarArchivo {
 	void SubMenu22();
 	void SubMenu23();
 /*	void SubMenu24();
-	void SubMenu25();
-	void SubMenu26();*/
+	void SubMenu25();*/
+	void SubMenu26();
 	void SubMenu3();
 	void SubMenu31();
 	void SubMenu32();
@@ -53,7 +53,7 @@ class cargarArchivo {
     void SubMenu55();*/
     void SubMenu56();
 /*	void SubMenu57();
-	void SubMenu571(pnodoComp Prod);
+	void SubMenu571(pnodoComp Prod);*/
 	void SubMenu6();
 	void SubMenu61();
     void SubMenu62();
@@ -61,10 +61,20 @@ class cargarArchivo {
     void SubMenu64();
     void SubMenu65();
     void SubMenu66();
-    void SubMenu67();
+ /*   void SubMenu67();
     void SubMenu68();*/
+/*	void SubMenu7();
+	void SubMenu71(int cedula);*/
 	void SubMenu7();
-	void SubMenu71(int cedula);
+/*	void SubMenu71();
+	void SubMenu72();
+	void SubMenu73();
+	void SubMenu74();
+	void SubMenu75();
+	void SubMenu76();
+	void SubMenu77();*/
+/*	void SubMenu8();
+	void SubMenu81(int cedula);*/
 	
 //	private:
     BinarioPais *listaPais;
@@ -399,10 +409,6 @@ void cargarArchivo::SubMenu1(){
 		}
 		case '2':{
 			cout<<"Volviendo a Main Menu"<<endl;
-			listaCliente->ImprimirArbol(listaCliente->raiz);
-		//	listaPais->InordenI();//Imprime la lista de paises
-		//	listaPais->raiz->ArbolCiudad.raiz->valor;
-		//	listaPais->BuscarPais(listaPais->raiz, 999);
 			break;	
 		}
 	default:
@@ -450,11 +456,11 @@ void cargarArchivo::SubMenu2(){
 		case '5':
 			cout<<"2.5 Insertar Producto"<<endl;
 			SubMenu25();
-			break;	
+			break;	*/
 		case '6':
 			cout<<"2.6 Insertar Cliente"<<endl;
 			SubMenu26();
-			break;*/
+			break;
 		case '7':
 			cout<<"Volviendo a Main Menu"<<endl;
 			break;	
@@ -629,7 +635,7 @@ void cargarArchivo::SubMenu25(){
 	}
 }
 
-
+*/
 void cargarArchivo::SubMenu26(){
 	string cedula;
 	string nombre;
@@ -638,10 +644,10 @@ void cargarArchivo::SubMenu26(){
 	cin.ignore();
 	cout<< "\nIngrese el nombre del cliente: ";
 	getline(cin,nombre);
-	listaCliente->InsertarFinal(stoi(cedula),nombre);
+	listaCliente->InsertarClave(stoi(cedula), nombre, listaCliente->raiz);
 }
 
-*/
+
 
 // Eliminar
 
@@ -1524,8 +1530,8 @@ void cargarArchivo::SubMenu571(pnodoComp Prod){
 }
 */
 
-//Buscar
-/*
+
+
 void cargarArchivo::SubMenu6(){
 		cout << endl << "----------------------------" << endl;
   		cout << endl << "      6. Reportes   " << endl;
@@ -1536,9 +1542,9 @@ void cargarArchivo::SubMenu6(){
 		cout << "3. Lista de Restaurantes por Ciudad"<<endl;
 		cout << "4. Lista de Clientes"<<endl;
 		cout << "5. Restaurante MAS buscado"<<endl;
-		cout << "6. Menu MAS buscado"<<endl;
-		cout << "7. Producto MAS comprado"<<endl;
-		cout << "8. Consultar Precio de Producto"<<endl;
+		cout << "6. Menu de Restaurante"<<endl;
+		cout << "7. Productos en Menu"<<endl;
+		cout << "8. Menu mas buscado"<<endl;
 		cout << "9. Volver"<<endl;
 		cout <<endl<<endl;
 		cout <<"Seleccione una opcion: "<<endl;		
@@ -1571,26 +1577,27 @@ void cargarArchivo::SubMenu6(){
 			break;
 		}
 		case '6':{
-			cout<< "6.6 Menu MAS buscado"<<endl;
-			SubMenu66();
+			cout<< "6.6 Menu de Restaurante"<<endl;
+		//	SubMenu66();
 			break;
 		}
 		case '7':{
-			cout<< "6.7 Producto MAS comprado"<<endl;
-			SubMenu67();
+			cout<< "6.7 Productos en Menu"<<endl;
+		//	SubMenu67();
 			break;
 		}
 		case '8':{
-			cout<< "6.8 Consultar Precio de Producto"<<endl;
-			SubMenu68();
+			cout<< "6.8 Menu mas buscado"<<endl;
+		//	SubMenu68();
 			break;
 		}
 		case '9':{
-			cout<<"Volviendo a Main Menu"<<endl;			
+			cout<< "6.9 Volver"<<endl;
 			break;
 		}
 		default :{
 			cout<< "!!! Valor incorrecto, ingresar un valor dentro del rango !!!"<<endl;
+			SubMenu6();
 			break;
 		}
 	}
@@ -1607,22 +1614,17 @@ void cargarArchivo::SubMenu62(){
 	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
 	cin >> codPais;
-	pnodoPais aux = listaPais->GetPrimero();
 	int temp = stoi(codPais);
-	if(listaPais->buscarPais(temp)==true){
-		while(aux!=NULL){
-			if(aux->cod == temp){
-				cout<< "\nSe esta generando el archivo Reporte_Ciudades_"+aux->pais+".txt\n.\n.\n.\n"<<endl;
-				aux->listaCiudad->reporteCiudades(aux->pais);
-				return;
-			}
-		aux=aux->siguiente;
-		}
+	pnodoPais aux = listaPais->BuscarPais(listaPais->raiz, temp);
+	if(aux != NULL){
+		cout<< "\nSe esta generando el archivo Reporte_Ciudades_"+aux->pais+".txt\n.\n.\n.\n"<<endl;
+		aux->ArbolCiudad.reporteCiudad("Reporte_Ciudades_"+aux->pais);
+		return;
 	}
 	cout<<"El pais ingresado no existe";
 }
 
-//Reporte de Restaurantes por pais
+//Reporte de Restaurantes por Ciudad
 void cargarArchivo::SubMenu63(){
 	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
@@ -1630,37 +1632,30 @@ void cargarArchivo::SubMenu63(){
 	string codCiudad;
 	cout<< "Ingrese el codigo ciudad: ";
 	cin >> codCiudad;
-	pnodoPais aux = listaPais->GetPrimero();
 	int temp = stoi(codPais);
 	int temp2 = stoi(codCiudad);
-	if(listaPais->buscarPais(temp)==true){
-		while(aux!=NULL){
-			if(aux->cod == temp){
-				pnodoCiudad aux2 = aux->listaCiudad->primero;
-				while(aux2!=NULL){
-					if(aux2->cod == temp2){
-						cout<< "\nSe esta generando el archivo Reporte_Restaurantes_"+aux2->ciudad+".txt\n.\n.\n.\n"<<endl;
-						aux2->listaRestaurante->reporteRestaurante(aux2->ciudad);
-						return;
-					}
-					aux2= aux2->siguiente;
-				}
-				cout<<"CIUDAD NO EXISTE";
-				return;	
-			}
-		aux=aux->siguiente;
-		}	
-	cout<<"PAIS NO EXISTE";
+	pnodoPais aux = listaPais->BuscarPais(listaPais->raiz, temp);
+	if(aux != NULL){
+		pnodoCiudad aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz, temp2);
+		if(aux2 != NULL){
+			cout<< "\nSe esta generando el archivo Reporte_Restaurante_"+aux2->ciudad+".txt\n.\n.\n.\n"<<endl;
+			aux2->ArbolRest.MostrarRN2(aux2->ciudad);
+			aux2->ArbolRest.MostrarRN();
+		}else{
+			cout<<"Datos incorrectos, por favor intente de nuevo.";
+		}
+	}else{
+		cout<<"Datos incorrectos, por favor intente de nuevo.";
 	}
 }
 
 //Reporte de Clientes
 void cargarArchivo::SubMenu64(){
 	cout<< "\nSe esta generando el archivo Reporte_Clientes.txt\n.\n.\n.\n"<<endl;
-	listaCliente->reporteClientes();
 
+	listaCliente->saveToFile("Reporte_Clientes.txt");
 }
-
+/*
 //Reporte Restaurante mas buscado 
 void cargarArchivo::SubMenu65() {
 	int contTop = 0;
@@ -1708,10 +1703,12 @@ void cargarArchivo::SubMenu65() {
         }
     }
 }
-
-void cargarArchivo::SubMenu66(){
+*/
+// Restaurante mas buscado
+void cargarArchivo::SubMenu65(){
+	cout<<"Restaurante mas buscado no ha sido implementado.";
 }
-
+/*
 void cargarArchivo::SubMenu67(){
 
 }
@@ -1799,15 +1796,83 @@ void cargarArchivo::SubMenu68(){
 	return;
 }
 */
+
+
+void cargarArchivo::SubMenu7(){
+		cout << endl << "----------------------------" << endl;
+  		cout << endl << "      7. Reportes2   " << endl;
+        cout << endl << "----------------------------" << endl;
+		cout << endl;
+		cout << "1. Compras de Cliente"<<endl;
+		cout << "2. Producto mas comprado"<<endl;
+		cout << "3. Factura Mayor monto"<<endl;
+		cout << "4. Factura Menor monto"<<endl;
+		cout << "5. Descuento aplicado tarjeta"<<endl;
+		cout << "6. Consultar precio de producto"<<endl;
+		cout << "7. Consultar cantidad de producto disponible"<<endl;
+		cout << "8. Volver"<<endl;
+		cout <<endl<<endl;
+		cout <<"Seleccione una opcion: "<<endl;		
+		char opt;
+		cin >> opt;
+	switch(opt){
+		case '1':{
+			cout<< "7.1 Compras de Cliente"<<endl;
+		//	SubMenu71();
+			break;
+		}
+		case '2':{
+			cout<< "7.2 Producto mas comprado"<<endl;
+		//	SubMenu72();			
+			break;
+		}
+		case '3':{
+			cout<< "7.3 Factura Mayor monto"<<endl;
+		//	SubMenu73();
+			break;
+		}
+		case '4':{
+			cout<< "7.4 Factura Menor monto"<<endl;
+	//		SubMenu74();
+			break;
+		}
+		case '5':{
+			cout<< "7.5 Descuento aplicado tarjeta"<<endl;
+		//	SubMenu75();
+			break;
+		}
+		case '6':{
+			cout<< "7.6 Consultar precio de producto"<<endl;
+		//	SubMenu76();
+			break;
+		}
+		case '7':{
+			cout<< "7.7 Consultar cantidad de producto disponible"<<endl;
+		//	SubMenu77();
+			break;
+		}
+		case '8':{
+			cout<< "7.8 Volver"<<endl;
+			break;
+		}
+		default :{
+			cout<< "!!! Valor incorrecto, ingresar un valor dentro del rango !!!"<<endl;
+			SubMenu7();
+			break;
+		}
+	}
+}
+
 //Comprar
-/*void cargarArchivo::SubMenu7(){
+/*
+void cargarArchivo::SubMenu8(){
 		cout << "Inserte la cedula del usuario" << endl;
 		string cedula;
 		cin >> cedula;
 		int temp = stoi(cedula);
 		if(listaCliente->buscarPos(temp) != -1) {
 		cout << endl << "----------------------------" << endl;
-  		cout << endl << "      7. Comprar   " << endl;
+  		cout << endl << "      8. Comprar   " << endl;
         cout << endl << "----------------------------" << endl;
 		cout << endl;
 		cout << "1. Añadir"<<endl;
@@ -1819,7 +1884,7 @@ void cargarArchivo::SubMenu68(){
 		cin >> opt;
 		switch(opt) {
     	case '1' :
-		{SubMenu71(temp);
+		{SubMenu81(temp);
 			Menu();
 			break;
 		 } 
@@ -1851,9 +1916,9 @@ listaFila->InsertarInicio(aux->valor,aux->nombre);
 		}else{
 		cout << "Cedula invalida" << endl;
 		}
-}
-
-void cargarArchivo::SubMenu71(int cedula){
+}*/
+/*
+void cargarArchivo::SubMenu81(int cedula){
 	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
 	cin >> codPais;
@@ -1935,9 +2000,10 @@ void cargarArchivo::Menu(){
 		cout << "3. Eliminar"<<endl;
 		cout << "4. Buscar"<<endl;
 		cout << "5. Modificar"<<endl;
-		cout << "6. Reportes"<<endl;
-		cout << "7. Comprar"<<endl;
-		cout << "8. Salir"<<endl;
+		cout << "6. Reportes1"<<endl;
+		cout << "7. Reportes2"<<endl;
+		cout << "8. Comprar"<<endl;
+		cout << "9. Salir"<<endl;
 		cout <<endl<<endl;
 		cout <<"Seleccione una opcion: ";
 		
@@ -1965,12 +2031,12 @@ void cargarArchivo::Menu(){
     		SubMenu5();
     		Menu();
 			break;
-	/*	case '6':
+		case '6':
     		SubMenu6();
     		Menu();
-			break;*/
+			break;
 		case '7':	
-		//	SubMenu7();
+			SubMenu7();
 			Menu();
 			break;
 		case '8':
@@ -1991,6 +2057,7 @@ int main(){
 	cout<<"\nIntegrantes:\nGustavo Vargas Ramirez   --- 200409141 \nGabriel Campos Gutierrez --- 2023093692"<<endl;
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;	
 	cargarArchivo Inicio;
+	Inicio.cargaInicial();
 	Inicio.cargaInicial();
 	Inicio.Menu();
 	Inicio.listaCliente->ImprimirArbol(Inicio.listaCliente->raiz);

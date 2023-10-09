@@ -1,4 +1,5 @@
 #include <iostream>
+#include <fstream>
 
 using namespace std;
 
@@ -8,6 +9,7 @@ class Nodo {
   Nodo *Hizq;
   Nodo *Hder;
   int color;
+  int contador;
   string nombreRest;
   
   friend class ArbolRN;
@@ -26,6 +28,7 @@ class ArbolRN {
     nodo->Hizq= nullptr;
     nodo->Hder = nullptr;
     nodo->color = 0;
+    nodo->contador = 0;
     nodo ->nombreRest = "";
   }
   
@@ -128,6 +131,52 @@ class ArbolRN {
     }
   }
   
+    Nodo* FindNodeWithHighestContador(NodoPtr root) {
+        if (root == TNULL) {
+            return nullptr;
+        }
+
+        Nodo* maxNode = root;
+        if (root->Hizq != TNULL) {
+            Nodo* leftMaxNode = FindNodeWithHighestContador(root->Hizq);
+            if (leftMaxNode != nullptr && leftMaxNode->contador > maxNode->contador) {
+                maxNode = leftMaxNode;
+            }
+        }
+        if (root->Hder != TNULL) {
+            Nodo* rightMaxNode = FindNodeWithHighestContador(root->Hder);
+            if (rightMaxNode != nullptr && rightMaxNode->contador > maxNode->contador) {
+                maxNode = rightMaxNode;
+            }
+        }
+		if(maxNode != NULL){
+			cout<<"El Restaurante mas buscado es: "<<maxNode->codRest<<":"<<maxNode->nombreRest<<", buscado "<<maxNode->contador<<" veces."<<endl;
+		}
+        return maxNode;
+    }
+
+
+void PreOrderTraversal(NodoPtr raiz, ofstream& archivo_salida) {
+    if (raiz != TNULL) {
+        archivo_salida << raiz->codRest << " (" << (raiz->color ? "Rojo" : "Negro") << ") Nombre: " << raiz->nombreRest << endl;
+        PreOrderTraversal(raiz->Hizq, archivo_salida);
+        PreOrderTraversal(raiz->Hder, archivo_salida);
+    }
+}
+
+void MostrarRN2(NodoPtr raiz, string indent, bool ultimo, string nombre) {
+    ofstream archivo_salida("Reporte_Restaurante_" + nombre + ".txt");
+    if (!archivo_salida.is_open()) {
+        cerr << "No se pudo abrir el archivo." << endl;
+    } else {
+        archivo_salida << "\t.:REPORTE LISTA RESTAURANTES:." << endl << endl << endl;
+        PreOrderTraversal(Raiz, archivo_salida);
+        archivo_salida.close();
+        cout << "Reporte generado" << endl;
+    }
+}
+
+  
   public:
     ArbolRN() {
     TNULL = new Nodo;
@@ -136,6 +185,8 @@ class ArbolRN {
     TNULL->Hder = nullptr;
     Raiz = TNULL;
   }
+  
+
   
   void RotacionIzquierda(NodoPtr nodo) {
     NodoPtr y = nodo->Hder;
@@ -237,6 +288,14 @@ class ArbolRN {
     }
   }
   
+    void MostrarRN2(string nombre) {
+    if (Raiz) {
+      MostrarRN2(this->Raiz, "", true, nombre);
+    }
+        cout << "Reporte generado"<<endl<<endl<<endl;
+
+  }
+  
   bool BusquedaB(int numbuscado) {
     return BusquedaBool(this->Raiz, numbuscado);
   }
@@ -263,6 +322,7 @@ class ArbolRN {
   		cout<<"Restaurante "<<numbusqueda<<" no se encuentra."<<endl;
   		return NULL;
 	  } else {
+	  	aux->contador++;
 		cout<<"Restaurante encontrado:"<<endl;
 		cout<<"- Codigo: "<<aux->codRest<<endl;
 		cout<<"- Nombre: "<<aux->nombreRest<<endl;

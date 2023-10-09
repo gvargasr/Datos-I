@@ -3,6 +3,8 @@
 #include "NodoBinarioPais.h"
 #include "BinarioPais.h"
 #include <string>
+#include <fstream>
+
 
 using namespace std;
 
@@ -130,6 +132,31 @@ void BinarioPais::PreordenI(){
     }
 }
 
+void BinarioPais::reportePaises()
+{
+    NodoBinarioPais *Act = raiz;
+    Pila p;
+    ofstream archivo_salida("Reporte_Paises.txt");
+    if (!archivo_salida.is_open()) {
+        cerr << "No se pudo abrir el archivo." <<endl;
+    }
+    archivo_salida << "\t .:REPORTE LISTA PAISES:."<<endl<<endl<<endl;
+    while(!p.Vacia() || (Act != NULL)){
+        if(Act != NULL){
+            archivo_salida << Act->valor<<":"<<Act->pais << "\n";
+            p.Push(Act);
+            Act = Act->Hizq;
+        }else{
+            Act = p.Pop();
+            Act = Act->Hder;
+        }
+    }
+    cout << endl;
+    archivo_salida.close();
+    cout << "Reporte generado";
+}
+
+
 void BinarioPais::InordenI(){
     NodoBinarioPais *Act = raiz;
     Pila p;
@@ -181,6 +208,10 @@ void PreordenR(NodoBinarioPais *R){
         PreordenR(R->Hder);
     }
 }
+
+
+
+
 
 void InordenR(NodoBinarioPais *R){
 

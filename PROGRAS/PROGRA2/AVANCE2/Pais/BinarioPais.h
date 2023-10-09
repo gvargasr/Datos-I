@@ -17,6 +17,8 @@ public:
     void InordenI();
     void PostordenI();
     void PostordenR(NodoBinarioPais *R);
+    void reportePaises();
+    
 
     bool Hh=false;
     

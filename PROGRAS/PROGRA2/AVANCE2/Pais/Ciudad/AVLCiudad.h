@@ -18,6 +18,8 @@ public:
     void InordenI();
     void PostordenI();
     void PostordenR(NodoBinarioCiudad *R);
+    void reporteCiudad(string nombre);
+
 
     bool Hh=false;
     

@@ -2,6 +2,8 @@
 #include "PilaCiudad.cpp"
 #include "AVLCiudad.h"
 #include <string>
+#include <fstream>
+
 
 using namespace std;
 
@@ -85,6 +87,31 @@ void AVLCiudad::PreordenI(){
             Act = Act->Hder;
         }
     }
+}
+
+
+void AVLCiudad::reporteCiudad(string nombre)
+{
+    NodoBinarioCiudad *Act = raiz;
+    PilaCiudad p;
+    ofstream archivo_salida("Reporte_Ciudades_"+nombre+".txt");
+    if (!archivo_salida.is_open()) {
+        cerr << "No se pudo abrir el archivo." <<endl;
+    }
+    archivo_salida << "\t.:REPORTE LISTA CIUDADES:."<<endl<<endl<<endl;
+    while(!p.Vacia() || (Act != NULL)){
+        if(Act != NULL){
+            archivo_salida << Act->valor<<":"<<Act->ciudad << "\n";
+            p.Push(Act);
+            Act = Act->Hizq;
+        }else{
+            Act = p.Pop();
+            Act = Act->Hder;
+        }
+    }
+    cout << endl;
+    archivo_salida.close();
+    cout << "Reporte generado";
 }
 
 void AVLCiudad::InordenI(){
