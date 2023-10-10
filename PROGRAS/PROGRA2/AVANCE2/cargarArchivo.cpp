@@ -5,6 +5,7 @@
 #include <math.h>
 #include "Pais/BinarioPais.cpp"
 #include "Cliente/ArbolB.cpp"
+#include "Cliente/listaDFila.cpp"
 
 
 using namespace std;
@@ -73,8 +74,8 @@ class cargarArchivo {
 	void SubMenu75();
 	void SubMenu76();
 	void SubMenu77();*/
-/*	void SubMenu8();
-	void SubMenu81(int cedula);*/
+	void SubMenu8();
+/*	void SubMenu81(int cedula);*/
 	
 //	private:
     BinarioPais *listaPais;
@@ -1864,13 +1865,13 @@ void cargarArchivo::SubMenu7(){
 }
 
 //Comprar
-/*
+
 void cargarArchivo::SubMenu8(){
 		cout << "Inserte la cedula del usuario" << endl;
 		string cedula;
 		cin >> cedula;
 		int temp = stoi(cedula);
-		if(listaCliente->buscarPos(temp) != -1) {
+		if(listaCliente->Search(temp,listaCliente->raiz)) {
 		cout << endl << "----------------------------" << endl;
   		cout << endl << "      8. Comprar   " << endl;
         cout << endl << "----------------------------" << endl;
@@ -1883,7 +1884,7 @@ void cargarArchivo::SubMenu8(){
 		char opt;
 		cin >> opt;
 		switch(opt) {
-    	case '1' :
+    /*	case '1' :
 		{SubMenu81(temp);
 			Menu();
 			break;
@@ -1903,7 +1904,7 @@ listaFila->InsertarInicio(aux->valor,aux->nombre);
 			}
 			break;
 			}
-			
+			*/
     	case '3':
     		{cout<<"Volviendo a Main Menu"<<endl;
     		break;
@@ -1916,7 +1917,7 @@ listaFila->InsertarInicio(aux->valor,aux->nombre);
 		}else{
 		cout << "Cedula invalida" << endl;
 		}
-}*/
+}
 /*
 void cargarArchivo::SubMenu81(int cedula){
 	string codPais;
@@ -2039,7 +2040,11 @@ void cargarArchivo::Menu(){
 			SubMenu7();
 			Menu();
 			break;
-		case '8':
+		case '8':	
+			SubMenu8();
+			Menu();
+			break;
+		case '9':
     		cout<<endl<<endl<<endl<<"##################      Good Bye!!     ####################"<<endl;
     		exit(1);
 			break;		

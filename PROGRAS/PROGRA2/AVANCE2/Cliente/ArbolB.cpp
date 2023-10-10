@@ -74,7 +74,7 @@ class ArbolB{
     void ImprimirArbol(Pagina_Cliente*& raiz);
     void MeterHoja(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K);
     void DividirNodo(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int& K, int Mda, Pagina_Cliente*& Mder);
-    void Search(int clave, Pagina_Cliente* raiz);
+    bool Search(int clave, Pagina_Cliente* raiz);
 	void Modificar(int clave, string nombre, Pagina_Cliente* raiz);
 	void inOrderTraversal(Pagina_Cliente* raiz, ofstream& outFile);
 	void saveToFile(const string& filename);
@@ -105,11 +105,10 @@ void ArbolB::Modificar(int clave, string nombre, Pagina_Cliente* raiz) {
 }
 
 
-void ArbolB::Search(int clave, Pagina_Cliente* raiz) {
+bool ArbolB::Search(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
         cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
-    //    return raiz;
-    return;
+        return false;
     }
 
     bool Encontrado = false;
@@ -118,8 +117,7 @@ void ArbolB::Search(int clave, Pagina_Cliente* raiz) {
 
     if (Encontrado) {
         cout<<".:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<endl<<endl;
-    //    return raiz;
-    return;
+        return true;
     } else {
         Search(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
     }

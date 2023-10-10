@@ -1,0 +1,6 @@
+	.:REPORTE LISTA CIUDADES:.
+
+
+69:test
+34:Bocas del Toro
+345:David
