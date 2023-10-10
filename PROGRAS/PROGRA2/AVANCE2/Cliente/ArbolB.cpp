@@ -78,6 +78,7 @@ class ArbolB{
 	void Modificar(int clave, string nombre, Pagina_Cliente* raiz);
 	void inOrderTraversal(Pagina_Cliente* raiz, ofstream& outFile);
 	void saveToFile(const string& filename);
+	string SearchNodo(int clave, Pagina_Cliente* raiz);
 
     
     friend Pagina_Cliente;
@@ -120,6 +121,24 @@ bool ArbolB::Search(int clave, Pagina_Cliente* raiz) {
         return true;
     } else {
         Search(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
+    }
+}
+
+string ArbolB::SearchNodo(int clave, Pagina_Cliente* raiz) {
+    if (raiz == NULL) {
+    //    cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
+        return "";
+    }
+
+    bool Encontrado = false;
+    int K = 0;
+    BuscarNodo(clave, raiz, Encontrado, K);
+
+    if (Encontrado) {
+    //    cout<<".:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<endl<<endl;
+        return raiz->nombre[K];
+    } else {
+        SearchNodo(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
     }
 }
 

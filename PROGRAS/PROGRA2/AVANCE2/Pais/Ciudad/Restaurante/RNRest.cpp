@@ -1,5 +1,7 @@
 #include <iostream>
 #include <fstream>
+#include "Menu/AAMenu.cpp"
+
 
 using namespace std;
 
@@ -18,9 +20,10 @@ class Nodo {
 typedef Nodo *NodoPtr;
 
 class ArbolRN {
-   private:
+  // private:
   NodoPtr Raiz;
   NodoPtr TNULL;
+  ArbolA listaMenu;
 
   void initializeNULLNode(NodoPtr nodo, NodoPtr padre) {
     nodo->codRest = 0;

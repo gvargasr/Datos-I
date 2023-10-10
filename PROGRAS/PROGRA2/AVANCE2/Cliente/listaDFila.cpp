@@ -40,6 +40,7 @@ class listaDFila {
     listaDFila() { primero =  NULL; }
     ~listaDFila();
     
+    void InsertarFinal(int v, string n);
     void InsertarInicio(int v, string n);
     bool ListaVacia() { return primero == NULL; }
     int largoLista();
@@ -63,7 +64,19 @@ listaDFila::~listaDFila()
 }
 
 
-
+void listaDFila::InsertarFinal(int v, string n) {
+    pnodoFila nuevo = new nodoFila(v, n);
+    
+    if (ListaVacia()) {
+        primero = nuevo;
+    } else {
+        pnodoFila temp = primero;
+        while (temp->siguiente != nullptr) {
+            temp = temp->siguiente;
+        }
+                temp->siguiente = nuevo;
+    }
+}
 
 
 

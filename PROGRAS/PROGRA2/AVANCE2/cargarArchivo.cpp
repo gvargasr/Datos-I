@@ -6,6 +6,7 @@
 #include "Pais/BinarioPais.cpp"
 #include "Cliente/ArbolB.cpp"
 #include "Cliente/listaDFila.cpp"
+#include "Cliente/listaClientes.cpp"
 
 
 using namespace std;
@@ -15,7 +16,8 @@ class cargarArchivo {
     cargarArchivo() {
 	listaPais = new BinarioPais() ;
 	listaCliente = new ArbolB();
-//	 listaFila = new listaDFila();
+	listaCompra = new listaClientes();
+	listaFila = new listaDFila();
 	 }
     ~cargarArchivo();
     void Menu();
@@ -75,12 +77,14 @@ class cargarArchivo {
 	void SubMenu76();
 	void SubMenu77();*/
 	void SubMenu8();
-/*	void SubMenu81(int cedula);*/
+	void SubMenu81(int cedula);
 	
 //	private:
     BinarioPais *listaPais;
     ArbolB *listaCliente;
-//    listaDFila *listaFila;
+    listaDFila *listaFila;
+    listaClientes *listaCompra;
+
 
     friend MainMenu();
   
@@ -1872,6 +1876,7 @@ void cargarArchivo::SubMenu8(){
 		cin >> cedula;
 		int temp = stoi(cedula);
 		if(listaCliente->Search(temp,listaCliente->raiz)) {
+		string nombre = listaCliente->SearchNodo(temp,listaCliente->raiz);
 		cout << endl << "----------------------------" << endl;
   		cout << endl << "      8. Comprar   " << endl;
         cout << endl << "----------------------------" << endl;
@@ -1884,33 +1889,31 @@ void cargarArchivo::SubMenu8(){
 		char opt;
 		cin >> opt;
 		switch(opt) {
-    /*	case '1' :
+    	case '1' :
 		{SubMenu81(temp);
 			Menu();
 			break;
 		 } 
 			
 		case '2':
-			{if(listaFila->largoLista() == 5)
+			if(listaFila->largoLista() == 5)
 			{
 				cout << "La fila esta llena"<<endl;
 				break;
 			}else{
-				pnodo aux = listaCliente->GetPrimero();
-				while(aux->valor!=temp) {
-						aux = aux->siguiente;
-} 
-listaFila->InsertarInicio(aux->valor,aux->nombre);
+				listaFila->InsertarFinal(temp,nombre);
+				break;
 			}
-			break;
-			}
-			*/
     	case '3':
     		{cout<<"Volviendo a Main Menu"<<endl;
+    		Menu();
     		break;
-    	default: 
-    cout<<"!!! Valor incorrecto, ingresar un valor dentro del rango !!!"<<endl;
-	break;
+    	}
+    	default:
+		{ 
+    		cout<<"!!! Valor incorrecto, ingresar un valor dentro del rango !!!"<<endl;
+    		Menu();
+			break;
 			}
     		
 	}
@@ -1918,9 +1921,9 @@ listaFila->InsertarInicio(aux->valor,aux->nombre);
 		cout << "Cedula invalida" << endl;
 		}
 }
-/*
+
 void cargarArchivo::SubMenu81(int cedula){
-	string codPais;
+/*	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
 	cin >> codPais;
 	string codCiudad;
@@ -1964,6 +1967,7 @@ void cargarArchivo::SubMenu81(int cedula){
 										while(aux6->valor!=cedula) {
 											aux6 = aux6->siguiente;
 										}
+										listaCliente->in
 											listaCliente->InsertarCompra(aux5->cod,aux5->nomProd,aux5->kcal,aux5->precio,cantidad,aux6->listaComp);
 											aux5->counter =+cantidad;
 										return;
@@ -1986,10 +1990,10 @@ void cargarArchivo::SubMenu81(int cedula){
 		}		
 	}
 	cout<<"Pais no existe"<<endl;
-	return;
+	return;*/
 }
 
-*/
+
 void cargarArchivo::Menu(){
 	while(true){
 	    cout << endl << "----------------------------" << endl;
