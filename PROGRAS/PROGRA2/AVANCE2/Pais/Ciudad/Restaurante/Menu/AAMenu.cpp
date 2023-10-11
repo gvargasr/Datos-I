@@ -3,12 +3,14 @@
 using namespace std;
 
 class NodoM {
+public:
   int codMenu;
   int nivel;
   NodoM *Hizq;
   NodoM *Hder;
   string nombreMenu;
-  
+  AVLProducto listaProducto;
+
   friend class ArbolA;
 };
 
@@ -18,7 +20,6 @@ class ArbolA {
   // private:
   NodoMPtr Raiz;
   NodoMPtr TNULL;
-  AVLProducto listaProducto;
  void IniciarNodoNULL(NodoMPtr NodoMenu) {
     NodoMenu->codMenu = 0;
     int nivel;
@@ -139,9 +140,10 @@ class ArbolA {
   void insertar(int codMenunuevo, string nombrenuevo) {
   	NodoMPtr temp = BusquedaM(codMenunuevo);
   	if (temp->codMenu==codMenunuevo){
-  		cout<<"Codigo Repetido"<<endl;
+    cout <<"Menu: "<<codMenunuevo<<":"<<nombrenuevo<<" no fue agregado"<<endl;
 	  }
 	  else {
+	cout << "Menu " << codMenunuevo << ":" << nombrenuevo << " ha sido agregado." << endl;
 	NodoMPtr NodoMenu = new NodoM;
     NodoMenu->codMenu = codMenunuevo;
     int nivel = 0;

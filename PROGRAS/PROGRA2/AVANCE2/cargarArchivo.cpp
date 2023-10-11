@@ -102,6 +102,24 @@ void cargarArchivo::cargaInicial(){
 	ifstream archivo;
 
 try{
+	
+	
+	archivo.open("Archivos/Clientes.txt");
+	cout<<"\t .:CARGANDO CLIENTES:."<<endl<<endl;
+	while(!archivo.eof()){
+		string cedula;
+		string nombre;
+		getline(archivo, cedula, ';');
+		getline(archivo, nombre);
+		int temp = stoi(cedula);
+		if(!cedula.empty()){
+			listaCliente->InsertarClave(temp,nombre,listaCliente->raiz);
+			listaCliente->InsertarClave(temp,nombre,listaCliente->raiz);
+		}
+		//cout<<"."<<endl;
+	}
+	archivo.close();
+	cout<<endl<<"*********************************************************************************"<<endl<<endl;
 
 	archivo.open("Archivos/Paises.txt");
 	cout<<"\t .:CARGANDO PAISES:."<<endl<<endl;
@@ -201,8 +219,9 @@ try{
 	archivo.close();	
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
 
-/*
+
  	archivo.open("Archivos/Menu.txt");
+ 	cout<<"\t .:CARGANDO MENUS:."<<endl<<endl;
  		while(!archivo.eof()){
 		string codPais;
 		string codCiudad;
@@ -215,35 +234,49 @@ try{
 		getline(archivo, codRest, ';');
 		getline(archivo, codMenu, ';');
 		getline(archivo, nombre);
-		pnodoPais aux = listaPais->primero;
 		int temp = stoi(codPais);
 		int temp2 = stoi(codCiudad);
 		int temp3 = stoi(codRest);
 		int temp4 = stoi(codMenu);
-		if(listaPais->buscarPais(temp)==true){
-			while(aux!=NULL){
-				if(aux->cod == temp){
-					pnodoCiudad aux2 = aux->listaCiudad->primero;
-					while(aux2!=NULL){
-						if(aux2->cod == temp2){
-							pnodoRest aux3 = aux2->listaRestaurante->primero;
-							pnodoRest head = aux2->listaRestaurante->primero;
-								while(aux3->siguiente!=head && aux3->cod!=temp3)
-									aux3=aux3->siguiente;
-								if(aux3->siguiente==head);
-								aux2->listaRestaurante->InsertarMenu(temp4,nombre,aux3->listaMenu);
-						}
-						aux2= aux2->siguiente;
-					}
+		NodoBinarioPais *q = aux->raiz;
+		while(q != NULL){
+        if(temp < q->valor){
+            q = q->Hizq;
+        }
+        if(temp > q->valor){
+        	q = q->Hder;
+        }
+        else if(temp == q->valor){
+			NodoBinarioCiudad *b = q->ArbolCiudad.BuscarCiudad(q->ArbolCiudad.raiz,temp2); 
+        	while(b != NULL){
+        		if(temp2 < b->valor){
+					b = b->Hizq;	
+        		}
+        		if(temp2 > b->valor){
+        			b = b->Hder;
+        		}
+        		else if(temp2 == b->valor){
+        		Nodo *c = b->ArbolRest.Busqueda(b->ArbolRest.Raiz, temp3);
+        		if(c != NULL)
+				c->listaMenu.insertar(temp4, nombre);
+				break;
 				}
-			aux=aux->siguiente;
-			}		
-		}
-	}
+        	}
+        	if(b == NULL){
+        		cout <<"Menu: "<<codMenu<<":"<<nombre<<" no fue agregado"<<endl;
+    		}
+    		break;
+			}
+        }
+        if(q == NULL){
+        	cout <<"Menu: "<<codMenu<<":"<<nombre<<" no fue agregado"<<endl;
+    	}
+ }
  	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
 
  	archivo.open("Archivos/Productos.txt");
+ 		cout<<"\t .:CARGANDO PRODUCTOS:."<<endl<<endl;
  		while(!archivo.eof()){
 		string codPais;
 		string codCiudad;
@@ -253,6 +286,7 @@ try{
 		string nombre;
 		string kcal;
 		string precio;
+		string cantProd;
 		 
 		getline(archivo, codPais, ';');
 		getline(archivo, codCiudad, ';');
@@ -261,9 +295,9 @@ try{
 		getline(archivo, codProd, ';');
 		getline(archivo, nombre, ';');
 		getline(archivo, kcal, ';');
-		getline(archivo, precio);
+		getline(archivo, precio, ';');
+		getline(archivo, cantProd);
 		
-		pnodoPais aux = listaPais->primero;
 		int temp = stoi(codPais);
 		int temp2 = stoi(codCiudad);
 		int temp3 = stoi(codRest);
@@ -271,52 +305,49 @@ try{
 		int temp5 = stoi(codProd);
 		int temp6 = stoi(kcal);
 		int temp7 = stoi(precio);
+		int temp8 = stoi(cantProd);
 		
-		if(listaPais->buscarPais(temp)==true){
-			while(aux!=NULL){
-				if(aux->cod == temp){
-					pnodoCiudad aux2 = aux->listaCiudad->primero;
-					while(aux2!=NULL){
-						if(aux2->cod == temp2){
-							pnodoRest aux3 = aux2->listaRestaurante->primero;
-							pnodoRest head = aux2->listaRestaurante->primero;
-								while(aux3->siguiente!=head && aux3->cod!=temp3)
-									aux3=aux3->siguiente;
-								if(aux3->cod==temp3){
-									pnodoMenu aux4 = aux3->listaMenu->primero;
-									while(aux4!=NULL){
-										if(aux4->cod == temp4){
-										aux3->listaMenu->InsertarProducto(temp5, nombre, temp6, temp7, aux4->listaProd);
-										}
-									aux4= aux4->siguiente;
-									}
-							}
-						}
-					aux2= aux2->siguiente;
+		NodoBinarioPais *q = aux->raiz;
+		while(q != NULL){
+        if(temp < q->valor){
+            q = q->Hizq;
+        }
+        if(temp > q->valor){
+        	q = q->Hder;
+        }
+        else if(temp == q->valor){
+			NodoBinarioCiudad *b = q->ArbolCiudad.BuscarCiudad(q->ArbolCiudad.raiz,temp2); 
+        	while(b != NULL){
+        		if(temp2 < b->valor){
+					b = b->Hizq;	
+        		}
+        		if(temp2 > b->valor){
+        			b = b->Hder;
+        		}
+        		else if(temp2 == b->valor){
+        		Nodo *c = b->ArbolRest.Busqueda(b->ArbolRest.Raiz, temp3);
+        			if(c !=NULL){
+        				NodoM *d = c->listaMenu.BusquedaM(temp4);
+        					if(d != NULL)
+        						d->listaProducto.InsertaNodoProducto( temp5,  nombre, temp6, temp7, temp8);
+        					break;
 					}
+				break;
 				}
-			aux=aux->siguiente;
-			}		
-		}
+        	}
+        	if(b == NULL){
+        		cout <<"Producto: "<<codProd<<":"<<nombre<<" no fue agregado"<<endl;
+    		}
+    		break;
+			}
+        }
+        if(q == NULL){
+        	cout <<"Producto: "<<codProd<<":"<<nombre<<" no fue agregado"<<endl;
+    	}
 	}
  	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
-*/	
-	archivo.open("Archivos/Clientes.txt");
-	cout<<"\t .:CARGANDO CLIENTES:."<<endl<<endl;
-	while(!archivo.eof()){
-		string cedula;
-		string nombre;
-		getline(archivo, cedula, ';');
-		getline(archivo, nombre);
-		int temp = stoi(cedula);
-		if(!cedula.empty()){
-			listaCliente->InsertarClave(temp,nombre,listaCliente->raiz);
-		}
-		//cout<<"."<<endl;
-	}
-	archivo.close();
-	cout<<endl<<"*********************************************************************************"<<endl<<endl;	
+	
 
 } catch(const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;
@@ -2066,7 +2097,6 @@ int main(){
 	cout<<"\nIntegrantes:\nGustavo Vargas Ramirez   --- 200409141 \nGabriel Campos Gutierrez --- 2023093692"<<endl;
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;	
 	cargarArchivo Inicio;
-	Inicio.cargaInicial();
 	Inicio.cargaInicial();
 	Inicio.Menu();
 	Inicio.listaCliente->ImprimirArbol(Inicio.listaCliente->raiz);

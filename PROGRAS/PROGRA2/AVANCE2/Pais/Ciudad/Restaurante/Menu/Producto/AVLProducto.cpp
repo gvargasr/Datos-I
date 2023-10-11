@@ -45,7 +45,7 @@ bool AVLProducto::BuscarProductoBool(NodoBinarioProducto* nodoB, int num) {
 void NodoBinarioProducto::InsertaBinarioProducto(int num, string nombre, int Kcal, int Precio, int Cantidad)
 {
 	if(num == valor){
-		cout<<"Codigo repetido "<<num<<" no se agrego a la lista."<<endl;
+		cout<<"Producto "<<num<<":"<<nombre<<" no fue agregado."<<endl;
 		return;
 	}
     if(num < valor){
@@ -69,7 +69,7 @@ void AVLProducto::InsertaNodoProducto(int num, string nombre, int Kcal, int Prec
 {
     if(raiz == NULL){
         raiz = new NodoBinarioProducto(num, nombre, Kcal, Precio, Cantidad);
-        cout<<"Producto "<<num<<":"<<nombre<<" fue agregado."<<endl;
+        cout<<"Producto "<<num<<":"<<nombre<<" fue agregado a la lista."<<endl;
     }else{
         raiz->InsertaBinarioProducto(num, nombre, Kcal, Precio, Cantidad);
     }

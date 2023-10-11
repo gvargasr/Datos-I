@@ -6,6 +6,7 @@
 using namespace std;
 
 class Nodo {
+	public:
   int codRest;
   Nodo *padre;
   Nodo *Hizq;
@@ -13,6 +14,7 @@ class Nodo {
   int color;
   int contador;
   string nombreRest;
+  ArbolA listaMenu;
   
   friend class ArbolRN;
 };
@@ -20,10 +22,9 @@ class Nodo {
 typedef Nodo *NodoPtr;
 
 class ArbolRN {
-  // private:
+  public:
   NodoPtr Raiz;
   NodoPtr TNULL;
-  ArbolA listaMenu;
 
   void initializeNULLNode(NodoPtr nodo, NodoPtr padre) {
     nodo->codRest = 0;
