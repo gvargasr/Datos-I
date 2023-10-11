@@ -4,27 +4,7 @@
 123456;Maria Campos
 16578;Pedro Perez
 410193;Jose Torres
-1;j
-2;k
-1;j
-2;k
-1;j
-2;k
-1;j
-222244;k
-56465461;j
-5165462;k
-15646;j
-24;k
-5641;j
-2255;k
-18;j
-223;k
-13;j
-22;k
-12;j
-22;k
-11;j
+1;L
 123456;Maria Campos
 16578;Pedro Perez
 410193;Jose Torres
@@ -32,23 +12,4 @@
 16578;Pedro Perez
 410193;Jose Torres
 1;j
-2;k
-1;j
-2;k
-1;j
-2;k
-1;j
-222244;k
-56465461;j
-5165462;k
-15646;j
-24;k
-5641;j
-2255;k
-18;j
-223;k
-13;j
-22;k
-12;j
-22;k
-11;j
+3335;Tavo

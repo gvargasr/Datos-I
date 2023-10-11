@@ -6,6 +6,7 @@ class NodoM {
 public:
   int codMenu;
   int nivel;
+  int contador;
   NodoM *Hizq;
   NodoM *Hder;
   string nombreMenu;
@@ -17,17 +18,19 @@ public:
 typedef NodoM *NodoMPtr;
 
 class ArbolA {
-  // private:
+  public:
   NodoMPtr Raiz;
   NodoMPtr TNULL;
+  
  void IniciarNodoNULL(NodoMPtr NodoMenu) {
     NodoMenu->codMenu = 0;
+    NodoMenu->contador = 0;
     int nivel;
     NodoMenu->Hizq= nullptr;
     NodoMenu->Hder = nullptr;
     NodoMenu ->nombreMenu = "";
   }
-  
+
   NodoMPtr Busqueda(NodoMPtr NodoMenu, int numbuscado) {
     if (NodoMenu == TNULL || NodoMenu->codMenu == 0 ||numbuscado == NodoMenu->codMenu) {
       return NodoMenu;
@@ -44,11 +47,35 @@ class ArbolA {
     TNULL = new NodoM;
     TNULL->nivel = 0;
     TNULL->codMenu = 0;
+    TNULL->contador = 0;
     TNULL->Hizq = nullptr;
     TNULL->Hder = nullptr;
     Raiz = TNULL;
   }
   
+  
+	
+	void BuscarNodoMenu (int numbusqueda){
+	NodoMPtr aux = BusquedaM(numbusqueda);
+  	if (aux->codMenu!=numbusqueda){
+  		cout<<"Menu "<<numbusqueda<<" no se encuentra."<<endl;
+	  } else {
+	  	aux->contador++;
+		cout<<"Menu encontrado:"<<endl;
+		cout<<"- Codigo: "<<aux->codMenu<<endl;
+		cout<<"- Nombre: "<<aux->nombreMenu<<endl;
+	  }
+  	}
+  	
+  		NodoMPtr BuscarNodoMenu1 (int numbusqueda){
+			NodoMPtr aux = BusquedaM(numbusqueda);
+  			if (aux->codMenu!=numbusqueda){
+  				return NULL;
+			  } else {
+			  	return aux;
+		  }
+  	}
+
   void Giro(NodoMPtr NodoMenu, NodoMPtr x, NodoMPtr z){
 		if (x == TNULL){
 			Raiz = NodoMenu;
@@ -137,6 +164,7 @@ class ArbolA {
   }
   
   
+  
   void insertar(int codMenunuevo, string nombrenuevo) {
   	NodoMPtr temp = BusquedaM(codMenunuevo);
   	if (temp->codMenu==codMenunuevo){
@@ -180,10 +208,9 @@ void preOrden(NodoMPtr NodoMenu) {
 void preordenM() {
     preOrden(this->Raiz);
   }
-
 };
 	
-	
+
 /*
 
 int main() {

@@ -204,46 +204,7 @@ void AVLCiudad::Borrar(NodoBinarioCiudad* &D, bool Hh)
     }
 }
 
-/*void AVLCiudad::BorrarBalanceadoCiudad(NodoBinarioCiudad* &raiz, bool &Hh, int x)
-{
-    NodoBinarioCiudad *q;
-    if(raiz != NULL){
-        if(x < raiz->valor){
-            BorrarBalanceadoCiudad(raiz->Hizq, Hh, x);
-            if(Hh){
-                Equilibrar1(raiz, Hh);
-            }
-        }else{
-            if(x > raiz->valor){
-                BorrarBalanceadoCiudad(raiz->Hder, Hh, x);
-                if(Hh){
-                    Equilibrar2(raiz, Hh);
-                }
-            }else{
-                q = raiz;
 
-                if(q->Hder == NULL){
-                    raiz = q->Hizq;
-                    Hh = true;
-                }else{
-                    if(
-                        Hh = true;
-                    }else{
-                        Borrar(q->Hizq, Hh);
-                    }
-                    if(Hh){
-                        Equilibrar1(raiz, Hh);
-                    }
-                }
-            cout << "Ciudad " << x << " ha sido eliminada" << endl;
-            }
-        }
-    }
-    else{
-        // Mostrar mensaje si la ciudad no se encuentra
-        cout << "Ciudad con valor " << x << " no se encuentra" << endl;
-    }
-}*/
 
 void AVLCiudad::BorrarBalanceadoCiudad(NodoBinarioCiudad* &raiz, bool &Hh, int x)
 {

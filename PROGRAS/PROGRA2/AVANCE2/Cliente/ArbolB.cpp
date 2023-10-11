@@ -73,7 +73,7 @@ class ArbolB{
     void BuscarNodo(int Clave, Pagina_Cliente*& P, bool& Encontrado, int& K);
     void ImprimirArbol(Pagina_Cliente*& raiz);
     void MeterHoja(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K);
-    void DividirNodo(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int& K, int Mda, Pagina_Cliente*& Mder);
+    void DividirNodo(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int& K, int& Mda, Pagina_Cliente*& Mder);
     bool Search(int clave, Pagina_Cliente* raiz);
 	void Modificar(int clave, string nombre, Pagina_Cliente* raiz);
 	void inOrderTraversal(Pagina_Cliente* raiz, ofstream& outFile);
@@ -201,17 +201,18 @@ void ArbolB::Empujar(int C1, string nombre, Pagina_Cliente*& R, bool& EmpujaArri
             return;
 		}else{
 			Empujar(C1, nombre, R->Ramas[K], EmpujaArriba, Mdna, Xr);
-			}  
-        if (EmpujaArriba) {
-          	if (R->Cuenta < 4) {
+			  
+        	if (EmpujaArriba) {
+          		if (R->Cuenta < 4) {
             	//	cout<<"K cuenta NO llena "<<K<<endl;
            		EmpujaArriba = false;
            		MeterHoja(Mdna, nombre, Xr, R, K);
-            }else{
+            	}else{
             	//	cout<<"K cuenta llena "<<K<<endl;
             	EmpujaArriba = true;
             	DividirNodo(Mdna, nombre, Xr, R, K, Mdna, Xr);
-            }
+            	}
+        	}
         }
 	}        
 }
@@ -269,7 +270,7 @@ void ArbolB::MeterHoja(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Clien
 
 }
 
-void ArbolB::DividirNodo(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int& K, int Mda, Pagina_Cliente*& Mder) {
+void ArbolB::DividirNodo(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int& K, int& Mda, Pagina_Cliente*& Mder) {
     int Posmda;
     if (K <= 2) {
         Posmda = 2;
@@ -285,7 +286,7 @@ void ArbolB::DividirNodo(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cli
         Mder->Ramas[I - Posmda] = P->Ramas[I];
     }
 	Mder->Cuenta = 4-Posmda;
-    P->Cuenta = Posmda;
+    P->Cuenta = Posmda-1;
 
     if (K <= 2) {
         MeterHoja(X, nombre, Xder, P, K);  //inserta a la izq
@@ -317,23 +318,7 @@ int main() {
     clientes->InsertarClave(6, "hola11", clientes->raiz);
     clientes->InsertarClave(6, "hola12", clientes->raiz);
     clientes->InsertarClave(7, "hola13", clientes->raiz);
-    cout<<clientes->raiz->claves[1];
-        cout<<clientes->raiz->claves[2]<<endl;
- cout<<clientes->raiz->Cuenta<<endl;
- 
-    cout<<clientes->raiz->Ramas[0]->claves[1]<<" ";
-        cout<<clientes->raiz->Ramas[0]->claves[2]<<" ";
-                cout<<clientes->raiz->Ramas[0]->claves[3]<<" ";
-cout<<clientes->raiz->Ramas[0]->claves[4]<<" "<<endl;
-cout<<clientes->raiz->Ramas[0]->Cuenta<<endl;
 
-    cout<<clientes->raiz->Ramas[1]->claves[1];
-        cout<<clientes->raiz->Ramas[1]->claves[2]<<endl;
-cout<<clientes->raiz->Ramas[1]->Cuenta<<endl;
-cout<<clientes->raiz->Ramas[2]->Cuenta<<endl;
-
-    cout<<clientes->raiz->Ramas[2]->claves[1];
-        cout<<clientes->raiz->Ramas[2]->claves[2]<<endl;
     clientes->InsertarClave(8, "hola", clientes->raiz);
     clientes->InsertarClave(16, "hola", clientes->raiz);
     clientes->InsertarClave(16, "hola", clientes->raiz);

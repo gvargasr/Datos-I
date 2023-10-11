@@ -36,7 +36,12 @@ bool AVLProducto::BuscarProductoBool(NodoBinarioProducto* nodoB, int num) {
     } else {
         // La Producto se encuentra en el nodo actual
         nodoB->Contador++;
-        cout << "El Producto: " << num << " fue encontrado." << endl;
+        cout<<"Producto encontrado:"<<endl;
+		cout<<"- Codigo: "<<nodoB->valor<<endl;
+		cout<<"- Nombre: "<<nodoB->Producto<<endl;
+		cout<<"- Kcal: "<<nodoB->Kcal<<endl;
+		cout<<"- Precio: "<<nodoB->Precio<<endl;
+		cout<<"- Cantidad: "<<nodoB->Cantidad<<endl;
         return true;
     }
 }

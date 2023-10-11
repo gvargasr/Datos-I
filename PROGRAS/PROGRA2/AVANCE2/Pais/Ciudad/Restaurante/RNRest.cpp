@@ -84,7 +84,9 @@ class ArbolRN {
   NodoPtr Busqueda(NodoPtr nodo, int numbuscado) {
     if (nodo == TNULL || numbuscado == nodo->codRest) {
       return nodo;
-    }
+    } else if (nodo->Hizq==nullptr&&nodo->Hder==nullptr&&numbuscado != nodo->codRest){
+    	return NULL;
+	}
 
     if (numbuscado < nodo->codRest) {
       return Busqueda(nodo->Hizq, numbuscado);
@@ -229,7 +231,7 @@ void MostrarRN2(NodoPtr raiz, string indent, bool ultimo, string nombre) {
   }
 
   void insertar(int codRestnuevo, string nombrenuevo) {
-  	NodoPtr temp = BusquedaM(codRestnuevo);
+  	NodoPtr temp = BusquedaMRest(codRestnuevo);
   	if (temp->codRest==codRestnuevo){
   		cout<<"Restaurante: "<<codRestnuevo<<":"<<nombrenuevo<<" no fue agregado"<<endl;
 	  }
@@ -282,7 +284,7 @@ void MostrarRN2(NodoPtr raiz, string indent, bool ultimo, string nombre) {
     return this->Raiz;
   }
   
-  NodoPtr BusquedaM(int numbuscado) {
+  NodoPtr BusquedaMRest(int numbuscado) {
     return Busqueda(this->Raiz, numbuscado);
   }
   
@@ -307,7 +309,7 @@ void MostrarRN2(NodoPtr raiz, string indent, bool ultimo, string nombre) {
 
   void ModificarNodo(int numbusqueda, string nuevonom)
   {
-  	NodoPtr aux = BusquedaM(numbusqueda);
+  	NodoPtr aux = BusquedaMRest(numbusqueda);
   	if (aux->codRest!=numbusqueda){
   		cout<<"Codigo Invalido"<<endl;
 	  } else {	
@@ -321,11 +323,12 @@ void MostrarRN2(NodoPtr raiz, string indent, bool ultimo, string nombre) {
 
 	
 	Nodo* BuscarNodo (int numbusqueda){
-	NodoPtr aux = BusquedaM(numbusqueda);
+	NodoPtr aux = BusquedaMRest(numbusqueda);
   	if (aux->codRest!=numbusqueda){
   		cout<<"Restaurante "<<numbusqueda<<" no se encuentra."<<endl;
   		return NULL;
 	  } else {
+	  	return aux;
 	  	aux->contador++;
 		cout<<"Restaurante encontrado:"<<endl;
 		cout<<"- Codigo: "<<aux->codRest<<endl;
