@@ -18,6 +18,8 @@ class cargarArchivo {
 	listaCliente = new ArbolB();
 	listaCompra = new listaClientes();
 	listaFila = new listaDFila();
+	RestMasBuscados = new ArbolRN();
+	MenuMasBuscados = new ArbolA();
 	 }
     ~cargarArchivo();
     void Menu();
@@ -64,8 +66,8 @@ class cargarArchivo {
     void SubMenu64();
     void SubMenu65();
     void SubMenu66();
- /*   void SubMenu67();
-    void SubMenu68();*/
+    void SubMenu67();
+    void SubMenu68();
 /*	void SubMenu7();
 	void SubMenu71(int cedula);*/
 	void SubMenu7();
@@ -84,8 +86,8 @@ class cargarArchivo {
     ArbolB *listaCliente;
     listaDFila *listaFila;
     listaClientes *listaCompra;
-
-
+	ArbolRN *RestMasBuscados;
+	ArbolA *MenuMasBuscados;
  //   friend MainMenu();
   
 };
@@ -559,7 +561,6 @@ void cargarArchivo::SubMenu23(){
 	if(aux != NULL){
 		NodoBinarioCiudad *aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz,temp2); 
 		if(aux2 != NULL){
-		NodoPtr aux3 = aux2->ArbolRest.getRaiz(); 
 		aux2->ArbolRest.insertar(temp3,rest);
 		}else{
 		cout<<"No se agrego el restaurante, valores incorrectos";
@@ -1065,7 +1066,9 @@ void cargarArchivo::SubMenu43(){
 	if(aux != NULL){
 		NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz,temp2);
 		if(aux2 != NULL){
-			aux2->ArbolRest.BuscarNodo(temp3);
+			NodoPtr aux3 = aux2->ArbolRest.BuscarNodo(temp3);
+			RestMasBuscados->insertarBus(temp3, aux3->nombreRest);
+			RestMasBuscados->BuscarNodoBus(temp3);			
 		}else{
 			cout<<"El restaurante "<<temp3<< " no se encuentra"<<endl;
 		}	
@@ -1100,6 +1103,11 @@ void cargarArchivo::SubMenu44(){
 		if(aux2 != NULL){
 			NodoPtr aux3 = aux2->ArbolRest.BusquedaMRest(temp3);
 				aux3->listaMenu.BuscarNodoMenu(temp4);
+				NodoMPtr aux4 = aux3->listaMenu.BuscarNodoMenu1(temp4);
+				if(aux4 !=NULL){
+					MenuMasBuscados->insertarBus(aux4->codMenu,aux4->nombreMenu);
+					MenuMasBuscados->BuscarNodoMenu2(temp4);
+				}
 		}else{
 			cout<<"El Menu "<<temp4<< " no se encuentra"<<endl;
 		}	
@@ -1609,17 +1617,17 @@ void cargarArchivo::SubMenu6(){
 		}
 		case '6':{
 			cout<< "6.6 Menu de Restaurante"<<endl;
-		//	SubMenu66();
+			SubMenu66();
 			break;
 		}
 		case '7':{
 			cout<< "6.7 Productos en Menu"<<endl;
-		//	SubMenu67();
+			SubMenu67();
 			break;
 		}
 		case '8':{
 			cout<< "6.8 Menu mas buscado"<<endl;
-		//	SubMenu68();
+			SubMenu68();
 			break;
 		}
 		case '9':{
@@ -1737,13 +1745,88 @@ void cargarArchivo::SubMenu65() {
 */
 // Restaurante mas buscado
 void cargarArchivo::SubMenu65(){
-	cout<<"Restaurante mas buscado no ha sido implementado.";
+	RestMasBuscados->FindNodeWithHighestContador(RestMasBuscados->Raiz);
+	cout<< "\nSe esta generando el archivo Reporte_Restaurante_Mas_Buscado.txt\n.\n.\n.\n"<<endl;
+    cout << "Reporte generado";
 }
-/*
+
+
+void cargarArchivo::SubMenu66(){
+	string codPais;
+	cout<< "Ingrese el codigo de pais: ";
+	cin >> codPais;
+	string codCiudad;
+	cout<< "Ingrese el codigo ciudad: ";
+	cin >> codCiudad;
+	string codRest;
+	cout<< "Ingrese el codigo de Restaurante: ";
+	cin >> codRest;
+	int temp = stoi(codPais);
+	int temp2 = stoi(codCiudad);
+	int temp3 = stoi(codRest);
+	pnodoPais aux = listaPais->BuscarPais(listaPais->raiz, temp);
+	if(aux != NULL){
+		pnodoCiudad aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz, temp2);
+		if(aux2 != NULL){
+			NodoPtr aux3 = aux2->ArbolRest.BusquedaMRest(temp3);
+			cout<< "\nSe esta generando el archivo Reporte_Menu_"+aux3->nombreRest+".txt\n.\n.\n.\n"<<endl;
+			aux3->listaMenu.generateReport(aux3->listaMenu.Raiz, aux3->nombreRest);
+			cout << "Reporte generado";
+		}else{
+			cout<<"Datos incorrectos, por favor intente de nuevo.";
+		}
+	}else{
+		cout<<"Datos incorrectos, por favor intente de nuevo.";
+	}
+}
+
+
 void cargarArchivo::SubMenu67(){
+	string codPais;
+	cout<< "Ingrese el codigo de pais: ";
+	cin >> codPais;
+	string codCiudad;
+	cout<< "Ingrese el codigo ciudad: ";
+	cin >> codCiudad;
+	string codRest;
+	cout<< "Ingrese el codigo de Restaurante: ";
+	cin >> codRest;
+	string codMenu;
+	cout<< "Ingrese el codigo de Menu: ";
+	cin >> codMenu;
+	int temp = stoi(codPais);
+	int temp2 = stoi(codCiudad);
+	int temp3 = stoi(codRest);
+	int temp4 = stoi(codMenu);
+	pnodoPais aux = listaPais->BuscarPais(listaPais->raiz, temp);
+	if(aux != NULL){
+		pnodoCiudad aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz, temp2);
+		if(aux2 != NULL){
+			NodoPtr aux3 = aux2->ArbolRest.Busqueda(aux2->ArbolRest.Raiz, temp3);
+			if(aux3 != NULL){
+				NodoMPtr aux4 = aux3->listaMenu.BuscarNodoMenu1(temp4);
+				aux4->listaProducto.reporteProducto(aux4->nombreMenu);
+				cout<< "\nSe esta generando el archivo Reporte_Productos_"+aux4->nombreMenu+".txt\n.\n.\n.\n"<<endl;
+				cout << "Reporte generado";
+			}
 
+		}else{
+			cout<<"Datos incorrectos, por favor intente de nuevo.";
+		}
+	}else{
+		cout<<"Datos incorrectos, por favor intente de nuevo.";
+	}
 }
 
+
+void cargarArchivo::SubMenu68(){
+	MenuMasBuscados->findMaxContador(MenuMasBuscados->Raiz);
+	cout<< "\nSe esta generando el archivo Reporte_Menu_Mas_Buscado.txt\n.\n.\n.\n"<<endl;
+    cout << "Reporte generado";
+}
+
+
+/*
 //Consultar precio de producto
 void cargarArchivo::SubMenu68(){
 	string codPais;

@@ -157,6 +157,13 @@ class ArbolRN {
         }
 		if(maxNode != NULL){
 			cout<<"El Restaurante mas buscado es: "<<maxNode->codRest<<":"<<maxNode->nombreRest<<", buscado "<<maxNode->contador<<" veces."<<endl;
+			ofstream archivo_salida("Reporte_Restaurante_Mas_Buscado.txt");
+    		if (!archivo_salida.is_open()) {
+        		cerr << "No se pudo abrir el archivo." <<endl;
+    		}
+    		archivo_salida << "\t .:REPORTE RESTAURANTE MAS BUSCADO:."<<endl<<endl<<endl;
+    		archivo_salida << "El Restaurante mas buscado es: \nCodigo: "<<maxNode->codRest<<"\nRestaurante: "<<maxNode->nombreRest<<"\nFue buscado "<<maxNode->contador<<" veces."<<endl;
+    		archivo_salida.close();
 		}
         return maxNode;
     }
@@ -280,6 +287,56 @@ void MostrarRN2(NodoPtr raiz, string indent, bool ultimo, string nombre) {
 	  }
   }
 
+  void insertarBus(int codRestnuevo, string nombrenuevo) {
+  	NodoPtr temp = BusquedaMRest(codRestnuevo);
+  	if (temp->codRest==codRestnuevo){
+  	//	cout<<"Restaurante: "<<codRestnuevo<<":"<<nombrenuevo<<" no fue agregado"<<endl;
+	  }
+	  else {
+	  	NodoPtr nodo = new Nodo;
+    nodo->padre = nullptr;
+    nodo->codRest = codRestnuevo;
+    nodo->Hizq = TNULL;
+    nodo->Hder = TNULL;
+    nodo->color = 1;
+    nodo->nombreRest = nombrenuevo;
+
+    NodoPtr y = nullptr;
+    NodoPtr x = this->Raiz;
+
+    while (x != TNULL) {
+      y = x;
+      if (nodo->codRest < x->codRest) {
+        x = x->Hizq;
+      } else {
+        x = x->Hder;
+      }
+    }
+
+    nodo->padre = y;
+    if (y == nullptr) {
+      Raiz = nodo;
+    } else if (nodo->codRest< y->codRest) {
+      y->Hizq = nodo;
+    } else {
+      y->Hder = nodo;
+    }
+
+    if (nodo->padre== nullptr) {
+    //	cout << "Restaurante " << codRestnuevo << ":" << nombrenuevo << " ha sido agregado." << endl;
+      	nodo->color = 0;
+      	return;
+    }
+
+    if (nodo->padre->padre == nullptr) {
+    //	cout << "Restaurante " << codRestnuevo << ":" << nombrenuevo << " ha sido agregado." << endl;
+      	return;
+    }
+
+    insertarBalanceado(nodo);
+	  }
+  }
+
   NodoPtr getRaiz() {
     return this->Raiz;
   }
@@ -328,11 +385,25 @@ void MostrarRN2(NodoPtr raiz, string indent, bool ultimo, string nombre) {
   		cout<<"Restaurante "<<numbusqueda<<" no se encuentra."<<endl;
   		return NULL;
 	  } else {
-	  	return aux;
 	  	aux->contador++;
 		cout<<"Restaurante encontrado:"<<endl;
 		cout<<"- Codigo: "<<aux->codRest<<endl;
 		cout<<"- Nombre: "<<aux->nombreRest<<endl;
+		return aux;
+	  }
+  	}
+  	
+  	Nodo* BuscarNodoBus (int numbusqueda){
+	NodoPtr aux = BusquedaMRest(numbusqueda);
+  	if (aux->codRest!=numbusqueda){
+  	//	cout<<"Restaurante "<<numbusqueda<<" no se encuentra."<<endl;
+  		return NULL;
+	  } else {
+	  	aux->contador++;
+	//	cout<<"Restaurante encontrado:"<<endl;
+	//	cout<<"- Codigo: "<<aux->codRest<<endl;
+	//	cout<<"- Nombre: "<<aux->nombreRest<<endl;
+		return aux;
 	  }
   	}
 

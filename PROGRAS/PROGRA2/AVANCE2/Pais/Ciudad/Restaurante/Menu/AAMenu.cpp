@@ -75,6 +75,16 @@ class ArbolA {
 			  	return aux;
 		  }
   	}
+  	
+  	  		NodoMPtr BuscarNodoMenu2 (int numbusqueda){
+			NodoMPtr aux = BusquedaM(numbusqueda);
+  			if (aux->codMenu!=numbusqueda){
+  				return NULL;
+			  } else {
+			  	aux->contador++;
+			  	return aux;
+		  }
+  	}
 
   void Giro(NodoMPtr NodoMenu, NodoMPtr x, NodoMPtr z){
 		if (x == TNULL){
@@ -196,18 +206,87 @@ class ArbolA {
 	  Reparto(this->Raiz,nullptr,nullptr);
     }
 }
+
+
+  void insertarBus(int codMenunuevo, string nombrenuevo) {
+  	NodoMPtr temp = BusquedaM(codMenunuevo);
+  	if (temp->codMenu==codMenunuevo){
+ //   cout <<"Menu: "<<codMenunuevo<<":"<<nombrenuevo<<" no fue agregado"<<endl;
+	  }
+	  else {
+//	cout << "Menu " << codMenunuevo << ":" << nombrenuevo << " ha sido agregado." << endl;
+	NodoMPtr NodoMenu = new NodoM;
+    NodoMenu->codMenu = codMenunuevo;
+    int nivel = 0;
+    NodoMenu->Hizq= TNULL;
+    NodoMenu->Hder = TNULL;
+    NodoMenu ->nombreMenu = nombrenuevo;
     
-void preOrden(NodoMPtr NodoMenu) {
-    if (NodoMenu != TNULL) {
-      cout << NodoMenu->codMenu<<":"<<NodoMenu->nombreMenu << " - ";
-      preOrden(NodoMenu->Hizq);
-      preOrden(NodoMenu->Hder);
+	NodoMPtr y = this->Raiz;
+    NodoMPtr x = this->Raiz;
+    NodoMPtr z = nullptr;
+
+    while (x != TNULL) {
+      z = y;
+	  y = x;
+      if (NodoMenu->codMenu < x->codMenu) {
+			x = x->Hizq;
+      } else {
+		  	x = x->Hder;
+		  }
+      }
+	  Giro(NodoMenu, y,z);
+	  Reparto(this->Raiz,nullptr,nullptr);
     }
-  }
+}
+
+  
+void preOrden(NodoMPtr NodoMenu, std::ofstream& file) {
+    if (NodoMenu != TNULL) {
+        file <<"Nombre: "<< NodoMenu->nombreMenu<<"\n"<<"Codigo: "<<NodoMenu->codMenu <<"\n\n";
+        file <<"###############################"<<endl;
+        preOrden(NodoMenu->Hizq, file);
+        preOrden(NodoMenu->Hder, file);
+    }
+}
+
+void generateReport(NodoMPtr NodoMenu, string nomRest) {
+    std::ofstream file;
+    file.open("Reporte_Menu_" + nomRest + ".txt"); 
+    file << "\t .:REPORTE LISTA DE MENUS:."<<endl<<endl<<endl;
+    preOrden(NodoMenu, file); 
+    file.close();
+}
+  
+  
+NodoMPtr findMaxContador(NodoMPtr root) {
+    NodoMPtr maxNode = root;
+    NodoMPtr leftNode = nullptr;
+    NodoMPtr rightNode = nullptr;
+
+    if (root != TNULL) {
+        leftNode = findMaxContador(root->Hizq);
+        rightNode = findMaxContador(root->Hder);
+
+        if (leftNode != TNULL && leftNode->contador > maxNode->contador) {
+            maxNode = leftNode;
+        }
+        if (rightNode != TNULL && rightNode->contador > maxNode->contador) {
+            maxNode = rightNode;
+        }
     
-void preordenM() {
-    preOrden(this->Raiz);
-  }
+    cout<<"El Menu mas buscado es: "<<maxNode->codMenu<<":"<<maxNode->nombreMenu<<", buscado "<<maxNode->contador<<" veces."<<endl;
+	ofstream archivo_salida("Reporte_Menu_Mas_Buscado.txt");
+    if (!archivo_salida.is_open()) {
+        cerr << "No se pudo abrir el archivo." <<endl;
+    }
+    archivo_salida << "\t .:REPORTE MENU MAS BUSCADO:."<<endl<<endl<<endl;
+    archivo_salida << "El Menu mas buscado es: \nCodigo: "<<maxNode->codMenu<<"\nMenu: "<<maxNode->nombreMenu<<"\nFue buscado "<<maxNode->contador<<" veces."<<endl;
+    archivo_salida.close();
+    }
+    return maxNode;
+}	
+
 };
 	
 
