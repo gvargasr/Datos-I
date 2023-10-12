@@ -2005,6 +2005,8 @@ void cargarArchivo::SubMenu76(){//Consultar precio de producto.
 		if(aux2 != NULL){
 			NodoPtr aux3 = aux2->ArbolRest.BusquedaMRest(temp3);
 				if(aux3 != NULL){
+					cout<< "\nSe esta generando el archivo Reporte_Precio_"+to_string(temp5)+".txt\n.\n.\n.\n"<<endl;
+					cout << "Reporte generado";
 					NodoMPtr aux4 = aux3->listaMenu.BusquedaM(temp4);
 					aux4->listaProducto.BuscarProductoPrecio(aux4->listaProducto.raiz, temp5);
 				}
@@ -2044,6 +2046,8 @@ void cargarArchivo::SubMenu77(){//Consultar cantidad de producto.
 		if(aux2 != NULL){
 			NodoPtr aux3 = aux2->ArbolRest.BusquedaMRest(temp3);
 				if(aux3 != NULL){
+					cout<< "\nSe esta generando el archivo Reporte_Cantidad_"+to_string(temp5)+".txt\n.\n.\n.\n"<<endl;
+					cout << "Reporte generado";
 					NodoMPtr aux4 = aux3->listaMenu.BusquedaM(temp4);
 					aux4->listaProducto.BuscarProductoCantidad(aux4->listaProducto.raiz, temp5);
 				}

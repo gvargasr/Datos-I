@@ -56,10 +56,21 @@ bool AVLProducto::BuscarProductoPrecio(NodoBinarioProducto* nodoB, int num) {
     } else if (num > nodoB->valor) {
         return BuscarProductoBool(nodoB->Hder, num);
     } else {
+    	ofstream archivo_salida("Reporte_Precio_"+to_string(num)+".txt");
+    	if (!archivo_salida.is_open()) {
+        cerr << "No se pudo abrir el archivo." <<endl;
+    	}
+    	archivo_salida << "\t.:REPORTE PRECIO DE PRODUCTO:."<<endl<<endl<<endl;
+    	archivo_salida<<"\n.:Producto encontrado:."<<endl;
+		archivo_salida<<"- Codigo: "<<nodoB->valor<<endl;
+		archivo_salida<<"- Nombre: "<<nodoB->Producto<<endl;
+		archivo_salida<<"- Precio: "<<nodoB->Precio<<endl;
         cout<<"\n.:Producto encontrado:."<<endl;
 		cout<<"- Codigo: "<<nodoB->valor<<endl;
 		cout<<"- Nombre: "<<nodoB->Producto<<endl;
 		cout<<"- Precio: "<<nodoB->Precio<<endl;
+		cout << endl;
+    	archivo_salida.close();
         return true;
     }
 }
@@ -74,10 +85,21 @@ bool AVLProducto::BuscarProductoCantidad(NodoBinarioProducto* nodoB, int num) {
     } else if (num > nodoB->valor) {
         return BuscarProductoBool(nodoB->Hder, num);
     } else {
+    	ofstream archivo_salida("Reporte_Cantidad_"+to_string(num)+".txt");
+    	if (!archivo_salida.is_open()) {
+        cerr << "No se pudo abrir el archivo." <<endl;
+    	}
+    	archivo_salida << "\t.:REPORTE CANTIDAD DE PRODUCTO:."<<endl<<endl<<endl;
+    	archivo_salida<<"\n.:Producto encontrado:."<<endl;
+		archivo_salida<<"- Codigo: "<<nodoB->valor<<endl;
+		archivo_salida<<"- Nombre: "<<nodoB->Producto<<endl;
+		archivo_salida<<"- Cantidad disponible: "<<nodoB->Cantidad<<endl;
         cout<<"\n.:Producto encontrado:."<<endl;
 		cout<<"- Codigo: "<<nodoB->valor<<endl;
 		cout<<"- Nombre: "<<nodoB->Producto<<endl;
 		cout<<"- Cantidad disponible: "<<nodoB->Cantidad<<endl;
+		cout << endl;
+    	archivo_salida.close();
         return true;
     }
 }
