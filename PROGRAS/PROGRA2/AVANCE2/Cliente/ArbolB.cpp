@@ -9,6 +9,7 @@ class Pagina_Cliente {
 	public:
 		int claves [5];
 		string nombre [5];
+		int compras[5]; 
 		Pagina_Cliente* Ramas[5];
 		Pagina_Cliente* rama1; 
 		Pagina_Cliente* rama2; 
@@ -20,7 +21,8 @@ class Pagina_Cliente {
 	
     Pagina_Cliente() : Cuenta(0) {
         for (int i = 0; i < 5; i++) {
-            claves[i] = 0; 
+            claves[i] = 0;
+			compras[i] = 0; 
             nombre[i] = "";
         }
         rama1 = rama2 = rama3 = rama4 = rama5 = NULL;
@@ -35,6 +37,7 @@ class Pagina_Cliente {
     Pagina_Cliente(int pCedula, string pNombre) : Pagina_Cliente() {
         claves[1] = pCedula;
         nombre[1] = pNombre;
+        compras[1] = 0; 
         Cuenta = 1;
     }
     
@@ -46,6 +49,7 @@ class Pagina_Cliente {
     	        for (int i = 0; i < 5; i++) {
             claves[i] = 0; 
             nombre[i] = "";
+            compras[i] = 0; 
         }
         rama1 = rama2 = rama3 = rama4 = rama5 = NULL;
         Ramas[0] = rama1;
@@ -79,6 +83,10 @@ class ArbolB{
 	void inOrderTraversal(Pagina_Cliente* raiz, ofstream& outFile);
 	void saveToFile(const string& filename);
 	string SearchNodo(int clave, Pagina_Cliente* raiz);
+	string SearchContador(int clave, Pagina_Cliente* raiz);
+    bool CompraDeCliente(int clave, Pagina_Cliente* raiz);
+    bool SearchC(int clave, Pagina_Cliente* raiz);
+
 
     
     friend Pagina_Cliente;
@@ -105,6 +113,29 @@ void ArbolB::Modificar(int clave, string nombre, Pagina_Cliente* raiz) {
     }
 }
 
+bool ArbolB::CompraDeCliente(int clave, Pagina_Cliente* raiz) {
+    if (raiz == NULL) {
+        cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
+        return false;
+    }
+
+    bool Encontrado = false;
+    int K = 0;
+    BuscarNodo(clave, raiz, Encontrado, K);
+
+    if (Encontrado) {
+    	if(raiz->compras[K] != 0){
+        cout<<"\n.:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<"\nHa comprado: "<<raiz->compras[K]<<" veces."<<endl<<endl;
+        return true;
+        }else{
+        	cout<<"Aun no se han realizado compras."<<endl<<endl;
+        	return true;
+		}
+    } else {
+        CompraDeCliente(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
+    }
+}
+
 
 bool ArbolB::Search(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
@@ -121,6 +152,43 @@ bool ArbolB::Search(int clave, Pagina_Cliente* raiz) {
         return true;
     } else {
         Search(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
+    }
+}
+
+bool ArbolB::SearchC(int clave, Pagina_Cliente* raiz) {
+    if (raiz == NULL) {
+        cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
+        return false;
+    }
+
+    bool Encontrado = false;
+    int K = 0;
+    BuscarNodo(clave, raiz, Encontrado, K);
+
+    if (Encontrado) {
+    	    raiz->compras[K]++;
+        cout<<"\n.:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<endl<<endl;
+        return true;
+    } else {
+        SearchC(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
+    }
+}
+
+string ArbolB::SearchContador(int clave, Pagina_Cliente* raiz) {
+    if (raiz == NULL) {
+    //    cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
+        return "";
+    }
+
+    bool Encontrado = false;
+    int K = 0;
+    BuscarNodo(clave, raiz, Encontrado, K);
+
+    if (Encontrado) {
+    //    cout<<".:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<endl<<endl;
+        return raiz->nombre[K];
+    } else {
+        SearchContador(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
     }
 }
 

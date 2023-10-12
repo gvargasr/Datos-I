@@ -19,7 +19,6 @@ class cargarArchivo {
 	listaCompra = new listaClientes();
 	listaFila = new listaDFila();
 	RestMasBuscados = new ArbolRN();
-	MenuMasBuscados = new ArbolA();
 	 }
     ~cargarArchivo();
     void Menu();
@@ -68,9 +67,8 @@ class cargarArchivo {
     void SubMenu66();
     void SubMenu67();
     void SubMenu68();
-/*	void SubMenu7();
-	void SubMenu71(int cedula);*/
 	void SubMenu7();
+	void SubMenu71();
 /*	void SubMenu71();
 	void SubMenu72();
 	void SubMenu73();
@@ -88,7 +86,7 @@ class cargarArchivo {
     listaClientes *listaCompra;
 	ArbolRN *RestMasBuscados;
 	ArbolA *MenuMasBuscados;
- //   friend MainMenu();
+
   
 };
 
@@ -1932,7 +1930,7 @@ void cargarArchivo::SubMenu7(){
 	switch(opt){
 		case '1':{
 			cout<< "7.1 Compras de Cliente"<<endl;
-		//	SubMenu71();
+			SubMenu71();
 			break;
 		}
 		case '2':{
@@ -1975,6 +1973,15 @@ void cargarArchivo::SubMenu7(){
 			break;
 		}
 	}
+}
+
+void cargarArchivo::SubMenu71(){//Consultar precio de producto.
+		string cedula;
+	cout << "Ingrese la cedula del usuario" << endl;
+	cin >> cedula;
+	int temp = stoi(cedula);
+	
+	listaCliente->CompraDeCliente(temp, listaCliente->raiz);
 }
 
 void cargarArchivo::SubMenu76(){//Consultar precio de producto.
@@ -2062,12 +2069,12 @@ void cargarArchivo::SubMenu77(){//Consultar cantidad de producto.
 //Comprar
 
 void cargarArchivo::SubMenu8(){
-		cout << "Inserte la cedula del usuario" << endl;
+		cout << "Ingrese la cedula del usuario" << endl;
 		string cedula;
 		cin >> cedula;
 		int temp = stoi(cedula);
-		if(listaCliente->Search(temp,listaCliente->raiz)) {
-		string nombre = listaCliente->SearchNodo(temp,listaCliente->raiz);
+		if(listaCliente->SearchC(temp,listaCliente->raiz)) {
+		string nombre = listaCliente->SearchContador(temp,listaCliente->raiz);
 		cout << endl << "----------------------------" << endl;
   		cout << endl << "      8. Comprar   " << endl;
         cout << endl << "----------------------------" << endl;
