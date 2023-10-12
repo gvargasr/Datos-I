@@ -21,6 +21,9 @@ public:
     NodoBinarioProducto* ProductoMasBuscado(NodoBinarioProducto* nodoB);
 	void InordenR(NodoBinarioProducto* R, NodoBinarioProducto*& masBuscado, int& maxContador);
 	NodoBinarioProducto* PrecioProducto(NodoBinarioProducto* nodoB, int num);
+	bool BuscarProductoPrecio(NodoBinarioProducto* nodoB, int num);
+	bool BuscarProductoCantidad(NodoBinarioProducto* nodoB, int num);
+
 
     
     

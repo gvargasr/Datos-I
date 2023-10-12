@@ -75,9 +75,9 @@ class cargarArchivo {
 	void SubMenu72();
 	void SubMenu73();
 	void SubMenu74();
-	void SubMenu75();
+	void SubMenu75();*/
 	void SubMenu76();
-	void SubMenu77();*/
+	void SubMenu77();
 	void SubMenu8();
 	void SubMenu81(int cedula);
 	
@@ -1020,7 +1020,7 @@ void cargarArchivo::SubMenu41(){
 	cin >> cod;
 	NodoBinarioPais* aux = listaPais->BuscarPais(listaPais->raiz, stoi(cod));
 	if(aux != NULL){
-		cout<<"El pais "<<aux->valor<<":"<<aux->pais<<" fue encontrado"<<endl;
+		cout<<"\n.:Pais encontrado:.\nCodigo: "<<aux->valor<<"\nNombre: "<<aux->pais<<endl;
 	}else{
 		cout<<"El pais "<<cod<<" no se encuentra"<<endl;
 	}
@@ -1040,7 +1040,7 @@ void cargarArchivo::SubMenu42(){
 	if(aux != NULL){
 		NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz,temp2);
 		if(aux2 != NULL){
-		cout<<"La ciudad "<<aux2->valor<<":"<<aux2->ciudad<<" fue encontrada"<<endl;
+			cout<<"\n.:Ciudad encontrada:.\nCodigo Pais: "<<aux->valor<<"\nCodigo Ciudad: "<<aux2->valor<<"\nNombre: "<<aux2->ciudad<<endl;
 		}else{
 			cout<<"La ciudad "<<temp2<< " no se encuentra"<<endl;
 		}	
@@ -1148,10 +1148,10 @@ void cargarArchivo::SubMenu45(){
 					aux4->listaProducto.BuscarProductoBool(aux4->listaProducto.raiz, temp5);
 				}
 		}else{
-			cout<<"El Producto1 "<<temp5<< " no se encuentra"<<endl;
+			cout<<"El Producto "<<temp5<< " no se encuentra"<<endl;
 		}	
 	}else{
-		cout<<"El Producto2 "<<temp5<< " no se encuentra"<<endl;
+		cout<<"El Producto "<<temp5<< " no se encuentra"<<endl;
 	}
 }
 
@@ -1957,12 +1957,12 @@ void cargarArchivo::SubMenu7(){
 		}
 		case '6':{
 			cout<< "7.6 Consultar precio de producto"<<endl;
-		//	SubMenu76();
+			SubMenu76();
 			break;
 		}
 		case '7':{
 			cout<< "7.7 Consultar cantidad de producto disponible"<<endl;
-		//	SubMenu77();
+			SubMenu77();
 			break;
 		}
 		case '8':{
@@ -1974,6 +1974,84 @@ void cargarArchivo::SubMenu7(){
 			SubMenu7();
 			break;
 		}
+	}
+}
+
+void cargarArchivo::SubMenu76(){//Consultar precio de producto.
+	string codPais;
+	cout<< "Ingrese el codigo de pais: ";
+	cin >> codPais;
+	string codCiudad;
+	cout<< "Ingrese el codigo de ciudad: ";
+	cin >> codCiudad;
+	string codRest;
+	cout<< "Ingrese el codigo de restaurante: ";
+	cin >> codRest;
+	string codMenu;
+	cout<< "Ingrese el codigo de menu: ";
+	cin >> codMenu;
+	string codProd;
+	cout<< "Ingrese el codigo de producto: ";
+	cin >> codProd;
+	int temp = stoi(codPais);
+	int temp2 = stoi(codCiudad);
+	int temp3 = stoi(codRest);
+	int temp4 = stoi(codMenu);
+	int temp5 = stoi(codProd);
+
+	NodoBinarioPais* aux = listaPais->BuscarPais(listaPais->raiz, temp);
+	if(aux != NULL){
+		NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz,temp2);
+		if(aux2 != NULL){
+			NodoPtr aux3 = aux2->ArbolRest.BusquedaMRest(temp3);
+				if(aux3 != NULL){
+					NodoMPtr aux4 = aux3->listaMenu.BusquedaM(temp4);
+					aux4->listaProducto.BuscarProductoPrecio(aux4->listaProducto.raiz, temp5);
+				}
+		}else{
+			cout<<"El Producto "<<temp5<< " no se encuentra"<<endl;
+		}	
+	}else{
+		cout<<"El Producto "<<temp5<< " no se encuentra"<<endl;
+	}
+}
+
+void cargarArchivo::SubMenu77(){//Consultar cantidad de producto.
+	string codPais;
+	cout<< "Ingrese el codigo de pais: ";
+	cin >> codPais;
+	string codCiudad;
+	cout<< "Ingrese el codigo de ciudad: ";
+	cin >> codCiudad;
+	string codRest;
+	cout<< "Ingrese el codigo de restaurante: ";
+	cin >> codRest;
+	string codMenu;
+	cout<< "Ingrese el codigo de menu: ";
+	cin >> codMenu;
+	string codProd;
+	cout<< "Ingrese el codigo de producto: ";
+	cin >> codProd;
+	int temp = stoi(codPais);
+	int temp2 = stoi(codCiudad);
+	int temp3 = stoi(codRest);
+	int temp4 = stoi(codMenu);
+	int temp5 = stoi(codProd);
+
+	NodoBinarioPais* aux = listaPais->BuscarPais(listaPais->raiz, temp);
+	if(aux != NULL){
+		NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz,temp2);
+		if(aux2 != NULL){
+			NodoPtr aux3 = aux2->ArbolRest.BusquedaMRest(temp3);
+				if(aux3 != NULL){
+					NodoMPtr aux4 = aux3->listaMenu.BusquedaM(temp4);
+					aux4->listaProducto.BuscarProductoCantidad(aux4->listaProducto.raiz, temp5);
+				}
+		}else{
+			cout<<"El Producto "<<temp5<< " no se encuentra"<<endl;
+		}	
+	}else{
+		cout<<"El Producto "<<temp5<< " no se encuentra"<<endl;
 	}
 }
 

@@ -61,7 +61,7 @@ class ArbolA {
   		cout<<"Menu "<<numbusqueda<<" no se encuentra."<<endl;
 	  } else {
 	  	aux->contador++;
-		cout<<"Menu encontrado:"<<endl;
+		cout<<"\n.:Menu encontrado:."<<endl;
 		cout<<"- Codigo: "<<aux->codMenu<<endl;
 		cout<<"- Nombre: "<<aux->nombreMenu<<endl;
 	  }

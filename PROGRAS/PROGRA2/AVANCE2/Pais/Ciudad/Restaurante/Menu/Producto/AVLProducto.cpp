@@ -36,12 +36,48 @@ bool AVLProducto::BuscarProductoBool(NodoBinarioProducto* nodoB, int num) {
     } else {
         // La Producto se encuentra en el nodo actual
         nodoB->Contador++;
-        cout<<"Producto encontrado:"<<endl;
+        cout<<"\n.:Producto encontrado:."<<endl;
 		cout<<"- Codigo: "<<nodoB->valor<<endl;
 		cout<<"- Nombre: "<<nodoB->Producto<<endl;
 		cout<<"- Kcal: "<<nodoB->Kcal<<endl;
 		cout<<"- Precio: "<<nodoB->Precio<<endl;
 		cout<<"- Cantidad: "<<nodoB->Cantidad<<endl;
+        return true;
+    }
+}
+
+bool AVLProducto::BuscarProductoPrecio(NodoBinarioProducto* nodoB, int num) {
+    if (nodoB == NULL) {
+        cout << "El Producto: " << num << " no se encuentra" << endl;
+        return false; // La Producto no se encuentra en el árbol
+    }
+    if (num < nodoB->valor) {
+        return BuscarProductoBool(nodoB->Hizq, num);
+    } else if (num > nodoB->valor) {
+        return BuscarProductoBool(nodoB->Hder, num);
+    } else {
+        cout<<"\n.:Producto encontrado:."<<endl;
+		cout<<"- Codigo: "<<nodoB->valor<<endl;
+		cout<<"- Nombre: "<<nodoB->Producto<<endl;
+		cout<<"- Precio: "<<nodoB->Precio<<endl;
+        return true;
+    }
+}
+
+bool AVLProducto::BuscarProductoCantidad(NodoBinarioProducto* nodoB, int num) {
+    if (nodoB == NULL) {
+        cout << "El Producto: " << num << " no se encuentra" << endl;
+        return false; // La Producto no se encuentra en el árbol
+    }
+    if (num < nodoB->valor) {
+        return BuscarProductoBool(nodoB->Hizq, num);
+    } else if (num > nodoB->valor) {
+        return BuscarProductoBool(nodoB->Hder, num);
+    } else {
+        cout<<"\n.:Producto encontrado:."<<endl;
+		cout<<"- Codigo: "<<nodoB->valor<<endl;
+		cout<<"- Nombre: "<<nodoB->Producto<<endl;
+		cout<<"- Cantidad disponible: "<<nodoB->Cantidad<<endl;
         return true;
     }
 }

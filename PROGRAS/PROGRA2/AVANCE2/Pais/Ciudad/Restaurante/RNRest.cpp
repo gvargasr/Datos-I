@@ -386,7 +386,7 @@ void MostrarRN2(NodoPtr raiz, string indent, bool ultimo, string nombre) {
   		return NULL;
 	  } else {
 	  	aux->contador++;
-		cout<<"Restaurante encontrado:"<<endl;
+		cout<<"\n.:Restaurante encontrado:."<<endl;
 		cout<<"- Codigo: "<<aux->codRest<<endl;
 		cout<<"- Nombre: "<<aux->nombreRest<<endl;
 		return aux;

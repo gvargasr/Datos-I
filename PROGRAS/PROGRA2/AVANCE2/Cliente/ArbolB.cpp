@@ -117,7 +117,7 @@ bool ArbolB::Search(int clave, Pagina_Cliente* raiz) {
     BuscarNodo(clave, raiz, Encontrado, K);
 
     if (Encontrado) {
-        cout<<".:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<endl<<endl;
+        cout<<"\n.:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<endl<<endl;
         return true;
     } else {
         Search(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
