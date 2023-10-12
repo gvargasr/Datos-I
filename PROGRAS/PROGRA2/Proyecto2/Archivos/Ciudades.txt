@@ -1,5 +1,14 @@
 123;345;David
+123;345;Hola
 345;987;Orlando
 4567;234;Guadalajara
-12;34;Bocas del Toro
+123;34;Bocas del Toro
 123;345;X
+345;504;Florida
+345;987;Miami
+345;123;Houston
+345;123;Texas
+345;666;Alaska
+123;69;test
+123;69;test2
+345;124;California

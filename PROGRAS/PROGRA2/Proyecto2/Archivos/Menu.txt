@@ -3,3 +3,7 @@
 4567;234;876;3;PolloyNuggets
 12;34;234;230;Acompañamientos
 123;345;2341;12;HP
+123;345;34;2;Acompañamientos
+123;345;34;3;Dos Quesos
+123;345;34;1;McNifica
+123;345;34;5;Ensalada

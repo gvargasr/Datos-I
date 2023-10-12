@@ -45,6 +45,11 @@ class listaDFila {
     bool ListaVacia() { return primero == NULL; }
     int largoLista();
     pnodoFila GetPrimero();
+    bool BuscadorBool(int ced);
+    pnodoFila Buscador(int ced);
+    void Comprar(int ced, string nom , int codigo, string nombre, int kcal, int precio, int cantidad);
+    void BorrarInicio();
+    int ReturnCedula(int ced);
     
    private:
     pnodoFila primero;
@@ -118,3 +123,72 @@ pnodoFila listaDFila::GetPrimero(){
 	pnodoFila aux = primero;
 	return aux;
 }
+
+pnodoFila listaDFila::Buscador(int ced) {
+	pnodoFila aux = primero;
+	while (aux!=NULL){
+		if (aux->valor == ced){
+			return aux;
+		}
+		aux=aux->siguiente;
+	}
+	
+}
+
+bool listaDFila::BuscadorBool(int ced) {
+	pnodoFila aux = primero;
+	bool encontrado = false;
+	while (aux!=NULL){
+		if (aux->valor == ced){
+			 encontrado = true;
+			break;
+		}
+		aux=aux->siguiente;
+	}
+	return encontrado;
+}
+
+void listaDFila::Comprar(int ced, string nom , int codigo, string nombre, int kcal, int precio, int cantidad){
+	if (BuscadorBool(ced)){
+		pnodoFila aux = Buscador(ced);
+		aux->listaComp->InsertarFinal( codigo,  nombre,  kcal,  precio, cantidad);
+	} else {
+		InsertarFinal(ced,nom);
+		pnodoFila aux = Buscador(ced);
+		aux->listaComp->InsertarFinal( codigo,  nombre,  kcal,  precio, cantidad);
+	}	
+}
+
+int listaDFila::ReturnCedula(int ced){
+		if (BuscadorBool(ced)){
+		pnodoFila aux = Buscador(ced);
+		return aux->valor;
+	} else {
+	
+	return -1; 	
+}
+}
+
+void listaDFila::BorrarInicio(){
+{
+    if (ListaVacia()){
+     cout << "No hay elementos en la lista:" << endl;
+    
+   }else{
+        if (primero->siguiente == NULL) {
+            pnodoFila temp=primero;
+            primero= NULL;
+            delete temp;
+            } 
+			else
+			{
+
+                pnodoFila aux = primero;
+                primero=primero->siguiente;   
+                delete aux;
+            }
+        }
+}
+}
+
+
