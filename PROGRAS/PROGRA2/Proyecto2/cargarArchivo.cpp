@@ -106,6 +106,7 @@ try{
 	
 	
 	archivo.open("Archivos/Clientes.txt");
+	if (archivo.is_open()) {
 	cout<<"\t .:CARGANDO CLIENTES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string cedula;
@@ -115,12 +116,19 @@ try{
 		int temp = stoi(cedula);
 		if(!cedula.empty()){
 			listaCliente->InsertarClave(temp,nombre,listaCliente->raiz);
+	/*		cout<<"Arbol FINAL: "<<endl;
+			listaCliente->ImprimirArbol(listaCliente->raiz);*/
 		}
 	}
 	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
+	}else{
+		cout << "Error: File 'Archivos/Clientes.txt' No existe" << endl;
+	}
+
 
 	archivo.open("Archivos/Paises.txt");
+	if (archivo.is_open()) {
 	cout<<"\t .:CARGANDO PAISES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string codigo;
@@ -134,8 +142,14 @@ try{
 	}
 	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
-
+	}else{
+		cout << "Error: File 'Archivos/Paises.txt' No existe" << endl;
+	}
+	
+	
+	
 	archivo.open("Archivos/Ciudades.txt");
+	if (archivo.is_open()) {
 	cout<<"\t .:CARGANDO CIUDADES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string codpais;
@@ -166,9 +180,13 @@ try{
 }
 	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;			
-
-
+	}else{
+		cout << "Error: File 'Archivos/Ciudades.txt' No existe" << endl;
+	}
+	
+	
  	archivo.open("Archivos/Restaurantes.txt");
+ 	if (archivo.is_open()) {
  	cout<<"\t .:CARGANDO RESTAURANTES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string codpais;
@@ -217,9 +235,14 @@ try{
 	
 	archivo.close();	
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
-
-
+	}else{
+		cout << "Error: File 'Archivos/Restaurantes.txt' No existe" << endl;
+	}
+	
+	
+	
  	archivo.open("Archivos/Menu.txt");
+	if (archivo.is_open()) {
  	cout<<"\t .:CARGANDO MENUS:."<<endl<<endl;
  		while(!archivo.eof()){
 		string codPais;
@@ -273,8 +296,14 @@ try{
  }
  	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
+	}else{
+		cout << "Error: File 'Archivos/Menu.txt' No existe" << endl;
+	}
+
+
 
  	archivo.open("Archivos/Productos.txt");
+ 	if (archivo.is_open()) {
  		cout<<"\t .:CARGANDO PRODUCTOS:."<<endl<<endl;
  		while(!archivo.eof()){
 		string codPais;
@@ -346,7 +375,11 @@ try{
 	}
  	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
+	}else{
+		cout << "Error: File 'Archivos/Productos.txt' No existe" << endl;
+	}
 	
+		
 
 } catch(const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;

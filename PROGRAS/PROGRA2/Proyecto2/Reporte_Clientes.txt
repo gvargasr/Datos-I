@@ -1,0 +1,21 @@
+	.:REPORTE LISTA CLIENTES:.
+
+
+5 maria
+19 josefa
+59 kevon
+60 jose
+61 diego
+62 genesis
+63 chispa
+64 johnny
+65 steve
+66 gabo
+67 cristina
+68 josefa
+69 cristina
+70 maria
+71 Esteban
+72 tavo
+894 aleluya
+3335 Tavo

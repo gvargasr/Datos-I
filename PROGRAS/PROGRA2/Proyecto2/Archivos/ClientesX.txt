@@ -1,0 +1,6 @@
+72;tavo
+19;josefa
+67;cristina
+5;maria
+90;Esteban
+72;Carlos
