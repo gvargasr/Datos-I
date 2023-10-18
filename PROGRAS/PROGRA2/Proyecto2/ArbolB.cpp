@@ -72,28 +72,29 @@ class ArbolB{
         raiz = new Pagina_Cliente();
     }
 	
-	void Empujar(int C1, string& nombre, Pagina_Cliente*& R, bool& EmpujaArriba, int& Mdna, Pagina_Cliente*& Xr);
+	void Empujar(int C1, string nombre, Pagina_Cliente*& R, bool& EmpujaArriba, int& Mdna, Pagina_Cliente*& Xr);
     void InsertarClave(int C1, string nombre, Pagina_Cliente*& raiz);
     void BuscarNodo(int Clave, Pagina_Cliente*& P, bool& Encontrado, int& K);
     void ImprimirArbol(Pagina_Cliente*& raiz);
-    void MeterHoja(int& X, string& nombre, Pagina_Cliente* Xder, Pagina_Cliente*& P, int K);
-    void DividirNodo(int X, string& nombre, Pagina_Cliente* Xder, Pagina_Cliente*& P, int& K, int& Mda, Pagina_Cliente*& Mder);
-    bool Search(int clave, Pagina_Cliente*& raiz);
-	void Modificar(int clave, string nombre, Pagina_Cliente*& raiz);
-	void inOrderTraversal(Pagina_Cliente*& raiz, ofstream& outFile);
+    void MeterHoja(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K);
+    void DividirNodo(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int& K, int& Mda, Pagina_Cliente*& Mder);
+    bool Search(int clave, Pagina_Cliente* raiz);
+	void Modificar(int clave, string nombre, Pagina_Cliente* raiz);
+	void inOrderTraversal(Pagina_Cliente* raiz, ofstream& outFile);
 	void saveToFile(const string& filename);
-	string SearchNodo(int clave, Pagina_Cliente*& raiz);
-	string SearchContador(int clave, Pagina_Cliente*& raiz);
-    bool CompraDeCliente(int clave, Pagina_Cliente*& raiz);
-    bool SearchC(int clave, Pagina_Cliente*& raiz);
+	string SearchNodo(int clave, Pagina_Cliente* raiz);
+	string SearchContador(int clave, Pagina_Cliente* raiz);
+    bool CompraDeCliente(int clave, Pagina_Cliente* raiz);
+    bool SearchC(int clave, Pagina_Cliente* raiz);
 
     
     friend Pagina_Cliente;
 };
 
-void ArbolB::Modificar(int clave, string nombre, Pagina_Cliente*& raiz) {
+void ArbolB::Modificar(int clave, string nombre, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
         cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
+    //    return raiz;
     return;
     }
 
@@ -104,13 +105,14 @@ void ArbolB::Modificar(int clave, string nombre, Pagina_Cliente*& raiz) {
     if (Encontrado) {
     	raiz->nombre[K] = nombre;
         cout<<".:Cliente modificado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<endl<<endl;
+    //    return raiz;
     return;
     } else {
         Modificar(clave, nombre, raiz->Ramas[K]); // Buscar en la rama adecuada
     }
 }
 
-bool ArbolB::CompraDeCliente(int clave, Pagina_Cliente*& raiz) {
+bool ArbolB::CompraDeCliente(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
         cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
         return false;
@@ -133,7 +135,7 @@ bool ArbolB::CompraDeCliente(int clave, Pagina_Cliente*& raiz) {
     }
 }
 
-bool ArbolB::Search(int clave, Pagina_Cliente*& raiz) {
+bool ArbolB::Search(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
         cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
         return false;
@@ -151,7 +153,7 @@ bool ArbolB::Search(int clave, Pagina_Cliente*& raiz) {
     }
 }
 
-bool ArbolB::SearchC(int clave, Pagina_Cliente*& raiz) {
+bool ArbolB::SearchC(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
         cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
         return false;
@@ -170,7 +172,7 @@ bool ArbolB::SearchC(int clave, Pagina_Cliente*& raiz) {
     }
 }
 
-string ArbolB::SearchContador(int clave, Pagina_Cliente*& raiz) {
+string ArbolB::SearchContador(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
     //    cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
         return "";
@@ -188,7 +190,7 @@ string ArbolB::SearchContador(int clave, Pagina_Cliente*& raiz) {
     }
 }
 
-string ArbolB::SearchNodo(int clave, Pagina_Cliente*& raiz) {
+string ArbolB::SearchNodo(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
     //    cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
         return "";
@@ -217,10 +219,14 @@ void ArbolB::BuscarNodo(int Clave, Pagina_Cliente*& P, bool& Encontrado, int& K)
 		K=0;
 	}else{
 		K = P->Cuenta; 
-		while(Clave < P->claves[K] && K > 1)
+		while(Clave < P->claves[K] && K > 1){
 			K=K-1;
-		Encontrado = Clave == P->claves[K];
-//		cout<<"Encontrado: "<<Encontrado<<endl;
+		}
+		if(Clave==P->claves[K]){
+			Encontrado = true;
+		}else{
+			Encontrado = false;
+		}
 	}
 }
 
@@ -233,7 +239,7 @@ void ArbolB::InsertarClave(int C1, string nombre, Pagina_Cliente*& raiz) {
     Pagina_Cliente* Xr = NULL;
     Pagina_Cliente* P = NULL;
     Empujar(C1, nombre, raiz, EmpujaArriba, X, Xr);
-//    cout<<"EmpujaArriba: "<<EmpujaArriba<<endl;
+    
     if (EmpujaArriba) {
         Pagina_Cliente* P = new Pagina_Cliente();
         P->Cuenta = 1;
@@ -242,32 +248,27 @@ void ArbolB::InsertarClave(int C1, string nombre, Pagina_Cliente*& raiz) {
         P->Ramas[0] = raiz;
         P->Ramas[1] = Xr;
         raiz = P;
-//        cout<<"Nuevo: "<<nombre<<endl;
     }
 }
 
-void ArbolB::Empujar(int C1, string& nombre, Pagina_Cliente*& R, bool& EmpujaArriba, int& Mdna, Pagina_Cliente*& Xr) { 
-    	bool Esta = false; 
-    	int K = 0;
+void ArbolB::Empujar(int C1, string nombre, Pagina_Cliente*& R, bool& EmpujaArriba, int& Mdna, Pagina_Cliente*& Xr) { 
+
     if (R == NULL) {
         EmpujaArriba = true;
         Mdna = C1;
         Xr = NULL;
     } else {
+    	bool Esta = false; 
+    	int K = 0;
 		BuscarNodo(C1, R, Esta, K);   
         if (Esta){
             cout<<"Cliente "<<C1<<":"<<nombre<<" no fue agregado."<<endl;
             EmpujaArriba = false;
+            return;
 		}else{
-		//	cout<<"Mdna1: "<<Mdna<<endl;
-		//				cout<<"EmpujaArriba1: "<<EmpujaArriba<<endl<<endl;
-
 			Empujar(C1, nombre, R->Ramas[K], EmpujaArriba, Mdna, Xr);
-		//	cout<<"EmpujaArriba2: "<<EmpujaArriba<<endl<<endl;
-		//		cout<<"Mdna2: "<<Mdna<<endl;
+			  
         	if (EmpujaArriba) {
-        		cout<<"Cliente "<<C1<<":"<<nombre<<" ha sido agregado."<<endl;
-        //		cout<<"Cuenta: "<<R->Cuenta<<endl;
           		if (R->Cuenta < 4) {
             	//	cout<<"K cuenta NO llena "<<K<<endl;
            		EmpujaArriba = false;
@@ -279,75 +280,17 @@ void ArbolB::Empujar(int C1, string& nombre, Pagina_Cliente*& R, bool& EmpujaArr
             	}
         	}
         }
-
 	}        
 }
 
 
-void ArbolB::MeterHoja(int& X, string& nombre, Pagina_Cliente* Xder, Pagina_Cliente*& P, int K) {
-//	cout<<"K en METERHOJA DIVIDIRNODO"<<K<<endl;
-//	cout<<"I en METERHOJA DIVIDIRNODO"<<P->Cuenta<<endl;
-	
-    for (int I = P->Cuenta; I >= K+1; I--) {
-        P->claves[I + 1] = P->claves[I];
-        P->nombre[I + 1] = P->nombre[I];
-        P->Ramas[I + 1] = P->Ramas[I];
-    }
-
-    P->claves[K+1] = X;
-    P->nombre[K+1] = nombre;
-    P->Ramas[K+1] = Xder;
-    P->Cuenta = P->Cuenta+1;
- //	cout<<"Cliente "<<X<<":"<<nombre<<" ha sido agregado."<<endl;
-
-}
-
-void ArbolB::DividirNodo(int X, string& nombre, Pagina_Cliente* Xder, Pagina_Cliente*& P, int& K, int& Mda, Pagina_Cliente*& Mder) {
-//	cout<<"K: "<<K<<endl;
-    int Posmda;
-    if (K <= 2) {
-        Posmda = 2;
-    } else {
-        Posmda = 3;
-    }
-
-    Mder = new Pagina_Cliente();
-
-    for (int I = Posmda + 1; I <= 4; I++) {
-        Mder->claves[I - Posmda] = P->claves[I];
-        Mder->nombre[I - Posmda] = P->nombre[I];
-        Mder->Ramas[I - Posmda] = P->Ramas[I];
-    }
-	Mder->Cuenta = 4-Posmda;
-    P->Cuenta = Posmda;
-    if (K <= 2) {
-        MeterHoja(X, nombre, Xder, P, K);  //inserta a la izq
-
-    } else {
-//    		cout<<"METERHOJA LLENA: "<<endl;
-//	cout<<"K: "<<K<<endl;
-//	cout<<"pOSMDA: "<<Posmda<<endl;
-
-        MeterHoja(X, nombre, Xder, Mder, K - Posmda);
-    	Mda = P->claves[P->Cuenta];
-    	nombre = P->nombre[P->Cuenta];
-//    		cout<<"Mda1: "<<Mda<<endl;
- //   		cout<<"Nombre Mda1: "<<nombre<<endl;
-
-    	Mder->Ramas[0] = P->Ramas[P->Cuenta];
- //   	P->Cuenta--;
- //   	cout<<"Resto cuenta a Raiz: "<<P->Cuenta<<endl;
-	}	
-	P->Cuenta--;	
-}
-
- void ArbolB::inOrderTraversal(Pagina_Cliente*& raiz, ofstream& outFile) {
+ void ArbolB::inOrderTraversal(Pagina_Cliente* raiz, ofstream& outFile) {
         if (raiz != nullptr) {
             for (int i = 0; i < raiz->Cuenta; i++) {
                 inOrderTraversal(raiz->Ramas[i], outFile);
                 outFile << raiz->claves[i + 1] << " " << raiz->nombre[i + 1] << endl;
             }
-            inOrderTraversal(raiz->Ramas[raiz->Cuenta], outFile);
+            inOrderTraversal(raiz->Ramas[raiz->Cuenta+1], outFile);
         }
     }
 
@@ -371,13 +314,57 @@ void ArbolB::ImprimirArbol(Pagina_Cliente*& raiz) {
             ImprimirArbol(raiz->Ramas[i]);
             cout << raiz->claves[i + 1] << " " << raiz->nombre[i + 1] << endl;
         }
-        ImprimirArbol(raiz->Ramas[raiz->Cuenta]); 
+        ImprimirArbol(raiz->Ramas[raiz->Cuenta]); // Recursive call for the rightmost child
     }
 }
 
 
 
 
+void ArbolB::MeterHoja(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K) {
+    for (int I = P->Cuenta; I >= K + 1; I--) {
+        P->claves[I + 1] = P->claves[I];
+        P->nombre[I + 1] = P->nombre[I];
+        P->Ramas[I + 1] = P->Ramas[I];
+    }
+
+    P->claves[K + 1] = X;
+    P->nombre[K + 1] = nombre;
+    P->Ramas[K + 1] = Xder;
+    P->Cuenta++;
+ 	cout<<"Cliente "<<X<<":"<<nombre<<" ha sido agregado."<<endl;
+
+}
+
+void ArbolB::DividirNodo(int X, string nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int& K, int& Mda, Pagina_Cliente*& Mder) {
+    int Posmda;
+    if (K <= 2) {
+        Posmda = 2;
+    } else {
+        Posmda = 3;
+    }
+
+    Mder = new Pagina_Cliente();
+
+    for (int I = Posmda + 1; I <= 4; I++) {
+        Mder->claves[I - Posmda] = P->claves[I];
+        Mder->nombre[I - Posmda] = P->nombre[I];
+        Mder->Ramas[I - Posmda] = P->Ramas[I];
+    }
+	Mder->Cuenta = 4-Posmda;
+    P->Cuenta = Posmda-1;
+
+    if (K <= 2) {
+        MeterHoja(X, nombre, Xder, P, K);  //inserta a la izq
+        P->Cuenta--;
+    } else {
+        MeterHoja(X, nombre, Xder, Mder, K - Posmda);
+    	Mda = P->claves[P->Cuenta];
+    	Mder->Ramas[0] = P->Ramas[P->Cuenta];
+    	P->Cuenta--;
+	}	
+		
+}
 /*
 void ArbolB::Cuenta(Pagina_Cliente P){
 	

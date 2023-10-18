@@ -1191,7 +1191,7 @@ void cargarArchivo::SubMenu46(){
 	string cedula;
 	cout<< "Ingrese el numero de cedula que desea encontrar: ";
 	cin >> cedula;
-	
+
 	listaCliente->Search(stoi(cedula), listaCliente->raiz);
 }
 
@@ -1722,7 +1722,7 @@ void cargarArchivo::SubMenu63(){
 //Reporte de Clientes
 void cargarArchivo::SubMenu64(){
 	cout<< "\nSe esta generando el archivo Reporte_Clientes.txt\n.\n.\n.\n"<<endl;
-
+	listaCliente->ImprimirArbol(listaCliente->raiz);
 	listaCliente->saveToFile("Reporte_Clientes.txt");
 }
 /*

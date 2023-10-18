@@ -1,21 +1,27 @@
 	.:REPORTE LISTA CLIENTES:.
 
 
-5 maria
-19 josefa
-59 kevon
-60 jose
-61 diego
-62 genesis
-63 chispa
+1 SAN YOQ
+2 KAPI JOGU
+3 JUBAF QUHIH
+11 KUYOG BAZEQ
+12 JICAPU POTICI
+12 JICAPU POTICI
+13 SER XUG
+14 VELU DESE
+3 JUBAF QUHIH
+4 DOFINA PERIZU
+5 TEQ FIM
+6 VAJE FOXI
+13 SER XUG
+14 VELU DESE
+15 VUNAW RIPOR
 64 johnny
 65 steve
 66 gabo
-67 cristina
+67 tavo
 68 josefa
 69 cristina
 70 maria
 71 Esteban
-72 tavo
-894 aleluya
-3335 Tavo
+72 Carlos
