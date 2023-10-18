@@ -25,9 +25,48 @@ class Binario {
 
 public:
 	NodoBinario* raiz;
+    string cache[3][20];
     Binario() {
         raiz = NULL;
+		for (int i = 0; i < 3; ++i) {
+        	for (int j = 0; j < 20; ++j) {
+    	    	cache[i][j] = "empty"; 
+        	}
+    	}
     }
+    
+    void ImprimirCache(){
+        for (int j = 0; j < 20; ++j) {
+        	cout<<".:Entrada "<<j+1<<":."<<endl;
+        	cout<< cache[0][j]<<"   |   "<<cache[1][j]<<"   |   "<<cache[2][j]<<endl<<endl;
+        }
+	}
+	
+	void ActualizaCache(){
+        for (int j = 0; j < 20; ++j) {
+        	cout<<".:Entrada "<<j+1<<":."<<endl;
+        	cout<< cache[0][j]<<"   |   "<<cache[1][j]<<"   |   "<<cache[2][j]<<endl<<endl;
+        }
+	}
+	
+/*	void eliminarFila(int indice) {
+        if (rowIndex >= 0 && rowIndex < rows - 1) {
+            for (int i = rowIndex; i < rows - 1; ++i) {
+                for (int j = 0; j < cols; ++j) {
+                    cache[i][j] = cache[i + 1][j]; // Move the next row up
+                }
+            }
+            // Clear the last row
+            for (int j = 0; j < cols; ++j) {
+                cache[rows - 1][j] = "empty";
+            }
+        } else {
+            std::cerr << "Invalid row index." << std::endl;
+        }
+    }*/
+
+
+
     
     void Bandera(string cedula) {
     ifstream archivoEntrada("Clientes.txt");
@@ -58,6 +97,42 @@ public:
     }
 }
 
+	void InsertarClienteFile(string v, string v2){
+		ofstream archivoEntrada("Clientes.txt", ios::app);
+
+    if (!archivoEntrada.is_open()) {
+        cerr << "Error al abrir el archivo." << endl;
+        return;
+    }
+	archivoEntrada <<endl<<v<<";"<<v2;
+    archivoEntrada.close();
+		
+	}
+	
+	void InsertarIndice(string cedula){
+    try {
+        ifstream archivo("Indices.txt");
+        int ultimoIndice = 0;
+        string linea;
+
+        while (getline(archivo, linea)) {
+            ultimoIndice = stoi(linea.substr(0, linea.find_first_of(';')));
+        }
+        archivo.close();
+        int siguienteIndice = ultimoIndice + 1;
+
+        ofstream archivoIndices("Indices.txt", ios::app);
+        if (archivoIndices.is_open()) {
+            archivoIndices << siguienteIndice << ";" << cedula << std::endl;
+            archivoIndices.close();
+            cout << "Nuevo Indice agregado: " << siguienteIndice <<endl;
+        } else {
+            cout << "Error al abrir el archivo." <<endl;
+        }
+    } catch(const exception &e) {
+        cerr << "Error: " << e.what() << endl;
+    }
+}
     
     NodoBinario* MenorDeMayores(NodoBinario* nodo) {
     while (nodo->izq != NULL) {
@@ -120,6 +195,7 @@ public:
     void InsertaNodo(NodoBinario*& R, string v, string v2) {
         if (R == NULL) {
             R = new NodoBinario(v,v2);
+            
         cout << "El cliente "<<v<<":"<<v2<<" ha sido agregado al arbol." << endl;
         }
         else if (stoi(v) < stoi(R->valor)) {
@@ -135,7 +211,8 @@ public:
 
     void PreordenR(NodoBinario* R) {
         if (R != NULL) {
-            cout << R->valor<<":"<<R->valor2<< " - ";
+//            cout << R->valor<<":"<<R->valor2<< " - ";
+			cout << R->valor<< " - ";
             PreordenR(R->izq);
             PreordenR(R->der);
         }
@@ -166,33 +243,32 @@ public:
 	ifstream archivo;
 
 	try{
-	ifstream archivo("Clientes.txt");
-    if (!archivo.is_open())
+	ifstream archivoIndices("Indices.txt");
+	ifstream archivoClientes("Clientes.txt");
+	
+    if (!archivoIndices.is_open() || !archivoClientes.is_open())
         cout << "Error al abrir el archivo." << endl;
 
-    ofstream archivoNuevo("Clientes_temp.txt");
-    if (!archivoNuevo.is_open())
-        cout << "Error al crear el archivo temporal." << endl;
-
+	
+	string indice;
     string codigo;
-    string pais;
-    while (getline(archivo, codigo, ';')) {
-        getline(archivo, pais);
-        if (!codigo.empty() && pais.find(";1") != pais.length() - 2) {
-        	this->Insertar(codigo,pais);
-            archivoNuevo << codigo << ";" << pais << endl;
-        }
+    string codigoC;
+    string cliente;
+    while (getline(archivoIndices, indice, ';')) {
+        getline(archivoIndices, codigo);
+ //       cout << "Lectura de Indices.txt: " << indice << ", " << codigo << endl;
+        while (getline(archivoClientes, codigoC, ';')) {
+        getline(archivoClientes, cliente);
+        	if (!codigoC.empty() && codigoC == codigo && codigoC.find(";1") != cliente.length() - 2){
+			this->Insertar(codigo,cliente);
+			break;
+			}
+    	}
+     
     }
 
-    archivo.close();
-    archivoNuevo.close();
-
-    if (remove("Clientes.txt") != 0) {
-        cout << "Error al eliminar el archivo original." << endl;
-    }
-    if (rename("Clientes_temp.txt", "Clientes.txt") != 0) {
-        cout << "Error al renombrar el archivo temporal." << endl;
-    }
+    archivoIndices.close();
+    archivoClientes.close();
 
     cout << endl << "*********************************************************************************" << endl << endl;
     
@@ -216,7 +292,7 @@ void Purgar(){
     ofstream archivoNuevo("Clientes_temp.txt");
     if (!archivoNuevo.is_open())
         cout << "Error al crear el archivo temporal." << endl;
-
+	
     string codigo;
     string pais;
     while (getline(archivo, codigo, ';')) {
@@ -244,15 +320,12 @@ void Purgar(){
 	        std::cerr << "Error: " << e.what() << std::endl;
 	        return ; 
 	    }
-	    
-	
 }	
 	
 	//Indexar
 void Indexar() {
     map<int, pair<string, set<string>>> Indices;
-    int Indice = 1;
-
+	int Indice = 1;
     try {
         ifstream archivo("Clientes.txt");
         if (!archivo.is_open()) {
@@ -326,35 +399,35 @@ int main() {
 		cin >> opt;
     
     switch(opt) {
-    	case '1' : 
+    	case '1' : 	//Menu Buscar Cliente
 			SubMenu1();
 			Menu();
 			break;
-    	case '2':
+    	case '2':	//Menu Insertar Cliente
     		SubMenu2();
     		Menu();
     		break;
-    	case '3':
+    	case '3':	//Menu Eliminar Cliente	
     		SubMenu3();
     		Menu();
 			break;
-    	case '4':
+    	case '4':	//Menu Purgar Archivo
     		SubMenu4();
     		Menu();
     		break;
-    	case '5':
+    	case '5':	//Menu Reindexar Clientes
     		SubMenu5();
     		Menu();
 			break;
-		case '6':
+		case '6':	//Menu Imprimir Arbol
     		SubMenu6();
     		Menu();
 			break;
-		case '7':
-    		cout<<"Ingresando a Submenu 7..."<<endl;
+		case '7':	//Menu Imprimir Cache
+    		SubMenu7();
     		Menu();
 			break;
-		case '8':
+		case '8':   //SALIR
     		cout<<endl<<endl<<endl<<"##################      Good Bye!!     ####################"<<endl;
     		exit(1);
 			break;		
@@ -373,8 +446,9 @@ int main() {
 		cin >> cedula;
 		this->BuscaNodo(raiz, cedula);
 		cout<<endl<<endl;
-		this->PreordenR(raiz);		
-		//AQUI VA PARA ACTUALIZAR LA CACHE
+		this->PreordenR(raiz);
+		ActualizaCache();		
+		//AQUI VA PARA ACTUALIZAR LA CACHE, EL QUE BUSCO Y LOS 19 SIGUIENTES NO BORRADOS
 		//AQUI VA PARA IMPRIMIR CACHE
 	}
 	
@@ -387,11 +461,14 @@ int main() {
 		string nombre;
 		cin.ignore();
 		getline(cin, nombre);
+		InsertarClienteFile(cedula, nombre);
+		InsertarIndice(cedula);
 		this->Insertar(cedula,nombre);
 		cout<<endl<<endl;
 		cout<<"\n\t .:Arbol:."<<endl<<endl;
 		this->PreordenR(raiz);	
 		cout<<"\n\t .:Cache:."<<endl<<endl;
+		//ACTUALIZA CACHE EL QUE SE AGREGA Y 19 ANTERIORES NO BORRADOS
 		//AQUI VA PARA IMPRIMIR CACHE
 	}
 	
@@ -405,6 +482,7 @@ int main() {
 		cout<<"\n\t .:Arbol:."<<endl<<endl;
 		this->PreordenR(raiz);	
 		cout<<"\n\t .:Cache:."<<endl<<endl;
+		//ACTUALIZO LA CACHE, SUBO LOS REGISTROS
 		//AQUI VA PARA IMPRIMIR CACHE
 	}
 	
@@ -422,9 +500,13 @@ int main() {
 	//Menu Reindexar Clientes
 	void SubMenu5(){
 		cout<<"\t .:Reindexar Clientes:. "<<endl;
+		this->Indexar();
+		this->raiz = NULL;
+		cargaInicial();
 		cout<<"\n\n\t .:Arbol:."<<endl<<endl;
 		this->PreordenR(raiz);
-		this->Indexar();
+		
+		
 		cout<<"\n\n\t .:Cache:."<<endl<<endl;
 		//AQUI VA PARA IMPRIMIR CACHE
 	}
@@ -439,6 +521,7 @@ int main() {
 	void SubMenu7(){
 		cout<<"\t .:Imprimiendo Cache:. "<<endl<<endl;
 		//AQUI IMPRIME LA CACHE
+		ImprimirCache();
 	}
 	
 };
@@ -446,7 +529,9 @@ int main() {
 int main() {
     Binario arbol;
     arbol.cargaInicial();
+   	arbol.Indexar();
     arbol.Menu();
+    
     
     
     
