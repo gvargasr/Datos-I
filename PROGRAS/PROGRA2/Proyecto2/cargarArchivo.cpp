@@ -113,11 +113,10 @@ try{
 		string nombre;
 		getline(archivo, cedula, ';');
 		getline(archivo, nombre);
+		
+		if(!cedula.empty()  && cedula.find_first_not_of("0123456789") == string::npos){
 		int temp = stoi(cedula);
-		if(!cedula.empty()){
 			listaCliente->InsertarClave(temp,nombre,listaCliente->raiz);
-	/*		cout<<"Arbol FINAL: "<<endl;
-			listaCliente->ImprimirArbol(listaCliente->raiz);*/
 		}
 	}
 	archivo.close();
