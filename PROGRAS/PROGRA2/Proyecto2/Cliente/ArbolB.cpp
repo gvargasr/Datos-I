@@ -383,20 +383,35 @@ void ArbolB::Cuenta(Pagina_Cliente P){
 	
 }
 */
-/*
+
 
 int main() {
     ArbolB* clientes = new ArbolB();
-    clientes->InsertarClave(72, "hola1", clientes->raiz);
-	clientes->InsertarClave(19, "hola2", clientes->raiz);
-    clientes->InsertarClave(67, "hola3", clientes->raiz);
-    clientes->InsertarClave(5, "hola4", clientes->raiz);
-    clientes->InsertarClave(90, "hola5", clientes->raiz);
-    clientes->InsertarClave(56, "hola6", clientes->raiz);
-    clientes->InsertarClave(6, "hola7", clientes->raiz);
-    clientes->InsertarClave(8, "hola8", clientes->raiz);
+    clientes->InsertarClave(72, "maria", clientes->raiz);
+	clientes->InsertarClave(19, "Esteban", clientes->raiz);
+    clientes->InsertarClave(67, "Carlos", clientes->raiz);
+    clientes->InsertarClave(5, "KUYOG BAZE", clientes->raiz);
+    clientes->InsertarClave(90, "JICAPU POTICI", clientes->raiz);
+    clientes->InsertarClave(56, "SER XUG", clientes->raiz);
+    clientes->InsertarClave(6, "VELU DESE", clientes->raiz);
+    clientes->InsertarClave(8, "VUNAW RIPOR", clientes->raiz);
+    clientes->InsertarClave(7, "hola13", clientes->raiz);
     clientes->InsertarClave(90, "hola9", clientes->raiz);
-   
+    
+    
+  /*  
+    clientes->InsertarClave(70, "maria", clientes->raiz);
+	clientes->InsertarClave(71, "Esteban", clientes->raiz);
+    clientes->InsertarClave(72, "Carlos", clientes->raiz);
+    clientes->InsertarClave(11, "KUYOG BAZE", clientes->raiz);
+    clientes->InsertarClave(12, "JICAPU POTICI", clientes->raiz);
+    clientes->InsertarClave(13, "SER XUG", clientes->raiz);
+    clientes->InsertarClave(14, "VELU DESE", clientes->raiz);
+    clientes->InsertarClave(15, "VUNAW RIPOR", clientes->raiz);*/
+    
+    
+    
+ /*  
     clientes->InsertarClave(5, "hola10", clientes->raiz);
     clientes->InsertarClave(6, "hola11", clientes->raiz);
     clientes->InsertarClave(6, "hola12", clientes->raiz);
@@ -421,8 +436,8 @@ int main() {
 	clientes->Search(90,clientes->raiz);
 	clientes->Search(15,clientes->raiz);
 	clientes->Search(6,clientes->raiz);
-	clientes->Search(88,clientes->raiz);
+	clientes->Search(88,clientes->raiz);*/
 	clientes->ImprimirArbol(clientes->raiz);
     delete clientes;
     return 0;
-}*/
+}

@@ -126,7 +126,7 @@ try{
 		cout << "Error: File 'Archivos/Clientes.txt' No existe" << endl;
 	}
 
-
+/*
 	archivo.open("Archivos/Paises.txt");
 	if (archivo.is_open()) {
 	cout<<"\t .:CARGANDO PAISES:."<<endl<<endl;
@@ -379,7 +379,7 @@ try{
 		cout << "Error: File 'Archivos/Productos.txt' No existe" << endl;
 	}
 	
-		
+	*/	
 
 } catch(const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;

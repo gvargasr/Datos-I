@@ -42,30 +42,87 @@ public:
         }
 	}
 	
-	void ActualizaCache(){
-        for (int j = 0; j < 20; ++j) {
-        	cout<<".:Entrada "<<j+1<<":."<<endl;
-        	cout<< cache[0][j]<<"   |   "<<cache[1][j]<<"   |   "<<cache[2][j]<<endl<<endl;
+	void ActualizaCache(string Index,string ID, string Nombre){        
+		for (int i = 0; i < 19; ++i) {
+        	if (cache[0][i] != Index) {
+				for (int j = 0; j < 3; ++j) {
+                    cache[j][19-i] = cache[j][18-i];
+                }
+			} else {
+				eliminarFila(i);        
+			break;
+			}
         }
+        cache[0][0] = Index;
+        cache[1][0] = ID;
+        cache[2][0] = Nombre;
+        
 	}
 	
-/*	void eliminarFila(int indice) {
-        if (rowIndex >= 0 && rowIndex < rows - 1) {
-            for (int i = rowIndex; i < rows - 1; ++i) {
-                for (int j = 0; j < cols; ++j) {
-                    cache[i][j] = cache[i + 1][j]; // Move the next row up
+	void eliminarFila(int indice) {
+		int rowIndex = indice - 1;
+        if (rowIndex >= 0 && rowIndex < 20 - 1) {
+            for (int i = rowIndex; i < 20 - 1; ++i) {
+                for (int j = 0; j < 3; ++j) {
+                    cache[j][i] = cache[j][i + 1];
                 }
             }
-            // Clear the last row
-            for (int j = 0; j < cols; ++j) {
-                cache[rows - 1][j] = "empty";
+            for (int j = 0; j < 3; ++j) {
+                cache[j][19] = "empty";
             }
         } else {
-            std::cerr << "Invalid row index." << std::endl;
+            std::cerr << "Index invalido." << std::endl;
         }
-    }*/
+    }
 
-
+	void BuscarCache(string cedula){
+		for (int i = 0; i < 20; ++i) {
+                    if (cedula == cache[1][i]) {
+                    	cout<<"Cliente en cache: "<<endl;
+                    	cout<<"Index: "<<cache[0][i]<<endl;
+                    	cout<<"Cedula: "<<cache[1][i]<<endl;
+                    	cout<<"Nombre: "<<cache[2][i]<<endl;
+                    	string temp0 = cache[0][i];
+                    	string temp1 = cache[1][i];
+                    	string temp2 = cache[2][i];
+                    	eliminarFila(i);
+					} else if (i == 19 && cedula != cache[1][i]) {
+						BuscaNodoReturn(raiz, cedula);
+					}
+            }  
+        	
+            	
+			
+	}
+	
+	string getIndex(string Cedula){
+    try {
+        ifstream archivo("Indices.txt");
+        string cedula;
+        string indice;
+		string linea;
+		
+		if(archivo.is_open()){
+        	while (getline(archivo, linea)) {
+        		indice = linea.substr(0, linea.find_first_of(';'));
+        		cedula = linea.substr(linea.find_first_of(';') + 1);
+				if(stoi(cedula) == stoi(Cedula)){
+					cout<<"Cedula encontrada "<<cedula<<" su indice es "<<indice<<endl;
+					archivo.close();
+					return indice;
+				}	
+        	}
+        archivo.close();
+		}else{
+            cerr << "Error al abrir el archivo." << endl;			
+		}
+        
+    } catch(const exception &e) {
+        cerr << "Error: " << e.what() << endl;
+    }
+		cout<<"Cedula "<<Cedula<<" no se encuentra en indices"<<endl;
+		return "";
+	}
 
     
     void Bandera(string cedula) {
@@ -107,35 +164,6 @@ public:
 	archivoEntrada <<endl<<v<<";"<<v2;
     archivoEntrada.close();
 		
-	}
-	
-	string getIndex(string Cedula){
-    try {
-        ifstream archivo("Indices.txt");
-        string cedula;
-        string indice;
-		string linea;
-		
-		if(archivo.is_open()){
-        	while (getline(archivo, linea)) {
-        		indice = linea.substr(0, linea.find_first_of(';'));
-        		cedula = linea.substr(linea.find_first_of(';') + 1);
-				if(stoi(cedula) == stoi(Cedula)){
-					cout<<"Cedula encontrada "<<cedula<<" su indice es "<<indice<<endl;
-					archivo.close();
-					return indice;
-				}	
-        	}
-        archivo.close();
-		}else{
-            cerr << "Error al abrir el archivo." << endl;			
-		}
-        
-    } catch(const exception &e) {
-        cerr << "Error: " << e.what() << endl;
-    }
-		cout<<"Cedula "<<Cedula<<" no se encuentra en indices"<<endl;
-		return "";
 	}
 	
 	void InsertarIndice(string cedula){
@@ -206,7 +234,7 @@ public:
         return R;
     }    
     
-    void BuscaNodo(NodoBinario*& R, string v) {
+    void BuscaNodo(NodoBinario* R, string v) {
         if (R == NULL) {
             cout<<"El cliente "<<v<<" no se encuentra en el arbol."<<endl<<endl;
         }
@@ -220,7 +248,23 @@ public:
             cout << "Cliente encontrado: "<<"\nCedula: "<<R->valor<<"\nNombre: "<<R->valor2 << endl;
         }
     }    
-
+    
+    void BuscaNodoReturn(NodoBinario* R, string v) {
+        if (R == NULL) {
+            cout<<"El cliente "<<v<<" no se encuentra en el cache."<<endl<<endl;	
+        }
+        else if (stoi(v) < stoi(R->valor)) {
+            BuscaNodoReturn(R->izq, v);
+        }
+        else if (stoi(v) > stoi(R->valor)) {
+            BuscaNodoReturn(R->der, v);
+        }
+        else {
+        	string temp0 = getIndex(v);
+            ActualizaCache(temp0, R->valor,R->valor2);
+        }
+    }   
+	
     void InsertaNodo(NodoBinario*& R, string v, string v2) {
         if (R == NULL) {
             R = new NodoBinario(v,v2);
@@ -473,12 +517,17 @@ int main() {
 		cout<<"Digite la cedula que desea buscar: "<<endl;
 		string cedula;
 		cin >> cedula;
+		BuscarCache(cedula);
+		cout<<"Buscó en cache"<<endl;
 		this->BuscaNodo(raiz, cedula);
+		cout<<"Buscó en Arbol"<<endl;
 		cout<<endl<<endl;
 		this->PreordenR(raiz);
-		ActualizaCache();		
+		cout<<endl<<endl;
+		ImprimirCache();		
 		//AQUI VA PARA ACTUALIZAR LA CACHE, EL QUE BUSCO Y LOS 19 SIGUIENTES NO BORRADOS
-		//AQUI VA PARA IMPRIMIR CACHE
+		//AQUI VA PARA IMPRIMIR CACHE\
+		
 	}
 	
 	//Menu Insertar Cliente
@@ -492,11 +541,12 @@ int main() {
 		getline(cin, nombre);
 		InsertarClienteFile(cedula, nombre);
 		InsertarIndice(cedula);
-		this->Insertar(cedula,nombre);
 		cout<<endl<<endl;
 		cout<<"\n\t .:Arbol:."<<endl<<endl;
 		this->PreordenR(raiz);	
 		cout<<"\n\t .:Cache:."<<endl<<endl;
+		ActualizaCache(getIndex(cedula),cedula,nombre);
+		ImprimirCache();
 		//ACTUALIZA CACHE EL QUE SE AGREGA Y 19 ANTERIORES NO BORRADOS
 		//AQUI VA PARA IMPRIMIR CACHE
 	}
@@ -507,10 +557,12 @@ int main() {
 		string cedula;
 		cin >> cedula;
 		this->EliminaNodo(raiz, cedula);
+		eliminarFila(stoi(getIndex(cedula)));
 		cout<<endl<<endl;
 		cout<<"\n\t .:Arbol:."<<endl<<endl;
 		this->PreordenR(raiz);	
 		cout<<"\n\t .:Cache:."<<endl<<endl;
+		ImprimirCache();
 		//ACTUALIZO LA CACHE, SUBO LOS REGISTROS
 		//AQUI VA PARA IMPRIMIR CACHE
 	}
@@ -522,6 +574,7 @@ int main() {
 		Purgar();
 		this->PreordenR(raiz);
 		cout<<"\n\t .:Cache:."<<endl<<endl;
+		ImprimirCache();
 		//AQUI VA PARA IMPRIMIR CACHE
 		
 	}
@@ -537,6 +590,7 @@ int main() {
 		
 		
 		cout<<"\n\n\t .:Cache:."<<endl<<endl;
+		ImprimirCache();
 		//AQUI VA PARA IMPRIMIR CACHE
 	}
 	
