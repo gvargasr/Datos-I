@@ -108,6 +108,7 @@ namespace Interfaz {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaBuscarAdmin";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Buscar Admin";
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -115,6 +116,41 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and BuscarAdmin
+		String^ codStrCedula = textBox1->Text;
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrCedula)) {
+			int temp;
+			Int32::TryParse(codStrCedula, temp);
+			std::string adminInfoStdString = progra->listaAdmin->SearchNodo(temp, progra->listaAdmin->raiz);
+			String^ adminInfo = gcnew String(adminInfoStdString.c_str());
+
+			//INICIO CODIGO
+			if (progra->listaAdmin->SearchNodo(temp, progra->listaAdmin->raiz) != "") {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Cedula: "+temp+"\nNombre: "+adminInfo,
+					"Admin Encontrado",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Cedula: " + temp,
+					"Admin No Encontrado",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+			}
+			//FIN CODIGO();
+		}
+		else {
+			// Handle empty input in textBox1 or textBox2
+			// Display an error message or take appropriate action
+		}
+		// cerrar ventana
+		this->Close();
 	}
+
+
 	};
 }

@@ -163,6 +163,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"contacto";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Formulario de contacto";
 			this->ResumeLayout(false);
 			this->PerformLayout();

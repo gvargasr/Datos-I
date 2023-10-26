@@ -233,6 +233,7 @@ namespace Interfaz {
 			this->Controls->Add(this->LabelSaludo);
 			this->Controls->Add(this->buttonLogin);
 			this->Name = L"ventanaPrincipal";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterScreen;
 			this->Text = L"Log In";
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -246,7 +247,7 @@ namespace Interfaz {
 		ArbolB* ad = this->progra->listaAdmin;
 		ArbolB* cl = this->progra->listaCliente;
 		String^ Resp = this->textBox1->Text;
-		menuForm = gcnew ventanaMenu(progra);
+		menuForm = gcnew ventanaMenu(progra, Resp);
 		menuForm->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPrincipal::menuForm_FormClosed);
 		int ced;
 		if (Int32::TryParse(Resp, ced)) {
@@ -279,7 +280,6 @@ namespace Interfaz {
 		}
 		else if (checkBoxCliente->Checked == true) {
 			if (cl->Search(ced, cl->raiz) == true) {
-				menuForm = gcnew ventanaMenu(progra);
 				menuForm->leerArchivosMenuItem->Enabled = false;
 				menuForm->insertarMenuItem->Enabled = false;
 				menuForm->modificarMenuItem->Enabled = false;

@@ -75,6 +75,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 17;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaBuscarCiudad::button2_Click);
 			// 
 			// button1
 			// 
@@ -130,6 +131,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaBuscarCiudad";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Buscar Ciudad";
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -137,6 +139,52 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and BuscarCiudad
+		String^ codStrPais = textBox1->Text;
+		String^ codStrCiudad = textBox2->Text;
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrPais) && !String::IsNullOrWhiteSpace(codStrCiudad)) {
+			int temp;
+			int temp2;
+			Int32::TryParse(codStrPais, temp);
+			Int32::TryParse(codStrCiudad, temp2);
+			NodoBinarioPais* aux = progra->listaPais->BuscarPais(progra->listaPais->raiz, temp);
+			if (aux != NULL) {
+				NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz, temp2);
+				if (aux2 != NULL) {
+					std::string adminInfoStdString = aux2->ciudad;
+					String^ adminInfo = gcnew String(adminInfoStdString.c_str());
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Codigo: " + temp2 + "\nCiudad: " + adminInfo,
+						"Ciudad Encontrada",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+					cout << "\n.:Ciudad encontrada:.\nCodigo Pais: " << aux2->ciudad << "\nCodigo Ciudad: " << temp2 << "\nNombre: " << aux2->ciudad << endl;
+				}
+				else {
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Codigo: " + temp2,
+						"Ciudad No Encontrada",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+					cout << "La ciudad " << temp2 << " no se encuentra" << endl;
+				}
+				this->Close();
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Codigo: " + temp2,
+					"Ciudad No Encontrada",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+				cout << "La ciudad " << temp2 << " no se encuentra" << endl;
+				this->Close();
+			}
+		}
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

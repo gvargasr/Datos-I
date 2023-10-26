@@ -114,6 +114,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->button4);
 			this->Name = L"ventanaPopupPagos";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Pagos";
 			this->ResumeLayout(false);
 			this->PerformLayout();

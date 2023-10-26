@@ -151,6 +151,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 41;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaInsertarProducto::button2_Click);
 			// 
 			// button1
 			// 
@@ -284,6 +285,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaInsertarProducto";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Agregar Producto";
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -336,7 +338,7 @@ namespace Interfaz {
 					q = q->Hder;
 				}
 				else if (temp == q->valor) {
-					NodoBinarioCiudad* b = q->ArbolCiudad.BuscarCiudad(q->ArbolCiudad.raiz, temp2);
+					pNodoBinarioCiudad b = q->ArbolCiudad.BuscarCiudad(q->ArbolCiudad.raiz, temp2);
 					while (b != NULL) {
 						if (temp2 < b->valor) {
 							b = b->Hizq;
@@ -345,11 +347,26 @@ namespace Interfaz {
 							b = b->Hder;
 						}
 						else if (temp2 == b->valor) {
-							Nodo* c = b->ArbolRest.Busqueda(b->ArbolRest.Raiz, temp3);
+							NodoPtr c = b->ArbolRest.Busqueda(b->ArbolRest.Raiz, temp3);
 							if (c != NULL) {
-								NodoM* d = c->listaMenu.BusquedaM(temp4);
+								NodoMPtr d = c->listaMenu.BusquedaM(temp4);
 								if (d != NULL)
-									d->listaProducto.InsertaNodoProducto(temp5, cStr, temp6, temp7, temp8);
+									if (d->listaProducto.BuscarProductoBool(d->listaProducto.raiz,temp5) == false) {
+										d->listaProducto.InsertaNodoProducto(temp5, cStr, temp6, temp7, temp8);
+										System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+											"Codigo: " + codStrProducto + "\nProducto: " + nombreStrProducto + "\nKcal : " + kcalStrProducto + "\nPrecio : " + precioStrProducto + "\nCantidad : " + cantidadStrProducto,
+											"Producto agregado.",
+											MessageBoxButtons::OK,
+											MessageBoxIcon::Information);
+										this->Close();
+									}
+									else {
+										System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+											"Producto no agregado",
+											"Error .",
+											MessageBoxButtons::OK,
+											MessageBoxIcon::Information);
+									}
 								break;
 							}
 							break;
@@ -357,12 +374,22 @@ namespace Interfaz {
 					}
 					if (b == NULL) {
 						cout << "Producto: " << temp5 << ":" << cStr << " no fue agregado" << endl;
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Producto no agregado",
+							"Error .",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Information);
 					}
 					break;
 				}
 			}
 			if (q == NULL) {
 				cout << "Producto: " << temp5 << ":" << cStr << " no fue agregado" << endl;
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Producto no agregado",
+					"Error .",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
 			}
 
 
@@ -376,5 +403,8 @@ namespace Interfaz {
 		// cerrar ventana
 		this->Close();
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

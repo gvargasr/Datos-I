@@ -130,6 +130,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaInsertarCliente";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Agregar Cliente";
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -155,15 +156,29 @@ namespace Interfaz {
 			sprintf(cStr, "%s", clrString);
 			std::string stlString(cStr);
 			//INICIO CODIGO
-			progra->listaCliente->InsertarClave(temp, cStr, progra->listaCliente->raiz);
-			//FIN CODIGO();
+			if (progra->listaCliente->Search(temp, progra->listaCliente->raiz) == false) {
+				progra->listaCliente->InsertarClave(temp, cStr, progra->listaCliente->raiz);
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Codigo: " + temp + "\nNombre: " + codStrNombre,
+					"Cliente agregado.",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+				this->Close();
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Codigo: " + temp + " ya existe",
+					"Error .",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+			}			//FIN CODIGO();
 		}
 		else {
 			// Handle empty input in textBox1 or textBox2
 			// Display an error message or take appropriate action
 		}
 		// cerrar ventana
-		this->Close();
+		
 	}
 };
 }

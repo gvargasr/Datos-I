@@ -131,6 +131,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaInsertarAdmin";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Agregar Administrador";
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -156,7 +157,22 @@ namespace Interfaz {
 			sprintf(cStr, "%s", clrString);
 			std::string stlString(cStr);
 			//INICIO CODIGO
+			if(progra->listaAdmin->Search(temp, progra->listaAdmin->raiz) == false){
 			progra->listaAdmin->InsertarClave(temp, cStr, progra->listaAdmin->raiz);
+			System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+				"Codigo: " + temp+ "\nNombre: "+ codStrNombre,
+				"Administrador agregado.",
+				MessageBoxButtons::OK,
+				MessageBoxIcon::Information);
+			this->Close();
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Codigo: " + temp + " ya existe",
+					"Error .",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+			}
 			//FIN CODIGO();
 		}
 		else {
@@ -164,7 +180,7 @@ namespace Interfaz {
 			// Display an error message or take appropriate action
 		}
 		// cerrar ventana
-		this->Close();
+		
 	}
 };
 }

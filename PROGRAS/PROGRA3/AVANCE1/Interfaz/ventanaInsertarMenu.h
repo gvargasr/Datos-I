@@ -120,6 +120,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 29;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaInsertarMenu::button2_Click);
 			// 
 			// button1
 			// 
@@ -197,6 +198,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaInsertarMenu";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Agregar Menu";
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -246,20 +248,53 @@ namespace Interfaz {
 							b = b->Hder;
 						}
 						else if (temp2 == b->valor) {
-							Nodo* c = b->ArbolRest.Busqueda(b->ArbolRest.Raiz, temp3);
-							if (c != NULL)
+							NodoPtr c = b->ArbolRest.Busqueda(b->ArbolRest.Raiz, temp3);
+							if (c != NULL) {
+								if(c->listaMenu.BuscarNodoMenu1(temp4) == NULL){
 								c->listaMenu.insertar(temp4, cStr);
+								System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+									"Codigo: " + temp4 + "\nMenu: " + nombreMenu,
+									"Menu agregado.",
+									MessageBoxButtons::OK,
+									MessageBoxIcon::Information);
+								this->Close();
+								}
+								else {
+									System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+										"Codigo: " + temp4 + " ya existe",
+										"Error .",
+										MessageBoxButtons::OK,
+										MessageBoxIcon::Information);
+								}
+							}
 							break;
 						}
 					}
 					if (b == NULL) {
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Valores incorrectos.",
+							"Error .",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Information);
 						cout << "Menu: " << temp4 << ":" << cStr << " no fue agregado" << endl;
 					}
 					break;
 				}
+				else {
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Valores incorrectos.",
+						"Error .",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+				}
 			}
 			if (q == NULL) {
 				cout << "Menu: " << temp4 << ":" << cStr << " no fue agregado" << endl;
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Valores incorrectos.",
+					"Error .",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
 			}
 			//FIN CODIGO();
 		}
@@ -268,7 +303,10 @@ namespace Interfaz {
 			// Display an error message or take appropriate action
 		}
 		// cerrar ventana
-		this->Close();
+
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

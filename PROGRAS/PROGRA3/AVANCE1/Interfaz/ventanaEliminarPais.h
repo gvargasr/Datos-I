@@ -111,6 +111,7 @@ namespace Interfaz {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaEliminarPais";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Eliminar Pais";
 			this->Load += gcnew System::EventHandler(this, &ventanaEliminarPais::ventanaEliminarPais_Load);
 			this->ResumeLayout(false);

@@ -133,6 +133,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaInsertarPais";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Agregar Pais";
 			this->Load += gcnew System::EventHandler(this, &ventanaInsertarPais::ventanaInsertarPais_Load);
 			this->ResumeLayout(false);
@@ -157,17 +158,29 @@ namespace Interfaz {
 			Int32::TryParse(codStrPais, codPais);
 			sprintf(cStr, "%s", clrString);
 			std::string stlString(cStr);
-
+			if(progra->listaPais->BuscarPaisBool(progra->listaPais->raiz, codPais) == false) {
 			progra->listaPais->raiz->InsertaBinarioPais(codPais, cStr);
-			progra->listaPais->InordenI();
+			System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+				"Codigo: " + codPais + "\nPais: " + nombrePais,
+				"Pais agregado.",
+				MessageBoxButtons::OK,
+				MessageBoxIcon::Information);
+			this->Close();
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Pais no agregado",
+					"Error .",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+			}
 		}
 		else {
 			// Handle empty input in textBox1 or textBox2
 			// Display an error message or take appropriate action
-		}
-		// cerrar ventana
-		this->Close();
+		}		
 	}
+
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	//cancelar y cerrar ventana
 	this->Close();

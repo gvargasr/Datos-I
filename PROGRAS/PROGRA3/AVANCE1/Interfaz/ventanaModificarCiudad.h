@@ -152,6 +152,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaModificarCiudad";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Modificar Ciudad";
 			this->ResumeLayout(false);
 			this->PerformLayout();

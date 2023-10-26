@@ -233,7 +233,7 @@ Class Interfaz.ventanaPopupUsuarios: AutoLayout, AnsiClass, Class, Public, Befor
     System.Windows.Forms.Button button3 : Public
 Class Interfaz.ventanaMenu: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
-    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+    Void .ctor(cargarArchivo*, System.String): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     cargarArchivo* progra : Public
     System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem1 : Public

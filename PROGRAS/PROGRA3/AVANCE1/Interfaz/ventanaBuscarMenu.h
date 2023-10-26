@@ -38,10 +38,13 @@ namespace Interfaz {
 				delete components;
 			}
 		}
-	private: System::Windows::Forms::TextBox^ textBox5;
+	private: System::Windows::Forms::TextBox^ textBox4;
+	protected:
+
 	protected:
 	private: System::Windows::Forms::Label^ label5;
-	private: System::Windows::Forms::TextBox^ textBox4;
+	private: System::Windows::Forms::TextBox^ textBox3;
+
 	private: System::Windows::Forms::Label^ label4;
 	private: System::Windows::Forms::Button^ button2;
 	private: System::Windows::Forms::Button^ button1;
@@ -63,9 +66,9 @@ namespace Interfaz {
 		/// </summary>
 		void InitializeComponent(void)
 		{
-			this->textBox5 = (gcnew System::Windows::Forms::TextBox());
-			this->label5 = (gcnew System::Windows::Forms::Label());
 			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->label5 = (gcnew System::Windows::Forms::Label());
+			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->button1 = (gcnew System::Windows::Forms::Button());
@@ -75,12 +78,12 @@ namespace Interfaz {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
-			// textBox5
+			// textBox4
 			// 
-			this->textBox5->Location = System::Drawing::Point(183, 117);
-			this->textBox5->Name = L"textBox5";
-			this->textBox5->Size = System::Drawing::Size(167, 20);
-			this->textBox5->TabIndex = 45;
+			this->textBox4->Location = System::Drawing::Point(183, 117);
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size(167, 20);
+			this->textBox4->TabIndex = 45;
 			// 
 			// label5
 			// 
@@ -91,12 +94,12 @@ namespace Interfaz {
 			this->label5->TabIndex = 44;
 			this->label5->Text = L"Digite codigo de Menu:";
 			// 
-			// textBox4
+			// textBox3
 			// 
-			this->textBox4->Location = System::Drawing::Point(183, 85);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(167, 20);
-			this->textBox4->TabIndex = 43;
+			this->textBox3->Location = System::Drawing::Point(183, 85);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(167, 20);
+			this->textBox3->TabIndex = 43;
 			// 
 			// label4
 			// 
@@ -115,6 +118,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 41;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaBuscarMenu::button2_Click);
 			// 
 			// button1
 			// 
@@ -163,9 +167,9 @@ namespace Interfaz {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(376, 247);
-			this->Controls->Add(this->textBox5);
-			this->Controls->Add(this->label5);
 			this->Controls->Add(this->textBox4);
+			this->Controls->Add(this->label5);
+			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -174,6 +178,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaBuscarMenu";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Buscar Menu";
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -181,6 +186,91 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and BuscarAdmin
+		String^ codStrPais = textBox1->Text;
+		String^ codStrCiudad = textBox2->Text;
+		String^ codStrRestaurante = textBox3->Text;
+		String^ codStrMenu = textBox4->Text;
+
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrPais) && !String::IsNullOrWhiteSpace(codStrCiudad) && !String::IsNullOrWhiteSpace(codStrRestaurante)) {
+			int temp;
+			int temp2;
+			int temp3;
+			int temp4;
+			Int32::TryParse(codStrPais, temp);
+			Int32::TryParse(codStrCiudad, temp2);
+			Int32::TryParse(codStrRestaurante, temp3);
+			Int32::TryParse(codStrMenu, temp4);
+
+
+			NodoBinarioPais* aux = progra->listaPais->BuscarPais(progra->listaPais->raiz, temp);
+			if (aux != NULL) {
+				NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz, temp2);
+				if (aux2 != NULL) {
+					NodoPtr aux3 = aux2->ArbolRest.BusquedaMRest(temp3);
+					if (aux3 != NULL) {
+						aux3->listaMenu.BuscarNodoMenu(temp4);
+						NodoMPtr aux4 = aux3->listaMenu.BuscarNodoMenu1(temp4);
+						if (aux4 != NULL) {
+							progra->MenuMasBuscados->insertarBus(aux4->codMenu, aux4->nombreMenu);
+							progra->MenuMasBuscados->BuscarNodoMenu2(temp4);
+
+							std::string adminInfoStdString = aux4->nombreMenu;
+							String^ adminInfo = gcnew String(adminInfoStdString.c_str());
+							System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+								"Pais: " + temp + "\nCiudad: " + temp2 + "\nRestaurante: " + temp3 + "\nCodigo : " + temp4 + "\nMenu" + adminInfo,
+								"Menu Encontrado",
+								MessageBoxButtons::OK,
+								MessageBoxIcon::Information);
+							cout << "\n.:Restaurante encontrado:.\nCodigo Pais: " << temp << "\nCodigo Ciudad: " << temp2 << "\nCodigo Restaurante: " << temp3 << "\nNombre: " << aux3->nombreRest << endl;
+							this->Close();
+						}
+						else {
+							System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+								"Codigo: " + temp4,
+								"Menu No Encontrado",
+								MessageBoxButtons::OK,
+								MessageBoxIcon::Information);
+							this->Close();
+							cout << "El Menu " << temp4 << " no se encuentra" << endl;
+						}
+					}
+					else {
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Codigo: " + temp4,
+							"Menu No Encontrado",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Information);
+						this->Close();
+						cout << "El Menu " << temp4 << " no se encuentra" << endl;
+					}
+				}
+				else {
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Codigo: " + temp4,
+						"Menu No Encontrado",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+					this->Close();
+					cout << "El Menu " << temp4 << " no se encuentra" << endl;
+				}
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Codigo: " + temp4,
+					"Menu No Encontrado",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+				this->Close();
+				cout << "El Menu " << temp4 << " no se encuentra" << endl;
+			}
+		}
+
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

@@ -110,6 +110,7 @@ namespace Interfaz {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaEliminarCliente";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Eliminar Cliente";
 			this->ResumeLayout(false);
 			this->PerformLayout();

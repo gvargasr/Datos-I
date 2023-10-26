@@ -48,7 +48,7 @@ namespace Interfaz {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
-		System::ComponentModel::Container ^components;
+		System::ComponentModel::Container^ components;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -109,6 +109,7 @@ namespace Interfaz {
 			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaBuscarPais";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Buscar Pais";
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -120,6 +121,37 @@ namespace Interfaz {
 		this->Close();
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and BuscarAdmin
+		String^ codStrPais = textBox1->Text;
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrPais)) {
+			int temp;
+			Int32::TryParse(codStrPais, temp);
+			NodoBinarioPais* aux = progra->listaPais->BuscarPais(progra->listaPais->raiz, temp);
+
+			if (aux != NULL) {
+				std::string adminInfoStdString = aux->pais;
+				String^ adminInfo = gcnew String(adminInfoStdString.c_str());
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Codigo: " + temp + "\nPais: " + adminInfo,
+						"Pais Encontrado",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+					this->Close();
+				cout << "\n.:Pais encontrado:.\nCodigo: " << aux->valor << "\nNombre: " << aux->pais << endl;
+			}
+			else {
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Codigo: " + temp,
+						"Pais No Encontrado",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+				cout << "El pais " << temp << " no se encuentra" << endl;
+			}
+
+		}
 	}
-};
+	
+	};
 }

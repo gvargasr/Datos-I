@@ -140,6 +140,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button2);
 			this->Name = L"ventanaPopupUsuarios";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Usuarios";
 			this->ResumeLayout(false);
 			this->PerformLayout();

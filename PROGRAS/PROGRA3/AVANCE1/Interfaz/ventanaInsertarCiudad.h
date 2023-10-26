@@ -154,6 +154,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaInsertarCiudad";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Agregar Ciudad";
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -179,10 +180,30 @@ namespace Interfaz {
 
 			NodoBinarioPais* aux = progra->listaPais->BuscarPais(progra->listaPais->raiz, codPais);
 			if (aux != NULL) {
-				NodoBinarioCiudad* aux2 = aux->ArbolCiudad.raiz;
+				pNodoBinarioCiudad aux2 = aux->ArbolCiudad.raiz;
+				if(aux->ArbolCiudad.BuscarCiudadBool(aux2, codCiudad) == false){
 				aux->ArbolCiudad.InsertarBalanceadoCiudad(aux2, aux->ArbolCiudad.Hh, codCiudad, cStr);
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Codigo: " + codCiudad + "\nCiudad: " + nombreCiudad,
+					"Ciudad agregada.",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+				this->Close();
+				}
+				else {
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Valores incorrectos,ciudad ya existe",
+						"Error .",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+				}
 			}
 			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Valores incorrectos,pais no existe",
+					"Error .",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
 				cout << "No se agrego la ciudad, valores incorrectos";
 			}
 			//progra->listaPais->InordenI();
@@ -192,7 +213,7 @@ namespace Interfaz {
 			// Display an error message or take appropriate action
 		}
 		// cerrar ventana
-		this->Close();
+		
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	// cerrar ventana

@@ -140,6 +140,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->button3);
 			this->Name = L"ventanaPopupRestaurantes";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Restaurantes";
 			this->Load += gcnew System::EventHandler(this, &ventanaPopupRestaurantes::ventanaPopupRestaurantes_Load);
 			this->ResumeLayout(false);

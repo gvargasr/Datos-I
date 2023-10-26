@@ -171,7 +171,7 @@ bool ArbolB::SearchC(int clave, Pagina_Cliente* raiz) {
         //cout<<"\n.:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<endl<<endl;
         return true;
     } else {
-        SearchC(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
+        return SearchC(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
     }
 }
 
@@ -189,7 +189,7 @@ string ArbolB::SearchContador(int clave, Pagina_Cliente* raiz) {
         cout<<".:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<endl<<endl;
         return raiz->nombre[K];
     } else {
-        SearchContador(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
+        return SearchContador(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
     }
 }
 
@@ -207,7 +207,7 @@ string ArbolB::SearchNodo(int clave, Pagina_Cliente* raiz) {
     //    cout<<".:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<endl<<endl;
         return raiz->nombre[K];
     } else {
-        SearchNodo(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
+        return SearchNodo(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
     }
 }
 

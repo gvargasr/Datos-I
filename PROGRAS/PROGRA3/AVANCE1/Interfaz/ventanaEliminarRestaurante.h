@@ -154,6 +154,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Name = L"ventanaEliminarRestaurante";
+			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Eliminar Restaurante";
 			this->ResumeLayout(false);
 			this->PerformLayout();
