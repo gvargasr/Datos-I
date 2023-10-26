@@ -75,6 +75,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 11;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaModificarPais::button2_Click);
 			// 
 			// button1
 			// 
@@ -122,7 +123,7 @@ namespace Interfaz {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(389, 201);
+			this->ClientSize = System::Drawing::Size(355, 159);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox2);
@@ -139,5 +140,8 @@ namespace Interfaz {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

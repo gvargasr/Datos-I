@@ -401,7 +401,7 @@ namespace Interfaz {
 			// Display an error message or take appropriate action
 		}
 		// cerrar ventana
-		this->Close();
+
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

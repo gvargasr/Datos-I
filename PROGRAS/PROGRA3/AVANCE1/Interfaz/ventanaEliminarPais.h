@@ -100,6 +100,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 5;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaEliminarPais::button2_Click);
 			// 
 			// ventanaEliminarPais
 			// 
@@ -125,5 +126,8 @@ namespace Interfaz {
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

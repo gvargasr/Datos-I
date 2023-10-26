@@ -206,7 +206,7 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-		// Obtener texto de textBox and Insertar Restaurante
+		// Obtener texto de textBox and Insertar Menu
 		String^ codStrPais = textBox1->Text;
 		String^ codStrCiudad = textBox2->Text;
 		String^ codStrRestaurante = textBox3->Text;

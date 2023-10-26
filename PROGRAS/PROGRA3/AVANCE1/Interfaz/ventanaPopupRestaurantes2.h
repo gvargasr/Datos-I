@@ -1,6 +1,14 @@
 #pragma once
 #include "cargarArchivo.h"
 #include <string>
+
+//Mantenimiento Restaurantes
+#include "ventanaInsertarRestaurante.h"
+#include "ventanaBuscarRestaurante.h"
+#include "ventanaModificarRestaurante.h"
+#include "ventanaEliminarRestaurante.h"
+
+
 namespace Interfaz {
 
 	using namespace System;
@@ -16,8 +24,10 @@ namespace Interfaz {
 	public ref class ventanaPopupRestaurantes2 : public System::Windows::Forms::Form
 	{
 	public:
-		ventanaPopupRestaurantes2(void)
+		cargarArchivo* progra;
+		ventanaPopupRestaurantes2(cargarArchivo* progra)
 		{
+			this->progra = progra;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -49,6 +59,12 @@ namespace Interfaz {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		
+		ventanaInsertarRestaurante^ InsertarRestaurante;
+		ventanaBuscarRestaurante^ BuscarRestaurante;
+		ventanaModificarRestaurante^ ModificarRestaurante;
+		ventanaEliminarRestaurante^ EliminarRestaurante;
+		
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -89,6 +105,7 @@ namespace Interfaz {
 			this->button4->TabIndex = 22;
 			this->button4->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &ventanaPopupRestaurantes2::button4_Click);
 			// 
 			// label3
 			// 
@@ -110,6 +127,7 @@ namespace Interfaz {
 			this->button3->TabIndex = 20;
 			this->button3->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &ventanaPopupRestaurantes2::button3_Click);
 			// 
 			// label2
 			// 
@@ -131,6 +149,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 18;
 			this->button2->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaPopupRestaurantes2::button2_Click);
 			// 
 			// label1
 			// 
@@ -152,6 +171,7 @@ namespace Interfaz {
 			this->button1->TabIndex = 16;
 			this->button1->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ventanaPopupRestaurantes2::button1_Click);
 			// 
 			// ventanaPopupRestaurantes2
 			// 
@@ -167,7 +187,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Name = L"ventanaPopupRestaurantes2";
-			this->Text = L"ventanaPopupRestaurantes2";
+			this->Text = L"Restaurantes";
 			this->Load += gcnew System::EventHandler(this, &ventanaPopupRestaurantes2::ventanaPopupRestaurantes2_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -176,5 +196,75 @@ namespace Interfaz {
 #pragma endregion
 	private: System::Void ventanaPopupRestaurantes2_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+
+
+private: System::Void ventanaInsertarRestaurante_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaPopupRestaurantees is disposed before accessing it
+	if (InsertarRestaurante != nullptr && !InsertarRestaurante->IsDisposed) {
+		// Unsubscribe events
+		InsertarRestaurante->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaInsertarRestaurante_FormClosed);
+		// Show the ventanaPrincipal form when ventanaPopupRestaurantees is closed
+	}
+	this->Show();
+}
+
+
+private: System::Void ventanaBuscarRestaurante_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaBuscarRestaurante is disposed before accessing it
+	if (BuscarRestaurante != nullptr && !BuscarRestaurante->IsDisposed) {
+		// Unsubscribe events
+		BuscarRestaurante->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaBuscarRestaurante_FormClosed);
+		// Show the ventanaPrincipal form when BuscarRestaurante is closed
+	}
+	this->Show();
+}
+
+
+private: System::Void ventanaModificarRestaurante_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaModificarRestaurante is disposed before accessing it
+	if (ModificarRestaurante != nullptr && !ModificarRestaurante->IsDisposed) {
+		// Unsubscribe events
+		ModificarRestaurante->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaModificarRestaurante_FormClosed);
+		// Show the ventanaPrincipal form when ModificarRestaurante is closed
+	}
+	this->Show();
+}
+
+
+	private: System::Void ventanaEliminarRestaurante_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+		// Check if ventanaEliminarRestaurante is disposed before accessing it
+		if (EliminarRestaurante != nullptr && !EliminarRestaurante->IsDisposed) {
+			// Unsubscribe events
+			EliminarRestaurante->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaEliminarRestaurante_FormClosed);
+			// Show the ventanaPrincipal form when EliminarRestaurante is closed
+		}
+		this->Show();
+	}
+
+
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Insertar Restaurante
+	InsertarRestaurante = gcnew ventanaInsertarRestaurante(progra);
+	InsertarRestaurante->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaInsertarRestaurante_FormClosed);
+	InsertarRestaurante->Show();
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Buscar Restaurante
+	BuscarRestaurante = gcnew ventanaBuscarRestaurante(progra);
+	BuscarRestaurante->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaBuscarRestaurante_FormClosed);
+	BuscarRestaurante->Show();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Modificar Restaurante
+	ModificarRestaurante = gcnew ventanaModificarRestaurante(progra);
+	ModificarRestaurante->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaModificarRestaurante_FormClosed);
+	ModificarRestaurante->Show();
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Eliminar Restaurante
+	EliminarRestaurante = gcnew ventanaEliminarRestaurante(progra);
+	EliminarRestaurante->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaEliminarRestaurante_FormClosed);
+	EliminarRestaurante->Show();
+}
 };
 }

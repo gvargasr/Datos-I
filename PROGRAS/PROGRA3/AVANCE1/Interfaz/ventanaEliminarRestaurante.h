@@ -75,16 +75,17 @@ namespace Interfaz {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(182, 186);
+			this->button2->Location = System::Drawing::Point(180, 143);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 19;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaEliminarRestaurante::button2_Click);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(62, 186);
+			this->button1->Location = System::Drawing::Point(60, 143);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 18;
@@ -144,7 +145,7 @@ namespace Interfaz {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(361, 245);
+			this->ClientSize = System::Drawing::Size(353, 183);
 			this->Controls->Add(this->textBox4);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->button2);
@@ -163,5 +164,8 @@ namespace Interfaz {
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

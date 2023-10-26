@@ -2362,21 +2362,20 @@ void cargarArchivo::Menu(){
 
 
 }
-/*
-int main(){
-	cout<<"*************PROGRA #2************************"<<endl;
-	cout<<"\nIntegrantes:\nGustavo Vargas Ramirez   --- 200409141 \nGabriel Campos Gutierrez --- 2023093692"<<endl;
-	cout<<endl<<"*********************************************************************************"<<endl<<endl;	
-	cargarArchivo Inicio;
-	Inicio.cargaInicial();
-	Inicio.listaCliente->ImprimirArbol(Inicio.listaCliente->raiz);
-	Inicio.Menu();
 
- 
-    cout<<"###########################################################"<<endl;
-	cout<<"################## PROGRAMA FINALIZADO ####################"<<endl;
-	cout<<"###########################################################"<<endl;
-
-	return 0;
-}
-*/
+//int main(){
+//	cout<<"*************PROGRA #2************************"<<endl;
+//	cout<<"\nIntegrantes:\nGustavo Vargas Ramirez   --- 200409141 \nGabriel Campos Gutierrez --- 2023093692"<<endl;
+//	cout<<endl<<"*********************************************************************************"<<endl<<endl;	
+//	cargarArchivo Inicio;
+//	Inicio.cargaInicial();
+//	Inicio.listaCliente->ImprimirArbol(Inicio.listaCliente->raiz);
+//	Inicio.Menu();
+//
+// 
+//    cout<<"###########################################################"<<endl;
+//	cout<<"################## PROGRAMA FINALIZADO ####################"<<endl;
+//	cout<<"###########################################################"<<endl;
+//
+//	return 0;
+//}

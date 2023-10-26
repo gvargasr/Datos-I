@@ -16,8 +16,10 @@ namespace Interfaz {
 	public ref class ventanaPopupAdministradores : public System::Windows::Forms::Form
 	{
 	public:
-		ventanaPopupAdministradores(void)
+		cargarArchivo* progra;
+		ventanaPopupAdministradores(cargarArchivo* progra)
 		{
+			this->progra = progra;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -81,6 +83,7 @@ namespace Interfaz {
 			// 
 			// button4
 			// 
+			this->button4->BackColor = System::Drawing::SystemColors::Control;
 			this->button4->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button4.BackgroundImage")));
 			this->button4->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
 			this->button4->Location = System::Drawing::Point(165, 144);
@@ -88,7 +91,7 @@ namespace Interfaz {
 			this->button4->Size = System::Drawing::Size(85, 85);
 			this->button4->TabIndex = 30;
 			this->button4->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
-			this->button4->UseVisualStyleBackColor = true;
+			this->button4->UseVisualStyleBackColor = false;
 			// 
 			// label3
 			// 
@@ -145,7 +148,7 @@ namespace Interfaz {
 			// button1
 			// 
 			this->button1->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button1.BackgroundImage")));
-			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->button1->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Zoom;
 			this->button1->Location = System::Drawing::Point(34, 16);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(85, 85);
@@ -167,7 +170,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Name = L"ventanaPopupAdministradores";
-			this->Text = L"ventanaPopupAdministradores";
+			this->Text = L"Administradores";
 			this->Load += gcnew System::EventHandler(this, &ventanaPopupAdministradores::ventanaPopupAdministradores_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();

@@ -16,8 +16,10 @@ namespace Interfaz {
 	public ref class ventanaPopupFila : public System::Windows::Forms::Form
 	{
 	public:
-		ventanaPopupFila(void)
+		cargarArchivo* progra;
+		ventanaPopupFila(cargarArchivo* progra)
 		{
+			this->progra = progra;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -117,7 +119,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Name = L"ventanaPopupFila";
-			this->Text = L"ventanaPopupFila";
+			this->Text = L"Fila";
 			this->Load += gcnew System::EventHandler(this, &ventanaPopupFila::ventanaPopupFila_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();

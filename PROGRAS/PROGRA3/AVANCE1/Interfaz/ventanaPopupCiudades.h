@@ -1,6 +1,13 @@
 #pragma once
 #include "cargarArchivo.h"
 #include <string>
+
+//Ventanas
+#include "ventanaInsertarCiudad.h"
+#include "ventanaBuscarCiudad.h"
+#include "ventanaModificarCiudad.h"
+#include "ventanaEliminarCiudad.h"
+
 namespace Interfaz {
 
 	using namespace System;
@@ -16,8 +23,10 @@ namespace Interfaz {
 	public ref class ventanaPopupCiudades : public System::Windows::Forms::Form
 	{
 	public:
-		ventanaPopupCiudades(void)
+		cargarArchivo* progra;
+		ventanaPopupCiudades(cargarArchivo* progra)
 		{
+			this->progra = progra;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -50,6 +59,11 @@ namespace Interfaz {
 		/// Required designer variable.
 		/// </summary>
 		System::ComponentModel::Container ^components;
+
+		ventanaInsertarCiudad^ InsertarCiudad;
+		ventanaBuscarCiudad^ BuscarCiudad;
+		ventanaModificarCiudad^ ModificarCiudad;
+		ventanaEliminarCiudad^ EliminarCiudad;
 
 #pragma region Windows Form Designer generated code
 		/// <summary>
@@ -89,6 +103,7 @@ namespace Interfaz {
 			this->button4->TabIndex = 22;
 			this->button4->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &ventanaPopupCiudades::button4_Click);
 			// 
 			// label3
 			// 
@@ -110,6 +125,7 @@ namespace Interfaz {
 			this->button3->TabIndex = 20;
 			this->button3->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &ventanaPopupCiudades::button3_Click);
 			// 
 			// label2
 			// 
@@ -131,6 +147,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 18;
 			this->button2->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaPopupCiudades::button2_Click);
 			// 
 			// label1
 			// 
@@ -152,6 +169,7 @@ namespace Interfaz {
 			this->button1->TabIndex = 16;
 			this->button1->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ventanaPopupCiudades::button1_Click);
 			// 
 			// ventanaPopupCiudades
 			// 
@@ -167,7 +185,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Name = L"ventanaPopupCiudades";
-			this->Text = L"ventanaPopupCiudades";
+			this->Text = L"Ciudades";
 			this->Load += gcnew System::EventHandler(this, &ventanaPopupCiudades::ventanaPopupCiudades_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -176,5 +194,74 @@ namespace Interfaz {
 #pragma endregion
 	private: System::Void ventanaPopupCiudades_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+
+
+private: System::Void ventanaInsertarCiudad_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaMenu is disposed before accessing it
+	if (InsertarCiudad != nullptr && !InsertarCiudad->IsDisposed) {
+		// Unsubscribe events
+		InsertarCiudad->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaInsertarCiudad_FormClosed);
+		// Show the ventanaPrincipal form when ventanaMenu is closed
+	}
+	this->Show();
+}
+
+private: System::Void ventanaEliminarCiudad_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaEliminarCiudad is disposed before accessing it
+	if (EliminarCiudad != nullptr && !EliminarCiudad->IsDisposed) {
+		// Unsubscribe events
+		EliminarCiudad->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaEliminarCiudad_FormClosed);
+		// Show the ventanaPrincipal form when EliminarCiudad is closed
+	}
+	this->Show();
+}
+
+
+private: System::Void ventanaBuscarCiudad_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaBuscarCiudad is disposed before accessing it
+	if (BuscarCiudad != nullptr && !BuscarCiudad->IsDisposed) {
+		// Unsubscribe events
+		BuscarCiudad->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaBuscarCiudad_FormClosed);
+		// Show the ventanaPrincipal form when BuscarCiudad is closed
+	}
+	this->Show();
+}
+
+private: System::Void ventanaModificarCiudad_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaModificarCiudad is disposed before accessing it
+	if (ModificarCiudad != nullptr && !ModificarCiudad->IsDisposed) {
+		// Unsubscribe events
+		ModificarCiudad->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaModificarCiudad_FormClosed);
+		// Show the ventanaPrincipal form when ModificarCiudad is closed
+	}
+	this->Show();
+}
+
+
+
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para InsertarCiudad
+	InsertarCiudad = gcnew ventanaInsertarCiudad(progra);
+	InsertarCiudad->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaInsertarCiudad_FormClosed);
+	InsertarCiudad->Show();
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Buscar Ciudad
+	BuscarCiudad = gcnew ventanaBuscarCiudad(progra);
+	BuscarCiudad->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaBuscarCiudad_FormClosed);
+	BuscarCiudad->Show();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Modificar Ciudad
+	ModificarCiudad = gcnew ventanaModificarCiudad(progra);
+	ModificarCiudad->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaModificarCiudad_FormClosed);
+	ModificarCiudad->Show();
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Eliminar Ciudad
+	EliminarCiudad = gcnew ventanaEliminarCiudad(progra);
+	EliminarCiudad->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaEliminarCiudad_FormClosed);
+	EliminarCiudad->Show();
+}
 };
 }

@@ -1,6 +1,13 @@
 #pragma once
 #include "cargarArchivo.h"
 #include <string>
+
+
+#include "ventanaInsertarPais.h"
+#include "ventanaBuscarPais.h"
+#include "ventanaModificarPais.h"
+#include "ventanaEliminarPais.h"
+
 namespace Interfaz {
 
 	using namespace System;
@@ -16,8 +23,10 @@ namespace Interfaz {
 	public ref class ventanaPopupPaises : public System::Windows::Forms::Form
 	{
 	public:
-		ventanaPopupPaises(void)
+		cargarArchivo* progra;
+		ventanaPopupPaises(cargarArchivo* progra)
 		{
+			this->progra = progra;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -49,6 +58,12 @@ namespace Interfaz {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		
+		ventanaInsertarPais^ InsertarPais;
+		ventanaBuscarPais^ BuscarPais;
+		ventanaModificarPais^ ModificarPais;
+		ventanaEliminarPais^ EliminarPais;
+		
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -89,6 +104,7 @@ namespace Interfaz {
 			this->button1->TabIndex = 8;
 			this->button1->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ventanaPopupPaises::button1_Click);
 			// 
 			// label2
 			// 
@@ -110,6 +126,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 10;
 			this->button2->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaPopupPaises::button2_Click);
 			// 
 			// label3
 			// 
@@ -131,6 +148,7 @@ namespace Interfaz {
 			this->button3->TabIndex = 12;
 			this->button3->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &ventanaPopupPaises::button3_Click);
 			// 
 			// label4
 			// 
@@ -152,12 +170,13 @@ namespace Interfaz {
 			this->button4->TabIndex = 14;
 			this->button4->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &ventanaPopupPaises::button4_Click);
 			// 
 			// ventanaPopupPaises
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(322, 293);
+			this->ClientSize = System::Drawing::Size(285, 277);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->label3);
@@ -167,7 +186,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Name = L"ventanaPopupPaises";
-			this->Text = L"ventanaPopupPaises";
+			this->Text = L"Paises";
 			this->Load += gcnew System::EventHandler(this, &ventanaPopupPaises::ventanaPopupPaises_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -176,5 +195,79 @@ namespace Interfaz {
 #pragma endregion
 	private: System::Void ventanaPopupPaises_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+
+private: System::Void ventanaInsertarPais_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaPopupPaises is disposed before accessing it
+	if (InsertarPais != nullptr && !InsertarPais->IsDisposed) {
+		// Unsubscribe events
+		InsertarPais->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaInsertarPais_FormClosed);
+		// Show the ventanaPrincipal form when ventanaPopupPaises is closed
+	}
+	this->Show();
+}
+
+
+private: System::Void ventanaBuscarPais_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaBuscarPais is disposed before accessing it
+	if (BuscarPais != nullptr && !BuscarPais->IsDisposed) {
+		// Unsubscribe events
+		BuscarPais->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaBuscarPais_FormClosed);
+		// Show the ventanaPrincipal form when BuscarPais is closed
+	}
+	this->Show();
+}
+
+
+
+private: System::Void ventanaModificarPais_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaModificarPais is disposed before accessing it
+	if (ModificarPais != nullptr && !ModificarPais->IsDisposed) {
+		// Unsubscribe events
+		ModificarPais->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaModificarPais_FormClosed);
+		// Show the ventanaPrincipal form when ModificarPais is closed
+	}
+	this->Show();
+}
+
+
+
+	private: System::Void ventanaEliminarPais_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+		// Check if ventanaEliminarPais is disposed before accessing it
+		if (EliminarPais != nullptr && !EliminarPais->IsDisposed) {
+			// Unsubscribe events
+			EliminarPais->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaEliminarPais_FormClosed);
+			// Show the ventanaPrincipal form when EliminarPais is closed
+		}
+		this->Show();
+	}
+
+
+
+
+
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Insertar Pais
+	InsertarPais = gcnew ventanaInsertarPais(progra);
+	InsertarPais->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaInsertarPais_FormClosed);
+	InsertarPais->Show();
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Buscar Pais
+	BuscarPais = gcnew ventanaBuscarPais(progra);
+	BuscarPais->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaBuscarPais_FormClosed);
+	BuscarPais->Show();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Modificar Pais
+	ModificarPais = gcnew ventanaModificarPais(progra);
+	ModificarPais->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaModificarPais_FormClosed);
+	ModificarPais->Show();
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Eliminar Pais
+	EliminarPais = gcnew ventanaEliminarPais(progra);
+	EliminarPais->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaEliminarPais_FormClosed);
+	EliminarPais->Show();
+}
 };
 }

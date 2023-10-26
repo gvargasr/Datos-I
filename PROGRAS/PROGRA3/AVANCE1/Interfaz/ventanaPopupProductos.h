@@ -1,6 +1,14 @@
 #pragma once
 #include "cargarArchivo.h"
 #include <string>
+
+
+#include "ventanaInsertarProducto.h"
+#include "ventanaBuscarProducto.h"
+#include "ventanaModificarProducto.h"
+#include "ventanaEliminarProducto.h"
+
+
 namespace Interfaz {
 
 	using namespace System;
@@ -16,8 +24,10 @@ namespace Interfaz {
 	public ref class ventanaPopupProductos : public System::Windows::Forms::Form
 	{
 	public:
-		ventanaPopupProductos(void)
+		cargarArchivo* progra;
+		ventanaPopupProductos(cargarArchivo* progra)
 		{
+			this->progra = progra;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -49,6 +59,12 @@ namespace Interfaz {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		
+		ventanaInsertarProducto^ InsertarProducto;
+		ventanaBuscarProducto^ BuscarProducto;
+		ventanaModificarProducto^ ModificarProducto;
+		ventanaEliminarProducto^ EliminarProducto;
+
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -89,6 +105,7 @@ namespace Interfaz {
 			this->button4->TabIndex = 30;
 			this->button4->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &ventanaPopupProductos::button4_Click);
 			// 
 			// label3
 			// 
@@ -110,6 +127,7 @@ namespace Interfaz {
 			this->button3->TabIndex = 28;
 			this->button3->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &ventanaPopupProductos::button3_Click);
 			// 
 			// label2
 			// 
@@ -131,6 +149,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 26;
 			this->button2->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaPopupProductos::button2_Click);
 			// 
 			// label1
 			// 
@@ -152,6 +171,7 @@ namespace Interfaz {
 			this->button1->TabIndex = 24;
 			this->button1->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ventanaPopupProductos::button1_Click);
 			// 
 			// ventanaPopupProductos
 			// 
@@ -167,7 +187,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Name = L"ventanaPopupProductos";
-			this->Text = L"ventanaPopupProductos";
+			this->Text = L"Productos";
 			this->Load += gcnew System::EventHandler(this, &ventanaPopupProductos::ventanaPopupProductos_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
@@ -176,5 +196,79 @@ namespace Interfaz {
 #pragma endregion
 	private: System::Void ventanaPopupProductos_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+
+
+	private: System::Void ventanaInsertarProducto_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+		// Check if ventanaPopupProductoes is disposed before accessing it
+		if (InsertarProducto != nullptr && !InsertarProducto->IsDisposed) {
+			// Unsubscribe events
+			InsertarProducto->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaInsertarProducto_FormClosed);
+			// Show the ventanaPrincipal form when ventanaPopupProductoes is closed
+		}
+		this->Show();
+	}
+
+
+
+	private: System::Void ventanaBuscarProducto_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+		// Check if ventanaBuscarProducto is disposed before accessing it
+		if (BuscarProducto != nullptr && !BuscarProducto->IsDisposed) {
+			// Unsubscribe events
+			BuscarProducto->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaBuscarProducto_FormClosed);
+			// Show the ventanaPrincipal form when BuscarProducto is closed
+		}
+		this->Show();
+	}
+
+
+
+	private: System::Void ventanaModificarProducto_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+		// Check if ventanaModificarProducto is disposed before accessing it
+		if (ModificarProducto != nullptr && !ModificarProducto->IsDisposed) {
+			// Unsubscribe events
+			ModificarProducto->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaModificarProducto_FormClosed);
+			// Show the ventanaPrincipal form when ModificarProducto is closed
+		}
+		this->Show();
+	}
+
+
+
+	private: System::Void ventanaEliminarProducto_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+		// Check if ventanaEliminarProducto is disposed before accessing it
+		if (EliminarProducto != nullptr && !EliminarProducto->IsDisposed) {
+			// Unsubscribe events
+			EliminarProducto->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaEliminarProducto_FormClosed);
+			// Show the ventanaPrincipal form when EliminarProducto is closed
+		}
+		this->Show();
+	}
+
+
+
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Insertar Producto
+	InsertarProducto = gcnew ventanaInsertarProducto(progra);
+	InsertarProducto->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaInsertarProducto_FormClosed);
+	InsertarProducto->Show();
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Buscar Producto
+	BuscarProducto = gcnew ventanaBuscarProducto(progra);
+	BuscarProducto->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaBuscarProducto_FormClosed);
+	BuscarProducto->Show();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Modificar Producto
+	ModificarProducto = gcnew ventanaModificarProducto(progra);
+	ModificarProducto->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaModificarProducto_FormClosed);
+	ModificarProducto->Show();
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Eliminar Producto
+	EliminarProducto = gcnew ventanaEliminarProducto(progra);
+	EliminarProducto->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaEliminarProducto_FormClosed);
+	EliminarProducto->Show();
+}
 };
 }

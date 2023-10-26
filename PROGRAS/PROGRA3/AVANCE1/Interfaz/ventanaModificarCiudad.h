@@ -95,6 +95,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 19;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaModificarCiudad::button2_Click);
 			// 
 			// button1
 			// 
@@ -160,6 +161,70 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and Insertar Ciudad
+		String^ codStrPais = textBox1->Text;
+		String^ codStrCiudad = textBox2->Text;
+		String^ nombreCiudad = textBox3->Text;
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrPais) && !String::IsNullOrWhiteSpace(codStrCiudad) && !String::IsNullOrWhiteSpace(nombreCiudad)) {
+			int codPais;
+			int codCiudad;
+			char cStr[50] = { 0 };
+			Int32::TryParse(codStrPais, codPais);
+			Int32::TryParse(codStrCiudad, codCiudad);
+			String^ clrString = nombreCiudad;
+			sprintf(cStr, "%s", clrString);
+			std::string stlString(cStr);
+
+			NodoBinarioPais* aux = progra->listaPais->BuscarPais(progra->listaPais->raiz, codPais);
+			if (aux != NULL) {
+				pNodoBinarioCiudad aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz, codCiudad);
+				if (aux->ArbolCiudad.BuscarCiudadBool(aux2, codCiudad) == true) {
+					if (aux2 != NULL) {
+						cout << "La ciudad fue modificada" << endl;
+						cout << "Anterior: " << aux2->valor << ":" << aux2->ciudad << endl;
+						aux2->ciudad = cStr;
+						cout << "Nuevo: " << aux2->valor << ":" << aux2->ciudad << endl;
+
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Codigo: " + codCiudad + "\nCiudad: " + nombreCiudad,
+							"Ciudad modificada.",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Information);
+						this->Close();
+
+					}
+					else {
+						cout << "La ciudad " << codCiudad << " no se encuentra" << endl;
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Valores incorrectos",
+							"Error .",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Information);
+						cout << "No se modifico la ciudad, valores incorrectos";
+					}
+				}
+				else {
+					cout << "La ciudad " << codCiudad << " no se encuentra" << endl;
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Valores incorrectos",
+						"Error .",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+					cout << "No se modifico la ciudad, valores incorrectos";
+				}
+
+
+				// Handle empty input in textBox1 or textBox2
+				// Display an error message or take appropriate action
+			}
+		}
+		// cerrar ventana
+
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

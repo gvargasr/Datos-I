@@ -220,7 +220,7 @@ namespace Interfaz {
 							std::string adminInfoStdString = aux4->nombreMenu;
 							String^ adminInfo = gcnew String(adminInfoStdString.c_str());
 							System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
-								"Pais: " + temp + "\nCiudad: " + temp2 + "\nRestaurante: " + temp3 + "\nCodigo : " + temp4 + "\nMenu" + adminInfo,
+								"Pais: " + temp + "\nCiudad: " + temp2 + "\nRestaurante: " + temp3 + "\nCodigo : " + temp4 + "\nMenu: " + adminInfo,
 								"Menu Encontrado",
 								MessageBoxButtons::OK,
 								MessageBoxIcon::Information);

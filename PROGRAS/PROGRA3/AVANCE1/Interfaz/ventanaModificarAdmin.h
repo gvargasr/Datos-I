@@ -75,6 +75,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 23;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaModificarAdmin::button2_Click);
 			// 
 			// button1
 			// 
@@ -122,7 +123,7 @@ namespace Interfaz {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(346, 194);
+			this->ClientSize = System::Drawing::Size(335, 161);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox2);
@@ -138,6 +139,52 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and Insertar Producto
+		String^ codStrCedula = textBox1->Text;
+		String^ codStrNombre = textBox2->Text;
+
+
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrCedula) && !String::IsNullOrWhiteSpace(codStrCedula)) {
+			int temp;
+
+			Int32::TryParse(codStrCedula, temp);
+
+
+			char cStr[50] = { 0 };
+			String^ clrString = codStrNombre;
+			sprintf(cStr, "%s", clrString);
+			std::string stlString(cStr);
+			//INICIO CODIGO
+			if (progra->listaAdmin->Search(temp, progra->listaAdmin->raiz) == true) {
+				progra->listaAdmin->Modificar(temp, cStr, progra->listaAdmin->raiz);
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Codigo: " + temp + "\nNombre: " + codStrNombre,
+					"Administrador modificado.",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+				this->Close();
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Codigo: " + temp + " no existe",
+					"Error .",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+			}
+			//FIN CODIGO();
+		}
+		else {
+			// Handle empty input in textBox1 or textBox2
+			// Display an error message or take appropriate action
+		}
+		// cerrar ventana
 	}
+
+
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

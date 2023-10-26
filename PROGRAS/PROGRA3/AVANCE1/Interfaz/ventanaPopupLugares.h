@@ -2,6 +2,10 @@
 #include "cargarArchivo.h"
 #include <string>
 
+//Popups
+#include "ventanaPopupCiudades.h"
+#include "ventanaPopupPaises.h"
+
 namespace Interfaz {
 
 	using namespace System;
@@ -48,6 +52,11 @@ namespace Interfaz {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		/// 
+		
+		ventanaPopupPaises^ popupPaises;
+		ventanaPopupCiudades^ popupCiudades;
+
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -106,6 +115,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 8;
 			this->button2->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaPopupLugares::button2_Click);
 			// 
 			// ventanaPopupLugares
 			// 
@@ -119,16 +129,45 @@ namespace Interfaz {
 			this->Name = L"ventanaPopupLugares";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Lugares";
-			this->Load += gcnew System::EventHandler(this, &ventanaPopupLugares::ventanaPopupLugares_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
+
+	private: System::Void popupPaises_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+		// Check if popupLugares is disposed before accessing it
+		if (popupPaises != nullptr && !popupPaises->IsDisposed) {
+			// Unsubscribe events
+			popupPaises->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupLugares::popupPaises_FormClosed);
+			// Show the ventanaPrincipal form when ventanaMenu is closed
+		}
+		this->Show();
 	}
-private: System::Void ventanaPopupLugares_Load(System::Object^ sender, System::EventArgs^ e) {
+
+	private: System::Void popupCiudades_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+		// Check if popupLugares is disposed before accessing it
+		if (popupCiudades != nullptr && !popupCiudades->IsDisposed) {
+			// Unsubscribe events
+			popupCiudades->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupLugares::popupCiudades_FormClosed);
+			// Show the ventanaPrincipal form when ventanaMenu is closed
+		}
+		this->Show();
+	}
+
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		//text box para popupPaises
+		popupPaises = gcnew ventanaPopupPaises(progra);
+		popupPaises->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupLugares::popupPaises_FormClosed);
+		popupPaises->Show();
+	}
+
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para popupPaises
+	popupCiudades = gcnew ventanaPopupCiudades(progra);
+	popupCiudades->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupLugares::popupCiudades_FormClosed);
+	popupCiudades->Show();
 }
 };
 }

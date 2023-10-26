@@ -28,9 +28,19 @@
   Interfaz.ventanaModificarPais.resources - Embedded, ContainedInManifestFile, 
   Interfaz.ventanaModificarProducto.resources - Embedded, ContainedInManifestFile, 
   Interfaz.ventanaModificarRestaurante.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupAdministradores.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupCiudades.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupClientes.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupDescuento.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupFacturacion.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupFila.resources - Embedded, ContainedInManifestFile, 
   Interfaz.ventanaPopupLugares.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupMenu.resources - Embedded, ContainedInManifestFile, 
   Interfaz.ventanaPopupPagos.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupPaises.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupProductos.resources - Embedded, ContainedInManifestFile, 
   Interfaz.ventanaPopupRestaurantes.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupRestaurantes2.resources - Embedded, ContainedInManifestFile, 
   Interfaz.ventanaPopupUsuarios.resources - Embedded, ContainedInManifestFile, 
   Interfaz.ventanaPrincipal.resources - Embedded, ContainedInManifestFile, 
 ImageRuntimeVersion: v4.0.30319
@@ -191,6 +201,32 @@ Class Interfaz.ventanaModificarAdmin: AutoLayout, AnsiClass, Class, Public, Befo
     Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
   Fields:
     cargarArchivo* progra : Public
+Class Interfaz.ventanaPopupCiudades: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label4 : Public
+    System.Windows.Forms.Button button4 : Public
+    System.Windows.Forms.Label label3 : Public
+    System.Windows.Forms.Button button3 : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Button button2 : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
+Class Interfaz.ventanaPopupPaises: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Button button2 : Public
+    System.Windows.Forms.Label label3 : Public
+    System.Windows.Forms.Button button3 : Public
+    System.Windows.Forms.Label label4 : Public
+    System.Windows.Forms.Button button4 : Public
 Class Interfaz.ventanaPopupLugares: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
@@ -207,6 +243,45 @@ Class Interfaz.ventanaPopupPagos: AutoLayout, AnsiClass, Class, Public, BeforeFi
     cargarArchivo* progra : Public
     System.Windows.Forms.Label label3 : Public
     System.Windows.Forms.Button button4 : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
+Class Interfaz.ventanaPopupRestaurantes2: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label4 : Public
+    System.Windows.Forms.Button button4 : Public
+    System.Windows.Forms.Label label3 : Public
+    System.Windows.Forms.Button button3 : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Button button2 : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
+Class Interfaz.ventanaPopupMenu: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label4 : Public
+    System.Windows.Forms.Button button4 : Public
+    System.Windows.Forms.Label label3 : Public
+    System.Windows.Forms.Button button3 : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Button button2 : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
+Class Interfaz.ventanaPopupProductos: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label4 : Public
+    System.Windows.Forms.Button button4 : Public
+    System.Windows.Forms.Label label3 : Public
+    System.Windows.Forms.Button button3 : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Button button2 : Public
     System.Windows.Forms.Label label1 : Public
     System.Windows.Forms.Button button1 : Public
 Class Interfaz.ventanaPopupRestaurantes: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
@@ -310,6 +385,51 @@ Class Interfaz.ventanaMenu: AutoLayout, AnsiClass, Class, Public, BeforeFieldIni
     System.Windows.Forms.ToolStripMenuItem productoMasCompradoMenuItem : Public
     System.Windows.Forms.ToolStripMenuItem listaDeMenuToolStripMenuItem : Public
     System.Windows.Forms.ToolStripMenuItem menuMasBuscadoToolStripMenuItem : Public
+Class Interfaz.ventanaPopupAdministradores: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label4 : Public
+    System.Windows.Forms.Button button4 : Public
+    System.Windows.Forms.Label label3 : Public
+    System.Windows.Forms.Button button3 : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Button button2 : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
+Class Interfaz.ventanaPopupClientes: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label4 : Public
+    System.Windows.Forms.Button button4 : Public
+    System.Windows.Forms.Label label3 : Public
+    System.Windows.Forms.Button button3 : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Button button2 : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
+Class Interfaz.ventanaPopupDescuento: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaPopupFacturacion: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaPopupFila: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Button button2 : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
 Class Interfaz.ventanaPrincipal: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
   :System.Windows.Forms.Form
     Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName

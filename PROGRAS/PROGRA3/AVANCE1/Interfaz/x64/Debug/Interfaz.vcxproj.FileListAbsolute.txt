@@ -41,3 +41,13 @@ C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfa
 C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupPagos.resources
 C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupRestaurantes.resources
 C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupUsuarios.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupAdministradores.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupCiudades.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupClientes.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupDescuento.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupFacturacion.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupFila.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupMenu.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupPaises.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupProductos.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.ventanaPopupRestaurantes2.resources

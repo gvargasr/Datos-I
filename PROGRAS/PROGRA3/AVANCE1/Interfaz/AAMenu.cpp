@@ -44,7 +44,7 @@ AAMenu::AAMenu() {
   }
 
   NodoMPtr AAMenu::Busqueda(NodoMPtr NodoMenu, int numbuscado) {
-    if (NodoMenu == TNULL || NodoMenu->codMenu == 0 ||numbuscado == NodoMenu->codMenu) {
+    if (NodoMenu == NULL || NodoMenu->codMenu == 0 ||numbuscado == NodoMenu->codMenu) {
       return NodoMenu;
     }
     if (numbuscado < NodoMenu->codMenu) {

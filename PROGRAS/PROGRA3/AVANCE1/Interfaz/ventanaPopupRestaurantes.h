@@ -2,6 +2,10 @@
 #include "cargarArchivo.h"
 #include <string>
 
+#include "ventanaPopupRestaurantes2.h"
+#include "ventanaPopupMenu.h"
+#include "ventanaPopupProductos.h"
+
 namespace Interfaz {
 
 	using namespace System;
@@ -50,6 +54,12 @@ namespace Interfaz {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		
+		ventanaPopupRestaurantes2^ popupRestaurantes;
+		ventanaPopupMenu^ popupMenu;
+		ventanaPopupProductos^ popupProductos;
+
+
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -87,6 +97,7 @@ namespace Interfaz {
 			this->button3->Size = System::Drawing::Size(85, 85);
 			this->button3->TabIndex = 9;
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &ventanaPopupRestaurantes::button3_Click);
 			// 
 			// label1
 			// 
@@ -107,6 +118,7 @@ namespace Interfaz {
 			this->button1->Size = System::Drawing::Size(85, 85);
 			this->button1->TabIndex = 11;
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ventanaPopupRestaurantes::button1_Click);
 			// 
 			// label2
 			// 
@@ -127,6 +139,7 @@ namespace Interfaz {
 			this->button2->Size = System::Drawing::Size(85, 85);
 			this->button2->TabIndex = 13;
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaPopupRestaurantes::button2_Click);
 			// 
 			// ventanaPopupRestaurantes
 			// 
@@ -149,6 +162,59 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void ventanaPopupRestaurantes_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+
+
+	private: System::Void ventanaPopupRestaurantes2_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+		// Check if ventanaEliminarPais is disposed before accessing it
+		if (popupRestaurantes != nullptr && !popupRestaurantes->IsDisposed) {
+			// Unsubscribe events
+			popupRestaurantes->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes::ventanaPopupRestaurantes2_FormClosed);
+			// Show the ventanaPrincipal form when EliminarPais is closed
+		}
+		this->Show();
+	}
+
+	private: System::Void ventanaPopupMenu_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+		// Check if ventanaEliminarPais is disposed before accessing it
+		if (popupMenu != nullptr && !popupMenu->IsDisposed) {
+			// Unsubscribe events
+			popupMenu->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes::ventanaPopupMenu_FormClosed);
+			// Show the ventanaPrincipal form when EliminarPais is closed
+		}
+		this->Show();
+	}
+
+
+	private: System::Void ventanaPopupProductos_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+		// Check if ventanaEliminarPais is disposed before accessing it
+		if (popupProductos != nullptr && !popupProductos->IsDisposed) {
+			// Unsubscribe events
+			popupProductos->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes::ventanaPopupProductos_FormClosed);
+			// Show the ventanaPrincipal form when EliminarPais is closed
+		}
+		this->Show();
+	}
+
+
+
+	private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+		//Restaurantes
+		popupRestaurantes = gcnew ventanaPopupRestaurantes2(progra);
+		popupRestaurantes->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes::ventanaPopupRestaurantes2_FormClosed);
+		popupRestaurantes->Show();
+	}
+	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		//Menu
+		popupMenu = gcnew ventanaPopupMenu(progra);
+		popupMenu->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes::ventanaPopupMenu_FormClosed);
+		popupMenu->Show();
+	}
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		//Productos
+		popupProductos = gcnew ventanaPopupProductos(progra);
+		popupProductos->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes::ventanaPopupProductos_FormClosed);
+		popupProductos->Show();
 	}
 };
 }

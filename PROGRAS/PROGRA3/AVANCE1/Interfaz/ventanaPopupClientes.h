@@ -16,8 +16,10 @@ namespace Interfaz {
 	public ref class ventanaPopupClientes : public System::Windows::Forms::Form
 	{
 	public:
-		ventanaPopupClientes(void)
+		cargarArchivo* progra;
+		ventanaPopupClientes(cargarArchivo* progra)
 		{
+			this->progra = progra;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -167,7 +169,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Name = L"ventanaPopupClientes";
-			this->Text = L"ventanaPopupClientes";
+			this->Text = L"Clientes";
 			this->Load += gcnew System::EventHandler(this, &ventanaPopupClientes::ventanaPopupClientes_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();

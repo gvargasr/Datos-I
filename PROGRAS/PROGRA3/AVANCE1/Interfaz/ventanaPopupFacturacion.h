@@ -16,8 +16,10 @@ namespace Interfaz {
 	public ref class ventanaPopupFacturacion : public System::Windows::Forms::Form
 	{
 	public:
-		ventanaPopupFacturacion(void)
+		cargarArchivo* progra;
+		ventanaPopupFacturacion(cargarArchivo* progra)
 		{
+			this->progra = progra;
 			InitializeComponent();
 			//
 			//TODO: Add the constructor code here
@@ -57,7 +59,7 @@ namespace Interfaz {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(284, 261);
 			this->Name = L"ventanaPopupFacturacion";
-			this->Text = L"ventanaPopupFacturacion";
+			this->Text = L"Facturacion";
 			this->Load += gcnew System::EventHandler(this, &ventanaPopupFacturacion::ventanaPopupFacturacion_Load);
 			this->ResumeLayout(false);
 
