@@ -1,8 +1,0 @@
-	.:Factura del cliente:.
-
-
-Cedula: 59
-109:BigMac:480:2300:2
- Total: 4554
-
-
