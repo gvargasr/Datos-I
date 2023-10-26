@@ -1,26 +1,4 @@
-﻿  ventanaBuscarAdmin.cpp
-  ventanaBuscarCiudad.cpp
-  ventanaBuscarCliente.cpp
-  ventanaBuscarMenu.cpp
-  ventanaBuscarPais.cpp
-  ventanaBuscarProducto.cpp
-  ventanaBuscarRestaurante.cpp
-  ventanaMenu.cpp
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarPais.h(158,18): warning C4477: 'sprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'System::String ^'
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarPais.h(158,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarCiudad.h(177,18): warning C4477: 'sprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'System::String ^'
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarCiudad.h(177,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarRestaurante.h(203,18): warning C4477: 'sprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'System::String ^'
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarRestaurante.h(203,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarMenu.h(228,18): warning C4477: 'sprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'System::String ^'
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarMenu.h(228,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarProducto.h(327,18): warning C4477: 'sprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'System::String ^'
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarProducto.h(327,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarCliente.h(155,18): warning C4477: 'sprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'System::String ^'
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarCliente.h(155,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarAdmin.h(156,18): warning C4477: 'sprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'System::String ^'
-C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarAdmin.h(156,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  ventanaPrincipal.cpp
+﻿  ventanaPrincipal.cpp
 C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarPais.h(158,18): warning C4477: 'sprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'System::String ^'
 C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarPais.h(158,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarCiudad.h(177,18): warning C4477: 'sprintf' : format string '%s' requires an argument of type 'char *', but variadic argument 1 has type 'System::String ^'
@@ -37,6 +15,5 @@ C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarAd
 C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaInsertarAdmin.h(156,4): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
 C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaPrincipal.cpp(8,46): warning C4326: return type of 'main' should be 'int' instead of 'void'
 C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\ventanaPrincipal.cpp(8,46): warning C4829: Possibly incorrect parameters to function main. Consider 'int main(Platform::Array<Platform::String^>^ argv)'
-  Generating Code...
   AAMenu.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
   Interfaz.vcxproj -> C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\Interfaz\x64\Debug\Interfaz.exe

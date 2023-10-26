@@ -24,6 +24,7 @@ namespace Interfaz {
 		ventanaPrincipal(void)
 		{
 			progra = new cargarArchivo();
+			progra->cargaInicial();
 			InitializeComponent();
 			checkAdmin->CheckedChanged += gcnew System::EventHandler(this, &ventanaPrincipal::checkBox_CheckedChanged);
 			checkBoxCliente->CheckedChanged += gcnew System::EventHandler(this, &ventanaPrincipal::checkBox_CheckedChanged);
@@ -179,7 +180,6 @@ namespace Interfaz {
 			this->label1->Size = System::Drawing::Size(136, 24);
 			this->label1->TabIndex = 5;
 			this->label1->Text = L"Ingresar como:";
-			this->label1->Click += gcnew System::EventHandler(this, &ventanaPrincipal::label1_Click);
 			// 
 			// buttonCerrar
 			// 
@@ -241,16 +241,13 @@ namespace Interfaz {
 #pragma endregion
 
 
-	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
-	}
-
 	private: System::Void buttonLogin_Click(System::Object^ sender, System::EventArgs^ e) {
-		//Carga Inicial
-		//String^  << string del system.
-		progra->cargaInicial();
-		ArbolB* ad = progra->listaAdmin;
-		ArbolB* cl = progra->listaCliente;
+
+		ArbolB* ad = this->progra->listaAdmin;
+		ArbolB* cl = this->progra->listaCliente;
 		String^ Resp = this->textBox1->Text;
+		menuForm = gcnew ventanaMenu(progra);
+		menuForm->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPrincipal::menuForm_FormClosed);
 		int ced;
 		if (Int32::TryParse(Resp, ced)) {
 			// Conversion successful, intValue now holds the integer value
@@ -261,29 +258,39 @@ namespace Interfaz {
 			// For example, display an error message to the user
 		}
 		if (checkAdmin->Checked == true) {
+			if (ad->Search(ced, ad->raiz) == true) {
 				this->Hide();
-				menuForm = gcnew ventanaMenu(progra);
-				menuForm->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPrincipal::menuForm_FormClosed);
+				//menuForm = gcnew ventanaMenu(progra);
+				//menuForm->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPrincipal::menuForm_FormClosed);
 				menuForm->Show();
+			}
+			else {
+				cout << "No se encuentra en la lista de admins";
+			}
 
 		}
 		else if (checkBoxCliente->Checked == true) {
-			menuForm = gcnew ventanaMenu(progra);
-			menuForm->leerArchivosMenuItem->Enabled = false;
-
-			menuForm->insertarMenuItem->Enabled = false;
-			menuForm->modificarMenuItem->Enabled = false;
-			menuForm->eliminarMenuItem->Enabled = false;
-			menuForm->BuscaClienteMenuItem->Enabled = false;
-			menuForm->BuscaAdminMenuItem->Enabled = false;
-			menuForm->clientesMenuItem->Enabled = false;
-			menuForm->cantidadDeProductoMenuItem->Enabled = false;
-			menuForm->facturaDeMayorMontoMenuItem->Enabled = false;
-			menuForm->facturaDeMenorMontoMenuItem->Enabled = false;
-			menuForm->productoMasCompradoMenuItem->Enabled = false;
-			menuForm->eliminacionesMenuItem->Enabled = false;
-			menuForm->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPrincipal::menuForm_FormClosed);
-			menuForm->Show();
+			if (cl->Search(ced, cl->raiz) == true) {
+				menuForm = gcnew ventanaMenu(progra);
+				menuForm->leerArchivosMenuItem->Enabled = false;
+				menuForm->insertarMenuItem->Enabled = false;
+				menuForm->modificarMenuItem->Enabled = false;
+				menuForm->eliminarMenuItem->Enabled = false;
+				menuForm->BuscaClienteMenuItem->Enabled = false;
+				menuForm->BuscaAdminMenuItem->Enabled = false;
+				menuForm->clientesMenuItem->Enabled = false;
+				menuForm->cantidadDeProductoMenuItem->Enabled = false;
+				menuForm->facturaDeMayorMontoMenuItem->Enabled = false;
+				menuForm->facturaDeMenorMontoMenuItem->Enabled = false;
+				menuForm->productoMasCompradoMenuItem->Enabled = false;
+				menuForm->eliminacionesMenuItem->Enabled = false;
+				menuForm->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPrincipal::menuForm_FormClosed);
+				this->Hide();
+				menuForm->Show();
+			}
+			else {
+				cout << "No se encuentra en la lista de clientes";
+			}
 		}
 		else{
 			System::Windows::Forms::DialogResult SelectUSER= MessageBox::Show(

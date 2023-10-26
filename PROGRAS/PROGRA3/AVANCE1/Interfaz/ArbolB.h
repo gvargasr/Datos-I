@@ -70,7 +70,7 @@ public:
     ArbolB();
 	void Empujar(int C1, string& nombre, Pagina_Cliente*& R, bool& EmpujaArriba, int& Mdna, Pagina_Cliente*& Xr);
     void InsertarClave(int C1, string nombre, Pagina_Cliente*& raiz);
-    void BuscarNodo(int Clave, Pagina_Cliente* P, bool& Encontrado, int& K);
+    bool BuscarNodo(int Clave, Pagina_Cliente* P, bool& Encontrado, int& K);
     void ImprimirArbol(Pagina_Cliente* raiz);
     void MeterHoja(int X, string& nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K);
     void DividirNodo(int X, string& nombre, Pagina_Cliente* Xder, Pagina_Cliente*& P, int& K, int& Mda, Pagina_Cliente*& Mder);

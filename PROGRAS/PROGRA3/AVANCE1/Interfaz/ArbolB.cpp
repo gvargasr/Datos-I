@@ -152,7 +152,7 @@ bool ArbolB::Search(int clave, Pagina_Cliente* raiz) {
         cout<<"\n.:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<endl<<endl;
         return true;
     } else {
-        Search(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
+        return Search(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
     }
 }
 
@@ -216,15 +216,17 @@ string ArbolB::SearchNodo(int clave, Pagina_Cliente* raiz) {
 
 
 
-void ArbolB::BuscarNodo(int Clave, Pagina_Cliente* P, bool& Encontrado, int& K) {   
+bool ArbolB::BuscarNodo(int Clave, Pagina_Cliente* P, bool& Encontrado, int& K) {   
 	if(Clave < P->claves[1]){
 		Encontrado = false;
 		K=0;
+        return false;
 	}else{
 		K = P->Cuenta; 
 		while(Clave < P->claves[K] && K > 1)
 			K=K-1;
 		Encontrado = Clave == P->claves[K];
+        return Clave == P->claves[K];
 //		cout<<"Encontrado: "<<Encontrado<<endl;
 	}
 }
