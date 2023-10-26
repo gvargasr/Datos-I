@@ -29,7 +29,7 @@ AAMenu::AAMenu() {
 	TNULL->nivel = 0;
 	TNULL->codMenu = 0;
 	TNULL->contador = 0;
-	TNULL->Hizq = nullptr;
+	TNULL->Hizq = NULL;
 	TNULL->Hder = nullptr;
 	Raiz = TNULL;
 }
@@ -37,7 +37,7 @@ AAMenu::AAMenu() {
  void AAMenu::IniciarNodoNULL(NodoMPtr NodoMenu) {
     NodoMenu->codMenu = 0;
     NodoMenu->contador = 0;
-    int nivel;
+    int nivel=0;
     NodoMenu->Hizq= nullptr;
     NodoMenu->Hder = nullptr;
     NodoMenu ->nombreMenu = "";

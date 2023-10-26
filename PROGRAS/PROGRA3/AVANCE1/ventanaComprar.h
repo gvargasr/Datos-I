@@ -313,6 +313,14 @@ namespace Interfaz {
 					cout << "El Producto " << temp5 << " no se encuentra" << endl;
 				}
 			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Valores incorrectos",
+					"Error .",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+				cout << "El Producto " << temp5 << " no se encuentra" << endl;
+			}
 		}
 		else {
 			System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
