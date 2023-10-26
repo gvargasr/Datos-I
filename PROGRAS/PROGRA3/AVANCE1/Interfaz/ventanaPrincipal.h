@@ -266,6 +266,14 @@ namespace Interfaz {
 			}
 			else {
 				cout << "No se encuentra en la lista de admins";
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Admin no se encuentra en base de datos.",
+					"Alerta de login:",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+
+				if (SelectUSER == System::Windows::Forms::DialogResult::OK) {
+				}
 			}
 
 		}
@@ -290,6 +298,14 @@ namespace Interfaz {
 			}
 			else {
 				cout << "No se encuentra en la lista de clientes";
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Cliente no se encuentra en base de datos.",
+					"Alerta de login:",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+
+				if (SelectUSER == System::Windows::Forms::DialogResult::OK) {
+				}
 			}
 		}
 		else{
