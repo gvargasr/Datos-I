@@ -168,9 +168,19 @@
     <ClCompile Include="ventanaModificarPais.cpp" />
     <ClCompile Include="ventanaModificarProducto.cpp" />
     <ClCompile Include="ventanaModificarRestaurante.cpp" />
+    <ClCompile Include="ventanaPopupAdministradores.cpp" />
+    <ClCompile Include="ventanaPopupCiudades.cpp" />
+    <ClCompile Include="ventanaPopupClientes.cpp" />
+    <ClCompile Include="ventanaPopupDescuento.cpp" />
+    <ClCompile Include="ventanaPopupFacturacion.cpp" />
+    <ClCompile Include="ventanaPopupFila.cpp" />
     <ClCompile Include="ventanaPopupLugares.cpp" />
+    <ClCompile Include="ventanaPopupMenu.cpp" />
     <ClCompile Include="ventanaPopupPagos.cpp" />
+    <ClCompile Include="ventanaPopupPaises.cpp" />
+    <ClCompile Include="ventanaPopupProductos.cpp" />
     <ClCompile Include="ventanaPopupRestaurantes.cpp" />
+    <ClCompile Include="ventanaPopupRestaurantes2.cpp" />
     <ClCompile Include="ventanaPopupUsuarios.cpp" />
     <ClCompile Include="ventanaPrincipal.cpp" />
   </ItemGroup>
@@ -281,13 +291,43 @@
     <ClInclude Include="ventanaModificarRestaurante.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ventanaPopupAdministradores.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupCiudades.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupClientes.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupDescuento.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupFacturacion.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupFila.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ventanaPopupLugares.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupMenu.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ventanaPopupPagos.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ventanaPopupPaises.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupProductos.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ventanaPopupRestaurantes.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupRestaurantes2.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ventanaPopupUsuarios.h">
@@ -388,14 +428,44 @@
     <EmbeddedResource Include="ventanaModificarRestaurante.resx">
       <DependentUpon>ventanaModificarRestaurante.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ventanaPopupAdministradores.resx">
+      <DependentUpon>ventanaPopupAdministradores.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaPopupCiudades.resx">
+      <DependentUpon>ventanaPopupCiudades.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaPopupClientes.resx">
+      <DependentUpon>ventanaPopupClientes.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaPopupDescuento.resx">
+      <DependentUpon>ventanaPopupDescuento.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaPopupFacturacion.resx">
+      <DependentUpon>ventanaPopupFacturacion.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaPopupFila.resx">
+      <DependentUpon>ventanaPopupFila.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ventanaPopupLugares.resx">
       <DependentUpon>ventanaPopupLugares.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaPopupMenu.resx">
+      <DependentUpon>ventanaPopupMenu.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ventanaPopupPagos.resx">
       <DependentUpon>ventanaPopupPagos.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ventanaPopupPaises.resx">
+      <DependentUpon>ventanaPopupPaises.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaPopupProductos.resx">
+      <DependentUpon>ventanaPopupProductos.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ventanaPopupRestaurantes.resx">
       <DependentUpon>ventanaPopupRestaurantes.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaPopupRestaurantes2.resx">
+      <DependentUpon>ventanaPopupRestaurantes2.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ventanaPopupUsuarios.resx">
       <DependentUpon>ventanaPopupUsuarios.h</DependentUpon>

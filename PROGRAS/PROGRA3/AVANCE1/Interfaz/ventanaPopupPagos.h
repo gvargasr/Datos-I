@@ -116,10 +116,13 @@ namespace Interfaz {
 			this->Name = L"ventanaPopupPagos";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Pagos";
+			this->Load += gcnew System::EventHandler(this, &ventanaPopupPagos::ventanaPopupPagos_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
 		}
 #pragma endregion
-	};
+	private: System::Void ventanaPopupPagos_Load(System::Object^ sender, System::EventArgs^ e) {
+	}
+};
 }

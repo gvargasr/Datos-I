@@ -119,6 +119,7 @@ namespace Interfaz {
 			this->Name = L"ventanaPopupLugares";
 			this->StartPosition = System::Windows::Forms::FormStartPosition::CenterParent;
 			this->Text = L"Lugares";
+			this->Load += gcnew System::EventHandler(this, &ventanaPopupLugares::ventanaPopupLugares_Load);
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -127,6 +128,8 @@ namespace Interfaz {
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 
 	}
+private: System::Void ventanaPopupLugares_Load(System::Object^ sender, System::EventArgs^ e) {
+}
 };
 }
 

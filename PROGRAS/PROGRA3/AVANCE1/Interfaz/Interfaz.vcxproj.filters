@@ -159,6 +159,36 @@
     <ClCompile Include="ventanaPopupPagos.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ventanaPopupPaises.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaPopupCiudades.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaPopupMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaPopupProductos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaPopupClientes.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaPopupAdministradores.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaPopupFila.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaPopupFacturacion.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaPopupDescuento.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaPopupRestaurantes2.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ventanaPrincipal.h">
@@ -312,6 +342,36 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ventanaPopupPagos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupPaises.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupCiudades.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupProductos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupClientes.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupAdministradores.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupFila.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupFacturacion.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupDescuento.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupRestaurantes2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
