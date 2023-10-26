@@ -1,0 +1,21 @@
+#pragma once
+#ifndef _PILA_CIUDAD
+#define	_PILA_CIUDAD
+#include "NodoBinarioCiudad.h"
+using namespace std;
+
+
+class PilaCiudad {
+   public:
+    PilaCiudad() : plista(NULL) {}
+    void Push(pnodoCiudad);
+    void Mostrar();
+    bool Vacia() { return plista == NULL; }
+    pnodoCiudad Pop();
+    int Size();
+    
+    pnodoCiudad plista;
+};
+
+#endif	/* _PILA_CIUDAD */
+

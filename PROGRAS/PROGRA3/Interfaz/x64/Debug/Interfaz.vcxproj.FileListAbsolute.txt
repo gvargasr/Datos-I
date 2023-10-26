@@ -1,0 +1,10 @@
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\GUI\Interfaz\x64\Debug\Interfaz.vcxproj.AssemblyReference.cache
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\GUI\Interfaz\x64\Debug\Interfaz.ventanaMenu.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\GUI\Interfaz\x64\Debug\Interfaz.ventanaPrincipal.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\GUI\Interfaz\x64\Debug\Interfaz.vcxproj.GenerateResource.cache
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\AVANCE1\GUI\Interfaz\x64\Debug\Interfaz.exe
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\Interfaz\x64\Debug\Interfaz.vcxproj.AssemblyReference.cache
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\Interfaz\x64\Debug\Interfaz.ventanaMenu.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\Interfaz\x64\Debug\Interfaz.ventanaPrincipal.resources
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\Interfaz\x64\Debug\Interfaz.vcxproj.GenerateResource.cache
+C:\Users\gvargasr\ITCR\Datos1\PROGRAS\PROGRA3\Interfaz\x64\Debug\Interfaz.exe

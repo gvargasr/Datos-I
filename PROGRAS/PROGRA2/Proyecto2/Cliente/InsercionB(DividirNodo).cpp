@@ -1,3 +1,4 @@
+#include <winnt.h>
 
 //BuscarNodo
 //Parámetros
@@ -87,7 +88,7 @@
            MeterHoja(Mdna,Xr,R,K);//Inserta la clave Mdna en el nodo   
            //R, posición k+1
       }
-     Else  //Nodo lleno 
+     else  //Nodo lleno 
      {
         EmpujaArriba=true;                                                              //T
         DividirNodo(Mdna,Xr,R,K,Mdna,Xr);                                              // 14 null 3 5 8 15  K=3 14 null 

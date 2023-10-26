@@ -1,0 +1,317 @@
+  Interfaz.ventanaBuscarAdmin.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaBuscarCiudad.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaBuscarCliente.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaBuscarMenu.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaBuscarPais.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaBuscarProducto.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaBuscarRestaurante.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaContacto.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaEliminarAdmin.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaEliminarCiudad.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaEliminarCliente.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaEliminarMenu.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaEliminarPais.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaEliminarProducto.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaEliminarRestaurante.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaInsertarAdmin.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaInsertarCiudad.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaInsertarCliente.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaInsertarMenu.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaInsertarPais.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaInsertarProducto.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaInsertarRestaurante.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaMenu.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaModificarAdmin.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaModificarCiudad.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaModificarCliente.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaModificarMenu.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaModificarPais.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaModificarProducto.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaModificarRestaurante.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupLugares.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupPagos.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupRestaurantes.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPopupUsuarios.resources - Embedded, ContainedInManifestFile, 
+  Interfaz.ventanaPrincipal.resources - Embedded, ContainedInManifestFile, 
+ImageRuntimeVersion: v4.0.30319
+Assembly Interfaz, Version=0.0.*, Culture=Invariant Language (Invariant Country): 
+	hash=SHA1, flags=PublicKey
+Assembly mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Data, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a: 
+	hash=None, flags=None
+Assembly System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Assembly System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089: 
+	hash=None, flags=None
+Class Interfaz.ventanaBuscarAdmin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaBuscarCiudad: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaBuscarCliente: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaBuscarMenu: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaBuscarPais: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaBuscarProducto: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaBuscarRestaurante: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.contacto: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+Class Interfaz.ventanaEliminarAdmin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaEliminarCiudad: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaEliminarCliente: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaEliminarMenu: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaEliminarPais: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaEliminarProducto: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaEliminarRestaurante: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaInsertarAdmin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaInsertarCiudad: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaInsertarCliente: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaInsertarMenu: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaInsertarPais: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaInsertarProducto: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaInsertarRestaurante: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaModificarPais: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaModificarCiudad: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaModificarRestaurante: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaModificarMenu: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaModificarProducto: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaModificarCliente: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaModificarAdmin: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+Class Interfaz.ventanaPopupLugares: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Button button2 : Public
+Class Interfaz.ventanaPopupPagos: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label3 : Public
+    System.Windows.Forms.Button button4 : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
+Class Interfaz.ventanaPopupRestaurantes: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label4 : Public
+    System.Windows.Forms.Button button3 : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Button button2 : Public
+Class Interfaz.ventanaPopupUsuarios: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Button button2 : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Button button1 : Public
+    System.Windows.Forms.Label label3 : Public
+    System.Windows.Forms.Button button3 : Public
+Class Interfaz.ventanaMenu: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(cargarArchivo*): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public
+    System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem1 : Public
+    System.Windows.Forms.ToolStripDropDownButton MantenimientoMenu : Public
+    System.Windows.Forms.ToolStripButton ContactoMenu : Public
+    System.Windows.Forms.ToolStripMenuItem insertarMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem buscarItem : Public
+    System.Windows.Forms.ToolStripMenuItem modificarMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem eliminarMenuItem : Public
+    System.Windows.Forms.ToolStripDropDownButton ReportesMenu : Public
+    System.Windows.Forms.ToolStripMenuItem ReportePaisMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem ReporteCiudadMenuItem : Public
+    System.Windows.Forms.ToolStripDropDownButton FacturacionMenu : Public
+    System.Windows.Forms.ToolStripDropDownButton AcercaDeMenu : Public
+    System.Windows.Forms.ToolStripMenuItem AboutMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem ReporteMenuMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem ProductosMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem clientesMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem listaDeClientesToolStripMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem comprasDeUnClienteToolStripMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem ReporteRestauranteMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem listaDeRestaurantesToolStripMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem restauranteMasBuscadoToolStripMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem precioDeProductoMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem cantidadDeProductoMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem facturacionMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem facturaDeMayorMontoMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem facturaDeMenorMontoMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem descuentoConTarjetaMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem eliminacionesMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem paisesEliminadosMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem ciudadesEliminadasMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem restaurantesEliminadosMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem menusEliminadosMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem productosEliminadosMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem comprarProductoMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem eliminarCompraMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem paisToolStripMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem ciudadToolStripMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem restauranteToolStripMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem1 : Public
+    System.Windows.Forms.ToolStripMenuItem productoToolStripMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem paisToolStripMenuItem1 : Public
+    System.Windows.Forms.ToolStripMenuItem ciudadToolStripMenuItem1 : Public
+    System.Windows.Forms.ToolStripMenuItem restauranteToolStripMenuItem1 : Public
+    System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem2 : Public
+    System.Windows.Forms.ToolStripMenuItem productoToolStripMenuItem1 : Public
+    System.Windows.Forms.ToolStripMenuItem BuscaClienteMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem BuscaAdminMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem paisToolStripMenuItem2 : Public
+    System.Windows.Forms.ToolStripMenuItem ciudadToolStripMenuItem2 : Public
+    System.Windows.Forms.ToolStripMenuItem restauranteToolStripMenuItem2 : Public
+    System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem3 : Public
+    System.Windows.Forms.ToolStripMenuItem productoToolStripMenuItem2 : Public
+    System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem2 : Public
+    System.Windows.Forms.ToolStripMenuItem administradorToolStripMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem paisToolStripMenuItem3 : Public
+    System.Windows.Forms.ToolStripMenuItem ciudadToolStripMenuItem3 : Public
+    System.Windows.Forms.ToolStripMenuItem restauranteToolStripMenuItem3 : Public
+    System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem4 : Public
+    System.Windows.Forms.ToolStripMenuItem productoToolStripMenuItem3 : Public
+    System.Windows.Forms.ToolStripMenuItem clienteToolStripMenuItem3 : Public
+    System.Windows.Forms.ToolStripMenuItem administradorToolStripMenuItem2 : Public
+    System.Windows.Forms.Button button1 : Public
+    System.Windows.Forms.Button button2 : Public
+    System.Windows.Forms.Button button3 : Public
+    System.Windows.Forms.Button button4 : Public
+    System.Windows.Forms.Label label1 : Public
+    System.Windows.Forms.Label label2 : Public
+    System.Windows.Forms.Label label3 : Public
+    System.Windows.Forms.Label label4 : Public
+    System.Windows.Forms.ToolStripMenuItem leerArchivosMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem productoMasCompradoMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem listaDeMenuToolStripMenuItem : Public
+    System.Windows.Forms.ToolStripMenuItem menuMasBuscadoToolStripMenuItem : Public
+Class Interfaz.ventanaPrincipal: AutoLayout, AnsiClass, Class, Public, BeforeFieldInit
+  :System.Windows.Forms.Form
+    Void .ctor(): PrivateScope, Public, HideBySig, SpecialName, RTSpecialName
+  Fields:
+    cargarArchivo* progra : Public

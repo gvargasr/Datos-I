@@ -1,10 +1,11 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "ListaCompra.cpp"
+#include "listaDCompra.h"
+#include "ArbolB.h"
 
 using namespace std;
-
+/*
 class Pagina_Cliente {
 	public:
 		int claves [5];
@@ -62,8 +63,8 @@ class Pagina_Cliente {
 		
 };
 
-typedef Pagina_Cliente* puntero_Cliente;
-
+typedef Pagina_Cliente* puntero_Cliente;*/
+/*
 class ArbolB{
 	public :
 	Pagina_Cliente* raiz;
@@ -74,22 +75,26 @@ class ArbolB{
 	
 	void Empujar(int C1, string& nombre, Pagina_Cliente*& R, bool& EmpujaArriba, int& Mdna, Pagina_Cliente*& Xr);
     void InsertarClave(int C1, string nombre, Pagina_Cliente*& raiz);
-    void BuscarNodo(int Clave, Pagina_Cliente*& P, bool& Encontrado, int& K);
+    void BuscarNodo(int Clave, Pagina_Cliente* P, bool& Encontrado, int& K);
     void ImprimirArbol(Pagina_Cliente*& raiz);
-    void MeterHoja(int& X, string& nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K);
+    void MeterHoja(int X, string& nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K);
     void DividirNodo(int X, string& nombre, Pagina_Cliente* Xder, Pagina_Cliente*& P, int& K, int& Mda, Pagina_Cliente*& Mder);
-    bool Search(int clave, Pagina_Cliente*& raiz);
+    bool Search(int clave, Pagina_Cliente* raiz);
 	void Modificar(int clave, string nombre, Pagina_Cliente*& raiz);
-	void inOrderTraversal(Pagina_Cliente*& raiz, ofstream& outFile);
+	void inOrderTraversal(Pagina_Cliente* raiz, ofstream& outFile);
 	void saveToFile(const string& filename);
-	string SearchNodo(int clave, Pagina_Cliente*& raiz);
-	string SearchContador(int clave, Pagina_Cliente*& raiz);
-    bool CompraDeCliente(int clave, Pagina_Cliente*& raiz);
-    bool SearchC(int clave, Pagina_Cliente*& raiz);
+	string SearchNodo(int clave, Pagina_Cliente* raiz);
+	string SearchContador(int clave, Pagina_Cliente* raiz);
+    bool CompraDeCliente(int clave, Pagina_Cliente* raiz);
+    bool SearchC(int clave, Pagina_Cliente* raiz);
 
     
     friend Pagina_Cliente;
-};
+};*/
+
+ArbolB::ArbolB() {
+    raiz = new Pagina_Cliente();
+}
 
 void ArbolB::Modificar(int clave, string nombre, Pagina_Cliente*& raiz) {
     if (raiz == NULL) {
@@ -110,7 +115,7 @@ void ArbolB::Modificar(int clave, string nombre, Pagina_Cliente*& raiz) {
     }
 }
 
-bool ArbolB::CompraDeCliente(int clave, Pagina_Cliente*& raiz) {
+bool ArbolB::CompraDeCliente(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
         cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
         return false;
@@ -133,7 +138,7 @@ bool ArbolB::CompraDeCliente(int clave, Pagina_Cliente*& raiz) {
     }
 }
 
-bool ArbolB::Search(int clave, Pagina_Cliente*& raiz) {
+bool ArbolB::Search(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
         cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
         return false;
@@ -151,7 +156,7 @@ bool ArbolB::Search(int clave, Pagina_Cliente*& raiz) {
     }
 }
 
-bool ArbolB::SearchC(int clave, Pagina_Cliente*& raiz) {
+bool ArbolB::SearchC(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
         cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
         return false;
@@ -170,7 +175,7 @@ bool ArbolB::SearchC(int clave, Pagina_Cliente*& raiz) {
     }
 }
 
-string ArbolB::SearchContador(int clave, Pagina_Cliente*& raiz) {
+string ArbolB::SearchContador(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
     //    cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
         return "";
@@ -188,7 +193,7 @@ string ArbolB::SearchContador(int clave, Pagina_Cliente*& raiz) {
     }
 }
 
-string ArbolB::SearchNodo(int clave, Pagina_Cliente*& raiz) {
+string ArbolB::SearchNodo(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
     //    cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
         return "";
@@ -211,7 +216,7 @@ string ArbolB::SearchNodo(int clave, Pagina_Cliente*& raiz) {
 
 
 
-void ArbolB::BuscarNodo(int Clave, Pagina_Cliente*& P, bool& Encontrado, int& K) {   
+void ArbolB::BuscarNodo(int Clave, Pagina_Cliente* P, bool& Encontrado, int& K) {   
 	if(Clave < P->claves[1]){
 		Encontrado = false;
 		K=0;
@@ -287,7 +292,7 @@ void ArbolB::Empujar(int C1, string& nombre, Pagina_Cliente*& R, bool& EmpujaArr
 }
 
 
-void ArbolB::MeterHoja(int& X, string& nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K) {
+void ArbolB::MeterHoja(int X, string& nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K) {
 //	cout<<"K en METERHOJA DIVIDIRNODO"<<K<<endl;
 //	cout<<"I en METERHOJA DIVIDIRNODO"<<P->Cuenta<<endl;
 //	cout<<"X en METERHOJA DIVIDIRNODO"<<X<<endl;
@@ -348,7 +353,7 @@ void ArbolB::DividirNodo(int X, string& nombre, Pagina_Cliente* Xder, Pagina_Cli
 	P->Cuenta--;	
 }
 
- void ArbolB::inOrderTraversal(Pagina_Cliente*& raiz, ofstream& outFile) {
+ void ArbolB::inOrderTraversal(Pagina_Cliente* raiz, ofstream& outFile) {
         if (raiz != nullptr) {
             for (int i = 0; i < raiz->Cuenta; i++) {
                 inOrderTraversal(raiz->Ramas[i], outFile);

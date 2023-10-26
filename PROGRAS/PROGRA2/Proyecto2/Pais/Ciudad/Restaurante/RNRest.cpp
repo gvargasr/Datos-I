@@ -1,6 +1,6 @@
 #include <iostream>
 #include <fstream>
-#include "Menu/AAMenu.cpp"
+#include "AAMenu.h"
 
 
 using namespace std;

@@ -1,5 +1,6 @@
 #include <iostream>
-#include "Producto/AVLProducto.cpp"
+#include <fstream>
+#include "AVLProducto.h"
 using namespace std;
 
 class NodoM {

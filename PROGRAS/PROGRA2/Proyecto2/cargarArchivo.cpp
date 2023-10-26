@@ -3,14 +3,13 @@
 #include <fstream>
 #include <string>
 #include <math.h>
-#include "Pais/BinarioPais.cpp"
-#include "Cliente/ArbolB.cpp"
-#include "Cliente/listaDFila.cpp"
+#include "cargarArchivo.h"
+
 
 
 
 using namespace std;
-
+/*
 class cargarArchivo { 
    public:
     cargarArchivo() {
@@ -36,12 +35,12 @@ class cargarArchivo {
 	void SubMenu25();
 	void SubMenu26();
 	void SubMenu3();
-/*	void SubMenu31();
+	void SubMenu31();
 	void SubMenu32();
 	void SubMenu33();
 	void SubMenu34();
 	void SubMenu35();
-	void SubMenu36();*/
+	void SubMenu36();
 	void SubMenu4();
 	void SubMenu41();
     void SubMenu42();
@@ -89,7 +88,15 @@ class cargarArchivo {
 	pnodoFila FacturaPequena = NULL;
  //   friend MainMenu();
   
-};
+};*/
+
+   cargarArchivo::cargarArchivo() {
+	listaPais = new BinarioPais() ;
+	listaCliente = new ArbolB();
+	listaFila = new listaDFila();
+	RestMasBuscados = new ArbolRN();
+	MenuMasBuscados = new ArbolA();
+	 }
 
 cargarArchivo::~cargarArchivo()
 {
@@ -106,28 +113,21 @@ try{
 	
 	
 	archivo.open("Archivos/Clientes.txt");
-	if (archivo.is_open()) {
 	cout<<"\t .:CARGANDO CLIENTES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string cedula;
 		string nombre;
 		getline(archivo, cedula, ';');
 		getline(archivo, nombre);
-		
-		if(!cedula.empty()  && cedula.find_first_not_of("0123456789") == string::npos){
 		int temp = stoi(cedula);
+		if(!cedula.empty()){
 			listaCliente->InsertarClave(temp,nombre,listaCliente->raiz);
 		}
 	}
 	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
-	}else{
-		cout << "Error: File 'Archivos/Clientes.txt' No existe" << endl;
-	}
 
-/*
 	archivo.open("Archivos/Paises.txt");
-	if (archivo.is_open()) {
 	cout<<"\t .:CARGANDO PAISES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string codigo;
@@ -141,14 +141,8 @@ try{
 	}
 	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
-	}else{
-		cout << "Error: File 'Archivos/Paises.txt' No existe" << endl;
-	}
-	
-	
-	
+
 	archivo.open("Archivos/Ciudades.txt");
-	if (archivo.is_open()) {
 	cout<<"\t .:CARGANDO CIUDADES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string codpais;
@@ -179,13 +173,9 @@ try{
 }
 	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;			
-	}else{
-		cout << "Error: File 'Archivos/Ciudades.txt' No existe" << endl;
-	}
-	
-	
+
+
  	archivo.open("Archivos/Restaurantes.txt");
- 	if (archivo.is_open()) {
  	cout<<"\t .:CARGANDO RESTAURANTES:."<<endl<<endl;
 	while(!archivo.eof()){
 		string codpais;
@@ -234,14 +224,9 @@ try{
 	
 	archivo.close();	
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
-	}else{
-		cout << "Error: File 'Archivos/Restaurantes.txt' No existe" << endl;
-	}
-	
-	
-	
+
+
  	archivo.open("Archivos/Menu.txt");
-	if (archivo.is_open()) {
  	cout<<"\t .:CARGANDO MENUS:."<<endl<<endl;
  		while(!archivo.eof()){
 		string codPais;
@@ -295,14 +280,8 @@ try{
  }
  	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
-	}else{
-		cout << "Error: File 'Archivos/Menu.txt' No existe" << endl;
-	}
-
-
 
  	archivo.open("Archivos/Productos.txt");
- 	if (archivo.is_open()) {
  		cout<<"\t .:CARGANDO PRODUCTOS:."<<endl<<endl;
  		while(!archivo.eof()){
 		string codPais;
@@ -374,11 +353,7 @@ try{
 	}
  	archivo.close();
 	cout<<endl<<"*********************************************************************************"<<endl<<endl;
-	}else{
-		cout << "Error: File 'Archivos/Productos.txt' No existe" << endl;
-	}
 	
-	*/	
 
 } catch(const std::exception &e) {
         std::cerr << "Error: " << e.what() << std::endl;
@@ -1190,7 +1165,7 @@ void cargarArchivo::SubMenu46(){
 	string cedula;
 	cout<< "Ingrese el numero de cedula que desea encontrar: ";
 	cin >> cedula;
-
+	
 	listaCliente->Search(stoi(cedula), listaCliente->raiz);
 }
 
@@ -1721,7 +1696,7 @@ void cargarArchivo::SubMenu63(){
 //Reporte de Clientes
 void cargarArchivo::SubMenu64(){
 	cout<< "\nSe esta generando el archivo Reporte_Clientes.txt\n.\n.\n.\n"<<endl;
-	listaCliente->ImprimirArbol(listaCliente->raiz);
+
 	listaCliente->saveToFile("Reporte_Clientes.txt");
 }
 /*
