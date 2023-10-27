@@ -46,6 +46,8 @@ namespace Interfaz {
 	public: System::Windows::Forms::Button^ button2;
 	public: System::Windows::Forms::Label^ label1;
 	public: System::Windows::Forms::Button^ button1;
+	private: System::Windows::Forms::Button^ button5;
+	public:
 
 	private:
 		/// <summary>
@@ -65,6 +67,7 @@ namespace Interfaz {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label2
@@ -111,11 +114,22 @@ namespace Interfaz {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &ventanaPopupFila::button1_Click);
 			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(110, 130);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(75, 23);
+			this->button5->TabIndex = 28;
+			this->button5->Text = L"Cancelar";
+			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &ventanaPopupFila::button5_Click);
+			// 
 			// ventanaPopupFila
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(305, 142);
+			this->ClientSize = System::Drawing::Size(305, 165);
+			this->Controls->Add(this->button5);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->label1);
@@ -133,6 +147,9 @@ namespace Interfaz {
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
 }
 };
 }

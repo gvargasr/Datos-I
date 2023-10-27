@@ -44,6 +44,8 @@ namespace Interfaz {
 	private: System::Windows::Forms::Button^ AceptarContacto;
 
 	private: System::Windows::Forms::Button^ button2;
+	private: System::Windows::Forms::Label^ label4;
+	private: System::Windows::Forms::TextBox^ textBox4;
 
 	private:
 		/// <summary>
@@ -67,6 +69,8 @@ namespace Interfaz {
 			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->AceptarContacto = (gcnew System::Windows::Forms::Button());
 			this->button2 = (gcnew System::Windows::Forms::Button());
+			this->label4 = (gcnew System::Windows::Forms::Label());
+			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// label1
@@ -85,7 +89,7 @@ namespace Interfaz {
 			this->label2->AutoSize = true;
 			this->label2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label2->Location = System::Drawing::Point(13, 90);
+			this->label2->Location = System::Drawing::Point(13, 69);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(51, 16);
 			this->label2->TabIndex = 1;
@@ -96,7 +100,7 @@ namespace Interfaz {
 			this->label3->AutoSize = true;
 			this->label3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->label3->Location = System::Drawing::Point(13, 140);
+			this->label3->Location = System::Drawing::Point(13, 95);
 			this->label3->Name = L"label3";
 			this->label3->Size = System::Drawing::Size(64, 16);
 			this->label3->TabIndex = 2;
@@ -115,7 +119,7 @@ namespace Interfaz {
 			// 
 			this->textBox2->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox2->Location = System::Drawing::Point(83, 86);
+			this->textBox2->Location = System::Drawing::Point(83, 65);
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(254, 22);
 			this->textBox2->TabIndex = 4;
@@ -124,14 +128,14 @@ namespace Interfaz {
 			// 
 			this->textBox3->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
 				static_cast<System::Byte>(0)));
-			this->textBox3->Location = System::Drawing::Point(83, 136);
+			this->textBox3->Location = System::Drawing::Point(83, 91);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(113, 22);
 			this->textBox3->TabIndex = 5;
 			// 
 			// AceptarContacto
 			// 
-			this->AceptarContacto->Location = System::Drawing::Point(83, 209);
+			this->AceptarContacto->Location = System::Drawing::Point(83, 248);
 			this->AceptarContacto->Name = L"AceptarContacto";
 			this->AceptarContacto->Size = System::Drawing::Size(75, 23);
 			this->AceptarContacto->TabIndex = 6;
@@ -141,7 +145,7 @@ namespace Interfaz {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(207, 209);
+			this->button2->Location = System::Drawing::Point(206, 248);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 7;
@@ -149,11 +153,32 @@ namespace Interfaz {
 			this->button2->UseVisualStyleBackColor = true;
 			this->button2->Click += gcnew System::EventHandler(this, &contacto::button2_Click);
 			// 
+			// label4
+			// 
+			this->label4->AutoSize = true;
+			this->label4->Font = (gcnew System::Drawing::Font(L"Microsoft Sans Serif", 9.75F, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0)));
+			this->label4->Location = System::Drawing::Point(13, 131);
+			this->label4->Name = L"label4";
+			this->label4->Size = System::Drawing::Size(79, 16);
+			this->label4->TabIndex = 8;
+			this->label4->Text = L"Comentario:";
+			// 
+			// textBox4
+			// 
+			this->textBox4->Location = System::Drawing::Point(16, 151);
+			this->textBox4->Multiline = true;
+			this->textBox4->Name = L"textBox4";
+			this->textBox4->Size = System::Drawing::Size(321, 91);
+			this->textBox4->TabIndex = 9;
+			// 
 			// contacto
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(394, 259);
+			this->ClientSize = System::Drawing::Size(394, 305);
+			this->Controls->Add(this->textBox4);
+			this->Controls->Add(this->label4);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->AceptarContacto);
 			this->Controls->Add(this->textBox3);

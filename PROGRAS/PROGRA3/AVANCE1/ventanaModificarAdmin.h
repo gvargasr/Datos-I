@@ -154,7 +154,7 @@ namespace Interfaz {
 
 			char cStr[50] = { 0 };
 			String^ clrString = codStrNombre;
-			sprintf(cStr, "%s", clrString);
+			sprintf_s(cStr, "%s", clrString);
 			std::string stlString(cStr);
 			//INICIO CODIGO
 			if (progra->listaAdmin->Search(temp, progra->listaAdmin->raiz) == true) {

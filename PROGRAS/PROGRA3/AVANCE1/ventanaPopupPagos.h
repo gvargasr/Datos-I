@@ -19,6 +19,8 @@ namespace Interfaz {
 	public:
 		String^ usuario;
 		bool^ flag;
+	private: System::Windows::Forms::Button^ button5;
+	public:
 		cargarArchivo* progra;
 		ventanaPopupPagos(cargarArchivo* progra, String^ usuario, bool^ flag)
 		{
@@ -66,6 +68,7 @@ namespace Interfaz {
 			this->button4 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label3
@@ -108,11 +111,22 @@ namespace Interfaz {
 			this->button1->TabIndex = 10;
 			this->button1->UseVisualStyleBackColor = true;
 			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(92, 164);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(75, 23);
+			this->button5->TabIndex = 25;
+			this->button5->Text = L"Cancelar";
+			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &ventanaPopupPagos::button5_Click);
+			// 
 			// ventanaPopupPagos
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(266, 180);
+			this->ClientSize = System::Drawing::Size(266, 199);
+			this->Controls->Add(this->button5);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->label3);
@@ -128,5 +142,8 @@ namespace Interfaz {
 #pragma endregion
 	private: System::Void ventanaPopupPagos_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

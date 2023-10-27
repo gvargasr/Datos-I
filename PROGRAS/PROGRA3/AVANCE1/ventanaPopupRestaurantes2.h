@@ -25,6 +25,8 @@ namespace Interfaz {
 	{
 	public:
 		bool^ flag;
+	private: System::Windows::Forms::Button^ button5;
+	public:
 		cargarArchivo* progra;
 		ventanaPopupRestaurantes2(cargarArchivo* progra, bool^ flag)
 		{
@@ -85,6 +87,7 @@ namespace Interfaz {
 			this->button2 = (gcnew System::Windows::Forms::Button());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->button5 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label4
@@ -175,11 +178,22 @@ namespace Interfaz {
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &ventanaPopupRestaurantes2::button1_Click);
 			// 
+			// button5
+			// 
+			this->button5->Location = System::Drawing::Point(104, 265);
+			this->button5->Name = L"button5";
+			this->button5->Size = System::Drawing::Size(75, 23);
+			this->button5->TabIndex = 25;
+			this->button5->Text = L"Cancelar";
+			this->button5->UseVisualStyleBackColor = true;
+			this->button5->Click += gcnew System::EventHandler(this, &ventanaPopupRestaurantes2::button5_Click);
+			// 
 			// ventanaPopupRestaurantes2
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(284, 261);
+			this->ClientSize = System::Drawing::Size(284, 300);
+			this->Controls->Add(this->button5);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->button4);
 			this->Controls->Add(this->label3);
@@ -267,6 +281,9 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 	EliminarRestaurante = gcnew ventanaEliminarRestaurante(progra);
 	EliminarRestaurante->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaEliminarRestaurante_FormClosed);
 	EliminarRestaurante->Show();
+}
+private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
 }
 };
 }
