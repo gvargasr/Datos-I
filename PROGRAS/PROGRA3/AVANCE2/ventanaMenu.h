@@ -67,6 +67,8 @@ namespace Interfaz {
 	public:
 		cargarArchivo* progra;
 		bool^ flag;
+	private: System::Windows::Forms::ToolStripMenuItem^ modificarCompraToolStripMenuItem;
+	public:
 		String^ usuario;
 		ventanaMenu(cargarArchivo* progra, String^ cedula, bool^ flag)
 		{
@@ -331,11 +333,13 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			this->listaDeMenuToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->menuMasBuscadoToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ProductosMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->listaDeProductosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->precioDeProductoMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->cantidadDeProductoMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->productoMasCompradoMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->clientesMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->listaDeClientesToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->listaDeAdministradoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->comprasDeUnClienteToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->facturacionMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->facturaDeMayorMontoMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
@@ -350,6 +354,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			this->FacturacionMenu = (gcnew System::Windows::Forms::ToolStripDropDownButton());
 			this->comprarProductoMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->eliminarCompraMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->pagarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->AcercaDeMenu = (gcnew System::Windows::Forms::ToolStripDropDownButton());
 			this->AboutMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->ContactoMenu = (gcnew System::Windows::Forms::ToolStripButton());
@@ -361,9 +366,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label3 = (gcnew System::Windows::Forms::Label());
 			this->label4 = (gcnew System::Windows::Forms::Label());
-			this->listaDeAdministradoresToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->listaDeProductosToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
-			this->pagarToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
+			this->modificarCompraToolStripMenuItem = (gcnew System::Windows::Forms::ToolStripMenuItem());
 			this->toolStrip1->SuspendLayout();
 			this->SuspendLayout();
 			// 
@@ -395,14 +398,14 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			// leerArchivosMenuItem
 			// 
 			this->leerArchivosMenuItem->Name = L"leerArchivosMenuItem";
-			this->leerArchivosMenuItem->Size = System::Drawing::Size(180, 22);
+			this->leerArchivosMenuItem->Size = System::Drawing::Size(145, 22);
 			this->leerArchivosMenuItem->Text = L"Leer Archivos";
 			this->leerArchivosMenuItem->Click += gcnew System::EventHandler(this, &ventanaMenu::leerArchivosMenuItem_Click);
 			// 
 			// salirToolStripMenuItem1
 			// 
 			this->salirToolStripMenuItem1->Name = L"salirToolStripMenuItem1";
-			this->salirToolStripMenuItem1->Size = System::Drawing::Size(180, 22);
+			this->salirToolStripMenuItem1->Size = System::Drawing::Size(145, 22);
 			this->salirToolStripMenuItem1->Text = L"Salir";
 			this->salirToolStripMenuItem1->Click += gcnew System::EventHandler(this, &ventanaMenu::salirToolStripMenuItem1_Click);
 			// 
@@ -555,49 +558,49 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			// paisToolStripMenuItem2
 			// 
 			this->paisToolStripMenuItem2->Name = L"paisToolStripMenuItem2";
-			this->paisToolStripMenuItem2->Size = System::Drawing::Size(150, 22);
+			this->paisToolStripMenuItem2->Size = System::Drawing::Size(180, 22);
 			this->paisToolStripMenuItem2->Text = L"Pais";
 			this->paisToolStripMenuItem2->Click += gcnew System::EventHandler(this, &ventanaMenu::paisToolStripMenuItem2_Click);
 			// 
 			// ciudadToolStripMenuItem2
 			// 
 			this->ciudadToolStripMenuItem2->Name = L"ciudadToolStripMenuItem2";
-			this->ciudadToolStripMenuItem2->Size = System::Drawing::Size(150, 22);
+			this->ciudadToolStripMenuItem2->Size = System::Drawing::Size(180, 22);
 			this->ciudadToolStripMenuItem2->Text = L"Ciudad";
 			this->ciudadToolStripMenuItem2->Click += gcnew System::EventHandler(this, &ventanaMenu::ciudadToolStripMenuItem2_Click);
 			// 
 			// restauranteToolStripMenuItem2
 			// 
 			this->restauranteToolStripMenuItem2->Name = L"restauranteToolStripMenuItem2";
-			this->restauranteToolStripMenuItem2->Size = System::Drawing::Size(150, 22);
+			this->restauranteToolStripMenuItem2->Size = System::Drawing::Size(180, 22);
 			this->restauranteToolStripMenuItem2->Text = L"Restaurante";
 			this->restauranteToolStripMenuItem2->Click += gcnew System::EventHandler(this, &ventanaMenu::restauranteToolStripMenuItem2_Click);
 			// 
 			// menuToolStripMenuItem3
 			// 
 			this->menuToolStripMenuItem3->Name = L"menuToolStripMenuItem3";
-			this->menuToolStripMenuItem3->Size = System::Drawing::Size(150, 22);
+			this->menuToolStripMenuItem3->Size = System::Drawing::Size(180, 22);
 			this->menuToolStripMenuItem3->Text = L"Menu";
 			this->menuToolStripMenuItem3->Click += gcnew System::EventHandler(this, &ventanaMenu::menuToolStripMenuItem3_Click);
 			// 
 			// productoToolStripMenuItem2
 			// 
 			this->productoToolStripMenuItem2->Name = L"productoToolStripMenuItem2";
-			this->productoToolStripMenuItem2->Size = System::Drawing::Size(150, 22);
+			this->productoToolStripMenuItem2->Size = System::Drawing::Size(180, 22);
 			this->productoToolStripMenuItem2->Text = L"Producto";
 			this->productoToolStripMenuItem2->Click += gcnew System::EventHandler(this, &ventanaMenu::productoToolStripMenuItem2_Click);
 			// 
 			// clienteToolStripMenuItem2
 			// 
 			this->clienteToolStripMenuItem2->Name = L"clienteToolStripMenuItem2";
-			this->clienteToolStripMenuItem2->Size = System::Drawing::Size(150, 22);
+			this->clienteToolStripMenuItem2->Size = System::Drawing::Size(180, 22);
 			this->clienteToolStripMenuItem2->Text = L"Cliente";
 			this->clienteToolStripMenuItem2->Click += gcnew System::EventHandler(this, &ventanaMenu::clienteToolStripMenuItem2_Click);
 			// 
 			// administradorToolStripMenuItem
 			// 
 			this->administradorToolStripMenuItem->Name = L"administradorToolStripMenuItem";
-			this->administradorToolStripMenuItem->Size = System::Drawing::Size(150, 22);
+			this->administradorToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->administradorToolStripMenuItem->Text = L"Administrador";
 			this->administradorToolStripMenuItem->Click += gcnew System::EventHandler(this, &ventanaMenu::administradorToolStripMenuItem_Click);
 			// 
@@ -722,13 +725,13 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			// listaDeMenuToolStripMenuItem
 			// 
 			this->listaDeMenuToolStripMenuItem->Name = L"listaDeMenuToolStripMenuItem";
-			this->listaDeMenuToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->listaDeMenuToolStripMenuItem->Size = System::Drawing::Size(178, 22);
 			this->listaDeMenuToolStripMenuItem->Text = L"Lista de Menu";
 			// 
 			// menuMasBuscadoToolStripMenuItem
 			// 
 			this->menuMasBuscadoToolStripMenuItem->Name = L"menuMasBuscadoToolStripMenuItem";
-			this->menuMasBuscadoToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->menuMasBuscadoToolStripMenuItem->Size = System::Drawing::Size(178, 22);
 			this->menuMasBuscadoToolStripMenuItem->Text = L"Menu mas buscado";
 			// 
 			// ProductosMenuItem
@@ -740,6 +743,12 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			this->ProductosMenuItem->Name = L"ProductosMenuItem";
 			this->ProductosMenuItem->Size = System::Drawing::Size(180, 22);
 			this->ProductosMenuItem->Text = L"Productos";
+			// 
+			// listaDeProductosToolStripMenuItem
+			// 
+			this->listaDeProductosToolStripMenuItem->Name = L"listaDeProductosToolStripMenuItem";
+			this->listaDeProductosToolStripMenuItem->Size = System::Drawing::Size(206, 22);
+			this->listaDeProductosToolStripMenuItem->Text = L"Lista de Productos";
 			// 
 			// precioDeProductoMenuItem
 			// 
@@ -774,6 +783,12 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			this->listaDeClientesToolStripMenuItem->Name = L"listaDeClientesToolStripMenuItem";
 			this->listaDeClientesToolStripMenuItem->Size = System::Drawing::Size(204, 22);
 			this->listaDeClientesToolStripMenuItem->Text = L"Lista de Clientes";
+			// 
+			// listaDeAdministradoresToolStripMenuItem
+			// 
+			this->listaDeAdministradoresToolStripMenuItem->Name = L"listaDeAdministradoresToolStripMenuItem";
+			this->listaDeAdministradoresToolStripMenuItem->Size = System::Drawing::Size(204, 22);
+			this->listaDeAdministradoresToolStripMenuItem->Text = L"Lista de Administradores";
 			// 
 			// comprasDeUnClienteToolStripMenuItem
 			// 
@@ -852,9 +867,9 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			// FacturacionMenu
 			// 
 			this->FacturacionMenu->DisplayStyle = System::Windows::Forms::ToolStripItemDisplayStyle::Text;
-			this->FacturacionMenu->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(3) {
+			this->FacturacionMenu->DropDownItems->AddRange(gcnew cli::array< System::Windows::Forms::ToolStripItem^  >(4) {
 				this->comprarProductoMenuItem,
-					this->eliminarCompraMenuItem, this->pagarToolStripMenuItem
+					this->modificarCompraToolStripMenuItem, this->eliminarCompraMenuItem, this->pagarToolStripMenuItem
 			});
 			this->FacturacionMenu->Image = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"FacturacionMenu.Image")));
 			this->FacturacionMenu->ImageTransparentColor = System::Drawing::Color::Magenta;
@@ -866,7 +881,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			// 
 			this->comprarProductoMenuItem->Name = L"comprarProductoMenuItem";
 			this->comprarProductoMenuItem->Size = System::Drawing::Size(180, 22);
-			this->comprarProductoMenuItem->Text = L"Agregar Comprar";
+			this->comprarProductoMenuItem->Text = L"Agregar Compra";
 			this->comprarProductoMenuItem->Click += gcnew System::EventHandler(this, &ventanaMenu::comprarProductoMenuItem_Click);
 			// 
 			// eliminarCompraMenuItem
@@ -874,6 +889,12 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			this->eliminarCompraMenuItem->Name = L"eliminarCompraMenuItem";
 			this->eliminarCompraMenuItem->Size = System::Drawing::Size(180, 22);
 			this->eliminarCompraMenuItem->Text = L"Eliminar compra";
+			// 
+			// pagarToolStripMenuItem
+			// 
+			this->pagarToolStripMenuItem->Name = L"pagarToolStripMenuItem";
+			this->pagarToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->pagarToolStripMenuItem->Text = L"Pagar";
 			// 
 			// AcercaDeMenu
 			// 
@@ -986,23 +1007,11 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			this->label4->Text = L"RESTAURANTES";
 			this->label4->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			// 
-			// listaDeAdministradoresToolStripMenuItem
+			// modificarCompraToolStripMenuItem
 			// 
-			this->listaDeAdministradoresToolStripMenuItem->Name = L"listaDeAdministradoresToolStripMenuItem";
-			this->listaDeAdministradoresToolStripMenuItem->Size = System::Drawing::Size(204, 22);
-			this->listaDeAdministradoresToolStripMenuItem->Text = L"Lista de Administradores";
-			// 
-			// listaDeProductosToolStripMenuItem
-			// 
-			this->listaDeProductosToolStripMenuItem->Name = L"listaDeProductosToolStripMenuItem";
-			this->listaDeProductosToolStripMenuItem->Size = System::Drawing::Size(206, 22);
-			this->listaDeProductosToolStripMenuItem->Text = L"Lista de Productos";
-			// 
-			// pagarToolStripMenuItem
-			// 
-			this->pagarToolStripMenuItem->Name = L"pagarToolStripMenuItem";
-			this->pagarToolStripMenuItem->Size = System::Drawing::Size(180, 22);
-			this->pagarToolStripMenuItem->Text = L"Pagar";
+			this->modificarCompraToolStripMenuItem->Name = L"modificarCompraToolStripMenuItem";
+			this->modificarCompraToolStripMenuItem->Size = System::Drawing::Size(180, 22);
+			this->modificarCompraToolStripMenuItem->Text = L"Modificar Compra";
 			// 
 			// ventanaMenu
 			// 

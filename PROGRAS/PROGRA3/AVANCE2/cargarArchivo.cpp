@@ -1476,52 +1476,57 @@ void cargarArchivo::SubMenu57(){
 		cout<< "No hay compras en progreso ";
 		return;
 	}
-	string cedula;
-	string codProducto;
-	string cantidadMod;
-	string codProductoMod;
-	char opt;
-	cout<< "Ingrese el numero de cedula del cliente: ";
-	cin >> cedula;
-	cout<< "Ingrese el codigo del producto: ";
-	cin >> codProducto;
-	int temp = stoi(cedula);
-	int temp2 = stoi(codProducto);	
-	pnodoFila aux = listaFila->GetPrimero();
-	if(listaCliente->SearchC(temp,listaCliente->raiz)) {
-		while(aux!=NULL){
-			if(aux->valor == temp){
-				pnodoComp aux2 = aux->listaComp->GetPrimero();
-				while(aux2!=NULL){
-					if(aux2->cod == temp2){
-						cout<<"Desea cambiar 1.codigo o 2.cantidad:"<<endl;
-						cin >> opt;
-						switch(opt){
-						case '1':{
-						SubMenu571(aux2);
-						break;
+	else {
+		string cedula;
+		string codProducto;
+		string cantidadMod;
+		char opt;
+		cout << "Ingrese el numero de cedula del cliente: ";
+		cin >> cedula;
+		cout << "Ingrese el codigo del producto: ";
+		cin >> codProducto;
+		int temp = stoi(cedula);
+		int temp2 = stoi(codProducto);
+		pnodoFila aux = listaFila->GetPrimero();
+		if (listaCliente->SearchC(temp, listaCliente->raiz)) {
+			while (aux != NULL) {
+				if (aux->valor == temp) {
+					pnodoComp aux2 = aux->listaComp->GetPrimero();
+					while (aux2 != NULL) {
+						if (aux2->cod == temp2) {
+							cout << "Desea cambiar 1.codigo o 2.cantidad:" << endl;
+							cin >> opt;
+							switch (opt) {
+							case '1': {
+								SubMenu571(aux2);
+								break;
+							}
+							case '2': {
+								cout << "Inserte nueva cantidad:" << endl;
+								cin >> cantidadMod;
+								int temp3 = stoi(cantidadMod);
+								aux2->cantidad = temp3;
+								cout << "Cantidad modificada en producto " + codProducto + " a: " + cantidadMod;
+								break;
+							}
+
+									return;
+							}
+							aux2 = aux2->siguiente;
 						}
-						case '2':{
-						cout<<"Inserte nueva cantidad:"<<endl;
-						cin >> cantidadMod;
-						int temp3 = stoi(cantidadMod);
-						aux2->cantidad = temp3;
-						break;
-						}
-						
-					return;
+					}
+					aux = aux->siguiente;
+				}else{
+				cout << "Producto no existe" << endl;
+				return;
 				}
-				aux2=aux2->siguiente;
+			}
+
+		}else{
+		cout << "Cedula no existe" << endl;
+		return;
 		}
 	}
-		aux=aux->siguiente;
-		}
-		cout<<"Producto no existe"<<endl;
-		return;
-}
-
-}cout<<"Cedula no existe"<<endl;
-return;
 }
 
 

@@ -543,6 +543,7 @@ int main() {
 		InsertarIndice(cedula);
 		cout<<endl<<endl;
 		cout<<"\n\t .:Arbol:."<<endl<<endl;
+		this->Insertar(cedula,nombre);
 		this->PreordenR(raiz);	
 		cout<<"\n\t .:Cache:."<<endl<<endl;
 		ActualizaCache(getIndex(cedula),cedula,nombre);

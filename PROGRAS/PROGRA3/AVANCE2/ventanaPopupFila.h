@@ -47,6 +47,9 @@ namespace Interfaz {
 	public: System::Windows::Forms::Label^ label1;
 	public: System::Windows::Forms::Button^ button1;
 	private: System::Windows::Forms::Button^ button5;
+	public: System::Windows::Forms::Label^ label3;
+	private:
+	public: System::Windows::Forms::Button^ button3;
 	public:
 
 	private:
@@ -68,12 +71,14 @@ namespace Interfaz {
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->button1 = (gcnew System::Windows::Forms::Button());
 			this->button5 = (gcnew System::Windows::Forms::Button());
+			this->label3 = (gcnew System::Windows::Forms::Label());
+			this->button3 = (gcnew System::Windows::Forms::Button());
 			this->SuspendLayout();
 			// 
 			// label2
 			// 
 			this->label2->AutoSize = true;
-			this->label2->Location = System::Drawing::Point(156, 104);
+			this->label2->Location = System::Drawing::Point(256, 104);
 			this->label2->Name = L"label2";
 			this->label2->Size = System::Drawing::Size(107, 13);
 			this->label2->TabIndex = 27;
@@ -84,7 +89,7 @@ namespace Interfaz {
 			// 
 			this->button2->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button2.BackgroundImage")));
 			this->button2->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
-			this->button2->Location = System::Drawing::Point(168, 16);
+			this->button2->Location = System::Drawing::Point(268, 16);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(85, 85);
 			this->button2->TabIndex = 26;
@@ -116,7 +121,7 @@ namespace Interfaz {
 			// 
 			// button5
 			// 
-			this->button5->Location = System::Drawing::Point(110, 130);
+			this->button5->Location = System::Drawing::Point(158, 134);
 			this->button5->Name = L"button5";
 			this->button5->Size = System::Drawing::Size(75, 23);
 			this->button5->TabIndex = 28;
@@ -124,11 +129,34 @@ namespace Interfaz {
 			this->button5->UseVisualStyleBackColor = true;
 			this->button5->Click += gcnew System::EventHandler(this, &ventanaPopupFila::button5_Click);
 			// 
+			// label3
+			// 
+			this->label3->AutoSize = true;
+			this->label3->Location = System::Drawing::Point(136, 104);
+			this->label3->Name = L"label3";
+			this->label3->Size = System::Drawing::Size(115, 13);
+			this->label3->TabIndex = 30;
+			this->label3->Text = L"MODIFICAR COMPRA";
+			this->label3->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
+			// 
+			// button3
+			// 
+			this->button3->BackgroundImage = (cli::safe_cast<System::Drawing::Image^>(resources->GetObject(L"button3.BackgroundImage")));
+			this->button3->BackgroundImageLayout = System::Windows::Forms::ImageLayout::Stretch;
+			this->button3->Location = System::Drawing::Point(148, 16);
+			this->button3->Name = L"button3";
+			this->button3->Size = System::Drawing::Size(85, 85);
+			this->button3->TabIndex = 29;
+			this->button3->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
+			this->button3->UseVisualStyleBackColor = true;
+			// 
 			// ventanaPopupFila
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(305, 165);
+			this->ClientSize = System::Drawing::Size(380, 160);
+			this->Controls->Add(this->label3);
+			this->Controls->Add(this->button3);
 			this->Controls->Add(this->button5);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->button2);

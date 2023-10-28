@@ -77,7 +77,7 @@ namespace Interfaz {
 			// 
 			// textBox4
 			// 
-			this->textBox4->Location = System::Drawing::Point(202, 100);
+			this->textBox4->Location = System::Drawing::Point(202, 133);
 			this->textBox4->Name = L"textBox4";
 			this->textBox4->Size = System::Drawing::Size(167, 20);
 			this->textBox4->TabIndex = 33;
@@ -93,7 +93,7 @@ namespace Interfaz {
 			// 
 			// textBox3
 			// 
-			this->textBox3->Location = System::Drawing::Point(202, 133);
+			this->textBox3->Location = System::Drawing::Point(202, 100);
 			this->textBox3->Name = L"textBox3";
 			this->textBox3->Size = System::Drawing::Size(167, 20);
 			this->textBox3->TabIndex = 31;
@@ -183,6 +183,62 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and Insertar Restaurante
+		String^ codStrPais = textBox1->Text;
+		String^ codStrCiudad = textBox2->Text;
+		String^ codStrRestaurante = textBox3->Text;
+		String^ nombreCiudad = textBox4->Text;
+
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrPais) && !String::IsNullOrWhiteSpace(codStrCiudad) && !String::IsNullOrWhiteSpace(nombreCiudad)) {
+			int temp;
+			int temp2;
+			int temp3;
+			Int32::TryParse(codStrPais, temp);
+			Int32::TryParse(codStrCiudad, temp2);
+			Int32::TryParse(codStrRestaurante, temp3);
+			char cStr[50] = { 0 };
+			String^ clrString = nombreCiudad;
+			sprintf_s(cStr, "%s", clrString);
+			std::string stlString(cStr);
+
+			NodoBinarioPais* aux = progra->listaPais->BuscarPais(progra->listaPais->raiz, temp);
+			if (aux != NULL) {
+				NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz, temp2);
+				if (aux2 != NULL) {
+					NodoPtr aux3 = aux2->ArbolRest.BuscarNodo(temp3);
+					if (aux3 != NULL) {
+						aux3->nombreRest = cStr;
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Pais: " + temp + "\nCiudad: " + temp2 + "\nCodigo: " + temp3 + "\nRestaurante : " + nombreCiudad,
+							"Restaurante Modificado",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Information);
+						cout << "\n.:Restaurante encontrado:.\nCodigo Pais: " << temp << "\nCodigo Ciudad: " << temp2 << "\nCodigo Restaurante: " << temp3 << "\nNombre: " << aux3->nombreRest << endl;
+						this->Close();
+					}
+					else {
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Codigo: " + temp3,
+							"Restaurante NO Modificado",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Error);
+						cout << "El restaurante " << temp3 << " no se modifico" << endl;
+						this->Close();
+					}
+				}
+				else {
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Codigo: " + temp3,
+						"Restaurante No Encontrado",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+					cout << "El restaurante " << temp3 << " no se encuentra" << endl;
+					this->Close();
+				}
+			}
+		}
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

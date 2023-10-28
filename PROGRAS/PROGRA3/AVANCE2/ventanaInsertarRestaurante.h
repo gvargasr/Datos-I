@@ -188,11 +188,11 @@ namespace Interfaz {
 		String^ codStrPais = textBox1->Text;
 		String^ codStrCiudad = textBox2->Text;
 		String^ codStrRestaurante = textBox3->Text;
-		String^ nombreCiudad = textBox4->Text;
+		String^ nombreRestaurante = textBox4->Text;
 
 
 		// Check if the strings are not empty
-		if (!String::IsNullOrWhiteSpace(codStrPais) && !String::IsNullOrWhiteSpace(codStrCiudad) && !String::IsNullOrWhiteSpace(nombreCiudad)) {
+		if (!String::IsNullOrWhiteSpace(codStrPais) && !String::IsNullOrWhiteSpace(codStrCiudad) && !String::IsNullOrWhiteSpace(nombreRestaurante)) {
 			int temp;
 			int temp2;
 			int temp3;
@@ -200,7 +200,7 @@ namespace Interfaz {
 			Int32::TryParse(codStrCiudad, temp2);
 			Int32::TryParse(codStrRestaurante, temp3);
 			char cStr[50] = { 0 };
-			String^ clrString = nombreCiudad;
+			String^ clrString = nombreRestaurante;
 			sprintf_s(cStr, "%s", clrString);
 			std::string stlString(cStr);
 			//INICIO CODIGO
@@ -208,13 +208,41 @@ namespace Interfaz {
 			if (aux != NULL) {
 				NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz, temp2);
 				if (aux2 != NULL) {
-					aux2->ArbolRest.insertar(temp3, cStr);
+					NodoPtr aux3 = aux2->ArbolRest.BuscarNodo(temp3);
+					if(aux3 == NULL){
+						aux2->ArbolRest.insertar(temp3, cStr);
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Codigo: " + codStrRestaurante + "\nCiudad: " + nombreRestaurante,
+							"Restaurante agregado.",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Information);
+						this->Close();
+					}
+					else {
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Valores incorrectos, Restaurante ya existe",
+							"Error",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Error);
+						cout << "No se agrego el restaurante, restaurante ya existe";
+					}
+					
 				}
 				else {
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Valores incorrectos, Restaurante no agregado",
+						"Error",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Error);
 					cout << "No se agrego el restaurante, valores incorrectos";
 				}
 			}
 			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Valores incorrectos, Restaurante no agregado",
+					"Error",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Error);
 				cout << "No se agrego el restaurante, valores incorrectos";
 			}
 			//FIN CODIGO();
@@ -224,7 +252,6 @@ namespace Interfaz {
 			// Display an error message or take appropriate action
 		}
 		// cerrar ventana
-		this->Close();
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

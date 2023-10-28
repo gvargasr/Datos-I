@@ -189,10 +189,19 @@
     <ClCompile Include="ventanaPopupRestaurantes2.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ventanaPopupEliminarCompra.cpp">
+    <ClCompile Include="ventanaEliminarCompra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ventanaComprar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaPopupModificarCompra.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaModificarProductoCompra.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaModificarCantidadCompra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -380,10 +389,19 @@
     <ClInclude Include="ventanaPopupRestaurantes2.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ventanaPopupEliminarCompra.h">
+    <ClInclude Include="ventanaEliminarCompra.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ventanaComprar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupModificarCompra.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaModificarProductoCompra.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaModificarCantidadCompra.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

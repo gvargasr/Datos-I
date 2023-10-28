@@ -105,7 +105,7 @@ RNRest::RNRest() {
   }
   
   bool RNRest::BusquedaBool(NodoPtr nodo, int numbuscado) {
-    if (nodo == TNULL || numbuscado == nodo->codRest) {
+    if (/*nodo == TNULL ||*/ numbuscado == nodo->codRest) {
       return true;
     } else if (nodo->Hizq==nullptr&&nodo->Hder==nullptr&&numbuscado != nodo->codRest){
     	return false;

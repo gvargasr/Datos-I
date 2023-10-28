@@ -94,6 +94,7 @@
     </ClCompile>
     <Link>
       <AdditionalDependencies />
+      <SubSystem>Console</SubSystem>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -163,21 +164,24 @@
     <ClCompile Include="ventanaInsertarRestaurante.cpp" />
     <ClCompile Include="ventanaMenu.cpp" />
     <ClCompile Include="ventanaModificarAdmin.cpp" />
+    <ClCompile Include="ventanaModificarCantidadCompra.cpp" />
     <ClCompile Include="ventanaModificarCiudad.cpp" />
     <ClCompile Include="ventanaModificarCliente.cpp" />
     <ClCompile Include="ventanaModificarMenu.cpp" />
     <ClCompile Include="ventanaModificarPais.cpp" />
     <ClCompile Include="ventanaModificarProducto.cpp" />
+    <ClCompile Include="ventanaModificarProductoCompra.cpp" />
     <ClCompile Include="ventanaModificarRestaurante.cpp" />
     <ClCompile Include="ventanaPopupAdministradores.cpp" />
     <ClCompile Include="ventanaPopupCiudades.cpp" />
     <ClCompile Include="ventanaPopupClientes.cpp" />
     <ClCompile Include="ventanaPopupDescuento.cpp" />
-    <ClCompile Include="ventanaPopupEliminarCompra.cpp" />
+    <ClCompile Include="ventanaEliminarCompra.cpp" />
     <ClCompile Include="ventanaPopupFacturacion.cpp" />
     <ClCompile Include="ventanaPopupFila.cpp" />
     <ClCompile Include="ventanaPopupLugares.cpp" />
     <ClCompile Include="ventanaPopupMenu.cpp" />
+    <ClCompile Include="ventanaPopupModificarCompra.cpp" />
     <ClCompile Include="ventanaPopupPagos.cpp" />
     <ClCompile Include="ventanaPopupPaises.cpp" />
     <ClCompile Include="ventanaPopupProductos.cpp" />
@@ -278,6 +282,9 @@
     <ClInclude Include="ventanaModificarAdmin.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ventanaModificarCantidadCompra.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ventanaModificarCiudad.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -291,6 +298,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ventanaModificarProducto.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaModificarProductoCompra.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ventanaModificarRestaurante.h">
@@ -308,7 +318,7 @@
     <ClInclude Include="ventanaPopupDescuento.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="ventanaPopupEliminarCompra.h">
+    <ClInclude Include="ventanaEliminarCompra.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ventanaPopupFacturacion.h">
@@ -321,6 +331,9 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ventanaPopupMenu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaPopupModificarCompra.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ventanaPopupPagos.h">
@@ -462,6 +475,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ventanaPopupMenu.resx">
       <DependentUpon>ventanaPopupMenu.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaPopupModificarCompra.resx">
+      <DependentUpon>ventanaPopupModificarCompra.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ventanaPopupPagos.resx">
       <DependentUpon>ventanaPopupPagos.h</DependentUpon>

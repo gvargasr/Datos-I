@@ -139,6 +139,47 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and Insertar Ciudad
+		String^ codStrPais = textBox1->Text;
+		String^ nombrePais = textBox2->Text;
+
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrPais) && !String::IsNullOrWhiteSpace(nombrePais) ) {
+			int codPais;
+			char cStr[50] = { 0 };
+			Int32::TryParse(codStrPais, codPais);
+			String^ clrString = nombrePais;
+			sprintf_s(cStr, "%s", clrString);
+			std::string stlString(cStr);
+
+			NodoBinarioPais* aux = progra->listaPais->BuscarPais(progra->listaPais->raiz, codPais);
+			if (aux != NULL) {
+				aux->pais = cStr;
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Codigo: " + codPais + "\nPais: " + nombrePais,
+						"Pais modificado.",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+					this->Close();
+
+					}
+					else {
+						cout << "El Pais " << codPais << " no se encuentra" << endl;
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Valores incorrectos",
+							"Error .",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Information);
+						cout << "No se modifico el pais, valores incorrectos";
+					}
+				}
+
+				// Handle empty input in textBox1 or textBox2
+				// Display an error message or take appropriate action
+				// 
+		// cerrar ventana
+
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

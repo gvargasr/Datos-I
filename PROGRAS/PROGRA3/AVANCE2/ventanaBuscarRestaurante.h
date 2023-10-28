@@ -204,7 +204,7 @@ namespace Interfaz {
 							MessageBoxButtons::OK,
 							MessageBoxIcon::Information);
 						cout << "El restaurante " << temp3 << " no se encuentra" << endl;
-						this->Close();
+
 					}
 				}
 				else {
@@ -214,8 +214,16 @@ namespace Interfaz {
 						MessageBoxButtons::OK,
 						MessageBoxIcon::Information);
 					cout << "El restaurante " << temp3 << " no se encuentra" << endl;
-					this->Close();
+
 				}
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Codigo: " + temp3,
+					"Restaurante No Encontrado",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+				cout << "El restaurante " << temp3 << " no se encuentra" << endl;
 			}
 		}
 	}

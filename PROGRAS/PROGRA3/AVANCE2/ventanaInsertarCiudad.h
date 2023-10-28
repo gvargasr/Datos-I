@@ -182,7 +182,7 @@ namespace Interfaz {
 			if (aux != NULL) {
 				pNodoBinarioCiudad aux2 = aux->ArbolCiudad.raiz;
 				if(aux->ArbolCiudad.BuscarCiudadBool(aux2, codCiudad) == false){
-				aux->ArbolCiudad.InsertarBalanceadoCiudad(aux2, aux->ArbolCiudad.Hh, codCiudad, cStr);
+				aux->ArbolCiudad.InsertaNodoCiudad( codCiudad, cStr);
 				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
 					"Codigo: " + codCiudad + "\nCiudad: " + nombreCiudad,
 					"Ciudad agregada.",
@@ -192,7 +192,7 @@ namespace Interfaz {
 				}
 				else {
 					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
-						"Valores incorrectos,ciudad ya existe",
+						"Valores incorrectos1",
 						"Error .",
 						MessageBoxButtons::OK,
 						MessageBoxIcon::Information);
@@ -200,7 +200,7 @@ namespace Interfaz {
 			}
 			else {
 				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
-					"Valores incorrectos,pais no existe",
+					"Valores incorrectos2",
 					"Error .",
 					MessageBoxButtons::OK,
 					MessageBoxIcon::Information);
