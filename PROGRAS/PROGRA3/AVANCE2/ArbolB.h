@@ -1,9 +1,11 @@
 // ArbolB.h
-#pragma once
+//#pragma once
 
 #include <iostream>
 #include <string>
 #include <fstream>
+
+using namespace std;
 
 class Pagina_Cliente {
 	public:
@@ -56,7 +58,7 @@ class Pagina_Cliente {
         Ramas[1] = rama2;
         Ramas[2] = rama3;
         Ramas[3] = rama4;
-        Ramas[4] = rama5;
+        Ramas[4] = rama5; 
     }
 		
 		
@@ -82,7 +84,19 @@ public:
 	string SearchContador(int clave, Pagina_Cliente* raiz);
     bool CompraDeCliente(int clave, Pagina_Cliente* raiz);
     bool SearchC(int clave, Pagina_Cliente* raiz);
-    Pagina_Cliente* Login(int clave, Pagina_Cliente* raiz);
+    
+    void Eliminar(int C1,Pagina_Cliente*& raiz);
+    void EliminarRegistro(int C1, Pagina_Cliente*& raiz, bool Encontrado);
+    void Quitar(Pagina_Cliente*& P,int K);
+    void Sucesor(Pagina_Cliente* P,int K);
+	void Restablecer (Pagina_Cliente*& P,int K);
+	void MoverDerecha(Pagina_Cliente*& P,int K);
+	void MoverIzquierda(Pagina_Cliente*& P,int K);
+	void Combina(Pagina_Cliente*& P,int K);
+
+
+
+    
 
     
     friend Pagina_Cliente;

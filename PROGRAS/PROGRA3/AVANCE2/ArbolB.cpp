@@ -1,96 +1,11 @@
 #include <iostream>
 #include <string>
 #include <fstream>
-#include "listaDCompra.h"
+//#include "listaDCompra.h"
 #include "ArbolB.h"
 
 using namespace std;
-/*
-class Pagina_Cliente {
-	public:
-		int claves [5];
-		string nombre [5];
-		int compras[5]; 
-		Pagina_Cliente* Ramas[5];
-		Pagina_Cliente* rama1; 
-		Pagina_Cliente* rama2; 
-		Pagina_Cliente* rama3; 
-		Pagina_Cliente* rama4; 
-		Pagina_Cliente* rama5;
-		int Cuenta;
-		
-	
-    Pagina_Cliente() : Cuenta(0) {
-        for (int i = 0; i < 5; i++) {
-            claves[i] = 0;
-			compras[i] = 0; 
-            nombre[i] = "";
-        }
-        rama1 = rama2 = rama3 = rama4 = rama5 = NULL;
-        Ramas[0] = rama1;
-        Ramas[1] = rama2;
-        Ramas[2] = rama3;
-        Ramas[3] = rama4;
-        Ramas[4] = rama5;
-    }
 
-    // Constructor con parámetros
-    Pagina_Cliente(int pCedula, string pNombre) : Pagina_Cliente() {
-        claves[1] = pCedula;
-        nombre[1] = pNombre;
-        compras[1] = 0; 
-        Cuenta = 1;
-    }
-    
-    int obtenerCuenta() const {
-        return Cuenta;
-    }
-
-    ~Pagina_Cliente() {
-    	        for (int i = 0; i < 5; i++) {
-            claves[i] = 0; 
-            nombre[i] = "";
-            compras[i] = 0; 
-        }
-        rama1 = rama2 = rama3 = rama4 = rama5 = NULL;
-        Ramas[0] = rama1;
-        Ramas[1] = rama2;
-        Ramas[2] = rama3;
-        Ramas[3] = rama4;
-        Ramas[4] = rama5;
-    }
-		
-		
-};
-
-typedef Pagina_Cliente* puntero_Cliente;*/
-/*
-class ArbolB{
-	public :
-	Pagina_Cliente* raiz;
-	
-	ArbolB() {
-        raiz = new Pagina_Cliente();
-    }
-	
-	void Empujar(int C1, string& nombre, Pagina_Cliente*& R, bool& EmpujaArriba, int& Mdna, Pagina_Cliente*& Xr);
-    void InsertarClave(int C1, string nombre, Pagina_Cliente*& raiz);
-    void BuscarNodo(int Clave, Pagina_Cliente* P, bool& Encontrado, int& K);
-    void ImprimirArbol(Pagina_Cliente*& raiz);
-    void MeterHoja(int X, string& nombre, Pagina_Cliente*& Xder, Pagina_Cliente*& P, int K);
-    void DividirNodo(int X, string& nombre, Pagina_Cliente* Xder, Pagina_Cliente*& P, int& K, int& Mda, Pagina_Cliente*& Mder);
-    bool Search(int clave, Pagina_Cliente* raiz);
-	void Modificar(int clave, string nombre, Pagina_Cliente*& raiz);
-	void inOrderTraversal(Pagina_Cliente* raiz, ofstream& outFile);
-	void saveToFile(const string& filename);
-	string SearchNodo(int clave, Pagina_Cliente* raiz);
-	string SearchContador(int clave, Pagina_Cliente* raiz);
-    bool CompraDeCliente(int clave, Pagina_Cliente* raiz);
-    bool SearchC(int clave, Pagina_Cliente* raiz);
-
-    
-    friend Pagina_Cliente;
-};*/
 
 ArbolB::ArbolB() {
     raiz = new Pagina_Cliente();
@@ -392,31 +307,184 @@ void ArbolB::ImprimirArbol(Pagina_Cliente* raiz) {
 
 
 
-/*
-void ArbolB::Cuenta(Pagina_Cliente P){
+////Parte de ELIMINAR
+
+//Tiene como funcion devolver la nueva raiz si la raiz inicial se ha quedado sin claves
+void ArbolB::Eliminar(int C1,Pagina_Cliente*& raiz){
+	bool Encontrado = false;
+	Pagina_Cliente *P = new Pagina_Cliente();
 	
+	EliminarRegistro(C1, raiz,Encontrado);
+		if(!Encontrado){
+			cout<< "Elemento no se encuentra en arbol"<<endl;
+		}
+		else if(raiz->Cuenta == 0){
+			P = raiz;
+			raiz = raiz->Ramas[0];
+			delete P;
+		}
 }
-*/
 
 
-/*int main() {
+void ArbolB::EliminarRegistro(int C1, Pagina_Cliente*& raiz, bool Encontrado){
+    int K = 0;
+    
+    if(raiz == NULL){
+	
+    	cout<<"arbol vacio, llego a debajo de una hoja, no esta en el arbol"<<endl;
+        Encontrado= false;// se ha llegado debajo de una hoja, la clave no esta en el arbol
+    }else{
+     	BuscarNodo(C1,raiz,Encontrado,K);
+     	cout<<"Encontrado: "<<Encontrado<<endl;
+     	if(Encontrado){
+     		if(raiz->Ramas[K-1] == NULL){
+     			cout<<"Entra a quitar"<<endl<<endl;
+     			Quitar(raiz, K);
+			 }else{
+			 	cout<<"Entra a sucesor"<<endl<<endl;
+			 	Sucesor(raiz, K);
+			 	EliminarRegistro(raiz->claves[K], raiz->Ramas[K], Encontrado);
+			 	if(!Encontrado){
+			 		cout<< "Error en el proceso";
+				 }
+			 }
+		}else{
+			cout<<"Entra a EliminarRegistro"<<endl;
+		 	EliminarRegistro(C1, raiz->Ramas[K], Encontrado);
+		 	
+		 	if(raiz->Ramas[K]!=NULL)
+		 		if(raiz->Ramas[K]->Cuenta<2){
+		 			cout<<"Entra a restablecer1"<<endl;
+		 			Restablecer(raiz,K);
+				}
+		}
+	}
+}
+
+
+void ArbolB::Quitar(Pagina_Cliente*& P,int K){
+	cout<<"K: "<<K<<endl;
+  	for(int J = K+1; J<= P->Cuenta; J++){
+  		P->claves[J-1] = P->claves[J];
+  		P->Ramas[J-1] = P->Ramas[J];
+  		P->nombre[J-1] = P->nombre[J];
+  	}
+  	P->Cuenta = P->Cuenta-1;
+  	cout<<"Sale de Quitar"<<endl;
+}
+
+void ArbolB::Sucesor(Pagina_Cliente* P,int K){
+  Pagina_Cliente *Q = new Pagina_Cliente();
+  
+  Q=P->Ramas[K];
+  while(Q->Ramas[0]!=NULL)
+     Q=Q->Ramas[0]; 
+  P->claves[K]=Q->claves[1];
+  P->nombre[K]=Q->nombre[1];
+}
+
+void ArbolB::Restablecer (Pagina_Cliente*& P,int K){
+    if(K>0){ //Tiene hermano izquierdo
+        cout<<"K mayor que cero"<<endl;
+		if (P->Ramas[K-1]->Cuenta>2){ //Tiene mas claves que el minimo y por tanto puede desplazarse una clave
+            cout<<"entra a moverDereha"<<endl;
+			MoverDerecha(P,K);
+        }else{
+        	cout<<"entra a combina"<<endl;
+        	Combina(P,K);
+        }
+    }
+    else{//solo tiene hermano derecho
+    	cout<<"K menor que cero"<<endl;
+        if(P->Ramas[1]->Cuenta>2){
+        	cout<<"entra a moverIzquierda"<<endl;
+        	//Tiene mas claves que el minimo
+        	MoverIzquierda(P,1);
+		}else{
+			cout<<"entra a combina"<<endl;
+			Combina(P,1);
+		} 
+   }
+}
+
+
+
+
+void ArbolB::MoverDerecha(Pagina_Cliente*& P,int K){
+  int J;
+//     with P.Ramas[K]
+    	for(J=P->Ramas[K]->Cuenta; J>=1; J--) {
+    		P->Ramas[K]->claves[J+1] = P->Ramas[K]->claves[J];
+    		P->Ramas[K]->nombre[J+1] = P->Ramas[K]->nombre[J];
+    		P->Ramas[J+1]=P->Ramas[J];
+    	}
+     P->Ramas[K]->Cuenta=P->Ramas[K]->Cuenta+1;
+     P->Ramas[K]->Ramas[1]=P->Ramas[K]->Ramas[0];
+     P->Ramas[K]->claves[1]=P->claves[K];
+	 P->Ramas[K]->nombre[1] = P->nombre[K];
+
+     P->claves[K]=P->Ramas[K-1]->claves[P->Cuenta];
+     P->nombre[K]=P->Ramas[K-1]->nombre[P->Cuenta];
+     P->Ramas[K]->Ramas[0]=P->Ramas[K-1]->Ramas[P->Cuenta];
+     P->Ramas[K-1]->Cuenta=P->Ramas[K-1]->Cuenta-1;
+} 
+
+
+
+void ArbolB::MoverIzquierda(Pagina_Cliente*& P,int K){
+  int J;
+//  with P.Ramas[K-1]// es el nodo con menos claves que el minimo
+    P->Ramas[K-1]->Cuenta=P->Ramas[K-1]->Cuenta+1;
+    P->Ramas[K-1]->claves[P->Ramas[K-1]->Cuenta]=P->claves[K];
+    P->Ramas[K-1]->nombre[P->Ramas[K-1]->Cuenta]=P->nombre[K];
+    P->Ramas[K-1]->Ramas[P->Ramas[K-1]->Cuenta]=P->Ramas[K]->Ramas[0] ;
+      // baja la clave del nodo padre
+//  with P->Ramas[K] // hermano derecho
+    P->claves[K]=P->Ramas[K]->claves[1];
+	P->nombre[K]=P->Ramas[K]->nombre[1];//sube al nodo padre de la clave 1 del hermano derecho, sustituye a la que bajo
+    P->Ramas[0]=P->Ramas[K]->Ramas[1];
+    P->Ramas[K]->Cuenta=P->Ramas[K]->Cuenta-1;
+    for(J=1; J<=P->Ramas[K]->Cuenta; J++){
+    	P->Ramas[K]->claves[J]= P->Ramas[K]->claves[J+1];
+    	P->Ramas[K]->nombre[J]= P->Ramas[K]->nombre[J+1];
+    	P->Ramas[K]->Ramas[J]=P->Ramas[K]->Ramas[J+1];
+    }
+}
+
+
+
+void ArbolB::Combina(Pagina_Cliente*& P, int K){
+//forma un nuevo nodo con el hermano izquierdo la mediana ente el nodo problema y el hermano izquierdo
+//situado en el nodo padre y las claves del nodo problema.
+
+  int J;
+  Pagina_Cliente *Q = new Pagina_Cliente();
+  Q=P->Ramas[K];
+//  with P.Ramas[k-1]//hermano izquierdo
+    P->Ramas[K-1]->Cuenta=P->Ramas[K-1]->Cuenta+1;
+    P->Ramas[K-1]->claves[P->Ramas[K-1]->Cuenta]=P->claves[K];// baja clave mediana desde el nodo padre
+    P->Ramas[K-1]->nombre[P->Ramas[K-1]->Cuenta]=P->nombre[K];
+	P->Ramas[K-1]->Ramas[P->Ramas[K-1]->Cuenta]=Q->Ramas[0];
+    for(J=1; J<=Q->Cuenta; J++){
+    	P->Ramas[K-1]->Cuenta=P->Ramas[K-1]->Cuenta+1;
+    	P->Ramas[K-1]->claves[P->Ramas[K-1]->Cuenta]=Q->claves[J];
+    	P->Ramas[K-1]->nombre[P->Ramas[K-1]->Cuenta]=Q->nombre[J];
+    	P->Ramas[K-1]->Ramas[P->Ramas[K-1]->Cuenta]=Q->Ramas[J];
+    }
+ //Reajustadas las claves y ramas del nodo padre debido a que antes ascendio la clave K
+// with P
+	for(J= K; J<=P->Cuenta-1; J++){
+		P->claves[J]=P->claves[J+1];
+		P->nombre[J]=P->nombre[J+1];
+    	P->Ramas[J]=P->Ramas[J+1];
+  	}
+  	P->Cuenta=P->Cuenta-1;
+ 	delete(Q);
+}  
+
+/*
+int main() {
     ArbolB* clientes = new ArbolB();
-    clientes->InsertarClave(70, "maria", clientes->raiz);
-	clientes->InsertarClave(71, "Esteban", clientes->raiz);
-    clientes->InsertarClave(72, "Carlos", clientes->raiz);
-    clientes->InsertarClave(11, "KUYOG BAZE", clientes->raiz);
-    clientes->InsertarClave(12, "JICAPU POTICI", clientes->raiz);
- /*   clientes->InsertarClave(13, "SER XUG", clientes->raiz);
-    clientes->InsertarClave(14, "VELU DESE", clientes->raiz);
-    clientes->InsertarClave(15, "VUNAW RIPOR", clientes->raiz);*/
- /*   clientes->InsertarClave(7, "hola13", clientes->raiz);
-    clientes->InsertarClave(90, "hola9", clientes->raiz);
-	clientes->InsertarClave(10, "Jose", clientes->raiz);
-    clientes->InsertarClave(95, "hola95", clientes->raiz);*/
-
-    
-    
-  /*  
     clientes->InsertarClave(70, "maria", clientes->raiz);
 	clientes->InsertarClave(71, "Esteban", clientes->raiz);
     clientes->InsertarClave(72, "Carlos", clientes->raiz);
@@ -424,11 +492,27 @@ void ArbolB::Cuenta(Pagina_Cliente P){
     clientes->InsertarClave(12, "JICAPU POTICI", clientes->raiz);
     clientes->InsertarClave(13, "SER XUG", clientes->raiz);
     clientes->InsertarClave(14, "VELU DESE", clientes->raiz);
-    clientes->InsertarClave(15, "VUNAW RIPOR", clientes->raiz);*/
+    clientes->InsertarClave(15, "VUNAW RIPOR", clientes->raiz);
+    clientes->InsertarClave(7, "hola13", clientes->raiz);
+    clientes->InsertarClave(90, "hola9", clientes->raiz);
+	clientes->InsertarClave(10, "Jose", clientes->raiz);
+    clientes->InsertarClave(95, "hola95", clientes->raiz);
+
     
     
     
- /*  
+    clientes->InsertarClave(70, "maria", clientes->raiz);
+	clientes->InsertarClave(71, "Esteban", clientes->raiz);
+    clientes->InsertarClave(72, "Carlos", clientes->raiz);
+    clientes->InsertarClave(11, "KUYOG BAZE", clientes->raiz);
+    clientes->InsertarClave(12, "JICAPU POTICI", clientes->raiz);
+    clientes->InsertarClave(13, "SER XUG", clientes->raiz);
+    clientes->InsertarClave(14, "VELU DESE", clientes->raiz);
+    clientes->InsertarClave(15, "VUNAW RIPOR", clientes->raiz);
+
+    
+    
+   
     clientes->InsertarClave(5, "hola10", clientes->raiz);
     clientes->InsertarClave(6, "hola11", clientes->raiz);
     clientes->InsertarClave(6, "hola12", clientes->raiz);
@@ -453,8 +537,13 @@ void ArbolB::Cuenta(Pagina_Cliente P){
 	clientes->Search(90,clientes->raiz);
 	clientes->Search(15,clientes->raiz);
 	clientes->Search(6,clientes->raiz);
-	clientes->Search(88,clientes->raiz);*/
-/*	clientes->ImprimirArbol(clientes->raiz);
+	clientes->Search(88,clientes->raiz);
+	cout<<"ARBOL ORIGINAL: "<<endl<<endl;
+	clientes->ImprimirArbol(clientes->raiz);
+	clientes->Eliminar(95, clientes->raiz);
+	cout<<"ARBOL despues de eliminar: "<<endl<<endl;
+	clientes->ImprimirArbol(clientes->raiz);
+	
     delete clientes;
     return 0;
 }*/

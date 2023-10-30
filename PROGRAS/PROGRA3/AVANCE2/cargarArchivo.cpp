@@ -745,7 +745,7 @@ void cargarArchivo::SubMenu26(){
 
 
 // Eliminar
-
+/*
 void cargarArchivo::SubMenu3(){
 		cout << endl << "----------------------------" << endl;
   		cout << endl << "      3. Eliminar   " << endl;
@@ -763,7 +763,7 @@ void cargarArchivo::SubMenu3(){
 		char opt;
 		cin >> opt;
 	switch(opt){
-/*		case '1':{
+		case '1':{
 			cout<< "3.1 Eliminar Pais"<<endl;
 			SubMenu31();
 			break;
@@ -792,7 +792,7 @@ void cargarArchivo::SubMenu3(){
 			cout<< "3.6 Eliminar Cliente"<<endl;
 			SubMenu36();
 			break;
-		}*/
+		}
 		case '7':{
 			cout<<"Volviendo a Main Menu"<<endl;			
 			break;
@@ -804,7 +804,7 @@ void cargarArchivo::SubMenu3(){
 		}
 	}
 }
-/*
+
 void cargarArchivo::SubMenu31(){
 	string codPais;
 	cout<< "Ingrese el codigo de pais: ";
