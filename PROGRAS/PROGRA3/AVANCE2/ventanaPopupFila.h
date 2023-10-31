@@ -1,6 +1,9 @@
 #pragma once
 #include "cargarArchivo.h"
 #include <string>
+
+#include "ventanaComprar.h"
+
 namespace Interfaz {
 
 	using namespace System;
@@ -16,9 +19,13 @@ namespace Interfaz {
 	public ref class ventanaPopupFila : public System::Windows::Forms::Form
 	{
 	public:
+		String^ usuario;
+		bool^ flag;
 		cargarArchivo* progra;
-		ventanaPopupFila(cargarArchivo* progra)
+		ventanaPopupFila(cargarArchivo* progra, String^ usuario, bool^ flag)
 		{
+			this->usuario = usuario;
+			this->flag = flag;
 			this->progra = progra;
 			InitializeComponent();
 			//
@@ -56,6 +63,9 @@ namespace Interfaz {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		
+		ventanaComprar^ ventanaCompra;
+
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -172,7 +182,22 @@ namespace Interfaz {
 #pragma endregion
 	private: System::Void ventanaPopupFila_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+
+private: System::Void ventanaComprar_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaPopupClientees is disposed before accessing it
+	if (ventanaCompra != nullptr && !ventanaCompra->IsDisposed) {
+		// Unsubscribe events
+		ventanaCompra->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupFila::ventanaComprar_FormClosed);
+		// Show the ventanaPrincipal form when ventanaPopupClientees is closed
+	}
+	this->Show();
+}
+
+
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	ventanaCompra = gcnew ventanaComprar(progra, usuario, flag);
+	ventanaCompra->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupFila::ventanaComprar_FormClosed);
+	ventanaCompra->Show();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 }

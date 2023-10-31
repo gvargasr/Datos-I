@@ -185,9 +185,14 @@ void RNRest::PreOrderTraversal(NodoPtr raiz, ofstream& archivo_salida) {
         PreOrderTraversal(raiz->Hder, archivo_salida);
     }
     if (raiz != TNULL) {
-        archivo_salida << raiz->codRest << " (" << (raiz->color ? "Rojo" : "Negro") << ") Nombre: " << raiz->nombreRest << endl;
+        if (raiz->codRest == -20) {
+            PreOrderTraversal(raiz->Hizq, archivo_salida);
+            PreOrderTraversal(raiz->Hder, archivo_salida);
+        }else{
+        archivo_salida << raiz->codRest  <<" - " << " Nombre: " << raiz->nombreRest << endl;
         PreOrderTraversal(raiz->Hizq, archivo_salida);
         PreOrderTraversal(raiz->Hder, archivo_salida);
+        }
     }
 }
 

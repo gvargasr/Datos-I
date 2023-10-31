@@ -155,7 +155,7 @@ namespace Interfaz {
 				if (aux2 != NULL) {
 					cout << "\nSe esta generando el archivo Reporte_Restaurante_" + aux2->ciudad + ".txt\n.\n.\n.\n" << endl;
 					aux2->ArbolRest.MostrarRN3(aux2->ciudad);
-					aux2->ArbolRest.MostrarRN();
+				//	aux2->ArbolRest.MostrarRN();
 					this->Close();
 				}
 				else {

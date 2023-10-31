@@ -1,6 +1,0 @@
-	.:REPORTE LISTA RESTAURANTES:.
-
-
-234 (Negro) Nombre: MacBocas2
-34 (Rojo) Nombre: MacPanama
-2341 (Rojo) Nombre: X

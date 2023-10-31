@@ -2,9 +2,9 @@
 #include "cargarArchivo.h"
 #include <string>
 
-#include "ventanaComprar.h"
 #include "ventanaPopupAdministradores.h"
 #include "ventanaPopupClientes.h"
+#include "ventanaPopupFila.h"
 
 
 namespace Interfaz {
@@ -62,7 +62,7 @@ namespace Interfaz {
 		/// Required designer variable.
 		/// </summary>
 		
-		ventanaComprar^ ventanaCompra;
+		ventanaPopupFila^ popupFila;
 		ventanaPopupAdministradores^ popupAdmin;
 		ventanaPopupClientes^ popupCliente;
 		System::ComponentModel::Container ^components;
@@ -179,15 +179,7 @@ namespace Interfaz {
 		}
 #pragma endregion
 
-private: System::Void ventanaComprar_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
-	// Check if ventanaPopupClientees is disposed before accessing it
-	if (ventanaCompra != nullptr && !ventanaCompra->IsDisposed) {
-		// Unsubscribe events
-		ventanaCompra->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupUsuarios::ventanaComprar_FormClosed);
-		// Show the ventanaPrincipal form when ventanaPopupClientees is closed
-	}
-	this->Show();
-}
+
 
 
 private: System::Void ventanaPopupClientes_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
@@ -211,6 +203,15 @@ private: System::Void ventanaPopupAdministradores_FormClosed(System::Object^ sen
 	this->Show();
 }
 
+private: System::Void ventanaPopupFila_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaModificarCliente is disposed before accessing it
+	if (popupFila != nullptr && !popupFila->IsDisposed) {
+		// Unsubscribe events
+		popupFila->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupUsuarios::ventanaPopupFila_FormClosed);
+		// Show the ventanaPrincipal form when ModificarCliente is closed
+	}
+	this->Show();
+}
 
 
 	private: System::Void ventanaPopupUsuarios_Load(System::Object^ sender, System::EventArgs^ e) {
@@ -250,9 +251,10 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 
 
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
-	ventanaCompra = gcnew ventanaComprar(progra, usuario, flag);
-	ventanaCompra->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupUsuarios::ventanaComprar_FormClosed);
-	ventanaCompra->Show();
+	popupFila = gcnew ventanaPopupFila(progra, usuario, flag);
+	popupFila->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupUsuarios::ventanaPopupFila_FormClosed);
+	popupFila->Show();
+
 }
 
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
