@@ -71,7 +71,7 @@ namespace Interfaz {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(181, 134);
+			this->button2->Location = System::Drawing::Point(193, 103);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 11;
@@ -81,7 +81,7 @@ namespace Interfaz {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(64, 135);
+			this->button1->Location = System::Drawing::Point(76, 104);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 10;
@@ -125,7 +125,7 @@ namespace Interfaz {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(380, 170);
+			this->ClientSize = System::Drawing::Size(356, 138);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox2);
@@ -141,6 +141,50 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and BuscarCiudad
+		String^ codStrPais = textBox1->Text;
+		String^ codStrCiudad = textBox2->Text;
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrPais) && !String::IsNullOrWhiteSpace(codStrCiudad)) {
+			int temp;
+			int temp2;
+			Int32::TryParse(codStrPais, temp);
+			Int32::TryParse(codStrCiudad, temp2);
+			NodoBinarioPais* aux = progra->listaPais->BuscarPais(progra->listaPais->raiz, temp);
+			if (aux != NULL) {
+				NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz, temp2);
+				if (aux2 != NULL) {
+					std::string adminInfoStdString = aux2->ciudad;
+					String^ adminInfo = gcnew String(adminInfoStdString.c_str());
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Codigo: " + temp2 + "\nCiudad: " + adminInfo,
+						"Ciudad Eliminada",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+					cout << "\n.:Ciudad eliminada:.\nCodigo Pais: " << aux2->ciudad << "\nCodigo Ciudad: " << temp2 << "\nNombre: " << aux2->ciudad << endl;
+					aux->ArbolCiudad.BorrarBalanceadoCiudad(aux->ArbolCiudad.raiz, aux->ArbolCiudad.Hh, temp2);
+				}
+				else {
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Codigo: " + temp2,
+						"Ciudad No Eliminada",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
+					cout << "La ciudad " << temp2 << " no se encuentra" << endl;
+				}
+				this->Close();
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Codigo: " + temp2,
+					"Ciudad No Encontrada",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+				cout << "La ciudad " << temp2 << " no se encuentra" << endl;
+				this->Close();
+			}
+		}
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

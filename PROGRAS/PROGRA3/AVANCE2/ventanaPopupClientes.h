@@ -1,6 +1,12 @@
 #pragma once
 #include "cargarArchivo.h"
 #include <string>
+
+#include "ventanaInsertarCliente.h"
+#include "ventanaBuscarCliente.h"
+#include "ventanaModificarCliente.h"
+#include "ventanaEliminarCliente.h"
+
 namespace Interfaz {
 
 	using namespace System;
@@ -55,6 +61,11 @@ namespace Interfaz {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		
+		ventanaInsertarCliente^ InsertarCliente;
+		ventanaBuscarCliente^ BuscarCliente;
+		ventanaModificarCliente^ ModificarCliente;
+		ventanaEliminarCliente^ EliminarCliente;
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -96,6 +107,7 @@ namespace Interfaz {
 			this->button4->TabIndex = 30;
 			this->button4->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &ventanaPopupClientes::button4_Click);
 			// 
 			// label3
 			// 
@@ -117,6 +129,7 @@ namespace Interfaz {
 			this->button3->TabIndex = 28;
 			this->button3->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &ventanaPopupClientes::button3_Click);
 			// 
 			// label2
 			// 
@@ -138,6 +151,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 26;
 			this->button2->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaPopupClientes::button2_Click);
 			// 
 			// label1
 			// 
@@ -159,6 +173,7 @@ namespace Interfaz {
 			this->button1->TabIndex = 24;
 			this->button1->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ventanaPopupClientes::button1_Click);
 			// 
 			// button5
 			// 
@@ -194,8 +209,74 @@ namespace Interfaz {
 #pragma endregion
 	private: System::Void ventanaPopupClientes_Load(System::Object^ sender, System::EventArgs^ e) {
 	}
+
+
+private: System::Void ventanaInsertarCliente_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaCliente is disposed before accessing it
+	if (InsertarCliente != nullptr && !InsertarCliente->IsDisposed) {
+		// Unsubscribe events
+		InsertarCliente->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaInsertarCliente_FormClosed);
+		// Show the ventanaPrincipal form when ventanaCliente is closed
+	}
+	this->Show();
+}
+private: System::Void ventanaBuscarCliente_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaBuscarCliente is disposed before accessing it
+	if (BuscarCliente != nullptr && !BuscarCliente->IsDisposed) {
+		// Unsubscribe events
+		BuscarCliente->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaBuscarCliente_FormClosed);
+		// Show the ventanaPrincipal form when BuscarCliente is closed
+	}
+	this->Show();
+}
+private: System::Void ventanaModificarCliente_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaModificarCliente is disposed before accessing it
+	if (ModificarCliente != nullptr && !ModificarCliente->IsDisposed) {
+		// Unsubscribe events
+		ModificarCliente->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaModificarCliente_FormClosed);
+		// Show the ventanaPrincipal form when ModificarCliente is closed
+	}
+	this->Show();
+}
+private: System::Void ventanaEliminarCliente_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaEliminarCliente is disposed before accessing it
+	if (EliminarCliente != nullptr && !EliminarCliente->IsDisposed) {
+		// Unsubscribe events
+		EliminarCliente->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaEliminarCliente_FormClosed);
+		// Show the ventanaPrincipal form when EliminarCliente is closed
+	}
+	this->Show();
+}
+
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();
 }
+
+
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Insertar Cliente
+	InsertarCliente = gcnew ventanaInsertarCliente(progra);
+	InsertarCliente->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaInsertarCliente_FormClosed);
+	InsertarCliente->Show();
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Buscar Cliente
+	BuscarCliente = gcnew ventanaBuscarCliente(progra);
+	BuscarCliente->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaBuscarCliente_FormClosed);
+	BuscarCliente->Show();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Modificar Cliente
+	ModificarCliente = gcnew ventanaModificarCliente(progra);
+	ModificarCliente->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaModificarCliente_FormClosed);
+	ModificarCliente->Show();
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Eliminar Cliente
+	EliminarCliente = gcnew ventanaEliminarCliente(progra);
+	EliminarCliente->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaEliminarCliente_FormClosed);
+	EliminarCliente->Show();
+}
+
 };
 }

@@ -1,6 +1,12 @@
 #pragma once
 #include "cargarArchivo.h"
 #include <string>
+
+#include "ventanaInsertarAdmin.h"
+#include "ventanaEliminarAdmin.h"
+#include "ventanaBuscarAdmin.h"
+#include "ventanaModificarAdmin.h"
+
 namespace Interfaz {
 
 	using namespace System;
@@ -55,6 +61,12 @@ namespace Interfaz {
 		/// <summary>
 		/// Required designer variable.
 		/// </summary>
+		
+		ventanaInsertarAdmin^ InsertarAdmin;
+		ventanaEliminarAdmin^ EliminarAdmin;
+		ventanaBuscarAdmin^ BuscarAdmin;
+		ventanaModificarAdmin^ ModificarAdmin;
+
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -97,6 +109,7 @@ namespace Interfaz {
 			this->button4->TabIndex = 30;
 			this->button4->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button4->UseVisualStyleBackColor = false;
+			this->button4->Click += gcnew System::EventHandler(this, &ventanaPopupAdministradores::button4_Click);
 			// 
 			// label3
 			// 
@@ -118,6 +131,7 @@ namespace Interfaz {
 			this->button3->TabIndex = 28;
 			this->button3->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button3->UseVisualStyleBackColor = true;
+			this->button3->Click += gcnew System::EventHandler(this, &ventanaPopupAdministradores::button3_Click);
 			// 
 			// label2
 			// 
@@ -139,6 +153,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 26;
 			this->button2->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaPopupAdministradores::button2_Click);
 			// 
 			// label1
 			// 
@@ -160,6 +175,7 @@ namespace Interfaz {
 			this->button1->TabIndex = 24;
 			this->button1->TextAlign = System::Drawing::ContentAlignment::BottomCenter;
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ventanaPopupAdministradores::button1_Click);
 			// 
 			// button5
 			// 
@@ -197,6 +213,75 @@ namespace Interfaz {
 	}
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();
+}
+
+
+private: System::Void ventanaInsertarAdmin_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaAdmin is disposed before accessing it
+	if (InsertarAdmin != nullptr && !InsertarAdmin->IsDisposed) {
+		// Unsubscribe events
+		InsertarAdmin->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaInsertarAdmin_FormClosed);
+		// Show the ventanaPrincipal form when ventanaAdmin is closed
+	}
+	this->Show();
+}
+
+
+private: System::Void ventanaEliminarAdmin_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaEliminarAdmin is disposed before accessing it
+	if (EliminarAdmin != nullptr && !EliminarAdmin->IsDisposed) {
+		// Unsubscribe events
+		EliminarAdmin->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaEliminarAdmin_FormClosed);
+		// Show the ventanaPrincipal form when EliminarAdmin is closed
+	}
+	this->Show();
+}
+
+
+private: System::Void ventanaBuscarAdmin_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaBuscarAdmin is disposed before accessing it
+	if (BuscarAdmin != nullptr && !BuscarAdmin->IsDisposed) {
+		// Unsubscribe events
+		BuscarAdmin->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaBuscarAdmin_FormClosed);
+		// Show the ventanaPrincipal form when BuscarAdmin is closed
+	}
+	this->Show();
+}
+
+private: System::Void ventanaModificarAdmin_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaModificarAdmin is disposed before accessing it
+	if (ModificarAdmin != nullptr && !ModificarAdmin->IsDisposed) {
+		// Unsubscribe events
+		ModificarAdmin->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaModificarAdmin_FormClosed);
+		// Show the ventanaPrincipal form when ModificarAdmin is closed
+	}
+	this->Show();
+}
+
+
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Insertar Admin
+	InsertarAdmin = gcnew ventanaInsertarAdmin(progra);
+	InsertarAdmin->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaInsertarAdmin_FormClosed);
+	InsertarAdmin->Show();
+}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Buscar Admin
+	BuscarAdmin = gcnew ventanaBuscarAdmin(progra);
+	BuscarAdmin->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaBuscarAdmin_FormClosed);
+	BuscarAdmin->Show();
+}
+private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Modificar Admin
+	ModificarAdmin = gcnew ventanaModificarAdmin(progra);
+	ModificarAdmin->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaModificarAdmin_FormClosed);
+	ModificarAdmin->Show();
+}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	//text box para Eliminar Admin
+	EliminarAdmin = gcnew ventanaEliminarAdmin(progra);
+	EliminarAdmin->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaEliminarAdmin_FormClosed);
+	EliminarAdmin->Show();
 }
 };
 }

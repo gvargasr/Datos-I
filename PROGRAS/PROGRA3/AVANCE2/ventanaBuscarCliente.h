@@ -73,6 +73,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 17;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaBuscarCliente::button2_Click);
 			// 
 			// button1
 			// 
@@ -130,6 +131,7 @@ namespace Interfaz {
 
 			//INICIO CODIGO
 			if (progra->listaCliente->SearchNodo(temp, progra->listaCliente->raiz) != "") {
+				this->Close();
 				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
 					"Cedula: " + temp + "\nNombre: " + adminInfo,
 					"Cliente Encontrado",
@@ -150,7 +152,9 @@ namespace Interfaz {
 			// Display an error message or take appropriate action
 		}
 		// cerrar ventana
+	}
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 		this->Close();
 	}
-	};
+};
 }

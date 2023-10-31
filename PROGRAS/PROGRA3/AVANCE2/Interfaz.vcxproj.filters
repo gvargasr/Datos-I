@@ -204,6 +204,36 @@
     <ClCompile Include="ventanaModificarCantidadCompra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ventanaReportePaises.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaReporteRestaurante.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaReporteCiudades.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaReporteRestMasBuscado.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaReporteMenu.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaReporteMenuMasBuscado.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaReporteProductos.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaReportePrecioProducto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaReporteCantidadProducto.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaReporteComprasCliente.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ventanaPrincipal.h">
@@ -404,6 +434,36 @@
     <ClInclude Include="ventanaModificarCantidadCompra.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="ventanaReportePaises.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteRestaurante.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteCiudades.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteRestMasBuscado.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteMenu.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteMenuMasBuscado.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteProductos.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaReportePrecioProducto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteCantidadProducto.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteComprasCliente.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Interfaz.rc">
@@ -429,5 +489,8 @@
     <Text Include="..\..\..\..\PROGRA2\PROGRA2_-_Gustavo_Vargas_Ramirez_-_Gabriel_Campos_Gutierrez\Archivos\Restaurantes.txt">
       <Filter>Resource Files</Filter>
     </Text>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
 </Project>

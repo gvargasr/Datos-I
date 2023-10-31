@@ -47,7 +47,8 @@ namespace Interfaz {
 	private: System::Windows::Forms::TextBox^ textBox1;
 	private: System::Windows::Forms::Label^ label2;
 	private: System::Windows::Forms::Label^ label1;
-	private: System::Windows::Forms::TextBox^ textBox4;
+	private: System::Windows::Forms::TextBox^ textBox3;
+
 	private: System::Windows::Forms::Label^ label4;
 
 	private:
@@ -69,7 +70,7 @@ namespace Interfaz {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label2 = (gcnew System::Windows::Forms::Label());
 			this->label1 = (gcnew System::Windows::Forms::Label());
-			this->textBox4 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox3 = (gcnew System::Windows::Forms::TextBox());
 			this->label4 = (gcnew System::Windows::Forms::Label());
 			this->SuspendLayout();
 			// 
@@ -125,12 +126,12 @@ namespace Interfaz {
 			this->label1->TabIndex = 14;
 			this->label1->Text = L"Digite codigo de Pais:";
 			// 
-			// textBox4
+			// textBox3
 			// 
-			this->textBox4->Location = System::Drawing::Point(169, 89);
-			this->textBox4->Name = L"textBox4";
-			this->textBox4->Size = System::Drawing::Size(167, 20);
-			this->textBox4->TabIndex = 23;
+			this->textBox3->Location = System::Drawing::Point(169, 89);
+			this->textBox3->Name = L"textBox3";
+			this->textBox3->Size = System::Drawing::Size(167, 20);
+			this->textBox3->TabIndex = 23;
 			// 
 			// label4
 			// 
@@ -146,7 +147,7 @@ namespace Interfaz {
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(353, 183);
-			this->Controls->Add(this->textBox4);
+			this->Controls->Add(this->textBox3);
 			this->Controls->Add(this->label4);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
@@ -162,7 +163,71 @@ namespace Interfaz {
 
 		}
 #pragma endregion
+		//Eliminar restaurante
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and Eliminar Restaurante
+		String^ codStrPais = textBox1->Text;
+		String^ codStrCiudad = textBox2->Text;
+		String^ codStrRestaurante = textBox3->Text;
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrPais) && !String::IsNullOrWhiteSpace(codStrCiudad) && !String::IsNullOrWhiteSpace(codStrRestaurante)) {
+			int temp;
+			int temp2;
+			int temp3;
+			Int32::TryParse(codStrPais, temp);
+			Int32::TryParse(codStrCiudad, temp2);
+			Int32::TryParse(codStrRestaurante, temp3);
+
+
+
+			NodoBinarioPais* aux = progra->listaPais->BuscarPais(progra->listaPais->raiz, temp);
+
+			if (aux != NULL) {
+				NodoBinarioCiudad* aux2 = aux->ArbolCiudad.BuscarCiudad(aux->ArbolCiudad.raiz, temp2);
+				if (aux2 != NULL) {
+					NodoPtr aux3 = aux2->ArbolRest.BuscarNodo(temp3);
+					if (aux3 != NULL) {
+						std::string adminInfoStdString = aux3->nombreRest;
+						String^ adminInfo = gcnew String(adminInfoStdString.c_str());
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Codigo: " + temp3 + "\nRestaurante: " + adminInfo,
+							"Restaurante Eliminado",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Information);
+						cout << "\n.:Restaurante eliminado:.\nCodigo Pais: " << temp << "\nCodigo Ciudad: " << temp2 << "\nCodigo Restaurante: " << temp3 << "\nNombre: " << aux3->nombreRest << endl;
+						aux3->codRest = -20;
+						//aux->ArbolCiudad.BorrarBalanceadoCiudad(aux->ArbolCiudad.raiz, aux->ArbolCiudad.Hh, temp2);
+						this->Close();
+					}
+					else {
+						System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+							"Codigo: " + temp3,
+							"Ciudad No Eliminada",
+							MessageBoxButtons::OK,
+							MessageBoxIcon::Warning);
+						cout << "Restaurante " << temp3 << " no se encuentra" << endl;
+					}
+				}
+				else {
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Codigo: " + temp3,
+						"Restaurante No Encontrado",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Warning);
+					cout << "Restaurante " << temp3 << " no se encuentra" << endl;
+
+				}
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Codigo: " + temp3,
+					"Restaurante No Encontrado",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Warning);
+				cout << "Restaurante " << temp3 << " no se encuentra" << endl;
+			}
+		}
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

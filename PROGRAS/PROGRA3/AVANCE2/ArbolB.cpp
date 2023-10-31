@@ -49,7 +49,7 @@ bool ArbolB::CompraDeCliente(int clave, Pagina_Cliente* raiz) {
         	return true;
 		}
     } else {
-        CompraDeCliente(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
+        return CompraDeCliente(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
     }
 }
 

@@ -73,14 +73,16 @@ namespace Interfaz {
 			this->button2->TabIndex = 11;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaEliminarCliente::button2_Click);
 			// 
 			// button1
 			// 
+			this->button1->AutoSize = true;
 			this->button1->Location = System::Drawing::Point(62, 103);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 10;
-			this->button1->Text = L"Aceptar";
+			this->button1->Text = L"Eliminar";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &ventanaEliminarCliente::button1_Click);
 			// 
@@ -118,6 +120,43 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and EliminarCliente
+		String^ codStrCedula = textBox1->Text;
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrCedula)) {
+			int temp;
+			Int32::TryParse(codStrCedula, temp);
+			std::string adminInfoStdString = progra->listaCliente->SearchNodo(temp, progra->listaCliente->raiz);
+			String^ adminInfo = gcnew String(adminInfoStdString.c_str());
+
+			//INICIO CODIGO
+			if (progra->listaCliente->SearchNodo(temp, progra->listaCliente->raiz) != "") {
+				progra->listaCliente->Eliminar(temp, progra->listaCliente->raiz);
+				this->Close();
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Cedula: " + temp + "\nNombre: " + adminInfo,
+					"Cliente Eliminado",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Cedula: " + temp,
+					"Cliente No Encontrado",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Warning);
+			}
+			//FIN CODIGO();
+		}
+		else {
+			// Handle empty input in textBox1 or textBox2
+			// Display an error message or take appropriate action
+		}
+		// cerrar ventana
 	}
-	};
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+	}
+};
 }

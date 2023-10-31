@@ -69,7 +69,7 @@ namespace Interfaz {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(205, 138);
+			this->button2->Location = System::Drawing::Point(201, 107);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 17;
@@ -79,7 +79,7 @@ namespace Interfaz {
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(88, 139);
+			this->button1->Location = System::Drawing::Point(84, 108);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 16;
@@ -93,6 +93,7 @@ namespace Interfaz {
 			this->textBox2->Name = L"textBox2";
 			this->textBox2->Size = System::Drawing::Size(167, 20);
 			this->textBox2->TabIndex = 15;
+			this->textBox2->TextChanged += gcnew System::EventHandler(this, &ventanaBuscarCiudad::textBox2_TextChanged);
 			// 
 			// textBox1
 			// 
@@ -100,6 +101,7 @@ namespace Interfaz {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(167, 20);
 			this->textBox1->TabIndex = 14;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &ventanaBuscarCiudad::textBox1_TextChanged);
 			// 
 			// label2
 			// 
@@ -109,6 +111,7 @@ namespace Interfaz {
 			this->label2->Size = System::Drawing::Size(123, 13);
 			this->label2->TabIndex = 13;
 			this->label2->Text = L"Digite codigo de Ciudad:";
+			this->label2->Click += gcnew System::EventHandler(this, &ventanaBuscarCiudad::label2_Click);
 			// 
 			// label1
 			// 
@@ -118,12 +121,13 @@ namespace Interfaz {
 			this->label1->Size = System::Drawing::Size(110, 13);
 			this->label1->TabIndex = 12;
 			this->label1->Text = L"Digite codigo de Pais:";
+			this->label1->Click += gcnew System::EventHandler(this, &ventanaBuscarCiudad::label1_Click);
 			// 
 			// ventanaBuscarCiudad
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(393, 213);
+			this->ClientSize = System::Drawing::Size(369, 160);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox2);
@@ -185,6 +189,14 @@ namespace Interfaz {
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();
+}
+private: System::Void textBox2_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void textBox1_TextChanged(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label2_Click(System::Object^ sender, System::EventArgs^ e) {
+}
+private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 }
 };
 }

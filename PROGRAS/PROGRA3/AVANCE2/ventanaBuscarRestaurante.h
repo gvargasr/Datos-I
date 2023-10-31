@@ -202,7 +202,7 @@ namespace Interfaz {
 							"Codigo: " + temp3,
 							"Restaurante No Encontrado",
 							MessageBoxButtons::OK,
-							MessageBoxIcon::Information);
+							MessageBoxIcon::Warning);
 						cout << "El restaurante " << temp3 << " no se encuentra" << endl;
 
 					}
@@ -212,7 +212,7 @@ namespace Interfaz {
 						"Codigo: " + temp3,
 						"Restaurante No Encontrado",
 						MessageBoxButtons::OK,
-						MessageBoxIcon::Information);
+						MessageBoxIcon::Warning);
 					cout << "El restaurante " << temp3 << " no se encuentra" << endl;
 
 				}
@@ -222,7 +222,7 @@ namespace Interfaz {
 					"Codigo: " + temp3,
 					"Restaurante No Encontrado",
 					MessageBoxButtons::OK,
-					MessageBoxIcon::Information);
+					MessageBoxIcon::Warning);
 				cout << "El restaurante " << temp3 << " no se encuentra" << endl;
 			}
 		}

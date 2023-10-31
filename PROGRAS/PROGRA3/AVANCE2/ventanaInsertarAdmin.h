@@ -76,6 +76,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 17;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaInsertarAdmin::button2_Click);
 			// 
 			// button1
 			// 
@@ -182,5 +183,8 @@ namespace Interfaz {
 		// cerrar ventana
 		
 	}
+private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	this->Close();
+}
 };
 }

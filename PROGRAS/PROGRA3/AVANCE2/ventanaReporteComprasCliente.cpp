@@ -1,0 +1,2 @@
+#include "ventanaReporteComprasCliente.h"
+

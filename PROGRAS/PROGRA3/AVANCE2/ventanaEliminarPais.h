@@ -124,7 +124,40 @@ namespace Interfaz {
 	}
 	private: System::Void label1_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	// Obtener texto de textBox and BuscarAdmin
+	String^ codStrPais = textBox1->Text;
+
+	// Check if the strings are not empty
+	if (!String::IsNullOrWhiteSpace(codStrPais)) {
+		int temp;
+		Int32::TryParse(codStrPais, temp);
+		NodoBinarioPais* aux = progra->listaPais->BuscarPais(progra->listaPais->raiz, temp);
+
+		if (aux != NULL) {
+			std::string adminInfoStdString = aux->pais;
+			String^ adminInfo = gcnew String(adminInfoStdString.c_str());
+			System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+				"Codigo: " + temp + "\nPais: " + adminInfo,
+				"Pais Eliminado",
+				MessageBoxButtons::OK,
+				MessageBoxIcon::Information);
+			this->Close();
+			cout << "\n.:Pais Eliminado:.\nCodigo: " << aux->valor << "\nNombre: " << aux->pais << endl;
+
+			progra->listaPais->EliminarPais(progra->listaPais->raiz, temp);
+		}
+		else {
+			System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+				"Codigo: " + temp,
+				"Pais No Eliminado",
+				MessageBoxButtons::OK,
+				MessageBoxIcon::Warning);
+			cout << "El pais " << temp << " no se encuentra" << endl;
+		}
+
+	}
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

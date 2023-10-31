@@ -189,6 +189,16 @@
     <ClCompile Include="ventanaPopupRestaurantes2.cpp" />
     <ClCompile Include="ventanaPopupUsuarios.cpp" />
     <ClCompile Include="ventanaPrincipal.cpp" />
+    <ClCompile Include="ventanaReporteCantidadProducto.cpp" />
+    <ClCompile Include="ventanaReporteCiudades.cpp" />
+    <ClCompile Include="ventanaReporteComprasCliente.cpp" />
+    <ClCompile Include="ventanaReporteMenu.cpp" />
+    <ClCompile Include="ventanaReporteMenuMasBuscado.cpp" />
+    <ClCompile Include="ventanaReportePaises.cpp" />
+    <ClCompile Include="ventanaReportePrecioProducto.cpp" />
+    <ClCompile Include="ventanaReporteProductos.cpp" />
+    <ClCompile Include="ventanaReporteRestaurante.cpp" />
+    <ClCompile Include="ventanaReporteRestMasBuscado.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AAMenu.h" />
@@ -357,6 +367,36 @@
     <ClInclude Include="ventanaPrincipal.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ventanaReporteCantidadProducto.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteCiudades.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteComprasCliente.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteMenu.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteMenuMasBuscado.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaReportePaises.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaReportePrecioProducto.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteProductos.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteRestaurante.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteRestMasBuscado.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="ventanaBuscarAdmin.resx">
@@ -500,6 +540,12 @@
     <EmbeddedResource Include="ventanaPrincipal.resx">
       <DependentUpon>ventanaPrincipal.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ventanaReportePaises.resx">
+      <DependentUpon>ventanaReportePaises.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaReporteRestaurante.resx">
+      <DependentUpon>ventanaReporteRestaurante.h</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Interfaz.rc" />
@@ -511,6 +557,9 @@
     <Text Include="..\..\..\..\PROGRA2\PROGRA2_-_Gustavo_Vargas_Ramirez_-_Gabriel_Campos_Gutierrez\Archivos\Paises.txt" />
     <Text Include="..\..\..\..\PROGRA2\PROGRA2_-_Gustavo_Vargas_Ramirez_-_Gabriel_Campos_Gutierrez\Archivos\Productos.txt" />
     <Text Include="..\..\..\..\PROGRA2\PROGRA2_-_Gustavo_Vargas_Ramirez_-_Gabriel_Campos_Gutierrez\Archivos\Restaurantes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="cpp.hint" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

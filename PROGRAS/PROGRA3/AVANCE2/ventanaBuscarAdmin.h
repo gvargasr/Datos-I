@@ -71,6 +71,7 @@ namespace Interfaz {
 			this->button2->TabIndex = 21;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaBuscarAdmin::button2_Click);
 			// 
 			// button1
 			// 
@@ -128,6 +129,7 @@ namespace Interfaz {
 
 			//INICIO CODIGO
 			if (progra->listaAdmin->SearchNodo(temp, progra->listaAdmin->raiz) != "") {
+				this->Close();
 				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
 					"Cedula: "+temp+"\nNombre: "+adminInfo,
 					"Admin Encontrado",
@@ -139,18 +141,25 @@ namespace Interfaz {
 					"Cedula: " + temp,
 					"Admin No Encontrado",
 					MessageBoxButtons::OK,
-					MessageBoxIcon::Information);
+					MessageBoxIcon::Warning);
 			}
 			//FIN CODIGO();
 		}
 		else {
+			System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+				"Datos insuficientes.",
+				"Ingresar datos",
+				MessageBoxButtons::OK,
+				MessageBoxIcon::Warning);
 			// Handle empty input in textBox1 or textBox2
 			// Display an error message or take appropriate action
 		}
 		// cerrar ventana
-		this->Close();
 	}
 
 
-	};
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+	}
+};
 }

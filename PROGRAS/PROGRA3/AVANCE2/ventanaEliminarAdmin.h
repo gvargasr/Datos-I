@@ -67,20 +67,21 @@ namespace Interfaz {
 			// 
 			// button2
 			// 
-			this->button2->Location = System::Drawing::Point(174, 96);
+			this->button2->Location = System::Drawing::Point(176, 66);
 			this->button2->Name = L"button2";
 			this->button2->Size = System::Drawing::Size(75, 23);
 			this->button2->TabIndex = 17;
 			this->button2->Text = L"Cancelar";
 			this->button2->UseVisualStyleBackColor = true;
+			this->button2->Click += gcnew System::EventHandler(this, &ventanaEliminarAdmin::button2_Click);
 			// 
 			// button1
 			// 
-			this->button1->Location = System::Drawing::Point(57, 97);
+			this->button1->Location = System::Drawing::Point(59, 67);
 			this->button1->Name = L"button1";
 			this->button1->Size = System::Drawing::Size(75, 23);
 			this->button1->TabIndex = 16;
-			this->button1->Text = L"Aceptar";
+			this->button1->Text = L"Eliminar";
 			this->button1->UseVisualStyleBackColor = true;
 			this->button1->Click += gcnew System::EventHandler(this, &ventanaEliminarAdmin::button1_Click);
 			// 
@@ -104,7 +105,7 @@ namespace Interfaz {
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(6, 13);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
-			this->ClientSize = System::Drawing::Size(346, 149);
+			this->ClientSize = System::Drawing::Size(346, 104);
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Controls->Add(this->textBox1);
@@ -118,6 +119,43 @@ namespace Interfaz {
 		}
 #pragma endregion
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+		// Obtener texto de textBox and EliminarAdmin
+		String^ codStrCedula = textBox1->Text;
+
+		// Check if the strings are not empty
+		if (!String::IsNullOrWhiteSpace(codStrCedula)) {
+			int temp;
+			Int32::TryParse(codStrCedula, temp);
+			std::string adminInfoStdString = progra->listaAdmin->SearchNodo(temp, progra->listaAdmin->raiz);
+			String^ adminInfo = gcnew String(adminInfoStdString.c_str());
+
+			//INICIO CODIGO
+			if (progra->listaAdmin->SearchNodo(temp, progra->listaAdmin->raiz) != "") {
+				progra->listaAdmin->Eliminar(temp, progra->listaAdmin->raiz);
+				this->Close();
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Cedula: " + temp + "\nNombre: " + adminInfo,
+					"Admin Eliminado",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Information);
+			}
+			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Cedula: " + temp,
+					"Cliente No Encontrado",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Warning);
+			}
+			//FIN CODIGO();
+		}
+		else {
+			// Handle empty input in textBox1 or textBox2
+			// Display an error message or take appropriate action
+		}
+		// cerrar ventana
 	}
-	};
+	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+		this->Close();
+	}
+};
 }
