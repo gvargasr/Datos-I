@@ -232,7 +232,7 @@ namespace Interfaz {
 								"Codigo: " + temp4,
 								"Menu No Encontrado",
 								MessageBoxButtons::OK,
-								MessageBoxIcon::Information);
+								MessageBoxIcon::Error);
 							this->Close();
 							cout << "El Menu " << temp4 << " no se encuentra" << endl;
 						}
@@ -242,7 +242,7 @@ namespace Interfaz {
 							"Codigo: " + temp4,
 							"Menu No Encontrado",
 							MessageBoxButtons::OK,
-							MessageBoxIcon::Information);
+							MessageBoxIcon::Error);
 						this->Close();
 						cout << "El Menu " << temp4 << " no se encuentra" << endl;
 					}
@@ -252,7 +252,7 @@ namespace Interfaz {
 						"Codigo: " + temp4,
 						"Menu No Encontrado",
 						MessageBoxButtons::OK,
-						MessageBoxIcon::Information);
+						MessageBoxIcon::Error);
 					this->Close();
 					cout << "El Menu " << temp4 << " no se encuentra" << endl;
 				}
@@ -262,7 +262,7 @@ namespace Interfaz {
 					"Codigo: " + temp4,
 					"Menu No Encontrado",
 					MessageBoxButtons::OK,
-					MessageBoxIcon::Information);
+					MessageBoxIcon::Error);
 				this->Close();
 				cout << "El Menu " << temp4 << " no se encuentra" << endl;
 			}

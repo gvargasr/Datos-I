@@ -258,7 +258,7 @@ namespace Interfaz {
 								"Codigo: " + temp5,
 								"Producto No Encontrado",
 								MessageBoxButtons::OK,
-								MessageBoxIcon::Information);
+								MessageBoxIcon::Error);
 							this->Close();
 							cout << "El Producto " << temp5 << " no se encuentra" << endl;
 						}
@@ -268,7 +268,7 @@ namespace Interfaz {
 							"Codigo: " + temp5,
 							"Producto No Encontrado",
 							MessageBoxButtons::OK,
-							MessageBoxIcon::Information);
+							MessageBoxIcon::Error);
 						this->Close();
 						cout << "El Producto " << temp5 << " no se encuentra" << endl;
 					}
@@ -278,7 +278,7 @@ namespace Interfaz {
 						"Codigo: " + temp5,
 						"Producto No Encontrado",
 						MessageBoxButtons::OK,
-						MessageBoxIcon::Information);
+						MessageBoxIcon::Error);
 					this->Close();
 					cout << "El Producto " << temp5 << " no se encuentra" << endl;
 				}
@@ -288,7 +288,7 @@ namespace Interfaz {
 					"Codigo: " + temp5,
 					"Producto No Encontrado",
 					MessageBoxButtons::OK,
-					MessageBoxIcon::Information);
+					MessageBoxIcon::Error);
 				this->Close();
 				cout << "El Producto " << temp5 << " no se encuentra" << endl;
 			}
@@ -298,7 +298,7 @@ namespace Interfaz {
 				"Codigo: " + temp5,
 				"Producto No Encontrado",
 				MessageBoxButtons::OK,
-				MessageBoxIcon::Information);
+				MessageBoxIcon::Error);
 			this->Close();
 			cout << "El Producto " << temp5 << " no se encuentra" << endl;
 		}

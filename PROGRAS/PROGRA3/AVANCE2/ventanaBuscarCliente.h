@@ -143,7 +143,7 @@ namespace Interfaz {
 					"Cedula: " + temp,
 					"Cliente No Encontrado",
 					MessageBoxButtons::OK,
-					MessageBoxIcon::Information);
+					MessageBoxIcon::Error);
 			}
 			//FIN CODIGO();
 		}

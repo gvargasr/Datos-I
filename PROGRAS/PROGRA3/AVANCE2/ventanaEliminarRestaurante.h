@@ -196,8 +196,7 @@ namespace Interfaz {
 							MessageBoxButtons::OK,
 							MessageBoxIcon::Information);
 						cout << "\n.:Restaurante eliminado:.\nCodigo Pais: " << temp << "\nCodigo Ciudad: " << temp2 << "\nCodigo Restaurante: " << temp3 << "\nNombre: " << aux3->nombreRest << endl;
-						aux3->codRest = -20;
-						//aux->ArbolCiudad.BorrarBalanceadoCiudad(aux->ArbolCiudad.raiz, aux->ArbolCiudad.Hh, temp2);
+						aux2->ArbolRest.borrarNodo(temp3);
 						this->Close();
 					}
 					else {

@@ -46,6 +46,10 @@ public:
     void ModificarNodo(int numbusqueda, std::string nuevonom);
     Nodo* BuscarNodo(int numbusqueda);
     Nodo* BuscarNodoBus(int numbusqueda);
+    void ArregloBorrar(NodoPtr Nodo);
+    void AsistenteBorrarNodo(NodoPtr Nodo, int key);
+    void borrarNodo(int codBorrar);
+	NodoPtr minimo(NodoPtr nodo);
 
 //private:
     NodoPtr Raiz;

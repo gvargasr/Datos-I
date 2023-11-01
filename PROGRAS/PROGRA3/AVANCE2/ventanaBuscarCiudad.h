@@ -171,7 +171,7 @@ namespace Interfaz {
 						"Codigo: " + temp2,
 						"Ciudad No Encontrada",
 						MessageBoxButtons::OK,
-						MessageBoxIcon::Information);
+						MessageBoxIcon::Error);
 					cout << "La ciudad " << temp2 << " no se encuentra" << endl;
 				}
 				this->Close();
@@ -181,7 +181,7 @@ namespace Interfaz {
 					"Codigo: " + temp2,
 					"Ciudad No Encontrada",
 					MessageBoxButtons::OK,
-					MessageBoxIcon::Information);
+					MessageBoxIcon::Error);
 				cout << "La ciudad " << temp2 << " no se encuentra" << endl;
 				this->Close();
 			}

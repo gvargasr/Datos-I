@@ -35,6 +35,10 @@ public:
     void generateReport(NodoMPtr NodoMenu, std::string nomRest);
     NodoMPtr findMaxContador(NodoMPtr root);
     NodoMPtr BusquedaM(int numbuscado);
+	void insertarnodo(NodoMPtr NodoInsertado);
+	void postordenNuevoArbol(NodoMPtr NodoMenu, int codBorrar);
+	void BorrarNodo(int codMenuBorrar);
+
 
 //private:
     void IniciarNodoNULL(NodoMPtr NodoMenu);
@@ -42,6 +46,7 @@ public:
     void Giro(NodoMPtr NodoMenu, NodoMPtr x, NodoMPtr z);
     void Reparto(NodoMPtr NodoMenu, NodoMPtr Der, NodoMPtr Izq);
     void preOrden(NodoMPtr NodoMenu, std::ofstream& file);
+    void postorden(NodoMPtr NodoMenu, std::ofstream& file);
 };
 
 #endif // AAMENU_H

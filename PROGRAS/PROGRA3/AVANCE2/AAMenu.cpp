@@ -29,7 +29,7 @@ AAMenu::AAMenu() {
 	TNULL->nivel = 0;
 	TNULL->codMenu = 0;
 	TNULL->contador = 0;
-	TNULL->Hizq = NULL;
+	TNULL->Hizq = nullptr;
 	TNULL->Hder = nullptr;
 	Raiz = TNULL;
 }
@@ -37,7 +37,7 @@ AAMenu::AAMenu() {
  void AAMenu::IniciarNodoNULL(NodoMPtr NodoMenu) {
     NodoMenu->codMenu = 0;
     NodoMenu->contador = 0;
-    int nivel=0;
+    int nivel;
     NodoMenu->Hizq= nullptr;
     NodoMenu->Hder = nullptr;
     NodoMenu ->nombreMenu = "";
@@ -210,6 +210,66 @@ AAMenu::AAMenu() {
     }
 }
 
+void AAMenu::BorrarNodo(int codMenuBorrar){
+	AAMenu Temp;
+	cout<<"pre postorden"<<endl;
+	Temp.postordenNuevoArbol(this->Raiz,codMenuBorrar);
+	this->Raiz = Temp.Raiz;
+	cout<<"El codigo: "<<codMenuBorrar<<" se borro"<<endl;
+}
+
+void AAMenu::postordenNuevoArbol(NodoMPtr NodoMenu, int codBorrar) {
+	cout<<"postorden"<<endl<<"Nodo: "<<NodoMenu->codMenu<<endl;
+	if (NodoMenu!=TNULL && NodoMenu->codMenu!=0) {
+		if (NodoMenu->codMenu != codBorrar){
+			cout<<"Entra a insertar"<<endl;
+		postordenNuevoArbol(NodoMenu->Hizq, codBorrar);
+		postordenNuevoArbol(NodoMenu->Hder, codBorrar);
+		this->insertarnodo(NodoMenu);
+		} else {
+			cout<<"Entra a borrar"<<endl;
+		postordenNuevoArbol(NodoMenu->Hizq, codBorrar);
+		postordenNuevoArbol(NodoMenu->Hder, codBorrar);
+		}
+	}
+	
+}
+
+void AAMenu::insertarnodo(NodoMPtr NodoInsertado){
+	NodoMPtr NodoMenu = new NodoM;
+    NodoMenu->codMenu = NodoInsertado->codMenu;
+    int nivel = 0;
+    NodoMenu->Hizq= TNULL;
+    NodoMenu->Hder = TNULL;
+    NodoMenu ->nombreMenu = NodoInsertado->nombreMenu;
+    NodoMenu->listaProducto = NodoInsertado->listaProducto;
+    
+	NodoMPtr y = this->Raiz;
+    NodoMPtr x = this->Raiz;
+    NodoMPtr z = nullptr;
+
+    while (x != TNULL) {
+      z = y;
+	  y = x;
+      if (NodoMenu->codMenu < x->codMenu) {
+			x = x->Hizq;
+      } else {
+		  	x = x->Hder;
+		  }
+      }
+	  Giro(NodoMenu, y,z);
+	  Reparto(this->Raiz,nullptr,nullptr);
+    }
+
+
+void AAMenu::postorden(NodoMPtr NodoMenu, std::ofstream& file) {
+    if (NodoMenu != TNULL) {
+        file <<"Nombre: "<< NodoMenu->nombreMenu<<"\n"<<"Codigo: "<<NodoMenu->codMenu <<"\n\n";
+        file <<"###############################"<<endl;
+        preOrden(NodoMenu->Hizq, file);
+        preOrden(NodoMenu->Hder, file);
+    }
+}
 
   void AAMenu::insertarBus(int codMenunuevo, string nombrenuevo) {
   	NodoMPtr temp = BusquedaM(codMenunuevo);
@@ -242,6 +302,8 @@ AAMenu::AAMenu() {
 	  Reparto(this->Raiz,nullptr,nullptr);
     }
 }
+
+
 
   
 void AAMenu::preOrden(NodoMPtr NodoMenu, std::ofstream& file) {
@@ -295,12 +357,18 @@ NodoMPtr AAMenu::findMaxContador(NodoMPtr root) {
 /*
 
 int main() {
-	ArbolA AA;
+	AAMenu AA;
   AA.insertar(1, "Macdonal");
   AA.insertar(32, "Bk");
   AA.insertar(8, "Papa Johns");
   AA.insertar(90, "Sub");
   AA.insertar(12, "Smash");  
-  AA.preordenM();
+  AA.BorrarNodo(8);
+  AA.BuscarNodoMenu(8);
+  AA.BuscarNodoMenu(1);
+  AA.BuscarNodoMenu(32);
+  AA.BuscarNodoMenu(90);
+  AA.BuscarNodoMenu(12);
 }
+
 */

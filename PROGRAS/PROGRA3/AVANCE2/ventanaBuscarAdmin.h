@@ -141,7 +141,7 @@ namespace Interfaz {
 					"Cedula: " + temp,
 					"Admin No Encontrado",
 					MessageBoxButtons::OK,
-					MessageBoxIcon::Warning);
+					MessageBoxIcon::Error);
 			}
 			//FIN CODIGO();
 		}
@@ -150,7 +150,7 @@ namespace Interfaz {
 				"Datos insuficientes.",
 				"Ingresar datos",
 				MessageBoxButtons::OK,
-				MessageBoxIcon::Warning);
+				MessageBoxIcon::Error);
 			// Handle empty input in textBox1 or textBox2
 			// Display an error message or take appropriate action
 		}

@@ -146,7 +146,7 @@ namespace Interfaz {
 						"Codigo: " + temp,
 						"Pais No Encontrado",
 						MessageBoxButtons::OK,
-						MessageBoxIcon::Information);
+						MessageBoxIcon::Error);
 				cout << "El pais " << temp << " no se encuentra" << endl;
 			}
 

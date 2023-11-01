@@ -105,7 +105,7 @@ RNRest::RNRest() {
   }
   
   bool RNRest::BusquedaBool(NodoPtr nodo, int numbuscado) {
-    if (/*nodo == TNULL ||*/ numbuscado == nodo->codRest) {
+    if (nodo == TNULL || numbuscado == nodo->codRest) {
       return true;
     } else if (nodo->Hizq==nullptr&&nodo->Hder==nullptr&&numbuscado != nodo->codRest){
     	return false;
@@ -180,19 +180,10 @@ RNRest::RNRest() {
 
 
 void RNRest::PreOrderTraversal(NodoPtr raiz, ofstream& archivo_salida) {
-    if (raiz->codRest == -20) {
-        PreOrderTraversal(raiz->Hizq, archivo_salida);
-        PreOrderTraversal(raiz->Hder, archivo_salida);
-    }
     if (raiz != TNULL) {
-        if (raiz->codRest == -20) {
-            PreOrderTraversal(raiz->Hizq, archivo_salida);
-            PreOrderTraversal(raiz->Hder, archivo_salida);
-        }else{
-        archivo_salida << raiz->codRest  <<" - " << " Nombre: " << raiz->nombreRest << endl;
+        archivo_salida << raiz->codRest << " (" << (raiz->color ? "Rojo" : "Negro") << ") Nombre: " << raiz->nombreRest << endl;
         PreOrderTraversal(raiz->Hizq, archivo_salida);
         PreOrderTraversal(raiz->Hder, archivo_salida);
-        }
     }
 }
 
@@ -373,7 +364,6 @@ void RNRest::MostrarRN2(NodoPtr raiz, string indent, bool ultimo, string nombre)
     return BusquedaBool(this->Raiz, numbuscado);
   }
 
-
   void RNRest::ModificarNodo(int numbusqueda, string nuevonom)
   {
   	NodoPtr aux = BusquedaMRest(numbusqueda);
@@ -417,4 +407,126 @@ void RNRest::MostrarRN2(NodoPtr raiz, string indent, bool ultimo, string nombre)
 	  }
   	}
 
+void RNRest::ArregloBorrar(NodoPtr Nodo) {
+    NodoPtr NodoAux;
+    while (Nodo != this->Raiz && Nodo->color == 0) {
+      if (Nodo == Nodo->padre->Hizq) {
+        NodoAux = Nodo->padre->Hder;
+        if (NodoAux->color == 1) {
+          NodoAux->color = 0;
+          Nodo->padre->color = 1;
+          RotacionIzquierda(Nodo->padre);
+          NodoAux = Nodo->padre->Hder;
+        }
+
+        if (NodoAux->Hizq->color == 0 && NodoAux->Hder->color == 0) {
+          NodoAux->color = 1;
+          Nodo = Nodo->padre;
+        } else {
+          if (NodoAux->Hder->color == 0) {
+            NodoAux->Hizq->color = 0;
+            NodoAux->color = 1;
+            RotacionDerecha(NodoAux);
+            NodoAux = Nodo->padre->Hder;
+          }
+
+          NodoAux->color = Nodo->padre->color;
+          Nodo->padre->color = 0;
+          NodoAux->Hder->color = 0;
+          RotacionIzquierda(Nodo->padre);
+          Nodo = this->Raiz;
+        }
+      } else {
+        NodoAux = Nodo->padre->Hizq;
+        if (NodoAux->color == 1) {
+          NodoAux->color = 0;
+          Nodo->padre->color = 1;
+          RotacionDerecha(Nodo->padre);
+          NodoAux = Nodo->padre->Hizq;
+        }
+
+        if (NodoAux->Hder->color == 0 && NodoAux->Hizq->color == 0) {
+          NodoAux->color = 1;
+          Nodo = Nodo->padre;
+        } else {
+          if (NodoAux->Hizq->color == 0) {
+            NodoAux->Hder->color = 0;
+            NodoAux->color = 1;
+            RotacionIzquierda(NodoAux);
+            NodoAux = Nodo->padre->Hizq;
+          }
+
+          NodoAux->color = Nodo->padre->color;
+          Nodo->padre->color = 0;
+          NodoAux->Hizq->color = 0;
+          RotacionDerecha(Nodo->padre);
+          Nodo = this->Raiz;
+        }
+      }
+    }
+    Nodo->color = 0;
+  }
+  
+  void RNRest::AsistenteBorrarNodo(NodoPtr Nodo, int codBorrar) {
+    NodoPtr Nodo_z = TNULL;
+    NodoPtr Nodo_x, Nodo_y;
+    while (Nodo != TNULL) {
+      if (Nodo->codRest == codBorrar) {
+        Nodo_z = Nodo;
+      }
+
+      if (Nodo->codRest <= codBorrar) {
+        Nodo = Nodo->Hder;
+      } else {
+        Nodo = Nodo->Hizq;
+      }
+    }
+
+    if (Nodo_z == TNULL) {
+      cout << "Codigo no encontrado en el arbol" << endl;
+      return;
+    }
+
+    Nodo_y = Nodo_z;
+    int ColorY = Nodo_y->color;
+    if (Nodo_z->Hizq == TNULL) {
+      Nodo_x = Nodo_z->Hder;
+      rbModificar(Nodo_z, Nodo_z->Hder);
+    } else if (Nodo_z->Hizq == TNULL) {
+      Nodo_x = Nodo_z->Hizq;
+      rbModificar(Nodo_z, Nodo_z->Hizq);
+    } else {
+      Nodo_y = minimo(Nodo_z->Hder);
+      ColorY = Nodo_y->color;
+      Nodo_x = Nodo_y->Hder;
+      if (Nodo_y->padre == Nodo_z) {
+        Nodo_x->padre = Nodo_y;
+      } else {
+        rbModificar(Nodo_y, Nodo_y->Hder);
+        Nodo_y->Hder = Nodo_z->Hder;
+        Nodo_y->Hder->padre = Nodo_y;
+      }
+
+      rbModificar(Nodo_z, Nodo_y);
+      Nodo_y->Hizq = Nodo_z->Hder;
+      Nodo_y->Hizq->padre = Nodo_y;
+      Nodo_y->color = Nodo_z->color;
+    }
+    delete Nodo_z;
+    if (ColorY == 0) {
+      ArregloBorrar(Nodo_x);
+    }
+  }
+  
+  void RNRest::borrarNodo(int codBorrar) {
+    AsistenteBorrarNodo(this->Raiz, codBorrar);
+  }
+  
+  NodoPtr RNRest::minimo(NodoPtr nodo) {
+    while (nodo->Hizq != TNULL) {
+      nodo = nodo->Hizq;
+    }
+    return nodo;
+  }
+  
 
