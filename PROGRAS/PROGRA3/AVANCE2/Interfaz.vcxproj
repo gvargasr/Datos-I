@@ -435,6 +435,9 @@
     <EmbeddedResource Include="ventanaEliminarCliente.resx">
       <DependentUpon>ventanaEliminarCliente.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ventanaEliminarCompra.resx">
+      <DependentUpon>ventanaEliminarCompra.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ventanaEliminarMenu.resx">
       <DependentUpon>ventanaEliminarMenu.h</DependentUpon>
     </EmbeddedResource>

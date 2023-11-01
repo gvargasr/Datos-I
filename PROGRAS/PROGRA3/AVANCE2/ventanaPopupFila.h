@@ -3,6 +3,7 @@
 #include <string>
 
 #include "ventanaComprar.h"
+#include "ventanaEliminarCompra.h"
 
 namespace Interfaz {
 
@@ -65,7 +66,7 @@ namespace Interfaz {
 		/// </summary>
 		
 		ventanaComprar^ ventanaCompra;
-
+		ventanaPopupEliminarCompra^ ventanaEliminarCompra;
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -193,6 +194,16 @@ private: System::Void ventanaComprar_FormClosed(System::Object^ sender, FormClos
 	this->Show();
 }
 
+private: System::Void ventanaPopupEliminarCompra_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaPopupClientees is disposed before accessing it
+	if (ventanaCompra != nullptr && !ventanaCompra->IsDisposed) {
+		// Unsubscribe events
+		ventanaCompra->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupFila::ventanaPopupEliminarCompra_FormClosed);
+		// Show the ventanaPrincipal form when ventanaPopupClientees is closed
+	}
+	this->Show();
+}
+
 
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 	ventanaCompra = gcnew ventanaComprar(progra, usuario, flag);
@@ -200,6 +211,9 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	ventanaCompra->Show();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
+	ventanaEliminarCompra = gcnew ventanaPopupEliminarCompra(progra, usuario, flag);
+	ventanaEliminarCompra->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupFila::ventanaPopupEliminarCompra_FormClosed);
+	ventanaEliminarCompra->Show();
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

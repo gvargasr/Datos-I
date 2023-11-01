@@ -48,6 +48,8 @@
 
 //Ventana comprar
 #include "ventanaComprar.h"
+#include "ventanaEliminarCompra.h"
+
 
 //Ventanas Popup
 #include "ventanaPopupLugares.h"
@@ -272,6 +274,8 @@ namespace Interfaz {
 		ventanaModificarAdmin^ ModificarAdmin;
 
 		ventanaComprar^ ventanaCompra;
+		ventanaPopupEliminarCompra^ ventanaEliminarCompra;
+
 
 		ventanaReportePaises^ ventanaReportePais;
 		ventanaReporteRestaurante^ ventanaReporteRest;
@@ -688,14 +692,14 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			// ReportePaisMenuItem
 			// 
 			this->ReportePaisMenuItem->Name = L"ReportePaisMenuItem";
-			this->ReportePaisMenuItem->Size = System::Drawing::Size(180, 22);
+			this->ReportePaisMenuItem->Size = System::Drawing::Size(147, 22);
 			this->ReportePaisMenuItem->Text = L"Paises";
 			this->ReportePaisMenuItem->Click += gcnew System::EventHandler(this, &ventanaMenu::ReportePaisMenuItem_Click);
 			// 
 			// ReporteCiudadMenuItem
 			// 
 			this->ReporteCiudadMenuItem->Name = L"ReporteCiudadMenuItem";
-			this->ReporteCiudadMenuItem->Size = System::Drawing::Size(180, 22);
+			this->ReporteCiudadMenuItem->Size = System::Drawing::Size(147, 22);
 			this->ReporteCiudadMenuItem->Text = L"Ciudades";
 			// 
 			// ReporteRestauranteMenuItem
@@ -705,7 +709,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 					this->restauranteMasBuscadoToolStripMenuItem
 			});
 			this->ReporteRestauranteMenuItem->Name = L"ReporteRestauranteMenuItem";
-			this->ReporteRestauranteMenuItem->Size = System::Drawing::Size(180, 22);
+			this->ReporteRestauranteMenuItem->Size = System::Drawing::Size(147, 22);
 			this->ReporteRestauranteMenuItem->Text = L"Restaurantes";
 			// 
 			// listaDeRestaurantesToolStripMenuItem
@@ -728,7 +732,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 					this->menuMasBuscadoToolStripMenuItem
 			});
 			this->ReporteMenuMenuItem->Name = L"ReporteMenuMenuItem";
-			this->ReporteMenuMenuItem->Size = System::Drawing::Size(180, 22);
+			this->ReporteMenuMenuItem->Size = System::Drawing::Size(147, 22);
 			this->ReporteMenuMenuItem->Text = L"Menus";
 			// 
 			// listaDeMenuToolStripMenuItem
@@ -750,7 +754,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 					this->precioDeProductoMenuItem, this->cantidadDeProductoMenuItem, this->productoMasCompradoMenuItem
 			});
 			this->ProductosMenuItem->Name = L"ProductosMenuItem";
-			this->ProductosMenuItem->Size = System::Drawing::Size(180, 22);
+			this->ProductosMenuItem->Size = System::Drawing::Size(147, 22);
 			this->ProductosMenuItem->Text = L"Productos";
 			// 
 			// listaDeProductosToolStripMenuItem
@@ -784,7 +788,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 					this->listaDeAdministradoresToolStripMenuItem, this->comprasDeUnClienteToolStripMenuItem
 			});
 			this->clientesMenuItem->Name = L"clientesMenuItem";
-			this->clientesMenuItem->Size = System::Drawing::Size(180, 22);
+			this->clientesMenuItem->Size = System::Drawing::Size(147, 22);
 			this->clientesMenuItem->Text = L"Usuarios";
 			// 
 			// listaDeClientesToolStripMenuItem
@@ -812,7 +816,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 					this->facturaDeMenorMontoMenuItem, this->descuentoConTarjetaMenuItem
 			});
 			this->facturacionMenuItem->Name = L"facturacionMenuItem";
-			this->facturacionMenuItem->Size = System::Drawing::Size(180, 22);
+			this->facturacionMenuItem->Size = System::Drawing::Size(147, 22);
 			this->facturacionMenuItem->Text = L"Facturacion";
 			// 
 			// facturaDeMayorMontoMenuItem
@@ -840,7 +844,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 					this->ciudadesEliminadasMenuItem, this->restaurantesEliminadosMenuItem, this->menusEliminadosMenuItem, this->productosEliminadosMenuItem
 			});
 			this->eliminacionesMenuItem->Name = L"eliminacionesMenuItem";
-			this->eliminacionesMenuItem->Size = System::Drawing::Size(180, 22);
+			this->eliminacionesMenuItem->Size = System::Drawing::Size(147, 22);
 			this->eliminacionesMenuItem->Text = L"Eliminaciones";
 			// 
 			// paisesEliminadosMenuItem
@@ -889,26 +893,27 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			// comprarProductoMenuItem
 			// 
 			this->comprarProductoMenuItem->Name = L"comprarProductoMenuItem";
-			this->comprarProductoMenuItem->Size = System::Drawing::Size(171, 22);
+			this->comprarProductoMenuItem->Size = System::Drawing::Size(180, 22);
 			this->comprarProductoMenuItem->Text = L"Agregar Compra";
 			this->comprarProductoMenuItem->Click += gcnew System::EventHandler(this, &ventanaMenu::comprarProductoMenuItem_Click);
 			// 
 			// modificarCompraToolStripMenuItem
 			// 
 			this->modificarCompraToolStripMenuItem->Name = L"modificarCompraToolStripMenuItem";
-			this->modificarCompraToolStripMenuItem->Size = System::Drawing::Size(171, 22);
+			this->modificarCompraToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->modificarCompraToolStripMenuItem->Text = L"Modificar Compra";
 			// 
 			// eliminarCompraMenuItem
 			// 
 			this->eliminarCompraMenuItem->Name = L"eliminarCompraMenuItem";
-			this->eliminarCompraMenuItem->Size = System::Drawing::Size(171, 22);
+			this->eliminarCompraMenuItem->Size = System::Drawing::Size(180, 22);
 			this->eliminarCompraMenuItem->Text = L"Eliminar compra";
+			this->eliminarCompraMenuItem->Click += gcnew System::EventHandler(this, &ventanaMenu::eliminarCompraMenuItem_Click);
 			// 
 			// pagarToolStripMenuItem
 			// 
 			this->pagarToolStripMenuItem->Name = L"pagarToolStripMenuItem";
-			this->pagarToolStripMenuItem->Size = System::Drawing::Size(171, 22);
+			this->pagarToolStripMenuItem->Size = System::Drawing::Size(180, 22);
 			this->pagarToolStripMenuItem->Text = L"Pagar";
 			// 
 			// AcercaDeMenu
@@ -1434,6 +1439,16 @@ private: System::Void ventanaReporteRest_FormClosed(System::Object^ sender, Form
 }
 
 
+private: System::Void ventanaPopupEliminarCompra_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaPopupClientees is disposed before accessing it
+	if (ventanaCompra != nullptr && !ventanaCompra->IsDisposed) {
+		// Unsubscribe events
+		ventanaCompra->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaMenu::ventanaPopupEliminarCompra_FormClosed);
+		// Show the ventanaPrincipal form when ventanaPopupClientees is closed
+	}
+	this->Show();
+}
+
 
 
 private: System::Void toolStripButton3_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -1671,6 +1686,11 @@ private: System::Void ReportePaisMenuItem_Click(System::Object^ sender, System::
 	ventanaReportePais = gcnew ventanaReportePaises(progra);
 	ventanaReportePais->FormClosed += gcnew FormClosedEventHandler(this, &ventanaMenu::ventanaReportePaises_FormClosed);
 	ventanaReportePais->Show();
+}
+private: System::Void eliminarCompraMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	ventanaEliminarCompra = gcnew ventanaPopupEliminarCompra(progra, usuario, flag);
+	ventanaEliminarCompra->FormClosed += gcnew FormClosedEventHandler(this, &ventanaMenu::ventanaPopupEliminarCompra_FormClosed);
+	ventanaEliminarCompra->Show();
 }
 };
 

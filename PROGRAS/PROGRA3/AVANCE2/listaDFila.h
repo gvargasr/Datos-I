@@ -35,6 +35,8 @@ public:
     void Comprar(int ced, string nom, int codigo, string nombre, int kcal, int precio, int cantidad);
     void BorrarInicio();
     int ReturnCedula(int ced);
+    bool BorrarNodo(int valor);
+
 
 private:
     pnodoFila primero;

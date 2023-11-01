@@ -83,7 +83,7 @@ pnodoFila listaDFila::Buscador(int ced) {
         aux = aux->siguiente;
     }
 
-    return nullptr;
+    return aux;
 }
 
 bool listaDFila::BuscadorBool(int ced) {
@@ -124,5 +124,33 @@ void listaDFila::BorrarInicio() {
             delete aux;
         }
     }
+}
+
+
+bool listaDFila::BorrarNodo(int valor) {
+    pnodoFila temp = primero;
+    pnodoFila anterior = NULL;
+
+    if (temp != NULL && temp->valor == valor) {
+        primero = temp->siguiente;
+        delete temp;
+        return true;
+    }
+
+    while (temp != NULL && temp->valor != valor) {
+        anterior = temp;
+        temp = temp->siguiente;
+    }
+
+    // If the node with the desired value is found, delete it
+    if (temp == NULL) {
+        cout << "El valor " << valor << " no se encuentra en la lista." << endl;
+        return false;
+    }
+
+    anterior->siguiente = temp->siguiente;
+    delete temp;
+    cout << "Nodo con valor " << valor << " eliminado de la lista." << endl;
+    return true;
 }
 

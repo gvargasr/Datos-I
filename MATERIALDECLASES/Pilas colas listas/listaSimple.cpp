@@ -45,6 +45,7 @@ class lista {
     void BorrarFinal();
     void BorrarInicio();
     void borrarPosicion(int pos);
+    void BorrarNodo(int valor);
     void Sumanum(int num);
     int largoLista();// retorno un valor numerico
     
@@ -236,7 +237,33 @@ void lista:: borrarPosicion(int pos){
      }
 
 }
- 
+
+void lista::BorrarNodo(int valor) {
+    pnodo temp = primero;
+    pnodo anterior = NULL;
+
+    if (temp != NULL && temp->valor == valor) {
+        primero = temp->siguiente;
+        delete temp;
+        return;
+    }
+
+    while (temp != NULL && temp->valor != valor) {
+        anterior = temp;
+        temp = temp->siguiente;
+    }
+
+    // If the node with the desired value is found, delete it
+    if (temp == NULL) {
+        cout << "El valor " << valor << " no se encuentra en la lista." << endl;
+        return;
+    }
+
+    anterior->siguiente = temp->siguiente;
+    delete temp;
+    cout << "Nodo con valor " << valor << " eliminado de la lista." << endl;
+}
+
 
 void lista::Mostrar()
 {
@@ -310,6 +337,8 @@ int main()
    L1.BorrarInicio();
    L1.Mostrar();
    L1.BorrarFinal();
+   L1.Mostrar();
+   L1.BorrarNodo(10);
    L1.Mostrar();
   // cout << Lista.largoLista();
    
