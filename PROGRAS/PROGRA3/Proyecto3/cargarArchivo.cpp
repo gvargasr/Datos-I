@@ -99,6 +99,12 @@ class cargarArchivo {
 	listaFila = new listaDFila();
 	RestMasBuscados = new RNRest();
 	MenuMasBuscados = new AAMenu();
+	listaPaisEliminado = new ArbolB();
+	listaCiudadEliminada = new ArbolB();
+	listaRestauranteEliminado = new ArbolB();
+	listaMenuEliminado = new ArbolB();
+	listaProductoEliminado = new ArbolB();
+
 	 }
 
 cargarArchivo::~cargarArchivo()

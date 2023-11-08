@@ -127,6 +127,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="AAMenu.cpp" />
+    <ClCompile Include="acercaDe.cpp" />
     <ClCompile Include="ArbolB.cpp" />
     <ClCompile Include="AVLCiudad.cpp" />
     <ClCompile Include="AVLProducto.cpp" />
@@ -191,6 +192,7 @@
     <ClCompile Include="ventanaReporteCantidadProducto.cpp" />
     <ClCompile Include="ventanaReporteCiudades.cpp" />
     <ClCompile Include="ventanaReporteComprasCliente.cpp" />
+    <ClCompile Include="ventanaReporteDescuento.cpp" />
     <ClCompile Include="ventanaReporteMenu.cpp" />
     <ClCompile Include="ventanaReporteMenuMasBuscado.cpp" />
     <ClCompile Include="ventanaReportePrecioProducto.cpp" />
@@ -200,6 +202,9 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="AAMenu.h" />
+    <ClInclude Include="acercaDe.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ArbolB.h" />
     <ClInclude Include="AVLCiudad.h" />
     <ClInclude Include="AVLProducto.h" />
@@ -371,6 +376,9 @@
     <ClInclude Include="ventanaReporteComprasCliente.h">
       <FileType>CppForm</FileType>
     </ClInclude>
+    <ClInclude Include="ventanaReporteDescuento.h">
+      <FileType>CppForm</FileType>
+    </ClInclude>
     <ClInclude Include="ventanaReporteMenu.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -391,6 +399,9 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="acercaDe.resx">
+      <DependentUpon>acercaDe.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ventanaBuscarAdmin.resx">
       <DependentUpon>ventanaBuscarAdmin.h</DependentUpon>
     </EmbeddedResource>
@@ -540,6 +551,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ventanaReporteCiudades.resx">
       <DependentUpon>ventanaReporteCiudades.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaReporteComprasCliente.resx">
+      <DependentUpon>ventanaReporteComprasCliente.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaReporteMenu.resx">
+      <DependentUpon>ventanaReporteMenu.h</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ventanaReporteProductos.resx">
+      <DependentUpon>ventanaReporteProductos.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ventanaReporteRestaurante.resx">
       <DependentUpon>ventanaReporteRestaurante.h</DependentUpon>

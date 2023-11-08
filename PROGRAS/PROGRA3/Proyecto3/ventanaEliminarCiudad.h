@@ -163,6 +163,7 @@ namespace Interfaz {
 						MessageBoxButtons::OK,
 						MessageBoxIcon::Information);
 					cout << "\n.:Ciudad eliminada:.\nCodigo Pais: " << aux2->ciudad << "\nCodigo Ciudad: " << temp2 << "\nNombre: " << aux2->ciudad << endl;
+					progra->listaCiudadEliminada->InsertarClave(temp2, aux2->ciudad, progra->listaCiudadEliminada->raiz);
 					aux->ArbolCiudad.BorrarBalanceadoCiudad(aux->ArbolCiudad.raiz, aux->ArbolCiudad.Hh, temp2);
 				}
 				else {

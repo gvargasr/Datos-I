@@ -1,5 +1,11 @@
 #pragma once
 
+#include <iostream>
+#include <string>
+#include <fstream>
+
+using namespace std; 
+
 namespace Interfaz {
 
 	using namespace System;
@@ -195,8 +201,49 @@ namespace Interfaz {
 
 		}
 #pragma endregion
-	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	public: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		//Aceptar y guardar la informacion
+		String^ nombre = this->textBox1->Text;
+		String^ correo = this->textBox2->Text;
+		String^ telefono = this->textBox3->Text;
+		String^ comentario = this->textBox4->Text;
+
+		char cStr1[50] = { 0 };
+		char cStr2[50] = { 0 };
+		char cStr3[50] = { 0 };
+		char cStr4[500] = { 0 };
+
+
+		String^ clrString = nombre;
+		sprintf_s(cStr1, "%s", clrString);
+		std::string stlString(cStr1);
+
+		String^ clrString2 = correo;
+		sprintf_s(cStr2, "%s", clrString2);
+		std::string stlString2(cStr2);
+		
+		String^ clrString3 = telefono;
+		sprintf_s(cStr3, "%s", clrString3);
+		std::string stlString3(cStr3);
+		
+		String^ clrString4 = comentario;
+		sprintf_s(cStr4, "%s", clrString4);
+		std::string stlString4(cStr4);
+
+		ofstream outFile("Contacto.txt");
+		outFile << "\t.: Contacto :." << endl << endl << endl;
+		if (outFile.is_open()) {
+			outFile << "--Nombre: " << cStr1 << endl;
+			outFile << "--Correo: " << cStr2 << endl;
+			outFile << "--Telefono: " << cStr3 << endl;
+			outFile << "--Comentario:\n" << cStr4 << endl;
+			outFile << "\n\n####################################\n\n\n\n\n\n";
+			cout << "Informacion guardada " << endl;
+		}
+		else {
+			cout << "No se pudo abrir el archivo." << endl;
+		}
+		outFile.close();
 		this->Close();
 	}
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {

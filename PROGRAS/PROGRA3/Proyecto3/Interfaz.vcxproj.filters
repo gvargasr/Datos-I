@@ -228,6 +228,12 @@
     <ClCompile Include="ventanaReporteComprasCliente.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="acercaDe.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ventanaReporteDescuento.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ventanaPrincipal.h">
@@ -450,6 +456,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ventanaReporteComprasCliente.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="acercaDe.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ventanaReporteDescuento.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

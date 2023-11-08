@@ -145,7 +145,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 				MessageBoxIcon::Information);
 			this->Close();
 			cout << "\n.:Pais Eliminado:.\nCodigo: " << aux->valor << "\nNombre: " << aux->pais << endl;
-
+			progra->listaPaisEliminado->InsertarClave(aux->valor, aux->pais, progra->listaPaisEliminado->raiz);
 			progra->listaPais->EliminarPais(progra->listaPais->raiz, temp);
 		}
 		else {

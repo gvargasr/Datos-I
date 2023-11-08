@@ -70,13 +70,18 @@ public:
 	
 //	private:
     BinarioPais *listaPais;
-    ArbolB *listaCliente;
+    ArbolB* listaCliente;
 	ArbolB* listaAdmin;
     listaDFila *listaFila;
     RNRest *RestMasBuscados;
     AAMenu *MenuMasBuscados;
     pnodoFila FacturaGrande;
     pnodoFila FacturaPequena;
+	ArbolB* listaPaisEliminado;
+	ArbolB* listaCiudadEliminada;
+	ArbolB* listaRestauranteEliminado;
+	ArbolB* listaMenuEliminado;
+	ArbolB* listaProductoEliminado;
 };
 
 

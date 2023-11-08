@@ -1,0 +1,9 @@
+	.:REPORTE LISTA CLIENTES:.
+
+
+59 kevon
+60 jose
+403 Chepe Torres
+657 Pepe Perez
+1456 Mariela Campos
+3335 Tavo

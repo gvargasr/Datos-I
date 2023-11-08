@@ -82,7 +82,7 @@ public:
 	void saveToFile(const string& filename);
 	string SearchNodo(int clave, Pagina_Cliente* raiz);
 	string SearchContador(int clave, Pagina_Cliente* raiz);
-    bool CompraDeCliente(int clave, Pagina_Cliente* raiz);
+    int CompraDeCliente(int clave, Pagina_Cliente* raiz);
     bool SearchC(int clave, Pagina_Cliente* raiz);
     
     void Eliminar(int C1,Pagina_Cliente*& raiz);

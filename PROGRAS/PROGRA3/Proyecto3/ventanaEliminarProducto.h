@@ -258,7 +258,8 @@ namespace Interfaz {
 									"Producto Eliminado",
 									MessageBoxButtons::OK,
 									MessageBoxIcon::Information);
-								cout << "\n.:Restaurante Eliminado:.\nCodigo Pais: " << temp << "\nCodigo Ciudad: " << temp2 << "\nCodigo Restaurante: " << temp3 << "\nNombre: " << aux3->nombreRest << endl;
+								cout << "\n.:Producto Eliminado:.\nCodigo Pais: " << temp << "\nCodigo Ciudad: " << temp2 << "\nCodigo Restaurante: " << temp3 << "\nNombre: " << aux3->nombreRest << endl;
+								progra->listaProductoEliminado->InsertarClave(aux5->valor, aux5->Producto, progra->listaProductoEliminado->raiz);
 								aux4->listaProducto.BorrarBalanceadoProducto(aux4->listaProducto.raiz, aux4->listaProducto.Hh, temp5);
 								this->Close();
 							}

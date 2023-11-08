@@ -221,6 +221,7 @@ namespace Interfaz {
 								MessageBoxButtons::OK,
 								MessageBoxIcon::Information);
 							cout << "\n.:Menu Eliminado:.\nCodigo Pais: " << temp << "\nCodigo Ciudad: " << temp2 << "\nCodigo Restaurante: " << temp3 << "\nMenu : " << temp4 << "\nNombre: " << aux4->nombreMenu << endl;
+							progra->listaMenuEliminado->InsertarClave(aux4->codMenu, aux4->nombreMenu, progra->listaMenuEliminado->raiz);
 							aux3->listaMenu.BorrarNodo(temp4);
 							this->Close();
 						}

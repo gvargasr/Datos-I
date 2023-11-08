@@ -196,6 +196,8 @@ namespace Interfaz {
 							MessageBoxButtons::OK,
 							MessageBoxIcon::Information);
 						cout << "\n.:Restaurante eliminado:.\nCodigo Pais: " << temp << "\nCodigo Ciudad: " << temp2 << "\nCodigo Restaurante: " << temp3 << "\nNombre: " << aux3->nombreRest << endl;
+						progra->listaRestauranteEliminado->InsertarClave(temp3, aux3->nombreRest, progra->listaRestauranteEliminado->raiz);
+
 						aux2->ArbolRest.borrarNodo(temp3);
 						this->Close();
 					}

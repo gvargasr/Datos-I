@@ -1,0 +1,16 @@
+	.: Contacto :.
+
+
+--Nombre: 
+--Correo: 
+--Telefono: 
+--Comentario:
+
+
+
+####################################
+
+
+
+
+

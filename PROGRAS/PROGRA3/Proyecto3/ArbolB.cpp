@@ -30,10 +30,10 @@ void ArbolB::Modificar(int clave, string nombre, Pagina_Cliente*& raiz) {
     }
 }
 
-bool ArbolB::CompraDeCliente(int clave, Pagina_Cliente* raiz) {
+int ArbolB::CompraDeCliente(int clave, Pagina_Cliente* raiz) {
     if (raiz == NULL) {
         cout<<".:Cliente con cedula "<<clave<<" no se encuentra:."<<endl<<endl;
-        return false;
+        return -1;
     }
 
     bool Encontrado = false;
@@ -43,10 +43,10 @@ bool ArbolB::CompraDeCliente(int clave, Pagina_Cliente* raiz) {
     if (Encontrado) {
     	if(raiz->compras[K] != 0){
         cout<<"\n.:Cliente encontrado:.\n"<<"Cedula: "<<raiz->claves[K]<<"\nNombre: "<<raiz->nombre[K]<<"\nHa comprado: "<<raiz->compras[K]<<" veces."<<endl<<endl;
-        return true;
+        return raiz->compras[K];
         }else{
         	cout<<"Aun no se han realizado compras."<<endl<<endl;
-        	return true;
+        	return 0;
 		}
     } else {
         return CompraDeCliente(clave, raiz->Ramas[K]); // Buscar en la rama adecuada
