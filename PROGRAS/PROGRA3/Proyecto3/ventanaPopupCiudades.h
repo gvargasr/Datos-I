@@ -260,24 +260,28 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	InsertarCiudad = gcnew ventanaInsertarCiudad(progra);
 	InsertarCiudad->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaInsertarCiudad_FormClosed);
 	InsertarCiudad->Show();
+	this->Hide();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Buscar Ciudad
 	BuscarCiudad = gcnew ventanaBuscarCiudad(progra);
 	BuscarCiudad->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaBuscarCiudad_FormClosed);
 	BuscarCiudad->Show();
+	this->Hide();
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Modificar Ciudad
 	ModificarCiudad = gcnew ventanaModificarCiudad(progra);
 	ModificarCiudad->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaModificarCiudad_FormClosed);
 	ModificarCiudad->Show();
+	this->Hide();
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Eliminar Ciudad
 	EliminarCiudad = gcnew ventanaEliminarCiudad(progra);
 	EliminarCiudad->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupCiudades::ventanaEliminarCiudad_FormClosed);
 	EliminarCiudad->Show();
+	this->Hide();
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

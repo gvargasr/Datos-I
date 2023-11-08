@@ -170,7 +170,6 @@
     <ClCompile Include="ventanaModificarMenu.cpp" />
     <ClCompile Include="ventanaModificarPais.cpp" />
     <ClCompile Include="ventanaModificarProducto.cpp" />
-    <ClCompile Include="ventanaModificarProductoCompra.cpp" />
     <ClCompile Include="ventanaModificarRestaurante.cpp" />
     <ClCompile Include="ventanaPopupAdministradores.cpp" />
     <ClCompile Include="ventanaPopupCiudades.cpp" />
@@ -194,7 +193,6 @@
     <ClCompile Include="ventanaReporteComprasCliente.cpp" />
     <ClCompile Include="ventanaReporteMenu.cpp" />
     <ClCompile Include="ventanaReporteMenuMasBuscado.cpp" />
-    <ClCompile Include="ventanaReportePaises.cpp" />
     <ClCompile Include="ventanaReportePrecioProducto.cpp" />
     <ClCompile Include="ventanaReporteProductos.cpp" />
     <ClCompile Include="ventanaReporteRestaurante.cpp" />
@@ -310,9 +308,6 @@
     <ClInclude Include="ventanaModificarProducto.h">
       <FileType>CppForm</FileType>
     </ClInclude>
-    <ClInclude Include="ventanaModificarProductoCompra.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
     <ClInclude Include="ventanaModificarRestaurante.h">
       <FileType>CppForm</FileType>
     </ClInclude>
@@ -380,9 +375,6 @@
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ventanaReporteMenuMasBuscado.h">
-      <FileType>CppForm</FileType>
-    </ClInclude>
-    <ClInclude Include="ventanaReportePaises.h">
       <FileType>CppForm</FileType>
     </ClInclude>
     <ClInclude Include="ventanaReportePrecioProducto.h">
@@ -546,8 +538,8 @@
     <EmbeddedResource Include="ventanaPrincipal.resx">
       <DependentUpon>ventanaPrincipal.h</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="ventanaReportePaises.resx">
-      <DependentUpon>ventanaReportePaises.h</DependentUpon>
+    <EmbeddedResource Include="ventanaReporteCiudades.resx">
+      <DependentUpon>ventanaReporteCiudades.h</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ventanaReporteRestaurante.resx">
       <DependentUpon>ventanaReporteRestaurante.h</DependentUpon>

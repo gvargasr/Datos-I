@@ -1,2 +1,0 @@
-#include "ventanaModificarProductoCompra.h"
-

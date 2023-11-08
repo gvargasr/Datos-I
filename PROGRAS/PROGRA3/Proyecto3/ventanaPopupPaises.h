@@ -266,24 +266,28 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	InsertarPais = gcnew ventanaInsertarPais(progra);
 	InsertarPais->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaInsertarPais_FormClosed);
 	InsertarPais->Show();
+	this->Hide();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Buscar Pais
 	BuscarPais = gcnew ventanaBuscarPais(progra);
 	BuscarPais->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaBuscarPais_FormClosed);
 	BuscarPais->Show();
+
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Modificar Pais
 	ModificarPais = gcnew ventanaModificarPais(progra);
 	ModificarPais->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaModificarPais_FormClosed);
 	ModificarPais->Show();
+	this->Hide();
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Eliminar Pais
 	EliminarPais = gcnew ventanaEliminarPais(progra);
 	EliminarPais->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupPaises::ventanaEliminarPais_FormClosed);
 	EliminarPais->Show();
+	this->Hide();
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

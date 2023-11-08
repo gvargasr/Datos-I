@@ -266,24 +266,28 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	InsertarMenu = gcnew ventanaInsertarMenu(progra);
 	InsertarMenu->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupMenu::ventanaInsertarMenu_FormClosed);
 	InsertarMenu->Show();
+	this->Hide();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Buscar Menu
 	BuscarMenu = gcnew ventanaBuscarMenu(progra);
 	BuscarMenu->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupMenu::ventanaBuscarMenu_FormClosed);
 	BuscarMenu->Show();
+	this->Hide();
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Modificar Menu
 	ModificarMenu = gcnew ventanaModificarMenu(progra);
 	ModificarMenu->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupMenu::ventanaModificarMenu_FormClosed);
 	ModificarMenu->Show();
+	this->Hide();
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Eliminar Menu
 	EliminarMenu = gcnew ventanaEliminarMenu(progra);
 	EliminarMenu->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupMenu::ventanaEliminarMenu_FormClosed);
 	EliminarMenu->Show();
+	this->Hide();
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

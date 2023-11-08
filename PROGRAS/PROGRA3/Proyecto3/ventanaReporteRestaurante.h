@@ -155,16 +155,38 @@ namespace Interfaz {
 				if (aux2 != NULL) {
 					cout << "\nSe esta generando el archivo Reporte_Restaurante_" + aux2->ciudad + ".txt\n.\n.\n.\n" << endl;
 					aux2->ArbolRest.MostrarRN3(aux2->ciudad);
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Reporte_Restaurante_" + codStrCiudad + ".txt\n",
+						"Reporte generado",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Information);
 				//	aux2->ArbolRest.MostrarRN();
 					this->Close();
 				}
 				else {
+					System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+						"Datos incorrectos, por favor intente de nuevo.",
+						"ERROR",
+						MessageBoxButtons::OK,
+						MessageBoxIcon::Error);
 					cout << "Datos incorrectos, por favor intente de nuevo.";
 				}
 			}
 			else {
+				System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+					"Datos incorrectos, por favor intente de nuevo.",
+					"ERROR",
+					MessageBoxButtons::OK,
+					MessageBoxIcon::Error);
 				cout << "Datos incorrectos, por favor intente de nuevo.";
 			}
+		}
+		else {
+			System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+				"No se permiten espacios vacios",
+				"ERROR",
+				MessageBoxButtons::OK,
+				MessageBoxIcon::Error);
 		}
 
 	}

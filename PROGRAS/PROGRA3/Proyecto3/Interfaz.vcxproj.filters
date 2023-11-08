@@ -198,13 +198,7 @@
     <ClCompile Include="ventanaPopupModificarCompra.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ventanaModificarProductoCompra.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="ventanaModificarCompra.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="ventanaReportePaises.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="ventanaReporteRestaurante.cpp">
@@ -428,13 +422,7 @@
     <ClInclude Include="ventanaPopupModificarCompra.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ventanaModificarProductoCompra.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="ventanaModificarCompra.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="ventanaReportePaises.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="ventanaReporteRestaurante.h">

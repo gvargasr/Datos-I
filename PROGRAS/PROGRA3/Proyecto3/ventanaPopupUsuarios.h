@@ -231,6 +231,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 		popupAdmin->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupUsuarios::ventanaPopupAdministradores_FormClosed);
 		popupAdmin->Show();
 	}
+	this->Hide();
 }
 
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -247,6 +248,7 @@ private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e
 		popupCliente->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupUsuarios::ventanaPopupClientes_FormClosed);
 		popupCliente->Show();
 	}
+	this->Hide();
 }
 
 
@@ -254,6 +256,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	popupFila = gcnew ventanaPopupFila(progra, usuario, flag);
 	popupFila->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupUsuarios::ventanaPopupFila_FormClosed);
 	popupFila->Show();
+	this->Hide();
 
 }
 

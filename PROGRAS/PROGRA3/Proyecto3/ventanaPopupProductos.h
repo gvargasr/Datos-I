@@ -267,24 +267,28 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	InsertarProducto = gcnew ventanaInsertarProducto(progra);
 	InsertarProducto->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaInsertarProducto_FormClosed);
 	InsertarProducto->Show();
+	this->Hide();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Buscar Producto
 	BuscarProducto = gcnew ventanaBuscarProducto(progra);
 	BuscarProducto->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaBuscarProducto_FormClosed);
 	BuscarProducto->Show();
+	this->Hide();
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Modificar Producto
 	ModificarProducto = gcnew ventanaModificarProducto(progra);
 	ModificarProducto->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaModificarProducto_FormClosed);
 	ModificarProducto->Show();
+	this->Hide();
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Eliminar Producto
 	EliminarProducto = gcnew ventanaEliminarProducto(progra);
 	EliminarProducto->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupProductos::ventanaEliminarProducto_FormClosed);
 	EliminarProducto->Show();
+	this->Hide();
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

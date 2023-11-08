@@ -91,6 +91,7 @@ namespace Interfaz {
 			this->button1->Size = System::Drawing::Size(85, 85);
 			this->button1->TabIndex = 28;
 			this->button1->UseVisualStyleBackColor = true;
+			this->button1->Click += gcnew System::EventHandler(this, &ventanaPopupModificarCompra::button1_Click);
 			// 
 			// label3
 			// 
@@ -112,6 +113,7 @@ namespace Interfaz {
 			this->button4->Size = System::Drawing::Size(85, 85);
 			this->button4->TabIndex = 26;
 			this->button4->UseVisualStyleBackColor = true;
+			this->button4->Click += gcnew System::EventHandler(this, &ventanaPopupModificarCompra::button4_Click);
 			// 
 			// ventanaPopupModificarCompra
 			// 
@@ -124,7 +126,7 @@ namespace Interfaz {
 			this->Controls->Add(this->label3);
 			this->Controls->Add(this->button4);
 			this->Name = L"ventanaPopupModificarCompra";
-			this->Text = L"ventanaPopupModificarCompra";
+			this->Text = L"Modificar Compra";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -132,5 +134,11 @@ namespace Interfaz {
 #pragma endregion
 	private: System::Void label3_Click(System::Object^ sender, System::EventArgs^ e) {
 	}
+private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
+	//agregar productos
+}
+private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	//modificar cantidad
+}
 };
 }

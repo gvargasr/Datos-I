@@ -263,24 +263,28 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	InsertarRestaurante = gcnew ventanaInsertarRestaurante(progra);
 	InsertarRestaurante->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaInsertarRestaurante_FormClosed);
 	InsertarRestaurante->Show();
+	this->Hide();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Buscar Restaurante
 	BuscarRestaurante = gcnew ventanaBuscarRestaurante(progra);
 	BuscarRestaurante->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaBuscarRestaurante_FormClosed);
 	BuscarRestaurante->Show();
+	this->Hide();
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Modificar Restaurante
 	ModificarRestaurante = gcnew ventanaModificarRestaurante(progra);
 	ModificarRestaurante->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaModificarRestaurante_FormClosed);
 	ModificarRestaurante->Show();
+	this->Hide();
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Eliminar Restaurante
 	EliminarRestaurante = gcnew ventanaEliminarRestaurante(progra);
 	EliminarRestaurante->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes2::ventanaEliminarRestaurante_FormClosed);
 	EliminarRestaurante->Show();
+	this->Hide();
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

@@ -229,6 +229,7 @@ namespace Interfaz {
 			popupRestaurantes->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes::ventanaPopupRestaurantes2_FormClosed);
 			popupRestaurantes->Show();
 		}
+		this->Hide();
 	}
 	private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
 		//Menu
@@ -245,6 +246,7 @@ namespace Interfaz {
 			popupMenu->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes::ventanaPopupMenu_FormClosed);
 			popupMenu->Show();
 		}
+		this->Hide();
 
 	}
 	private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
@@ -262,7 +264,7 @@ namespace Interfaz {
 			popupProductos->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupRestaurantes::ventanaPopupProductos_FormClosed);
 			popupProductos->Show();
 		}
-
+		this->Hide();
 	}
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();

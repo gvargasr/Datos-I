@@ -258,24 +258,28 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	InsertarCliente = gcnew ventanaInsertarCliente(progra);
 	InsertarCliente->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaInsertarCliente_FormClosed);
 	InsertarCliente->Show();
+	this->Hide();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Buscar Cliente
 	BuscarCliente = gcnew ventanaBuscarCliente(progra);
 	BuscarCliente->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaBuscarCliente_FormClosed);
 	BuscarCliente->Show();
+	this->Hide();
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Modificar Cliente
 	ModificarCliente = gcnew ventanaModificarCliente(progra);
 	ModificarCliente->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaModificarCliente_FormClosed);
 	ModificarCliente->Show();
+	this->Hide();
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Eliminar Cliente
 	EliminarCliente = gcnew ventanaEliminarCliente(progra);
 	EliminarCliente->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupClientes::ventanaEliminarCliente_FormClosed);
 	EliminarCliente->Show();
+	this->Hide();
 }
 
 };

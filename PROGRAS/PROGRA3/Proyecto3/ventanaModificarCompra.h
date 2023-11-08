@@ -141,7 +141,7 @@ namespace Interfaz {
 			this->Controls->Add(this->button2);
 			this->Controls->Add(this->button1);
 			this->Name = L"ventanaModificarCompra";
-			this->Text = L"ventanaModificarCompra";
+			this->Text = L"Modificar Compra";
 			this->ResumeLayout(false);
 			this->PerformLayout();
 
@@ -170,7 +170,7 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	ventanaCompra = gcnew ventanaComprar(progra, usuario, flag);
 	ventanaCompra->FormClosed += gcnew FormClosedEventHandler(this, &ventanaModificarCompra::ventanaComprar_FormClosed);
 	ventanaCompra->Show();
-	
+	this->Hide();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	//Cambia cantidad de producto

@@ -222,11 +222,13 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	ventanaCompra = gcnew ventanaComprar(progra, usuario, flag);
 	ventanaCompra->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupFila::ventanaComprar_FormClosed);
 	ventanaCompra->Show();
+	this->Hide();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	ventanaEliminarCompra = gcnew ventanaPopupEliminarCompra(progra, usuario, flag);
 	ventanaEliminarCompra->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupFila::ventanaPopupEliminarCompra_FormClosed);
 	ventanaEliminarCompra->Show();
+	this->Hide();
 }
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();
@@ -235,6 +237,7 @@ private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e
 	ventanaModCompra = gcnew ventanaModificarCompra(progra, usuario, flag);
 	ventanaModCompra->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupFila::ventanaModificarCompra_FormClosed);
 	ventanaModCompra->Show();
+	this->Hide();
 }
 };
 }

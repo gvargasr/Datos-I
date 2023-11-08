@@ -264,24 +264,28 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 	InsertarAdmin = gcnew ventanaInsertarAdmin(progra);
 	InsertarAdmin->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaInsertarAdmin_FormClosed);
 	InsertarAdmin->Show();
+	this->Hide();
 }
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Buscar Admin
 	BuscarAdmin = gcnew ventanaBuscarAdmin(progra);
 	BuscarAdmin->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaBuscarAdmin_FormClosed);
 	BuscarAdmin->Show();
+	this->Hide();
 }
 private: System::Void button3_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Modificar Admin
 	ModificarAdmin = gcnew ventanaModificarAdmin(progra);
 	ModificarAdmin->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaModificarAdmin_FormClosed);
 	ModificarAdmin->Show();
+	this->Hide();
 }
 private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e) {
 	//text box para Eliminar Admin
 	EliminarAdmin = gcnew ventanaEliminarAdmin(progra);
 	EliminarAdmin->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupAdministradores::ventanaEliminarAdmin_FormClosed);
 	EliminarAdmin->Show();
+	this->Hide();
 }
 };
 }
