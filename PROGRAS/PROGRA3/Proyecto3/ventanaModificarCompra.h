@@ -175,6 +175,11 @@ private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e
 private: System::Void button2_Click(System::Object^ sender, System::EventArgs^ e) {
 	//Cambia cantidad de producto
 	//progra->listaFila.
+	System::Windows::Forms::DialogResult SelectUSER = MessageBox::Show(
+		"NO IMPLEMENTADO\n",
+		"ERROR",
+		MessageBoxButtons::OK,
+		MessageBoxIcon::Error);
 }
 };
 }

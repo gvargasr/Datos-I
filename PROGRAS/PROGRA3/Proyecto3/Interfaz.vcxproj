@@ -555,6 +555,9 @@
     <EmbeddedResource Include="ventanaReporteComprasCliente.resx">
       <DependentUpon>ventanaReporteComprasCliente.h</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ventanaReporteDescuento.resx">
+      <DependentUpon>ventanaReporteDescuento.h</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ventanaReporteMenu.resx">
       <DependentUpon>ventanaReporteMenu.h</DependentUpon>
     </EmbeddedResource>

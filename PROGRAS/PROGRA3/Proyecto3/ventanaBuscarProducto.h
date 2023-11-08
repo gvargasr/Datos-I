@@ -251,6 +251,8 @@ namespace Interfaz {
 								MessageBoxButtons::OK,
 								MessageBoxIcon::Information);
 							cout << "\n.:Restaurante encontrado:.\nCodigo Pais: " << temp << "\nCodigo Ciudad: " << temp2 << "\nCodigo Restaurante: " << temp3 << "\nNombre: " << aux3->nombreRest << endl;
+							aux4->listaProducto.BuscarProductoPrecio(aux4->listaProducto.raiz, temp5);
+							aux4->listaProducto.BuscarProductoCantidad(aux4->listaProducto.raiz, temp5);
 							this->Close();
 						}
 						else {

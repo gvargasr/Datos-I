@@ -3,6 +3,7 @@
 #include <string>
 
 #include "ventanaPopupFacturacion.h"
+#include "ventanaReporteDescuento.h"
 
 
 namespace Interfaz {
@@ -63,6 +64,8 @@ namespace Interfaz {
 		/// </summary>
 		
 		ventanaPopupFacturacion^ ventanaFacturar;
+		ventanaReporteDescuento^ ventanaDesc;
+
 		System::ComponentModel::Container ^components;
 
 #pragma region Windows Form Designer generated code
@@ -165,6 +168,16 @@ private: System::Void ventanaPopupFacturacion_FormClosed(System::Object^ sender,
 	this->Show();
 }
 
+private: System::Void ventanaDesc_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaPopupClientees is disposed before accessing it
+	if (ventanaDesc != nullptr && !ventanaDesc->IsDisposed) {
+		// Unsubscribe events
+		ventanaDesc->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaPopupPagos::ventanaDesc_FormClosed);
+		// Show the ventanaPrincipal form when ventanaPopupClientees is closed
+	}
+	this->Enabled = true;
+}
+
 private: System::Void button5_Click(System::Object^ sender, System::EventArgs^ e) {
 	this->Close();
 }
@@ -175,8 +188,12 @@ private: System::Void button4_Click(System::Object^ sender, System::EventArgs^ e
 	this->Hide();
 }
 private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
-
+	//DESCUENTO CON TARJETA
 	//this->Hide();
+	ventanaDesc = gcnew ventanaReporteDescuento(progra);
+	ventanaDesc->FormClosed += gcnew FormClosedEventHandler(this, &ventanaPopupPagos::ventanaDesc_FormClosed);
+	ventanaDesc->Show();
+	this->Enabled = false;
 }
 };
 }

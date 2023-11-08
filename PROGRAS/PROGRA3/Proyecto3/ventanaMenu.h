@@ -46,6 +46,7 @@ using namespace std;
 #include "ventanaReporteMenu.h"
 #include "ventanaReporteProductos.h"
 #include "ventanaReporteComprasCliente.h"
+#include "ventanaReporteDescuento.h"
 
 //Ventana Contacto
 #include "ventanaContacto.h"
@@ -293,7 +294,7 @@ namespace Interfaz {
 		ventanaReporteMenu^ ventanaReporteMenus;
 		ventanaReporteProductos^ ventanaReportePr;
 		ventanaReporteComprasCliente^ ventanaCompraCliente;
-
+		ventanaReporteDescuento^ ventanaDesc;
 
 private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 
@@ -790,12 +791,14 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			this->precioDeProductoMenuItem->Name = L"precioDeProductoMenuItem";
 			this->precioDeProductoMenuItem->Size = System::Drawing::Size(206, 22);
 			this->precioDeProductoMenuItem->Text = L"Precio de producto";
+			this->precioDeProductoMenuItem->Click += gcnew System::EventHandler(this, &ventanaMenu::precioDeProductoMenuItem_Click);
 			// 
 			// cantidadDeProductoMenuItem
 			// 
 			this->cantidadDeProductoMenuItem->Name = L"cantidadDeProductoMenuItem";
 			this->cantidadDeProductoMenuItem->Size = System::Drawing::Size(206, 22);
 			this->cantidadDeProductoMenuItem->Text = L"Cantidad de producto";
+			this->cantidadDeProductoMenuItem->Click += gcnew System::EventHandler(this, &ventanaMenu::cantidadDeProductoMenuItem_Click);
 			// 
 			// productoMasCompradoMenuItem
 			// 
@@ -864,6 +867,7 @@ private: System::Windows::Forms::ToolStripMenuItem^ adminToolStripMenuItem;
 			this->descuentoConTarjetaMenuItem->Name = L"descuentoConTarjetaMenuItem";
 			this->descuentoConTarjetaMenuItem->Size = System::Drawing::Size(243, 22);
 			this->descuentoConTarjetaMenuItem->Text = L"Descuento por pagar con tarjeta";
+			this->descuentoConTarjetaMenuItem->Click += gcnew System::EventHandler(this, &ventanaMenu::descuentoConTarjetaMenuItem_Click);
 			// 
 			// eliminacionesMenuItem
 			// 
@@ -1548,7 +1552,7 @@ private: System::Void ventanaModificarCompra_FormClosed(System::Object^ sender, 
 		ventanaModCompra->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaMenu::ventanaModificarCompra_FormClosed);
 		// Show the ventanaPrincipal form when ventanaPopupClientees is closed
 	}
-	this->Show();
+	this->Enabled = true;
 }
 
 private: System::Void ventanaCompraCliente_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
@@ -1558,7 +1562,17 @@ private: System::Void ventanaCompraCliente_FormClosed(System::Object^ sender, Fo
 		ventanaCompraCliente->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaMenu::ventanaCompraCliente_FormClosed);
 		// Show the ventanaPrincipal form when ventanaPopupClientees is closed
 	}
-	this->Show();
+	this->Enabled = true;
+}
+
+private: System::Void ventanaDesc_FormClosed(System::Object^ sender, FormClosedEventArgs^ e) {
+	// Check if ventanaPopupClientees is disposed before accessing it
+	if (ventanaDesc != nullptr && !ventanaDesc->IsDisposed) {
+		// Unsubscribe events
+		ventanaDesc->FormClosed -= gcnew FormClosedEventHandler(this, &ventanaMenu::ventanaDesc_FormClosed);
+		// Show the ventanaPrincipal form when ventanaPopupClientees is closed
+	}
+	this->Enabled = true;
 }
 	   
 
@@ -2060,6 +2074,22 @@ private: System::Void comprasDeUnClienteToolStripMenuItem_Click(System::Object^ 
 	ventanaCompraCliente->FormClosed += gcnew FormClosedEventHandler(this, &ventanaMenu::ventanaCompraCliente_FormClosed);
 	ventanaCompraCliente->Show();
 	this->Enabled = false;
+}
+private: System::Void descuentoConTarjetaMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	ventanaDesc = gcnew ventanaReporteDescuento(progra);
+	ventanaDesc->FormClosed += gcnew FormClosedEventHandler(this, &ventanaMenu::ventanaDesc_FormClosed);
+	ventanaDesc->Show();
+	this->Enabled = false;
+}
+private: System::Void cantidadDeProductoMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	BuscarProducto = gcnew ventanaBuscarProducto(progra);
+	BuscarProducto->FormClosed += gcnew FormClosedEventHandler(this, &ventanaMenu::ventanaBuscarProducto_FormClosed);
+	BuscarProducto->Show();
+}
+private: System::Void precioDeProductoMenuItem_Click(System::Object^ sender, System::EventArgs^ e) {
+	BuscarProducto = gcnew ventanaBuscarProducto(progra);
+	BuscarProducto->FormClosed += gcnew FormClosedEventHandler(this, &ventanaMenu::ventanaBuscarProducto_FormClosed);
+	BuscarProducto->Show();
 }
 };
 
