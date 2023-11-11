@@ -1,5 +1,6 @@
 
 #include <iostream>
+
 using namespace std;
 
 class nodo {
@@ -17,7 +18,7 @@ nodo(int v, nodo * signodo)
        siguiente = signodo;
     }
 
-   private:
+   //private:
     int valor;
     nodo *siguiente;
     nodo *anterior;
@@ -42,6 +43,7 @@ class listaD {
     void BorrarPosicion(int pos);
     void Mostrar();
     int largoLista();
+    bool Buscar(int v);
     
    private:
     pnodo primero;
@@ -175,6 +177,37 @@ void listaD::BorrarFinal()
         }
 }
 
+bool listaD::Buscar(int v){
+	cout<< "Buscar" << endl;
+	pnodo temp = this->primero;
+    while(temp != NULL){
+    	if(temp->valor == v){
+    		return true;
+    		cout << v <<" Si se encuentra" << endl;
+		}
+	temp = temp->siguiente;
+	}
+	return false;
+	cout << v <<" No se encuentra" << endl;
+}
+
+
+/*pnodoFila listaDFila::Buscador(int ced) {
+    pnodoFila aux = primero;
+    while (aux != NULL) {
+        if (aux->valor == ced) {
+            return aux;
+        }
+        aux = aux->siguiente;
+    }
+
+    return aux;
+}
+
+bool listaDFila::BuscadorBool(int ced) {
+    return Buscador(ced) != nullptr;
+}*/
+
 void listaD::BorrarInicio()
 {
     if (ListaVacia()){
@@ -265,6 +298,8 @@ int main()
    Lista.InsertarFinal(110);
    Lista.InsertarFinal(116);
    Lista.InsertarPos(5, 4);
+   Lista.Buscar(25);
+   Lista.Buscar(116);
  /*  Lista.InsertarPos(6, 4);
    Lista.InsertarInicio(30);
    Lista.InsertarInicio(1);   
@@ -285,6 +320,6 @@ int main()
    
   
   
-   cin.get();
+//   cin.get();
    return 0;
 }

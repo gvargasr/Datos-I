@@ -157,3 +157,162 @@ Insertando en PilaOperadores
 #####################################################
 
 
+#################################################
+	 .:ARCHIVO #1:.
+
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP -: 1
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP +: 1
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP -: 1
+PrioridadDP +: 1
+Moviendo a Pila Expresion
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP -: 1
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP *: 2
+PrioridadDP -: 1
+Insertando en PilaOperadores
+
+#####################################################
+
+
+#################################################
+	 .:ARCHIVO #2:.
+
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP -: 1
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP *: 2
+PrioridadDP -: 1
+Insertando en PilaOperadores
+
+PrioridadFP +: 1
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP +: 1
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP /: 2
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+#####################################################
+
+
+#################################################
+	 .:ARCHIVO #3:.
+
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP ^: 4
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP -: 1
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP /: 2
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+#####################################################
+
+
+#################################################
+	 .:ARCHIVO #4:.
+
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP *: 2
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP /: 2
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP ^: 4
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP /: 2
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP -: 1
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP /: 2
+PrioridadDP -: 1
+Insertando en PilaOperadores
+
+#####################################################
+
+
+#################################################
+	 .:ARCHIVO #5:.
+
+
+PrioridadFP (: 5
+Insertando en PilaOperadores
+
+PrioridadFP ^: 4
+PrioridadDP (: 0
+Insertando en PilaOperadores
+
+PrioridadFP /: 2
+PrioridadDP ^: 3
+Moviendo a Pila Expresion
+
+PrioridadFP ^: 4
+PrioridadDP /: 2
+Insertando en PilaOperadores
+
+#####################################################
+
+
