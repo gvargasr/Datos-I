@@ -1,9 +1,19 @@
 #include "listaDVertice.h"
 #include <string>
 #include <iostream>
+#include <fstream>
+#include <vector>
+
 
 nodoVertice::nodoVertice(int costo, string destino) {
     this->costo = costo;
+    this->destino = destino;
+    siguiente = NULL;
+}
+
+nodoVertice::nodoVertice(int costo, string origen, string destino) {
+    this->costo = costo;
+    this->origen = origen;
     this->destino = destino;
     siguiente = NULL;
 }
@@ -36,6 +46,47 @@ void listaDVertice::Mostrar(){
 		aux = aux->siguiente;
 	}
 }
+
+void listaDVertice::MostrarKruskal(){
+	pnodoVertice aux = primero;
+	while(aux){
+		cout<<aux->origen<<aux->destino<<"-"<<aux->costo<<endl;
+		aux = aux->siguiente;
+	}
+}
+
+void listaDVertice::mostrarVisitadosVertices(){
+		pnodoVertice temp2 = primero;
+		while(temp2 != NULL){
+			if(temp2->visitado == true ){
+				cout<<temp2->destino<<":"<<temp2->costo<<endl;
+			}
+		temp2 = temp2->siguiente;
+		}
+		cout<<endl;		
+}
+
+void listaDVertice::MostrarFile() {
+    // Open the file for writing (this will create a new file or overwrite an existing one)
+    std::ofstream outFile("PRIM.txt",ios::app);
+
+    if (outFile.is_open()) {
+        pnodoVertice aux = primero;
+
+        while (aux) {
+            // Write the vertex information to the file
+            outFile << aux->destino << "-" << aux->costo << std::endl;
+            aux = aux->siguiente;
+        }
+
+        // Close the file
+        outFile.close();
+    } else {
+        // Handle the case where the file couldn't be opened
+        std::cerr << "Error: Unable to open the file for writing." << std::endl;
+    }
+}
+
 
 void listaDVertice::MostrarSinCosto(){
 	pnodoVertice aux = primero;
@@ -71,6 +122,26 @@ void listaDVertice::InsertarFinal(int costo, string destino) {
         temp->siguiente = nuevo;
     }
 }
+
+void listaDVertice::InsertarOrdenadoVertice(int costo, string origen, string destino) {
+    pnodoVertice nuevo = new nodoVertice(costo, origen, destino);
+
+    if (ListaVacia() || costo <= primero->costo) {
+        // If the list is empty or the new vertex has a lower or equal cost than the first one
+        nuevo->siguiente = primero;
+        primero = nuevo;
+    } else {
+        pnodoVertice temp = primero;
+
+        while (temp->siguiente != NULL && temp->siguiente->costo < costo) {
+            temp = temp->siguiente;
+        }
+
+        nuevo->siguiente = temp->siguiente;
+        temp->siguiente = nuevo;
+    }
+}
+
 
 void listaDVertice::InsertarInicio(int costo, string destino) {
     if (ListaVacia()) {
@@ -119,6 +190,18 @@ pnodoVertice listaDVertice::BuscadorN(string destino) {
     pnodoVertice aux = primero;
     while (aux != NULL) {
         if (aux->destino == destino) {
+            return aux;
+        }
+        aux = aux->siguiente;
+    }
+
+    return aux;
+}
+
+pnodoVertice listaDVertice::BuscadorNO(string origen) {
+    pnodoVertice aux = primero;
+    while (aux != NULL) {
+        if (aux->origen == origen) {
             return aux;
         }
         aux = aux->siguiente;
@@ -194,41 +277,4 @@ bool listaDVertice::BorrarNodo(int costo) {
     return true;
 }
 
-//
-//int main()
-//{
-//   listaDVertice Lista;
-//
-//   
-//   Lista.InsertarInicio(6, "A");    // 2 20 10 11
-///*   Lista.InsertarInicio(2);
-//   Lista.InsertarFinal(10);
-//   Lista.InsertarFinal(11);
-//   Lista.InsertarFinal(110);
-//   Lista.InsertarFinal(116);
-//   Lista.InsertarPos(5, 4);*/
-//   Lista.Buscar(6);
-//   Lista.Buscar(8);
-// /*  Lista.InsertarPos(6, 4);
-//   Lista.InsertarInicio(30);
-//   Lista.InsertarInicio(1);   
-//   Lista.InsertarFinal(5);
-//   Lista.InsertarPos(1, 3);*/
-//  Lista.Mostrar();
-//  /* Lista.BorrarInicio();
-//   Lista.Mostrar();
-//   Lista.BorrarFinal();
-//   Lista.Mostrar();*/
-//   /*Lista.InsertarInicio(2);
-//   Lista.Mostrar();*/
-// //  Lista.BorrarPosicion(5);
-//   //Lista.Mostrar();
-//     cout << Lista.largoLista();
-//    Lista.~listaDVertice();
-//
-//   
-//  
-//  
-////   cin.get();
-//   return 0;
-//}
+

@@ -2,6 +2,7 @@
 #define LISTADFILA_H
 
 #include <string>
+#include "listaDCompra.h"
 using namespace std;
 
 class nodoFila {
@@ -12,7 +13,7 @@ public:
     string nombre = "";
     int valor = 0;
     nodoFila* siguiente;
-  //  listaDCompra* listaComp = NULL;
+    listaDCompra* listaComp = NULL;
 
     friend class listaDFila;
 };

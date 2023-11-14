@@ -38,6 +38,7 @@ public:
 	bool Buscar(string v);
 	bool isVisitado(pnodoGrafo nodo);
 	bool todosVisitados();
+	void MostrarFile(int costo);
 
 
 //private:

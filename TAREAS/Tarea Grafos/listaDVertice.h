@@ -7,9 +7,11 @@ using namespace std;
 class nodoVertice {
 public:
     nodoVertice(int costo, string destino);
+    nodoVertice(int costo, string origen, string destino);
     nodoVertice(int costo, string destino, nodoVertice* signodoVertice);
-
+	string origen = "";
     string destino = "";
+    int cont = 0;
     int costo = 0;
     bool visitado = false;
     nodoVertice* siguiente;
@@ -26,6 +28,7 @@ public:
     void Mostrar();
     void MostrarSinCosto();
     void InsertarFinal(int costo, string destino);
+    void InsertarOrdenadoVertice(int costo, string origen, string destino);
     void InsertarInicio(int costo, string destino);
     bool ListaVacia();
     int largoLista();
@@ -36,7 +39,12 @@ public:
     bool BorrarNodo(int costo);
 	bool Buscar(int costo);
 	pnodoVertice BuscadorN(string destino);
+	pnodoVertice BuscadorNO(string origen);
 	bool todosVisitados();
+	void MostrarFile();
+	void MostrarKruskal();
+	void mostrarVisitadosVertices();
+
 	
 
 

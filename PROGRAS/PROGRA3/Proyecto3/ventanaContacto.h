@@ -230,7 +230,7 @@ namespace Interfaz {
 		sprintf_s(cStr4, "%s", clrString4);
 		std::string stlString4(cStr4);
 
-		ofstream outFile("Contacto.txt");
+		ofstream outFile("Contacto.txt", ios::app);
 		outFile << "\t.: Contacto :." << endl << endl << endl;
 		if (outFile.is_open()) {
 			outFile << "--Nombre: " << cStr1 << endl;

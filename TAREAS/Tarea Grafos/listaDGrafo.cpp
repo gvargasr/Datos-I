@@ -61,6 +61,41 @@ void listaDGrafo::Mostrar(){
 	}
 }
 
+#include <fstream>
+
+void listaDGrafo::MostrarFile(int costo) {
+    // Open the file for writing (this will create a new file or overwrite an existing one)
+    std::ofstream outFile("PRIM.txt",ios::app);
+
+    if (outFile.is_open()) {
+        pnodoGrafo aux = primero;
+		outFile << "\t .:AEM PRIM:."<<endl<<endl;
+        while (aux) {
+            // Write the node information to the file
+            outFile << std::endl << aux->valor << "-" << aux->nombre << std::endl;
+
+            // Call Mostrar for the vertices and redirect the output to the file
+            std::streambuf* coutbuf = std::cout.rdbuf(); // Save the console buffer
+            std::cout.rdbuf(outFile.rdbuf()); // Redirect the output to the file
+
+            aux->vertices->MostrarFile();
+
+            // Restore the console output stream buffer
+            std::cout.rdbuf(coutbuf);
+
+            aux = aux->siguiente;
+        }
+		outFile << "\n\nCosto: "<<costo<<endl<<endl;
+        // Close the file
+        outFile.close();
+    } else {
+        // Handle the case where the file couldn't be opened
+        std::cerr << "Error: Unable to open the file for writing." << std::endl;
+    }
+}
+
+
+
 void listaDGrafo::MostrarSinCosto(){
 	pnodoGrafo aux = primero;
 	while(aux){

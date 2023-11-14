@@ -2,6 +2,8 @@
 #include <string>
 #include <iostream>
 #include <fstream>
+#include <vector>
+#include <unordered_map>
 
 using namespace std;
 
@@ -11,6 +13,8 @@ class Grafos {
     	//Constructor
     	Grafo1 = new listaDGrafo();
     	Grafo2 = new listaDGrafo();
+    	verticesKruskal = new listaDVertice();
+    	
 	 }
     ~Grafos();
 
@@ -18,14 +22,23 @@ class Grafos {
 	void cargaGrafo1();
 	void cargaGrafo2();
 	void Prim();
-	void algPrim(listaDGrafo* grafo1, listaDGrafo* AEM);
+	void algPrim(listaDGrafo* grafo, listaDGrafo* AEM1, string partida);
 	void marcarVisitados(listaDGrafo* grafo, string nodo);
 	void marcarNoVisitados();
+	void mostrarVisitados(listaDGrafo* grafo);
+	void Kruskal();
+	void agregarNodo(string source, string destination, int cost);
+	void MostrarListaAdj();
+
+
 
 	
 //	private:
 		listaDGrafo* Grafo1;
 		listaDGrafo* Grafo2;
+		listaDVertice* verticesKruskal;
+		unordered_map<string, vector<pair<string, int>>> listaAdj;
+
 };
 
 
@@ -34,6 +47,20 @@ Grafos::~Grafos(){
 
 }
 
+void Grafos::agregarNodo(string origen, string destino, int costo) {
+        listaAdj[origen].push_back(make_pair(destino, costo));
+        listaAdj[destino].push_back(make_pair(origen, costo));
+    }
+
+void Grafos::MostrarListaAdj() {
+        for (auto it = listaAdj.begin(); it != listaAdj.end(); ++it) {
+            cout << it->first << ": ";
+            for (auto edge = it->second.begin(); edge != it->second.end(); ++edge) {
+                cout << "(" << edge->first << ", " << edge->second << ") ";
+            }
+            cout << endl;
+        }
+    }
 
 void Grafos::cargaGrafo1() {
     try {
@@ -60,12 +87,14 @@ void Grafos::cargaGrafo1() {
 
         while (getline(archivoDistancias1, origen, ';')) {
             if (getline(archivoDistancias1, destino, ';') && getline(archivoDistancias1, costo)) {
+            	agregarNodo(origen, destino, stoi(costo));
                 pnodoGrafo temp = Grafo1->Buscador(origen);
                 pnodoGrafo temp2 = Grafo1->Buscador(destino);
 
                 if (temp != NULL && temp2 != NULL) {
                     temp->vertices->InsertarFinal(stoi(costo), destino);
                     temp2->vertices->InsertarFinal(stoi(costo), origen);
+                    verticesKruskal->InsertarOrdenadoVertice(stoi(costo), origen, destino);
                 }
             } else {
                 // Handle empty line or other issues
@@ -79,11 +108,12 @@ void Grafos::cargaGrafo1() {
         cout << endl << "*********************************************************************************" << endl << endl;
 
     } catch (const std::exception &e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+        cerr << "Error: " << e.what() << endl;
         return;
     }
     cout << "\t .:GRAFO #1:." << endl << endl;
     Grafo1->Mostrar();
+    MostrarListaAdj();
 }
 
 
@@ -157,7 +187,7 @@ void Grafos::Prim() {
             cout << "Punto de partida valido." << endl << endl;
             AEM->InsertarFinal(Grafo1->Buscador(opt)->valor, Grafo1->Buscador(opt)->nombre);
             Grafo1->Buscador(opt)->visitado = true;
-            algPrim(Grafo1, AEM);
+            algPrim(Grafo1, AEM, opt);
             puntoPartidaValido = true;
         } else {
             cout << "###ERROR: Punto de partida invalido###" << endl << endl;
@@ -166,13 +196,15 @@ void Grafos::Prim() {
     }
 }
 
-
-
-
-void Grafos::algPrim(listaDGrafo* grafo1, listaDGrafo* AEM) {
-	cout<<"primero visitado? "<<grafo1->Buscador(AEM->primero->valor)->visitado;
-    while (!grafo1->todosVisitados()) {
-        string nombreI;
+void Grafos::algPrim(listaDGrafo* grafo, listaDGrafo* AEM1, string partida) {
+	listaDGrafo*& grafo1 = grafo;
+	listaDGrafo*& AEM = AEM1;
+	int costo = 0;
+	grafo1->Buscador(partida)->visitado = true;
+	cout<<"LArgo: "<<grafo1->largoLista()<<" primero: "<<grafo1->primero->valor<<endl<<endl;
+    while (AEM->largoLista() < grafo1->largoLista()) {
+    	mostrarVisitados(grafo1);
+        string nombreOrigen;
         pnodoGrafo temp = AEM->primero;
         pnodoVertice menor = NULL;
         // Verificar si todos los nodos han sido visitados
@@ -181,35 +213,40 @@ void Grafos::algPrim(listaDGrafo* grafo1, listaDGrafo* AEM) {
         }
         while (temp != NULL ) {
             pnodoVertice temp2 = grafo1->Buscador(temp->valor)->vertices->primero;
-            while (temp2 != NULL && !grafo1->Buscador(temp->valor)->vertices->todosVisitados()) {
+            while (temp2 != NULL ) {
                 if ( !temp2->visitado && (menor == NULL || temp2->costo < menor->costo)) {
-                    nombreI = temp->valor;
+                    nombreOrigen = temp->valor;
                     menor = temp2;
-                    temp2->visitado = true;
                 }
-
                 temp2 = temp2->siguiente;
             }
-
             temp = temp->siguiente;
         }
         if (menor != NULL) {
         	marcarVisitados(grafo1, menor->destino);
-            cout << nombreI << endl;
+            cout << nombreOrigen << endl;
             cout << "El menor es: " << menor->destino << " valor: " << menor->costo << endl << endl;
+            costo = costo + menor->costo;
 			menor->visitado = true;
-            grafo1->Buscador(menor->destino)->vertices->BuscadorN(nombreI)->visitado = true;
-			grafo1->Buscador(nombreI)->vertices->BuscadorN(menor->destino)->visitado = true;
+            grafo1->Buscador(menor->destino)->vertices->BuscadorN(nombreOrigen)->visitado = true;
+			grafo1->Buscador(nombreOrigen)->vertices->BuscadorN(menor->destino)->visitado = true;
             pnodoGrafo insert = grafo1->Buscador(menor->destino);
             AEM->InsertarFinal(insert->valor, insert->nombre);
-            AEM->Buscador(nombreI)->vertices->InsertarFinal(menor->costo,menor->destino);
-            AEM->Buscador(menor->destino)->vertices->InsertarFinal(menor->costo,nombreI);
+            AEM->Buscador(nombreOrigen)->vertices->InsertarFinal(menor->costo,menor->destino);
+            AEM->Buscador(menor->destino)->vertices->InsertarFinal(menor->costo,nombreOrigen);
         }else{
         	cout<<"Visitados todos"<<endl;
         	break;
 		}
     }
-    AEM->Mostrar();
+    //AEM->Mostrar();
+   // AEM->MostrarFile(costo);
+    grafo1->~listaDGrafo();
+    AEM->~listaDGrafo();
+}
+
+void Grafos::Kruskal() {
+
 }
 
 void Grafos::marcarVisitados(listaDGrafo* grafo, string nodo){
@@ -228,6 +265,24 @@ void Grafos::marcarVisitados(listaDGrafo* grafo, string nodo){
 		}	
 	temp = temp->siguiente;
 	}
+}
+
+
+
+void Grafos::mostrarVisitados(listaDGrafo* grafo){
+	pnodoGrafo temp = grafo->primero;
+	while(temp != NULL){
+		cout<< temp->valor<<"-"<<temp->nombre<<"-"<<endl;
+		pnodoVertice temp2 = temp->vertices->primero;
+		while(temp2 != NULL){
+			if(temp2->visitado == true ){
+				cout<<temp2->destino<<":"<<temp2->costo<<endl;
+			}
+		temp2 = temp2->siguiente;
+		}
+		cout<<endl;	
+		temp = temp->siguiente;
+	}	
 }
 
 void Grafos::Menu(){
@@ -253,8 +308,9 @@ void Grafos::Menu(){
     switch(opt) {
     	case '1' : 
 			cargaGrafo1();
-			cargaGrafo2();
+		//	cargaGrafo2();
 			cout<<"\n\nGrafo 1 y Grafo 2 han sido cargados!"<<endl<<endl;
+			listaAdj.clear();
 			Menu();
 			break;
     	case '2':
@@ -262,6 +318,9 @@ void Grafos::Menu(){
     		Menu();
     		break;
     	case '3':
+    		listaAdj.clear();
+    		verticesKruskal->MostrarKruskal();
+    		Kruskal();
     	//	SubMenu3();
     		Menu();
 			break;

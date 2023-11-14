@@ -1,0 +1,10 @@
+A;VetTibas
+B;VetCartago
+C;VetLimon
+D;VetTurrialba
+E;VetSanJose
+F;VetGuacima
+G;VetLindora
+H;VetHeredia
+I;VetFlores
+J;VetGuadalupE
