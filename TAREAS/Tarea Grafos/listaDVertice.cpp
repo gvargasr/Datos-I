@@ -42,14 +42,6 @@ listaDVertice::~listaDVertice() {
 void listaDVertice::Mostrar(){
 	pnodoVertice aux = primero;
 	while(aux){
-		cout<<aux->destino<<"-"<<aux->costo<<endl;
-		aux = aux->siguiente;
-	}
-}
-
-void listaDVertice::MostrarKruskal(){
-	pnodoVertice aux = primero;
-	while(aux){
 		cout<<aux->origen<<aux->destino<<"-"<<aux->costo<<endl;
 		aux = aux->siguiente;
 	}
