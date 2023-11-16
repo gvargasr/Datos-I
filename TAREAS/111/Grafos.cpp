@@ -7,6 +7,7 @@
 #include <unordered_map>
 #include <queue>
 #include <unordered_set>
+#include <limits>
 
 using namespace std;
 
@@ -24,13 +25,17 @@ class Grafos {
     void Menu();
 	void cargaGrafo1();
 	void cargaGrafo2();
-	void agregarNodo1(string source, string destination, int cost);
+	void agregarNodo1(string origen, string destino, int costo);
 	void agregarNodo2(string source, string destination);
 	void MostrarListaAdj();
 	void MostrarListaAdj2();
-	void Profundidad(string startNode);
-	void Anchura(string startNode);
+	void Profundidad(string inicio);
+	void Anchura(string inicio);
 	bool existeNodo(string nodo);
+	bool existeNodo1(string inicio, string salida);
+	void Dijkstra(string inicio, string destino);
+	pair<string,int> Menor(string nodo);
+	void SubMenu4();
 	void SubMenu6();
 	void SubMenu7();
 
@@ -193,36 +198,36 @@ void Grafos::cargaGrafo2() {
 }
 
 
-void Grafos::Profundidad(string startNode) {
+void Grafos::Profundidad(string inicio) {
 	cout<<endl;
 	lista* cola = new lista();
-    unordered_set<string> visited;
-	cola->InsertarInicio(startNode);
-    visited.insert(startNode);
+    unordered_set<string> visitado;
+	cola->InsertarInicio(inicio);
+    visitado.insert(inicio);
 
     while (!cola->ListaVacia()) {
-        string currentNode = cola->primero->valor;
+        string nodoActual = cola->primero->valor;
         cola->MostrarPila();
         cola->BorrarInicio();
 	
-        cout << currentNode << " - ";
+        cout << nodoActual << " - ";
 
-        for (auto neighbor : listaAdj2[currentNode]) {
-            if (visited.find(neighbor) == visited.end()) {
+        for (auto neighbor : listaAdj2[nodoActual]) {
+            if (visitado.find(neighbor) == visitado.end()) {
                 cola->InsertarInicio(neighbor);
-                visited.insert(neighbor);
+                visitado.insert(neighbor);
             }
         }
     }
     cout <<endl;
 }
     
-void Grafos::Anchura(string startNode) {
+void Grafos::Anchura(string inicio) {
 	cout<<endl;
 	lista* cola = new lista();
     unordered_set<string> visited;
-	cola->InsertarFinal(startNode);
-    visited.insert(startNode);
+	cola->InsertarFinal(inicio);
+    visited.insert(inicio);
 
     while (!cola->ListaVacia()) {
         string currentNode = cola->primero->valor;
@@ -244,6 +249,177 @@ void Grafos::Anchura(string startNode) {
 
 bool Grafos::existeNodo(string nodo) {
     return listaAdj2.find(nodo) != listaAdj2.end();
+}
+
+bool Grafos::existeNodo1(string inicio, string salida) {
+    if((listaAdj.find(inicio) == listaAdj.end()) || (listaAdj.find(salida) == listaAdj.end())){
+    	return false;
+	}else{
+		return true;
+	}
+}
+
+pair<string,int> Grafos::Menor(string nodo){
+	pair<string,int> menor = make_pair("", numeric_limits<int>::max());
+		
+	if(listaAdj.find(nodo) != listaAdj.end()){
+		for(auto m = listaAdj[nodo].begin(); m != listaAdj[nodo].end(); m++ ){
+			if((*m).second < menor.second){
+				menor = *m;
+			}
+		}
+	}
+	return menor;
+	cout<<"Menor: "<<menor.first<<"-"<<menor.second;
+}
+
+void Grafos::Dijkstra(string inicio, string destino) {
+    priority_queue<pair<int, string>, vector<pair<int, string>>, greater<pair<int, string>>> cola; 
+    unordered_map<string, int> distancias;
+    unordered_map<string, string> anterior;
+    unordered_set<string> visitados;
+
+	unordered_map<string, vector<pair<string, int>>>::iterator it = listaAdj.begin();
+	while (it != listaAdj.end()) {
+	    distancias[it->first] = numeric_limits<int>::max();
+	    ++it;
+	}
+
+    cola.push(make_pair(0, inicio));
+    distancias[inicio] = 0;
+
+	while (!cola.empty()) {
+	    string u = cola.top().second;
+	    int distU = cola.top().first;
+	    cola.pop();
+	
+	    if (visitados.find(u) == visitados.end()) {
+	        visitados.insert(u);
+	
+        	for (vector<pair<string, int>>::iterator it = listaAdj[u].begin(); it != listaAdj[u].end(); ++it) {
+        		string v = it->first;
+            	int weight = it->second;
+
+            	if (distU + weight < distancias[v]) {
+                	distancias[v] = distU + weight;
+                	cola.push(make_pair(distancias[v], v));
+                	anterior[v] = u;
+            	}
+        	}
+    	}
+    }	
+    
+	unordered_map<string, int>::const_iterator con = distancias.begin();
+	while (con != distancias.end()) {
+	    cout << "Conexion " << inicio << con->first << ": ";
+	    lista* pila = new lista();
+	    string current = con->first;
+	
+	    while (current != inicio) {
+	        pila->InsertarInicio(current);
+	        current = anterior[current];
+	    }
+	
+	    cout << inicio << "(0)";
+	    int totalCost = con->second;
+	    int prev = 0;
+	    while (!pila->ListaVacia()) {
+	        string node = pila->primero->valor;
+	        int costoMin = distancias[node] - prev;
+	        cout << " -> " << node << " (" << costoMin << ")";
+	        totalCost = totalCost - distancias[node];
+	        prev = prev + costoMin;
+	        pila->BorrarInicio();
+	    }
+	
+	    cout << ". Costo Total: " << con->second << endl;
+	
+	    ++con;
+	}
+
+
+    cout << "Ruta mas corta de "<<inicio <<" a " << destino << ": ";
+    lista* pila = new lista();
+    string current = destino;
+
+    while (current != inicio) {
+        pila->InsertarInicio(current);
+        current = anterior[current];
+    }
+
+    cout << inicio;
+    while (!pila->ListaVacia()) {
+        cout << " -> " << pila->primero->valor;
+		pila->BorrarInicio();
+	}
+
+    cout << ". Costo Total: " << distancias[destino] << endl;
+
+	ofstream outFile2("dijkstra.txt");
+	con = distancias.begin();
+	outFile2 <<" Conexiones"<<"\tNodos: "<<"\t\tCosto Total: "<<endl<<endl;
+	while (con != distancias.end()) {
+	    outFile2 << "Conexion " << inicio << con->first << ": ";
+	    lista* pila = new lista();
+	    string current = con->first;
+	
+	    while (current != inicio) {
+	        pila->InsertarInicio(current);
+	        current = anterior[current];
+	    }
+		string a= inicio;
+		string b = "";
+	    int totalCost = con->second;
+	    int prev = 0;
+	    while (!pila->ListaVacia()) {
+	    	
+	        string node = pila->primero->valor;
+	        int costoMin = distancias[node] - prev;
+	        outFile2 << "-> "<<a<<node << " (" << costoMin << ") ";
+	        totalCost = totalCost - distancias[node];
+	        prev = prev + costoMin;
+	        a = node;
+	        pila->BorrarInicio();
+	    }
+	
+	    outFile2 << ". Costo Total: " << con->second << endl;
+	
+	    ++con;
+	}
+
+    outFile2 << "Ruta mas corta de " << inicio << " a " << destino << ": ";
+    lista* pila2 = new lista();
+    string current2 = destino;
+
+    while (current2 != inicio) {
+        pila2->InsertarInicio(current2);
+        current2 = anterior[current2];
+    }
+
+    while (!pila2->ListaVacia()) {
+        outFile2 << " -> " << pila2->primero->valor;
+        pila2->BorrarInicio();
+    }
+
+    outFile2 << ". Costo Total: " << distancias[destino] << endl <<endl;
+
+    outFile2.close();
+}
+
+
+void Grafos::SubMenu4(){
+	cout<<"Ingrese Punto de Partida: "<<endl;
+	string pp;
+	cin >> pp;
+	cout<<"Ingrese Punto Final: "<<endl;
+	string ps;
+	cin >> ps;
+	if(existeNodo1(pp, ps)){
+		Dijkstra(pp,ps);
+    }else{
+    	cout<<"Punto de Partida y punto final incorrectos."<<endl<<endl;
+    	SubMenu4();
+	}
 }
 
 void Grafos::SubMenu6(){
@@ -310,7 +486,7 @@ void Grafos::Menu(){
     		Menu();
 			break;
     	case '4':
-    	//	SubMenu4();
+    		SubMenu4();
     		Menu();
     		break;
     	case '5':

@@ -52,6 +52,7 @@ class lista {
     int largoLista();// retorno un valor numerico
     void MostrarPila();
     void MostrarCola();
+    bool Buscar(string v);
 
 
     
@@ -270,7 +271,28 @@ void lista::BorrarNodo(string valor) {
     cout << "Nodo con valor " << valor << " eliminado de la lista." << endl;
 }
 
+bool lista::Buscar(string valor) {
+    pnodo temp = primero;
+    pnodo anterior = NULL;
 
+    if (temp != NULL && temp->valor == valor) {
+        primero = temp->siguiente;
+        return true;
+    }
+
+    while (temp != NULL && temp->valor != valor) {
+        anterior = temp;
+        temp = temp->siguiente;
+    }
+
+    // If the node with the desired value is found, delete it
+    if (temp == NULL) {
+        cout << "El valor " << valor << " no se encuentra en la lista." << endl;
+        return false;
+    }
+
+    return true;
+}
 void lista::Mostrar()
 {
    nodo *aux;
