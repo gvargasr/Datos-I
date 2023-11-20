@@ -1,0 +1,294 @@
+	.: COLA :.
+
+
+J 
+
+Sale: J 
+
+Recorrido: 
+
+J -> 	.: COLA :.
+
+
+A 
+
+Sale: A 
+
+Recorrido: 
+
+A -> 	.: COLA :.
+
+
+H 
+
+Sale: H 
+
+Recorrido: 
+
+H -> 	.: COLA :.
+
+
+3 
+
+Sale: 3 
+	.: COLA :.
+
+
+1 
+5 
+6 
+7 
+
+Sale: 1 
+	.: COLA :.
+
+
+5 
+6 
+7 
+2 
+4 
+
+Sale: 5 
+	.: COLA :.
+
+
+6 
+7 
+2 
+4 
+8 
+9 
+
+Sale: 6 
+	.: COLA :.
+
+
+7 
+2 
+4 
+8 
+9 
+
+Sale: 7 
+	.: COLA :.
+
+
+2 
+4 
+8 
+9 
+
+Sale: 2 
+	.: COLA :.
+
+
+4 
+8 
+9 
+
+Sale: 4 
+	.: COLA :.
+
+
+8 
+9 
+
+Sale: 8 
+	.: COLA :.
+
+
+9 
+10 
+
+Sale: 9 
+	.: COLA :.
+
+
+10 
+
+Sale: 10 
+
+Recorrido: 
+
+3 -> 1 -> 5 -> 6 -> 7 -> 2 -> 4 -> 8 -> 9 -> 10 -> 	.: COLA :.
+
+
+8 
+
+Sale: 8 
+	.: COLA :.
+
+
+5 
+6 
+7 
+10 
+
+Sale: 5 
+	.: COLA :.
+
+
+6 
+7 
+10 
+2 
+3 
+4 
+9 
+
+Sale: 6 
+	.: COLA :.
+
+
+7 
+10 
+2 
+3 
+4 
+9 
+
+Sale: 7 
+	.: COLA :.
+
+
+10 
+2 
+3 
+4 
+9 
+
+Sale: 10 
+	.: COLA :.
+
+
+2 
+3 
+4 
+9 
+
+Sale: 2 
+	.: COLA :.
+
+
+3 
+4 
+9 
+1 
+
+Sale: 3 
+	.: COLA :.
+
+
+4 
+9 
+1 
+
+Sale: 4 
+	.: COLA :.
+
+
+9 
+1 
+
+Sale: 9 
+	.: COLA :.
+
+
+1 
+
+Sale: 1 
+
+Recorrido: 
+
+8 -> 5 -> 6 -> 7 -> 10 -> 2 -> 3 -> 4 -> 9 -> 1 -> 	.: COLA :.
+
+
+8 
+
+Sale: 8 
+	.: COLA :.
+
+
+5 
+6 
+7 
+10 
+
+Sale: 5 
+	.: COLA :.
+
+
+6 
+7 
+10 
+2 
+3 
+4 
+9 
+
+Sale: 6 
+	.: COLA :.
+
+
+7 
+10 
+2 
+3 
+4 
+9 
+
+Sale: 7 
+	.: COLA :.
+
+
+10 
+2 
+3 
+4 
+9 
+
+Sale: 10 
+	.: COLA :.
+
+
+2 
+3 
+4 
+9 
+
+Sale: 2 
+	.: COLA :.
+
+
+3 
+4 
+9 
+1 
+
+Sale: 3 
+	.: COLA :.
+
+
+4 
+9 
+1 
+
+Sale: 4 
+	.: COLA :.
+
+
+9 
+1 
+
+Sale: 9 
+	.: COLA :.
+
+
+1 
+
+Sale: 1 
+
+Recorrido: 
+
+8 -> 5 -> 6 -> 7 -> 10 -> 2 -> 3 -> 4 -> 9 -> 1 -> 

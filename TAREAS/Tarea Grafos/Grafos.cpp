@@ -282,6 +282,7 @@ void Grafos::algPrim(listaDGrafo* grafo, listaDGrafo* AEM1, string partida) {
     AEM->MostrarFile(costo);
     grafo1->~listaDGrafo();
     AEM->~listaDGrafo();
+    verticesKruskal->~listaDVertice();
 }
 
 void Grafos::mostrarVisitados(listaDGrafo* grafo){
@@ -321,6 +322,7 @@ void Grafos::marcarVisitados(listaDGrafo* grafo, string nodo){
 void Grafos::Profundidad(string inicio) {
 	cout<<endl;
 	lista* cola = new lista();
+	lista* final = new lista();
     unordered_set<string> visitado;
 	cola->InsertarInicio(inicio);
     visitado.insert(inicio);
@@ -331,7 +333,7 @@ void Grafos::Profundidad(string inicio) {
         cola->BorrarInicio();
 	
         cout << nodoActual << " - ";
-
+		final->InsertarFinal(nodoActual);
         for (auto neighbor : listaAdj[nodoActual]) {
             if (visitado.find(neighbor.first) == visitado.end()) {
                 cola->InsertarInicio(neighbor.first);
@@ -340,11 +342,20 @@ void Grafos::Profundidad(string inicio) {
         }
     }
     cout <<endl;
+    ofstream prof("Profundidad.txt", ios::app);
+    pnodo temp = final->primero;
+    prof << "\nRecorrido: "<<endl<<endl;
+	while(temp != NULL){
+		prof << temp->valor << " -> ";
+		temp = temp->siguiente;
+	}
+	prof.close();
 }
     
 void Grafos::Anchura(string inicio) {
 	cout<<endl;
 	lista* cola = new lista();
+	lista* final = new lista();
     unordered_set<string> visited;
 	cola->InsertarFinal(inicio);
     visited.insert(inicio);
@@ -355,7 +366,7 @@ void Grafos::Anchura(string inicio) {
         cola->BorrarInicio();
 
         cout << currentNode << " - ";
-
+		final->InsertarFinal(currentNode);
         for (auto neighbor : listaAdj[currentNode]) {
             if (visited.find(neighbor.first) == visited.end()) {
                 cola->InsertarFinal(neighbor.first);
@@ -365,6 +376,14 @@ void Grafos::Anchura(string inicio) {
     }
 
     cout <<endl;
+    ofstream anch("Anchura.txt", ios::app);
+    pnodo temp = final->primero;
+    anch << "\nRecorrido: "<<endl<<endl;
+	while(temp != NULL){
+		anch << temp->valor << " -> ";
+		temp = temp->siguiente;
+	}
+	anch.close();
 }
 
 bool Grafos::existeNodo(string nodo) {
