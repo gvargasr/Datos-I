@@ -2,4 +2,7 @@
 **/*.mp4
 **/.DS_Store
 /QUIZES/EDDOALoomis, M..pdf
-/PROGRAS/PROGRA1
+**/*.class
+**/.vs
+**/x64
+
